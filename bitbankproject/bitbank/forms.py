@@ -21,7 +21,7 @@ class UserCreateForm(UserCreationForm):
     class Meta:
         model = User
         if User.USERNAME_FIELD == 'email':
-            fields = ('full_name', 'email', 'api_key', 'api_secret_key', 'email_for_notice')
+            fields = ('email', 'full_name', 'api_key', 'api_secret_key', 'email_for_notice')
         else:
             fields = ('username', 'email')
 

@@ -1,7 +1,7 @@
 {% extends "bitbank/base.html" %}
 {% block content %}
 <form action="" method="POST">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-6 offset-3">
         <div class="card">
             <div class="card-body">
 
@@ -12,10 +12,10 @@
                     <hr>
                 {% endfor %}
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-6">
                         <button type="submit" id="login_button" class="btn btn-block green_button" >ログイン</button>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-6">
                         <a href="{% url 'bitbank:user_create' %}" class="btn btn-block red_button">新規登録</a>
                     </div>    
                 </div>
