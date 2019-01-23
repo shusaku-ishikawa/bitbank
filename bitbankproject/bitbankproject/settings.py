@@ -80,10 +80,15 @@ WSGI_APPLICATION = 'bitbankproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bitbank',
+        'USER': 'root',
+        'PASSWORD': '332191-Aa',
+        'HOST': '',
+        'PORT': '',
     }
 }
+
 
 
 # Password validation
@@ -129,8 +134,11 @@ STATICFILES_DIRS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'gmailアカウント名'
-# EMAIL_HOST_PASSWORD = 'gmailパスワード'
-# EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'ishikawasyuusaku@gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_CHARSET = 'utf-8'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ishikawasyuusaku@gmail.com'
+EMAIL_HOST_PASSWORD = '332191-a'
+EMAIL_USE_TLS = True
