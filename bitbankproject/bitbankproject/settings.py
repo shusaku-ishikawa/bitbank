@@ -25,7 +25,7 @@ SECRET_KEY = 'k9yiss_wm7w!bj*h6u7pt77*&emv0ek)=ey4_xw3ht4e8byn2a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['133.167.78.193']
+ALLOWED_HOSTS = ['133.167.78.193', 'localhost']
 
 
 # Application definition
@@ -127,10 +127,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'bitbank/static'),
 ]
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

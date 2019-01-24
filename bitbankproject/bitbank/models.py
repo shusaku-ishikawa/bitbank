@@ -50,8 +50,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # first_name = models.CharField(_('first name'), max_length=30, blank=True)
     # last_name = models.CharField(_('last name'), max_length=150, blank=True)
     full_name = models.CharField(_('名前'), max_length=150, blank=True)
-    api_key = models.TextField(_('API KEY'), max_length=255, default="")
-    api_secret_key = models.TextField(_('API SECRET KEY'), max_length=255, default="")
+    api_key = models.CharField(_('API KEY'), max_length=255, default="")
+    api_secret_key = models.CharField(_('API SECRET KEY'), max_length=255, default="")
     
 
     is_staff = models.BooleanField(

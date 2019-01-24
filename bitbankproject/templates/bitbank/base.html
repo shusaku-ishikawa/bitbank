@@ -28,6 +28,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           {% if user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'bitbank:password_change' %}">
+                  パスワードの変更
+              </a>
+          </li>
           <li>
             <a class="nav-item nav-link" href="{% url 'bitbank:logout' %}">ログアウト</a>
           </li>
@@ -37,6 +42,9 @@
             ログインはこちら
           </a>
           </li>
+
+
+
           {% endif %}
         </ul>
       </div>

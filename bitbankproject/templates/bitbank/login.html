@@ -11,9 +11,13 @@
                     {{ field.errors }}
                     <hr>
                 {% endfor %}
+                <a href="{% url 'bitbank:password_reset' %}">パスワードを忘れた方</a>
+                <hr>
                 <div class="row">
                     <div class="col-6">
                         <button type="submit" id="login_button" class="btn btn-block green_button" >ログイン</button>
+                        
+
                     </div>
                     <div class="col-6">
                         <a href="{% url 'bitbank:user_create' %}" class="btn btn-block red_button">新規登録</a>
