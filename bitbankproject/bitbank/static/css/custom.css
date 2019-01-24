@@ -1,0 +1,47 @@
+body {
+    color: white;
+    background: #222222
+}
+div.card {
+    border: solid 3px #FF6600;
+    background: #222222
+} 
+.form-control {
+    color: white;
+    background-color : #333333;
+    border: none;
+    border-radius : 0;
+}
+span {
+    color: white;
+    background-color : #333333;
+    border: none;
+    border-radius : 0;
+}
+/* input[type="text"], input[type="password"], input[type="email"], textarea {
+    background-color : #808080;
+    border: none;
+    border-radius : 0;
+} */
+
+.btn {
+    color: white;
+    border-radius: 0;
+}
+.green_button {
+    background-color: #008080
+}
+
+.red_button {
+    background-color: #FF6633
+}
+
+.errorlist {
+    color: red;
+}
+.form-control::-webkit-input-placeholder { color: #BBBBBB; font-weight: bold}  /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Microso
+
