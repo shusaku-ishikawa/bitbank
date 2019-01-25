@@ -31,7 +31,23 @@ class UserCreateForm(UserCreationForm):
             field.required = True
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
-    
+
+class UserUpdateForm(forms.ModelForm):
+    """ユーザー情報更新フォーム"""
+
+    class Meta:
+        model = User
+        if User.USERNAME_FIELD == 'email':
+            fields = ('email', 'full_name', 'api_key', 'api_secret_key', 'email_for_notice')
+        else:
+            fields = ('username', 'email', 'first_name', 'last_name')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
 class MyPasswordChangeForm(PasswordChangeForm):
     """パスワード変更フォーム"""
 

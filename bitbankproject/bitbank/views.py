@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
@@ -13,7 +13,7 @@ from django.shortcuts import redirect
 from django.template.loader import get_template
 from django.views import generic
 from .forms import (
-    LoginForm, UserCreateForm, MyPasswordChangeForm,
+    LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
     MyPasswordResetForm, MySetPasswordForm
 )
 
@@ -26,6 +26,27 @@ class Login(LoginView):
     """ログインページ"""
     form_class = LoginForm
     template_name = 'bitbank/login.html'
+
+class OnlyYouMixin(UserPassesTestMixin):
+    raise_exception = True
+
+    def test_func(self):
+        user = self.request.user
+        return user.pk == self.kwargs['pk'] or user.is_superuser
+
+
+class UserDetail(OnlyYouMixin, generic.DetailView):
+    model = User
+    template_name = 'bitbank/user_detail.html'
+
+
+class UserUpdate(OnlyYouMixin, generic.UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = 'bitbank/user_form.html'
+
+    def get_success_url(self):
+        return resolve_url('bitbank:user_detail', pk=self.kwargs['pk'])
 
 class Logout(LoginRequiredMixin, LogoutView):
     """ログアウトページ"""

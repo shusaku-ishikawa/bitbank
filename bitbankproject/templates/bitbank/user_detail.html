@@ -1,0 +1,33 @@
+{% extends "bitbank/base.html" %}
+{% block content %}
+<table class="table">
+    <tbody>
+        <tr>
+            <th>登録メールアドレス</th>
+            <td>{{ user.username }}</td>
+        </tr>
+        {% if user.username != user.email %}
+        <tr>
+            <th>ユーザー名</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>名前</th>
+            <td>{{ user.full_name }}</td>
+        </tr>
+        <tr>
+            <th>API KEY</th>
+            <td>{{ user.api_key }}</td>
+        </tr>
+        <tr>
+            <th>API SECRET KEY</th>
+            <td>{{ user.api_secret_key }}</td>
+        </tr>
+        <tr>
+            <th>通知用メールアドレス</th>
+            <td>{{ user.email_for_notice }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
