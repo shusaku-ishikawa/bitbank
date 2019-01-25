@@ -4,7 +4,8 @@ body {
 }
 div.card {
     border: solid 3px #FF6600;
-    background: #222222
+    background: #222222;
+    width: 18rem;
 } 
 .form-control {
     color: white;
