@@ -51,7 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # last_name = models.CharField(_('last name'), max_length=150, blank=True)
     full_name = models.CharField(_('名前'), max_length=150, blank=True)
     api_key = models.CharField(_('API KEY'), max_length=255, default="")
-    api_secret_key = models.CharField(_('API SECRET KEY'), max_length=255, default="")
+    api_secret_key = models.CharFieldk(_('API SECRET KEY'), max_length=255, default="")
     
 
     is_staff = models.BooleanField(
@@ -102,3 +102,91 @@ class User(AbstractBaseUser, PermissionsMixin):
         メールアドレスを返す
         """
         return self.email
+
+class Currency(models.Model):
+    pair = models.CharField(
+        verbose_name = _('通貨ペア'),
+        max_length = "50",
+        default = ""
+    )
+
+class SpecialOrder(mdoels.Model):
+    name = models.CharField(
+        verbose_name = _('特殊注文'),
+        max_length = "50",
+        default = "SINGLE"
+    )
+
+class OrderType(models.Model):
+    order_type = models.CharField(
+        verbose_name = _('注文方法'),
+        max_length = "50",
+        default = "成行"
+    )
+
+class Order(models.Model):
+
+    CURRENCY = (
+        ('BTC_JPY', 'BTC/JPY'),
+        ('XRP_JPY', 'XRP/JPY'),
+        ('LTC_BTC', 'LTC/BTC'),
+        ('ETH_BTC', 'ETH/BTC'),
+        ('MONA_JPY', 'MONA/JPY'),
+        ('MONA_BTC', 'MONA/BTC'),
+        ('BCC_JPY', 'BCC/JPY'),
+        ('BCC_BTC', 'BCC/BTC'),
+    )
+
+    SPECIAL_ORDER = (
+        ('SINGLE', 'SINGLE'),
+        ('IFD', 'IFD'),
+        ('OCO', 'OCO'),
+        ('IFDOCO', 'IFDOCO'),  
+    )
+
+    ORDER_TYPE = (
+        ('NARI', '成行'),
+        ('SASHI', '指値'),
+        ('R_SASHI', '逆指値'),
+        ('STOP_L', 'ストップリミット'),
+    )
+
+    BUY_SELL = (
+        ('BUY', '買い'),
+        ('SELL', '売り'),
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    currency = models.CharField(
+        verbose_name = _('通貨'),
+        choices = CURRENCY
+    )
+
+    special_order = models.CharField(
+        verbose_name = _('特殊注文'), 
+        choices = SPECIAL_ORDER
+    )
+
+    buy_sell = models.CharField(
+        verbose_name = '買い/売り',
+        choices = BUY_SELL,
+    )
+
+    order_type = models.CharField(
+        verbose_name = _('注文方法'),
+        choices = ORDER_TYPE
+    )
+
+    price = models.IntegerField(
+        verbose_name = _('注文価格'),
+        blank = True,
+        null = True,
+        default = 0,
+        validators = [
+            validators.MinValueValidator(0),
+            validators.MaxValueValidator(1000000)
+        ]
+    )
+
+    notify_
