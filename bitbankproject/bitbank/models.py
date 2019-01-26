@@ -104,26 +104,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         """
         return self.email
 
-class Currency(models.Model):
-    pair = models.CharField(
-        verbose_name = _('通貨ペア'),
-        max_length = "50",
-        default = ""
-    )
-
-class SpecialOrder(models.Model):
-    name = models.CharField(
-        verbose_name = _('特殊注文'),
-        max_length = "50",
-        default = "SINGLE"
-    )
-
-class OrderType(models.Model):
-    order_type = models.CharField(
-        verbose_name = _('注文方法'),
-        max_length = "50",
-        default = "成行"
-    )
 
 class Order(models.Model):
 
@@ -161,21 +141,25 @@ class Order(models.Model):
 
     currency = models.CharField(
         verbose_name = _('通貨'),
+        max_length = 50,
         choices = CURRENCY
     )
 
     special_order = models.CharField(
         verbose_name = _('特殊注文'), 
+        max_length = 50,
         choices = SPECIAL_ORDER
     )
 
     buy_sell = models.CharField(
         verbose_name = '買い/売り',
+        max_length = 50,
         choices = BUY_SELL,
     )
 
     order_type = models.CharField(
         verbose_name = _('注文方法'),
+        max_length = 50,
         choices = ORDER_TYPE
     )
 
