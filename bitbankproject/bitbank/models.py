@@ -107,15 +107,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Order(models.Model):
 
-    CURRENCY = (
-        ('BTC_JPY', 'BTC/JPY'),
-        ('XRP_JPY', 'XRP/JPY'),
-        ('LTC_BTC', 'LTC/BTC'),
-        ('ETH_BTC', 'ETH/BTC'),
-        ('MONA_JPY', 'MONA/JPY'),
-        ('MONA_BTC', 'MONA/BTC'),
-        ('BCC_JPY', 'BCC/JPY'),
-        ('BCC_BTC', 'BCC/BTC'),
+    PAIR = (
+        ('BTC/JPY', 'BTC/JPY'),
+        ('XRP/JPY', 'XRP/JPY'),
+        ('LTC/BTC', 'LTC/BTC'),
+        ('ETH/BTC', 'ETH/BTC'),
+        ('MONA/JPY', 'MONA/JPY'),
+        ('MONA/BTC', 'MONA/BTC'),
+        ('BCC/JPY', 'BCC/JPY'),
+        ('BCC/BTC', 'BCC/BTC'),
     )
 
     SPECIAL_ORDER = (
@@ -126,23 +126,30 @@ class Order(models.Model):
     )
 
     ORDER_TYPE = (
-        ('NARI', '成行'),
-        ('SASHI', '指値'),
-        ('R_SASHI', '逆指値'),
-        ('STOP_L', 'ストップリミット'),
+        ('成行', '成行'),
+        ('指値', '指値'),
+        ('逆指値', '逆指値'),
+        ('ストップリミット', 'ストップリミット'),
     )
 
-    BUY_SELL = (
+    SIDE = (
         ('BUY', '買い'),
         ('SELL', '売り'),
+    )
+    STATUS = (
+        ('UNFILLED', '注文中'),
+        ('PARTIALLY_FILLED', '注文中(一部約定)'),
+        ('FULLY_FILLED', '約定済み'),
+        ('CANCELED_UNFILLED', '取消済'),
+        ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    currency = models.CharField(
+    pair = models.CharField(
         verbose_name = _('通貨'),
         max_length = 50,
-        choices = CURRENCY
+        choices = PAIR
     )
 
     special_order = models.CharField(
@@ -151,10 +158,10 @@ class Order(models.Model):
         choices = SPECIAL_ORDER
     )
 
-    buy_sell = models.CharField(
+    side = models.CharField(
         verbose_name = '買い/売り',
         max_length = 50,
-        choices = BUY_SELL,
+        choices = SIDE,
     )
 
     order_type = models.CharField(
@@ -165,12 +172,49 @@ class Order(models.Model):
 
     price = models.IntegerField(
         verbose_name = _('注文価格'),
-        blank = True,
         null = True,
-        default = 0,
         validators = [
             MinValueValidator(0),
             MaxValueValidator(1000000)
         ]
     )
+
+    start_amount = models.FloatField(
+        verbose_name = _('注文数量'),
+        null = True,
+        validators = [
+            MinValueValidator(0.0),
+        ]
+    )
+
+    remaining_amount = models.FloatField(
+        verbose_name = _('未約定数量'),
+        null = True,
+        validators = [
+            MinValueValidator(0.0)
+        ]
+    )
+
+    executed_amount = models.FloatField(
+        verbose_name = _('約定済数量'),
+        null = True,
+        validators = [
+            MinValueValidator(0.0)
+        ]
+    )
+
+    status = models.CharField(
+        verbose_name = _('注文ステータス'),
+        null = True,
+        max_length = 50,
+        choices = STATUS
+    )
+
+    order_id = models.CharField(
+        verbose_name = _('取引ID'),
+        max_length = 50,
+        null = True
+    )
+
+    
     

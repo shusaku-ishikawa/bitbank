@@ -3,7 +3,7 @@ from django.contrib.auth.forms import (
     AuthenticationForm, UserCreationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 )
 from django.contrib.auth import get_user_model
-
+from .models import Order
 User = get_user_model()
 
 class LoginForm(AuthenticationForm):
@@ -75,3 +75,15 @@ class MySetPasswordForm(SetPasswordForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
+class MyOrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('pair', 'special_order', 'side', 'order_type', 'start_amount', 'price')
+    def __init__(self, *arg, **kwargs):
+        super().__init__(*arg, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
+

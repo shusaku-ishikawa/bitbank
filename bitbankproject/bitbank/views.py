@@ -14,8 +14,10 @@ from django.template.loader import get_template
 from django.views import generic
 from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
-    MyPasswordResetForm, MySetPasswordForm
+    MyPasswordResetForm, MySetPasswordForm, MyOrderForm
 )
+from .models import Order
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -159,3 +161,34 @@ class PasswordResetConfirm(PasswordResetConfirmView):
 class PasswordResetComplete(PasswordResetCompleteView):
     """新パスワード設定しましたページ"""
     template_name = 'bitbank/password_reset_complete.html'
+
+
+class OrderCreate(generic.CreateView, OnlyYouMixin):
+    """注文登録"""
+    template_name = 'bitbank/order_create.html'
+    form_class = MyOrderForm
+
+    def form_valid(self, form):
+        """bitbank api """
+        
+        temp_order = form.save(commit = False)
+        temp_order.user = self.request.user
+
+        return super(OrderCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('bitbank:order_detail', kwargs={'pk' : self.object.pk})
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+
+
+class OrderDetail(generic.DetailView, OnlyYouMixin):
+    """注文詳細"""
+    model = Order
+    template_name = 'bitbank/order_detail.html'
+
+class OrderList(generic.ListView, OnlyYouMixin):
+    """注文一覧"""
+    model = Order
+    template_name = 'bitbank/order_list.html'
