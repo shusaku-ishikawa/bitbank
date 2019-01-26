@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'bitbank',
         'USER': 'root',
         'PASSWORD': '332191-Aa',
-        'HOST': '',
+        'HOST': '127.0.0.1',
         'PORT': '',
     }
 }

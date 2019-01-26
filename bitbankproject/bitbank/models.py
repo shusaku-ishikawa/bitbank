@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
@@ -51,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # last_name = models.CharField(_('last name'), max_length=150, blank=True)
     full_name = models.CharField(_('名前'), max_length=150, blank=True)
     api_key = models.CharField(_('API KEY'), max_length=255, default="")
-    api_secret_key = models.CharFieldk(_('API SECRET KEY'), max_length=255, default="")
+    api_secret_key = models.CharField(_('API SECRET KEY'), max_length=255, default="")
     
 
     is_staff = models.BooleanField(
@@ -110,7 +111,7 @@ class Currency(models.Model):
         default = ""
     )
 
-class SpecialOrder(mdoels.Model):
+class SpecialOrder(models.Model):
     name = models.CharField(
         verbose_name = _('特殊注文'),
         max_length = "50",
@@ -184,9 +185,8 @@ class Order(models.Model):
         null = True,
         default = 0,
         validators = [
-            validators.MinValueValidator(0),
-            validators.MaxValueValidator(1000000)
+            MinValueValidator(0),
+            MaxValueValidator(1000000)
         ]
     )
-
-    notify_
+    
