@@ -7,7 +7,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 
-
 class UserManager(BaseUserManager):
     """ユーザーマネージャー."""
 
@@ -144,6 +143,11 @@ class Order(models.Model):
         ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
     )
 
+    NOTIFY = (
+        (True, 'ON'),
+        (False, 'OFF')
+    )
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     pair = models.CharField(
@@ -172,6 +176,15 @@ class Order(models.Model):
 
     price = models.IntegerField(
         verbose_name = _('注文価格'),
+        null = True,
+        validators = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000)
+        ]
+    )
+
+    limit_price = models.IntegerField(
+        verbose_name = _('逆指値価格'),
         null = True,
         validators = [
             MinValueValidator(0),
@@ -216,5 +229,49 @@ class Order(models.Model):
         null = True
     )
 
+    expect_price = models.FloatField(
+        verbose_name = _('予想'),
+        null = True, 
+        validators = [
+            MinValueValidator(0.0)
+        ]
+    )
+
+    notify_if_filled = models.BooleanField(
+        verbose_name = _('約定通知'),
+        default = False,
+        choices = NOTIFY,
+        # widget=forms.RadioSelect(renderer=my_form.HorizRadioRenderer)
+    )
+
+    notify_if_reach = models.BooleanField(
+        verbose_name = _('価格到達通知'),
+        default = False,
+        choices = NOTIFY,
+        # widget=forms.RadioSelect(renderer=my_form.HorizRadioRenderer)
+    )
+
+    price_threshold_1 = models.FloatField(
+        verbose_name = _('①価格到達通知設定'),
+        null = True
+    )
+    price_threshold_2 = models.FloatField(
+        verbose_name = _('②価格到達通知設定'),
+        null = True
+    )
     
+    price_threshold_3 = models.FloatField(
+        verbose_name = _('③価格到達通知設定'),
+        null = True
+    )
+    
+    price_threshold_4 = models.FloatField(
+        verbose_name = _('④価格到達通知設定'),
+        null = True
+    )
+    
+    price_threshold_5 = models.FloatField(
+        verbose_name = _('⑤価格到達通知設定'),
+        null = True
+    )
     

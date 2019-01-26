@@ -2,18 +2,137 @@
 {% block content %}
 <form action="" method="POST">
 
-    <div class="card">
-        <div class="card-body">
-            {{ form.non_field_errors }}
-            {% for field in form %}
-                {{ field }}
-                {{ field.errors }}
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <div class="input-group xs-3">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">通貨</span>
+                    </div>
+                    {{form.pair}}
+                </div>
                 <hr>
-            {% endfor %}
-            {% csrf_token %}
-            <div class="col-4 offset-4">
-                <button type="submit" class="btn btn-block green_button">登録</button>
+                <div class="input-group xs-3">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">特殊注文</span>
+                    </div>
+                    {{form.special_order}}
+                </div>
+                
             </div>
+            <div class="col-5" style="background: black">
+                保有資産
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-5">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">売買</span>
+                    </div>
+                    {{form.side}}
+                </div>
+                <hr>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">注文方法</span>
+                    </div>
+                    {{form.order_type}}
+                </div>
+                <hr>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">注文価格</span>
+                    </div>
+                    {{form.price}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder">円</span>
+                    </div>
+                </div>
+                <hr>            
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">逆指値の指値価格</span>
+                    </div>
+                    {{form.limit_price}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder">円</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">注文数量</span>
+                    </div>
+                    {{form.start_amount}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder"></span>
+                    </div>
+                </div>               
+            </div>
+            <div class="col-5">
+                <div class="input-group">
+                    約定通知
+                    {{form.notify_if_filled}}
+                </div>
+                <hr>
+                <div class="input-group">
+                    金額到達通知
+                    {{form.notify_if_reach}}
+                </div>
+                <hr>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="my_placeholder">①価格到達通知設定</span> 
+                    </div>
+                    {{form.price_threshold_1}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder">円</span>
+                    </div>
+                </div>
+                <hr>            
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">②価格到達通知設定</span>
+                    </div>
+                    {{form.price_threshold_2}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder">円</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">③価格到達通知設定</span>
+                    </div>
+                    {{form.price_threshold_3}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder">円</span>
+                    </div>
+                </div>
+                <hr>            
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">④価格到達通知設定</span>
+                    </div>
+                    {{form.price_threshold_4}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder">円</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">⑤価格到達通知設定</span>
+                    </div>
+                    {{form.price_threshold_5}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder">円</span>
+                    </div>
+                </div>
+            </div>
+                
         </div>
     </div>             
 

@@ -12,12 +12,20 @@ div.card {
     background-color : #333333;
     border: none;
     border-radius : 0;
+    display: inline;
+    text-align: right;
 }
-span {
+div.input-group-prepend, div.input-group-append {
     color: white;
     background-color : #333333;
     border: none;
     border-radius : 0;
+}
+span.my_placeholder {
+    text-align: center;
+    vertical-align: middle;
+    color: gray;
+
 }
 /* input[type="text"], input[type="password"], input[type="email"], textarea {
     background-color : #808080;
