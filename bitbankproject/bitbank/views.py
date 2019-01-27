@@ -196,9 +196,7 @@ class OrderList(generic.ListView, OnlyYouMixin):
     template_name = 'bitbank/order_list.html'
 
 def ajax_get_assets(request):
-    # user = request.user
-    api_key = "708bb3db-0a26-4a79-83e8-0fcdc1fb637a"
-    api_secret_key = "51d4a29d7f7f050fd5be82f2694e960b145ba84f83ca802769131d4756b7cbd1"
-    res_dict = python_bitbankcc.private(api_key, api_secret_key).get_asset()
+    user = request.user
+    res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).get_asset()
     
     return JsonResponse(res_dict)
