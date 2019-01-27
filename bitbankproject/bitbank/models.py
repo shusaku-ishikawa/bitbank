@@ -143,6 +143,10 @@ class Order(models.Model):
         ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
     )
 
+    NOTIFY_STR = (
+        ('ON', 'ON'),
+        ('OFF', 'OFF')
+    )
     NOTIFY = (
         (True, 'ON'),
         (False, 'OFF')
@@ -239,6 +243,7 @@ class Order(models.Model):
 
     notify_if_filled = models.BooleanField(
         verbose_name = _('約定通知'),
+        max_length = 10,
         default = False,
         choices = NOTIFY,
         # widget=forms.RadioSelect(renderer=my_form.HorizRadioRenderer)

@@ -82,16 +82,19 @@ class HorizontalRadioRenderer(forms.RadioSelect):
      return mark_safe(u'\n'.join([u'%s\n' % w for w in self]))
 
 class MyOrderForm(forms.ModelForm):
+
     class Meta:
         model = Order
-            
+ 
         fields = ('pair', 'special_order', 'side', 'order_type', 'start_amount', 'price', \
                   'limit_price', 'expect_price', 'notify_if_filled', 'notify_if_reach', \
                   'price_threshold_1', 'price_threshold_2','price_threshold_3','price_threshold_4','price_threshold_5')
+
     def __init__(self, *arg, **kwargs):
         super().__init__(*arg, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+        
 
 
 

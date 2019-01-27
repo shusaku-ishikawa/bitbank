@@ -15,6 +15,11 @@ div.card {
     display: inline;
     text-align: right;
 }
+.form-control:focus{
+    color: green;
+    background-color :#333333;
+}
+
 div.input-group-prepend, div.input-group-append {
     color: white;
     background-color : #333333;
@@ -27,11 +32,7 @@ span.my_placeholder {
     color: gray;
 
 }
-/* input[type="text"], input[type="password"], input[type="email"], textarea {
-    background-color : #808080;
-    border: none;
-    border-radius : 0;
-} */
+
 
 .btn {
     color: white;
