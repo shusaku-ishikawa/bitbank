@@ -107,14 +107,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Order(models.Model):
 
     PAIR = (
-        ('BTC/JPY', 'BTC/JPY'),
-        ('XRP/JPY', 'XRP/JPY'),
-        ('LTC/BTC', 'LTC/BTC'),
-        ('ETH/BTC', 'ETH/BTC'),
-        ('MONA/JPY', 'MONA/JPY'),
-        ('MONA/BTC', 'MONA/BTC'),
-        ('BCC/JPY', 'BCC/JPY'),
-        ('BCC/BTC', 'BCC/BTC'),
+        ('btc_jpy', 'btc_jpy'),
+        ('xrp_jpy', 'xrp_jpy'),
+        ('ltc_btc', 'ltc_btc'),
+        ('eth_btc', 'eth_btc'),
+        ('mona_jpy', 'mona_jpy'),
+        ('mona_btc', 'mona_btc'),
+        ('bcc_jpy', 'bcc_jpy'),
+        ('bcc_btc', 'bcc_btc'),
     )
 
     SPECIAL_ORDER = (

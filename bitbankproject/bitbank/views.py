@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.signing import BadSignature, SignatureExpired, loads, dumps
 from django.http import Http404, HttpResponseBadRequest
-from django.shortcuts import redirect
+from django.shortcuts import redirect, resolve_url
 from django.template.loader import get_template
 from django.views import generic
 from .forms import (
@@ -19,6 +19,7 @@ from .forms import (
 from .models import Order
 from django.urls import reverse
 from django.http import JsonResponse
+import os, json, python_bitbankcc
 
 User = get_user_model()
 
@@ -195,9 +196,9 @@ class OrderList(generic.ListView, OnlyYouMixin):
     template_name = 'bitbank/order_list.html'
 
 def ajax_get_assets(request):
-    user = request.user
+    # user = request.user
+    api_key = "708bb3db-0a26-4a79-83e8-0fcdc1fb637a"
+    api_secret_key = "51d4a29d7f7f050fd5be82f2694e960b145ba84f83ca802769131d4756b7cbd1"
+    res_dict = python_bitbankcc.private(api_key, api_secret_key).get_asset()
     
-    d = {
-        'title': post.title,
-    }
-    return JsonResponse(d)
+    return JsonResponse(res_dict)

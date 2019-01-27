@@ -13,8 +13,13 @@ div.card {
     border: none;
     border-radius : 0;
     display: inline;
+    /* text-align: right; */
+}
+
+input[type="number"]{
     text-align: right;
 }
+
 .form-control:focus{
     color: green;
     background-color :#333333;

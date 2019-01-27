@@ -135,6 +135,61 @@
                 
         </div>
     </div>             
+ssss
 
 </form>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        alert('hello');
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        // load時に資産一覧取得
+        $(function() {
+            $.ajax({
+                'url': '{% url "bitbank:ajax_get_assets" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            }).done( response => {
+                if (response.assets) {
+                    response.assets.forEach(asset => {
+                        
+                    });
+                } else {
+                    alert('資産情報の取得に失敗しました。')
+                }
+                alert(response);
+                console.log(response);
+            });
+        })
+    </script>
 {% endblock %}
