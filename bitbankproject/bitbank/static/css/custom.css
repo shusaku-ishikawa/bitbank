@@ -1,6 +1,7 @@
 body {
     color: white;
-    background: #222222
+    background: #222222;
+    font-size: 1vm;
 }
 div.card {
     border: solid 3px #FF6600;
@@ -13,6 +14,7 @@ div.card {
     border: none;
     border-radius : 0;
     display: inline;
+    font-size: 1vw
     /* text-align: right; */
 }
 
@@ -31,13 +33,18 @@ div.input-group-prepend, div.input-group-append {
     border: none;
     border-radius : 0;
 }
+
 span.my_placeholder {
     text-align: center;
+    display: table-cell;
     vertical-align: middle;
     color: gray;
-
+    font-size: 1vw;
 }
 
+#asset_table {
+    font-size: 1vw;
+}
 
 .btn {
     color: white;
