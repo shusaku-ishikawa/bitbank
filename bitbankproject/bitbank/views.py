@@ -18,6 +18,7 @@ from .forms import (
 )
 from .models import Order
 from django.urls import reverse
+from django.http import JsonResponse
 
 User = get_user_model()
 
@@ -192,3 +193,11 @@ class OrderList(generic.ListView, OnlyYouMixin):
     """注文一覧"""
     model = Order
     template_name = 'bitbank/order_list.html'
+
+def ajax_get_assets(request):
+    user = request.user
+    
+    d = {
+        'title': post.title,
+    }
+    return JsonResponse(d)
