@@ -165,7 +165,7 @@ class PasswordResetComplete(PasswordResetCompleteView):
     template_name = 'bitbank/password_reset_complete.html'
 
 
-class OrderCreate(generic.CreateView, LoginRequiredMixin):
+class OrderCreate(LoginRequiredMixin, generic.CreateView):
     """注文登録"""
     model = Order
     template_name = 'bitbank/order_create.html'
@@ -187,12 +187,12 @@ class OrderCreate(generic.CreateView, LoginRequiredMixin):
         return Order.objects.filter(user=self.request.user)
 
 
-class OrderDetail(generic.DetailView, LoginRequiredMixin):
+class OrderDetail(LoginRequiredMixin, generic.DetailView):
     """注文詳細"""
     model = Order
     template_name = 'bitbank/order_detail.html'
 
-class OrderList(generic.ListView, LoginRequiredMixin):
+class OrderList(LoginRequiredMixin, generic.ListView):
     """注文一覧"""
     model = Order
     template_name = 'bitbank/order_list.html'
