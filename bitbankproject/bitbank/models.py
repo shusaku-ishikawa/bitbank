@@ -181,6 +181,7 @@ class Order(models.Model):
     price = models.IntegerField(
         verbose_name = _('注文価格'),
         null = True,
+        blank = True,
         validators = [
             MinValueValidator(0),
             MaxValueValidator(1000000)
@@ -190,6 +191,7 @@ class Order(models.Model):
     limit_price = models.IntegerField(
         verbose_name = _('逆指値価格'),
         null = True,
+        blank = True,
         validators = [
             MinValueValidator(0),
             MaxValueValidator(1000000)
@@ -236,6 +238,7 @@ class Order(models.Model):
     expect_price = models.FloatField(
         verbose_name = _('予想'),
         null = True, 
+        blank = True,
         validators = [
             MinValueValidator(0.0)
         ]
@@ -258,25 +261,30 @@ class Order(models.Model):
 
     price_threshold_1 = models.FloatField(
         verbose_name = _('①価格到達通知設定'),
-        null = True
+        null = True,
+        blank = True
     )
     price_threshold_2 = models.FloatField(
         verbose_name = _('②価格到達通知設定'),
-        null = True
+        null = True,
+        blank = True
     )
     
     price_threshold_3 = models.FloatField(
         verbose_name = _('③価格到達通知設定'),
-        null = True
+        null = True,
+        blank = True
     )
     
     price_threshold_4 = models.FloatField(
         verbose_name = _('④価格到達通知設定'),
-        null = True
+        null = True,
+        blank = True
     )
     
     price_threshold_5 = models.FloatField(
         verbose_name = _('⑤価格到達通知設定'),
-        null = True
+        null = True,
+        blank = True
     )
     

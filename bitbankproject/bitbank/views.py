@@ -165,8 +165,9 @@ class PasswordResetComplete(PasswordResetCompleteView):
     template_name = 'bitbank/password_reset_complete.html'
 
 
-class OrderCreate(generic.CreateView, OnlyYouMixin):
+class OrderCreate(generic.CreateView, LoginRequiredMixin):
     """注文登録"""
+    model = Order
     template_name = 'bitbank/order_create.html'
     form_class = MyOrderForm
 
@@ -175,7 +176,8 @@ class OrderCreate(generic.CreateView, OnlyYouMixin):
         
         temp_order = form.save(commit = False)
         temp_order.user = self.request.user
-
+        # temp_order.save()
+        # temp_order.save()
         return super(OrderCreate, self).form_valid(form)
 
     def get_success_url(self):
@@ -185,12 +187,12 @@ class OrderCreate(generic.CreateView, OnlyYouMixin):
         return Order.objects.filter(user=self.request.user)
 
 
-class OrderDetail(generic.DetailView, OnlyYouMixin):
+class OrderDetail(generic.DetailView, LoginRequiredMixin):
     """注文詳細"""
     model = Order
     template_name = 'bitbank/order_detail.html'
 
-class OrderList(generic.ListView, OnlyYouMixin):
+class OrderList(generic.ListView, LoginRequiredMixin):
     """注文一覧"""
     model = Order
     template_name = 'bitbank/order_list.html'

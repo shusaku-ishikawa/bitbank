@@ -1,6 +1,7 @@
 body {
     color: white;
     background: #222222;
+    /* background: white; */
     font-size: 1vm;
 }
 div.card {
@@ -16,6 +17,10 @@ div.card {
     display: inline;
     font-size: 1vw
     /* text-align: right; */
+}
+
+select { 
+    text-align-last:center;
 }
 
 input[type="number"]{
