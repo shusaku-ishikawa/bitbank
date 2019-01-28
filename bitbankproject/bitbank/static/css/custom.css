@@ -19,6 +19,7 @@ div.card {
     /* text-align: right; */
 }
 
+
 select { 
     text-align-last:center;
 }
@@ -55,6 +56,16 @@ span.my_placeholder {
     color: white;
     border-radius: 0;
 }
+
+button.btn-base {
+    background: gray;
+    color: #008080
+}
+
+button.chosen {
+    background: green;
+}
+
 .green_button {
     background-color: #008080
 }

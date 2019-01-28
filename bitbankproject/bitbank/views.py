@@ -199,6 +199,12 @@ class OrderList(LoginRequiredMixin, generic.ListView):
 
 def ajax_get_assets(request):
     user = request.user
-    res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).get_asset()
+
+    if user.api_key == "" or user.api_secret_key == "":
+        res_dict = {
+            'error': 'API KEYが登録されていません'
+        }
+    else:
+        res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).get_asset()
     
     return JsonResponse(res_dict)

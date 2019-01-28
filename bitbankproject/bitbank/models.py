@@ -6,6 +6,9 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
+from django import forms
+
+
 
 class UserManager(BaseUserManager):
     """ユーザーマネージャー."""
@@ -169,6 +172,7 @@ class Order(models.Model):
     side = models.CharField(
         verbose_name = '買い/売り',
         max_length = 50,
+        default = "SELL",
         choices = SIDE,
     )
 
@@ -244,19 +248,18 @@ class Order(models.Model):
         ]
     )
 
-    notify_if_filled = models.BooleanField(
+    notify_if_filled = models.CharField(
         verbose_name = _('約定通知'),
         max_length = 10,
-        default = False,
-        choices = NOTIFY,
-        # widget=forms.RadioSelect(renderer=my_form.HorizRadioRenderer)
+        default = 'OFF',
+        choices = NOTIFY_STR,
     )
 
-    notify_if_reach = models.BooleanField(
+    notify_if_reach = models.CharField(
         verbose_name = _('価格到達通知'),
-        default = False,
-        choices = NOTIFY,
-        # widget=forms.RadioSelect(renderer=my_form.HorizRadioRenderer)
+        max_length = 10,
+        default = 'OFF',
+        choices = NOTIFY_STR,
     )
 
     price_threshold_1 = models.FloatField(
@@ -287,4 +290,6 @@ class Order(models.Model):
         null = True,
         blank = True
     )
+
+
     

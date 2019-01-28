@@ -44,10 +44,11 @@
         <hr>
         <div class="row">
             <div class="col-5">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="my_placeholder">売買</span>
-                    </div>
+                <div class="btn-group d-flex" role="group">
+                    <button id="sell_button" type="button" class="btn w-100 btn-base">買い</button>
+                    <button id="buy_button" type="button" class="btn w-100 btn-base">売り</button>
+                </div>
+                <div class="input-group" style="display: none">
                     {{form.side}}
                     {{ form.side.errors }}
                 </div>
@@ -111,18 +112,27 @@
                             
             </div>
             <div class="col-5">
-                <div class="input-group">
-                    約定通知
+                約定通知
+                <div class="btn-group d-flex" role="group">
+                    <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>
+                    <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                </div>
+
+                <div style="display: none" class="input-group">
                     {{form.notify_if_filled}}
                     {{form.notify_if_filled.errors}}
                     
                 </div>
                 <hr>
-                <div class="input-group">
-                    金額到達通知
+                金額到達通知
+                <div class="btn-group d-flex" role="group">
+                    <button id="notify_if_reach_on_button" type="button" class="btn w-100 btn-base">ON</button>
+                    <button id="notify_if_reach_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                </div>
+
+                <div style="display: none" class="input-group">
                     {{form.notify_if_reach}}
                     {{form.notify_if_reach.errors}}
-                    
                 </div>
                 <hr>
                 <div class="input-group">
@@ -235,6 +245,74 @@
                 }
                 
             });
+            
+
+            // 売り買いボタン初期化
+            if ($('#id_side').val() == 'SELL') {
+                $('#sell_button').addClass('chosen').removeClass('btn-base');
+                $('#buy_button').removeClass('chosen').addClass('btn-base');
+            } else {
+                $('#buy_button').addClass('chosen').removeClass('btn-base');
+                $('#sell_button').removeClass('chosen').addClass('btn-base');
+            }
+
+            // 通知ボタン初期化
+            if ($('#id_notify_if_filled').val() == 'ON') {
+                $('#notify_if_filled_on_button').addClass('chosen').removeClass('btn-base');
+                $('#notify_if_filled_off_button').removeClass('chosen').addClass('btn-base');
+            } else {
+                $('#notify_if_filled_off_button').addClass('chosen').removeClass('btn-base');
+                $('#notify_if_filled_on_button').removeClass('chosen').addClass('btn-base');
+            }
+            // 金額到達ボタン初期化
+            if ($('#id_notify_if_reach').val() == 'ON') {
+                $('#notify_if_reach_on_button').addClass('chosen').removeClass('btn-base');
+                $('#notify_if_reach_off_button').removeClass('chosen').addClass('btn-base');
+            } else {
+                $('#notify_if_reach_off_button').addClass('chosen').removeClass('btn-base');
+                $('#notify_if_reach_on_button').removeClass('chosen').addClass('btn-base');
+            }
+            
+            //SELLボタンクリック
+            $('#sell_button').on('click', function() {
+                $('#sell_button').addClass('chosen').removeClass('btn-base');
+                $('#buy_button').removeClass('chosen').addClass('btn-base');
+                $('#id_side').val('SELL');
+            });
+            
+            //BUYボタンクリック
+            $('#buy_button').on('click', function() {
+                $('#buy_button').addClass('chosen').removeClass('btn-base');
+                $('#sell_button').removeClass('chosen').addClass('btn-base');
+                $('#id_side').val('BUY');
+            });
+
+            //通知ONボタンクリック
+            $('#notify_if_filled_on_button').on('click', function() {
+                $('#notify_if_filled_on_button').addClass('chosen').removeClass('btn-base');
+                $('#notify_if_filled_off_button').removeClass('chosen').addClass('btn-base');
+                $('#id_notify_if_filled').val('ON');
+            });
+            //通知OFFボタンクリック
+            $('#notify_if_filled_off_button').on('click', function() {
+                $('#notify_if_filled_off_button').addClass('chosen').removeClass('btn-base');
+                $('#notify_if_filled_on_button').removeClass('chosen').addClass('btn-base');
+                $('#id_notify_if_filled').val('OFF');
+            });
+
+            //金額到達ONボタンクリック
+            $('#notify_if_reach_on_button').on('click', function() {
+                $('#notify_if_reach_on_button').addClass('chosen').removeClass('btn-base');
+                $('#notify_if_reach_off_button').removeClass('chosen').addClass('btn-base');
+                $('#id_notify_if_reach').val('ON');
+            });
+            //金額到達OFFボタンクリック
+            $('#notify_id_reach_off_button').on('click', function() {
+                $('#notify_if_reach_off_button').addClass('chosen').removeClass('btn-base');
+                $('#notify_if_reach_on_button').removeClass('chosen').addClass('btn-base');
+                $('#id_notify_if_reach').val('OFF');
+            });
+
 
             $.ajax({
                 'url': '{% url "bitbank:ajax_get_assets" %}',
@@ -253,7 +331,11 @@
                     });
                     $("#asset_table > tbody").html(asset_html);
                 } else {
-                    alert('資産情報の取得に失敗しました。')
+                    if (response.error) {
+                        alert(response.error);
+                    } else {
+                        alert('想定外のエラーです');
+                    }
                 }
             });
         });

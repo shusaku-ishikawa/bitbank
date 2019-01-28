@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['133.167.78.193', 'localhost']
 
+SESSION_COOKIE_AGE = 60 * 5
 
 # Application definition
 
