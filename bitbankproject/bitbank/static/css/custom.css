@@ -1,9 +1,7 @@
 @media (min-width: 1100px) {
     /*code for destop*/
 
-    #asset_table {
-        font-size: 1vw;
-    }
+ 
 
 }
 @media (max-width: 1100px) {
@@ -19,8 +17,8 @@
 }
 
 }
-html {
-    font-size: 3vm;
+#asset_table {
+    font-size: 3vmin;
 }
 body {
     color: white;
@@ -34,12 +32,13 @@ body {
     border: none;
     border-radius : 0;
     display: inline;
+    font-size: 3vmin;
     /* text-align: right; */
 }
 
 div.input-group, div.btn-group {
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding-left: 4vmin;
+    padding-right: 4vmin;
 }
 
 
@@ -57,11 +56,13 @@ select {
 .btn {
     color: white;
     border-radius: 0;
+    
 }
 
 button.btn-base {
     background: gray;
-    color: #008080
+    color: #008080;
+    font-size: 3vmin;
 }
 
 input[type="number"]{
@@ -84,18 +85,22 @@ span.my_placeholder {
     display: table-cell;
     vertical-align: middle;
     color: gray;
+    font-size: 3vmin;
 }
 
 button.chosen {
     background: green;
+    font-size: 3vmin;
 }
 
 .green_button {
-    background-color: #008080
+    background-color: #008080;
+    font-size: 3vmin;
 }
 
 .red_button {
-    background-color: #FF6633
+    background-color: #FF6633;
+    font-size: 3vmin;
 }
 
     
