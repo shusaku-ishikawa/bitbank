@@ -90,7 +90,7 @@
                         <div class="input-group-prepend">
                             <span class="my_placeholder">予想</span>
                         </div>
-                        <input type="number" id="expect_amount" class="form-control">
+                        <input type="number" id="expect_price" class="form-control">
                         <div class="input-group-append">
                             <span class="my_placeholder">円</span>
                         </div>
@@ -200,17 +200,49 @@
 {% endblock %}
 {% block extra_js %}
     <script>
-    
+
+        function call_get_assets_api() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_assets" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+        }
+
+        function call_get_ticker_api(pair) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_ticker" %}',
+                'type': 'GET',
+                'dataType': 'json',
+                'data': {
+                    'pair': pair
+                },
+            });
+        }
 
         $(function() {
             // With JQuery
             $('#ex1').slider({
                 formatter: function(value) {
-                    currency = $('#id_pair').val().split('_')[1];
-                    free_amount = $('#free_' + currency).val();
-                    alert(currency);
-                    alert('slider');
+                    return 'Current value: ' + value;
+                },
+            });
+
+            $('#ex1').slider().on('slideStop', function(ev) {
+                if ($('#id_pair').val() != '') {
+                    var currency = $('#id_pair').val().split('_')[1];
+                    var free_amount = $('#free_' + $('#id_pair').val().split('_')[1]).html();
+                    var newVal = $('#ex1').data('slider').getValue();
+                    var market_price;
+                    
+                    if ($('#id_order_type').val() == '指値' || $('#id_order_type').val() == 'ストップリミット') {
+                        if ($('#id_price').val() != '' && $('#id_price').val() != 0) {
+                            $('#id_start_amount').val(free_amount * newVal / ($('#id_price').val() * 100));
+                            $('#expect_price').val(free_amount * newVal / 100);                        
+                        }
+                    }
                 }
+                
             });
 
             //逆指値の時のみ
@@ -296,11 +328,8 @@
             });
 
 
-            $.ajax({
-                'url': '{% url "bitbank:ajax_get_assets" %}',
-                'type': 'GET',
-                'dataType': 'json'
-            }).done( response => {
+            call_get_assets_api()
+            .done(response => {
                 if (response.assets) {
                     var asset_html = "";
                     response.assets.forEach(asset => {

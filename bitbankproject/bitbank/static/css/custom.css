@@ -12,10 +12,7 @@
 @media (max-width: 480px) {
 /*code for mobile here*/
 
-div#ex1Slider.slider.slider-horizontal {
-    width:100%;
-    margin-left: 5vw;
-}
+
 
 #ex1Slider .slider-selection {
 	background: #BABABA;

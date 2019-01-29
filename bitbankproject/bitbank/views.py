@@ -229,6 +229,18 @@ class OrderList(LoginRequiredMixin, generic.ListView):
     model = Order
     template_name = 'bitbank/order_list.html'
 
+def ajax_get_ticker(request):
+    user = request.user
+    pair = request.GET.get('pair')
+    try:
+        pub = python_bitbankcc.public()
+        res_dict = pub.get_ticker(pair)
+    except:
+        res_dict = {
+            'error': '通信エラー'
+        }
+    return JsonResponse(res_dict)
+
 def ajax_get_assets(request):
     user = request.user
 

@@ -18,6 +18,7 @@ urlpatterns = [
     path('password_reset/confirm/<uidb64>/<token>/', views.PasswordResetConfirm.as_view(), name='password_reset_confirm'),
     path('password_reset/complete/', views.PasswordResetComplete.as_view(), name='password_reset_complete'),
     path('order/', views.OrderCreate.as_view(), name='order'),
+    path('ajax_get_ticker/', views.ajax_get_ticker, name="ajax_get_ticker"),
     path('ajax_get_assets/', views.ajax_get_assets, name="ajax_get_assets"),
     path('ajax_cancel_order/', views.ajax_cancel_order, name="ajax_cancel_order"),
     path('order/list/', views.OrderList.as_view(), name='order_list'),
