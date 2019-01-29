@@ -144,6 +144,7 @@ class Order(models.Model):
         ('FULLY_FILLED', '約定済み'),
         ('CANCELED_UNFILLED', '取消済'),
         ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
+        ('ERROR', 'エラー'),
     )
 
     NOTIFY_STR = (
@@ -182,7 +183,7 @@ class Order(models.Model):
         choices = ORDER_TYPE
     )
 
-    price = models.IntegerField(
+    price = models.FloatField(
         verbose_name = _('注文価格'),
         null = True,
         blank = True,
@@ -192,7 +193,9 @@ class Order(models.Model):
         ]
     )
 
-    limit_price = models.IntegerField(
+
+
+    limit_price = models.FloatField(
         verbose_name = _('逆指値価格'),
         null = True,
         blank = True,
@@ -213,6 +216,7 @@ class Order(models.Model):
     remaining_amount = models.FloatField(
         verbose_name = _('未約定数量'),
         null = True,
+        blank = True,
         validators = [
             MinValueValidator(0.0)
         ]
@@ -221,31 +225,41 @@ class Order(models.Model):
     executed_amount = models.FloatField(
         verbose_name = _('約定済数量'),
         null = True,
+        blank = True,
         validators = [
             MinValueValidator(0.0)
         ]
+    )
+
+    average_price = models.FloatField(
+        verbose_name = _('約定平均価格'),
+        null = True,
+        blank = True,
     )
 
     status = models.CharField(
         verbose_name = _('注文ステータス'),
         null = True,
+        blank = True,
         max_length = 50,
-        choices = STATUS
     )
 
     order_id = models.CharField(
         verbose_name = _('取引ID'),
         max_length = 50,
-        null = True
+        blank = True,
+        null = True,
     )
 
-    expect_price = models.FloatField(
-        verbose_name = _('予想'),
-        null = True, 
-        blank = True,
-        validators = [
-            MinValueValidator(0.0)
-        ]
+    ordered_at = models.DateTimeField(
+        verbose_name = _('注文日時'),
+        auto_now_add = True,
+        auto_now = False,
+    )
+
+    udpated_at = models.DateTimeField(
+        verbose_name = _('更新日時'),   
+        auto_now = True,
     )
 
     notify_if_filled = models.CharField(

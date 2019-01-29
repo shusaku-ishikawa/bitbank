@@ -4,11 +4,11 @@
         
     {% csrf_token %}
 
-     <div class="container">
-        <div class="row">
+     
+        <div class="row align-items-center">
             {{ form.non_field_errors }}
-            <div class="col-5">
-                <div class="input-group xs-3">
+            <div class="col-6">
+                <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="my_placeholder">通貨</span>
                     </div>
@@ -16,7 +16,7 @@
                     {{ form.pair.errors }}
                 </div>
                 <hr>
-                <div class="input-group xs-3">
+                <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="my_placeholder">特殊注文</span>
                     </div>
@@ -25,7 +25,7 @@
                 </div>
                 
             </div>
-            <div class="col-5">
+            <div class="col-6">
                 <table id="asset_table" class="table table-striped table-responsive">
                     <thead>
                         <tr>
@@ -42,8 +42,8 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-5">
+        <div class="row align-items-center">
+            <div class="col-6">
                 <div class="btn-group d-flex" role="group">
                     <button id="sell_button" type="button" class="btn w-100 btn-base">買い</button>
                     <button id="buy_button" type="button" class="btn w-100 btn-base">売り</button>
@@ -83,12 +83,14 @@
                     </div>
                 </div>
                 <hr>
+
+                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+                
                 <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">予想</span>
                         </div>
-                        {{form.expect_price}}
-                        {{form.expect_price.errors}}
+                        <input type="number" id="expect_amount" class="form-control">
                         <div class="input-group-append">
                             <span class="my_placeholder">円</span>
                         </div>
@@ -111,7 +113,7 @@
                 </div>
                             
             </div>
-            <div class="col-5">
+            <div class="col-6">
                 約定通知
                 <div class="btn-group d-flex" role="group">
                     <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>
@@ -192,45 +194,25 @@
                 </div>
             </div>
                 
-        </div>
-    </div>              
+        </div>        
     
 </form>
 {% endblock %}
 {% block extra_js %}
     <script>
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = jQuery.trim(cookies[i]);
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            }
+    
 
-            var csrftoken = getCookie('csrftoken');
-
-            function csrfSafeMethod(method) {
-                // these HTTP methods do not require CSRF protection
-                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-            }
-
-            $.ajaxSetup({
-                beforeSend: function (xhr, settings) {
-                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                    }
+        $(function() {
+            // With JQuery
+            $('#ex1').slider({
+                formatter: function(value) {
+                    currency = $('#id_pair').val().split('_')[1];
+                    free_amount = $('#free_' + currency).val();
+                    alert(currency);
+                    alert('slider');
                 }
             });
 
-        $(function() {
             //逆指値の時のみ
             $('#id_order_type').on('change', function() {
                 if ($(this).val() == '逆指値') {
@@ -326,7 +308,7 @@
                         asset_html += '<td>' + asset.asset + '</td>';
                         asset_html += '<td>' + asset.onhand_amount + '</td>';
                         asset_html += '<td>' + asset.locked_amount + '</td>';
-                        asset_html += '<td>' + asset.free_amount + '</td>';
+                        asset_html += '<td id="free_' + asset.asset + '">' + asset.free_amount + '</td>';
                         asset_html += '</tr>';
                     });
                     $("#asset_table > tbody").html(asset_html);

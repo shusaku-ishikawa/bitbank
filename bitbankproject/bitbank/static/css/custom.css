@@ -1,37 +1,50 @@
+@media (min-width: 1100px) {
+    /*code for destop*/
+
+    #asset_table {
+        font-size: 1vw;
+    }
+
+}
+@media (max-width: 1100px) {
+/*code for ipad and netbooks*/
+}
+@media (max-width: 480px) {
+/*code for mobile here*/
+
+div#ex1Slider.slider.slider-horizontal {
+    width:100%;
+    margin-left: 5vw;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+}
+html {
+    font-size: 3vm;
+}
 body {
     color: white;
     background: #222222;
     /* background: white; */
-    font-size: 1vm;
 }
-div.card {
-    border: solid 3px #FF6600;
-    background: #222222;
-    width: 18rem;
-} 
+
 .form-control {
     color: white;
     background-color : #333333;
     border: none;
     border-radius : 0;
     display: inline;
-    font-size: 1vw
     /* text-align: right; */
 }
 
-
-select { 
-    text-align-last:center;
+div.input-group, div.btn-group {
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
-input[type="number"]{
-    text-align: right;
-}
-
-.form-control:focus{
-    color: green;
-    background-color :#333333;
-}
 
 div.input-group-prepend, div.input-group-append {
     color: white;
@@ -40,16 +53,8 @@ div.input-group-prepend, div.input-group-append {
     border-radius : 0;
 }
 
-span.my_placeholder {
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
-    color: gray;
-    font-size: 1vw;
-}
-
-#asset_table {
-    font-size: 1vw;
+select {
+    text-align-last:center;
 }
 
 .btn {
@@ -60,6 +65,28 @@ span.my_placeholder {
 button.btn-base {
     background: gray;
     color: #008080
+}
+
+input[type="number"]{
+    text-align: right;
+}
+
+div.card {
+    border: solid 3px #FF6600;
+    background: #222222;
+    width: 18rem;
+} 
+
+.form-control:focus{
+    color: green;
+    background-color :#333333;
+}
+
+span.my_placeholder {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    color: gray;
 }
 
 button.chosen {
@@ -74,9 +101,11 @@ button.chosen {
     background-color: #FF6633
 }
 
+    
 .errorlist {
     color: red;
 }
+
 .form-control::-webkit-input-placeholder { color: #BBBBBB; font-weight: bold}  /* WebKit, Blink, Edge */
 .form-control:-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 4 to 18 */
 .form-control::-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 19+ */

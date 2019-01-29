@@ -19,6 +19,7 @@ urlpatterns = [
     path('password_reset/complete/', views.PasswordResetComplete.as_view(), name='password_reset_complete'),
     path('order/', views.OrderCreate.as_view(), name='order'),
     path('ajax_get_assets/', views.ajax_get_assets, name="ajax_get_assets"),
+    path('ajax_cancel_order/', views.ajax_cancel_order, name="ajax_cancel_order"),
     path('order/list/', views.OrderList.as_view(), name='order_list'),
     path('order_detail/<int:pk>/', views.OrderDetail.as_view(), name='order_detail'),
     path('logout/', views.Logout.as_view(), name='logout'),

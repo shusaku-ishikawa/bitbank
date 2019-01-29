@@ -1,0 +1,13 @@
+{{ user.username }} 様 
+
+下記注文が約定されました。
+
+order_id : {{ order_dict.get("order_id") }}
+注文日時 : {{ order_dict.get("ordered_at") }}
+通貨 : {{ order_dict.get("pair") }}
+売買 : {{ order_dict.get("side") }}
+注文 : {{ order_dict.get("type") }}
+価格 : {{ order_dict.get("start_amount") }}
+平均価格 : {{ order_dict.get("average_price") }}
+
+管理者

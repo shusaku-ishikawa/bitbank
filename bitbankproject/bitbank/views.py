@@ -1,3 +1,4 @@
+from django import http
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -8,7 +9,7 @@ from django.contrib.auth.views import (
 from django.urls import reverse_lazy
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.signing import BadSignature, SignatureExpired, loads, dumps
-from django.http import Http404, HttpResponseBadRequest
+from django.http import Http404, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import redirect, resolve_url
 from django.template.loader import get_template
 from django.views import generic
@@ -18,7 +19,7 @@ from .forms import (
 )
 from .models import Order
 from django.urls import reverse
-from django.http import JsonResponse
+
 import os, json, python_bitbankcc
 
 User = get_user_model()
@@ -172,13 +173,44 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
     form_class = MyOrderForm
 
     def form_valid(self, form):
+
         """bitbank api """
-        
-        temp_order = form.save(commit = False)
-        temp_order.user = self.request.user
-        # temp_order.save()
-        # temp_order.save()
-        return super(OrderCreate, self).form_valid(form)
+        self.object = form.save(commit = False)
+        self.object.user = self.request.user
+  
+        order_type = form.cleaned_data['order_type']
+
+        if order_type in {'成行', '指値'}:
+            if order_type == '成行':
+                order_type_rome = 'market'
+            elif order_type == '指値':
+                order_type_rome = 'limit'
+
+            if self.request.api_key != "" and self.request.user.api_secret_key != "":
+                try:
+                    res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).order( \
+                        form.cleaned_data['pair'], \
+                        form.cleaned_data['price'], \
+                        form.cleaned_data['start_amount'], \
+                        form.cleaned_data['side'], \
+                        order_type_rome
+                    )
+                    # エラーコードがセットされている場合
+                    if 'code' in res_dict:
+                        self.object.status = res_dict('code')
+                    else:
+                        # 正常に処理された場合
+                        self.object.order_id = res_dict.get('order_id')
+                        self.object.status = res_dict.get('status')
+                except:
+                    self.object.status = "通信エラー"
+
+            else:
+                self.object.status = "API KEY未登録"
+
+        self.object.save()
+
+        return http.HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('bitbank:order_detail', kwargs={'pk' : self.object.pk})
@@ -205,6 +237,33 @@ def ajax_get_assets(request):
             'error': 'API KEYが登録されていません'
         }
     else:
-        res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).get_asset()
-    
+        try:
+            res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).get_asset()
+        except:
+            res_dict =  {
+                'error': '通信エラー'
+            }
+
+    return JsonResponse(res_dict)
+
+def ajax_cancel_order(request):
+    user = request.user
+
+    if user.api_key == "" or user.api_secret_key == "":
+        res_dict = {
+            'error': 'API KEYが登録されていません'
+        }
+    else:
+        try:
+            pair = request.POST.get("pair")
+            order_id = request.POST.get("order_id")
+            res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).cancel_order(pair, order_id)
+            subj_order = Order.objects.filter(order_id = order_id).get()
+            subj_order.status = res_dict.get("status")
+            subj_order.save()
+        except:
+            res_dict = {
+                'error': '通信エラー'
+            }
+            
     return JsonResponse(res_dict)
