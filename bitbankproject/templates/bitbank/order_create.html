@@ -7,18 +7,9 @@
     {{ form.non_field_errors }}
     <div class="row">
         
-        <div class="col-8">
-    
-        </div>
-        <div class="col-4">
-     
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 col-xs-12">
             <div class="row">
-                <div class="col-md-6 col-xs-12">
+                <div class="col-md-8 offset-md-2 col-xs-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">通貨</span>
@@ -27,7 +18,8 @@
                         {{ form.pair.errors }}
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12">
+                
+                <div class="col-md-8 offset-md-2 col-xs-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">特殊注文</span>
@@ -37,26 +29,59 @@
                     </div>  
                 </div>
             </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="card">
+                <div class="card-header">
+                    保有資産
+                </div>
+                <div class="card-body">
+                    <table id="asset_table" class="table table-sm table-borderless">
             
-            <hr>
-            
-            <hr>
-            <div class="btn-group d-flex" role="group">
-                <button id="sell_button" type="button" class="btn w-100 btn-base">買い</button>
-                <button id="buy_button" type="button" class="btn w-100 btn-base">売り</button>
+                        <tr><th>合計評価額</th><td align="right" id="total_in_jpy"></td></tr>
+                        <tr><th>日本円</th><td align="right" id="jpy"></td></tr>
+                        <tr><th>ビットコイン</th><td align="right" id="btc"></td></tr>
+                        <tr><th>リップル</th><td align="right" id="xrp"></td></tr>
+                        <tr><th>ライトコイン</th><td align="right" id="ltc"></td></tr>
+                        <tr><th>イーサリアム</th><td align="right" id="eth"></td></tr>
+                        <tr><th>モナーコイン</th><td align="right" id="mona"></td></tr>
+                        <tr><th>ビットコインキャッシュ</th><td align="right" id="bcc"></td></tr>
+                        
+                    </table>
+                </div>
             </div>
+                
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-xs-12">
+                    <div class="btn-group d-flex" role="group">
+                        <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
+                        <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
+                    </div>
+                </div>
+            </div>
+                
             <div class="input-group xs-3" style="display: none">
                 {{form.side}}
                 {{ form.side.errors }}
             </div>
             <hr>
-            <div class="input-group xs-3">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">注文方法</span>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-xs-12">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="my_placeholder">注文方法</span>
+                        </div>
+                        {{form.order_type}}
+                        {{ form.order_type.errors }}
+                    </div>
                 </div>
-                {{form.order_type}}
-                {{ form.order_type.errors }}
             </div>
+            
             <hr>
             <div style="display: none" class="input-group show_if_limit">
                 <div class="input-group-prepend">
@@ -69,43 +94,62 @@
                 </div>
             </div>
             <hr>            
-            
-            <div class="d-flex justify-content-center">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-xs-12">
+                    <div class="input-group xs-3">
+                        <div class="input-group-prepend">
+                            <span class="my_placeholder">注文数量</span>
+                        </div>
+                        {{form.start_amount}}
+                        {{form.start_amount.errors}}
+                        <div class="input-group-append">
+                            <span class="my_placeholder unit">btc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row d-flex justify-content-center">
                     <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/>
+                    <span>sss</span>
             </div>
             <hr>
-            <div class="input-group xs-3">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">予想</span>
-                </div>
-                <input type="number" id="expect_price" class="form-control">
-                <div class="input-group-append">
-                    <span class="my_placeholder pair">jpy</span>
-                </div>
-            </div>
-            <hr>
-            <div class="input-group xs-3">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">注文数量</span>
-                </div>
-                {{form.start_amount}}
-                {{form.start_amount.errors}}
-                <div class="input-group-append">
-                    <span class="my_placeholder unit">btc</span>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-xs-12">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="my_placeholder">予想</span>
+                        </div>
+                        <input type="number" id="expect_price" class="form-control">
+                        <div class="input-group-append">
+                            <span class="my_placeholder pair">jpy</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <hr>
-            <div class="input-group xs-3">
-                <button id="id_order_button" type="submit" class="btn btn-lg btn-block green_button">注文</button>
-            </div>        
+
+            <hr>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-xs-12">
+                    <div class="input-group xs-3">
+                        <button id="id_order_button" type="submit" class="btn btn-lg btn-block green_button">注文</button>
+                    </div>  
+                </div>
+            </div>
+                  
         </div>
-        <div class="col-6">
-            <div>
+        <div class="col-md-6 col-xs-12">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-xs-12">
                     <label class="control-label" for="id_notify_if_filled">約定通知</label>
                     <div class="btn-group d-flex" role="group">
-                        <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>
                         <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                        <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>
+                        
                     </div>
+                </div>  
             </div>
             
 
@@ -115,20 +159,23 @@
                 
             </div>
             <hr>
-            <div>
-                <label class="control-label" for="id_notify_if_reach">金額到達通知</label>
-                <div class="btn-group d-flex" role="group">
-                    <button id="notify_if_reach_on_button" type="button" class="btn w-100 btn-base">ON</button>
-                    <button id="notify_if_reach_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 col-xs-12">
+                    <label class="control-label" for="id_notify_if_reach">金額到達通知</label>
+                    <div class="btn-group d-flex" role="group">
+                        <button id="notify_if_reach_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                        <button id="notify_if_reach_on_button" type="button" class="btn w-100 btn-base">ON</button>
+                        
+                    </div>
                 </div>
             </div>
 
-            <div style="display: none" class="input-group xs-3">
+            <div style="display: none" class="input-group">
                 {{form.notify_if_reach}}
                 {{form.notify_if_reach.errors}}
             </div>
             <hr>
-            <div id="show_if_notify">
+            <div class="col-md-8 offset-md-2 col-xs-12" id="show_if_notify">
                 <div class="input-group xs-3">
                     <div class="input-group-prepend">
                     <span class="my_placeholder">①価格到達</span> 
@@ -321,78 +368,133 @@
 
             // 売り買いボタン初期化
             if ($('#id_side').val() == 'sell') {
-                $('#sell_button').addClass('chosen').removeClass('btn-base');
-                $('#buy_button').removeClass('chosen').addClass('btn-base');
+                $('#sell_button').addClass('sell').removeClass('btn-base');
+                $('#buy_button').removeClass('buy').addClass('btn-base');
             } else {
-                $('#buy_button').addClass('chosen').removeClass('btn-base');
-                $('#sell_button').removeClass('chosen').addClass('btn-base');
+                $('#buy_button').addClass('buy').removeClass('btn-base');
+                $('#sell_button').removeClass('sell').addClass('btn-base');
             }
 
             // 通知ボタン初期化
             if ($('#id_notify_if_filled').val() == 'ON') {
-                $('#notify_if_filled_on_button').addClass('chosen').removeClass('btn-base');
-                $('#notify_if_filled_off_button').removeClass('chosen').addClass('btn-base');
+                $('#notify_if_filled_on_button').addClass('on').removeClass('btn-base');
+                $('#notify_if_filled_off_button').removeClass('off').addClass('btn-base');
             } else {
-                $('#notify_if_filled_off_button').addClass('chosen').removeClass('btn-base');
-                $('#notify_if_filled_on_button').removeClass('chosen').addClass('btn-base');
+                $('#notify_if_filled_off_button').addClass('off').removeClass('btn-base');
+                $('#notify_if_filled_on_button').removeClass('on').addClass('btn-base');
             }
             // 金額到達ボタン初期化
             if ($('#id_notify_if_reach').val() == 'ON') {
-                $('#notify_if_reach_on_button').addClass('chosen').removeClass('btn-base');
-                $('#notify_if_reach_off_button').removeClass('chosen').addClass('btn-base');
+                $('#notify_if_reach_on_button').addClass('on').removeClass('btn-base');
+                $('#notify_if_reach_off_button').removeClass('off').addClass('btn-base');
                 $('#show_if_notify').show();
             } else {
-                $('#notify_if_reach_off_button').addClass('chosen').removeClass('btn-base');
-                $('#notify_if_reach_on_button').removeClass('chosen').addClass('btn-base');
+                $('#notify_if_reach_off_button').addClass('off').removeClass('btn-base');
+                $('#notify_if_reach_on_button').removeClass('on').addClass('btn-base');
                 $('#show_if_notify').hide();
             }
             
             //SELLボタンクリック
             $('#sell_button').on('click', function() {
-                $('#sell_button').addClass('chosen').removeClass('btn-base');
-                $('#buy_button').removeClass('chosen').addClass('btn-base');
+                $('#sell_button').addClass('sell').removeClass('btn-base');
+                $('#buy_button').removeClass('buy').addClass('btn-base');
                 $('#id_side').val('sell');
             });
             
             //BUYボタンクリック
             $('#buy_button').on('click', function() {
-                $('#buy_button').addClass('chosen').removeClass('btn-base');
-                $('#sell_button').removeClass('chosen').addClass('btn-base');
+                $('#buy_button').addClass('buy').removeClass('btn-base');
+                $('#sell_button').removeClass('sell').addClass('btn-base');
                 $('#id_side').val('buy');
             });
 
             //通知ONボタンクリック
             $('#notify_if_filled_on_button').on('click', function() {
-                $('#notify_if_filled_on_button').addClass('chosen').removeClass('btn-base');
-                $('#notify_if_filled_off_button').removeClass('chosen').addClass('btn-base');
+                $('#notify_if_filled_on_button').addClass('on').removeClass('btn-base');
+                $('#notify_if_filled_off_button').removeClass('off').addClass('btn-base');
                 $('#id_notify_if_filled').val('ON');
                 
             });
             //通知OFFボタンクリック
             $('#notify_if_filled_off_button').on('click', function() {
-                $('#notify_if_filled_off_button').addClass('chosen').removeClass('btn-base');
-                $('#notify_if_filled_on_button').removeClass('chosen').addClass('btn-base');
+                $('#notify_if_filled_off_button').addClass('off').removeClass('btn-base');
+                $('#notify_if_filled_on_button').removeClass('on').addClass('btn-base');
                 $('#id_notify_if_filled').val('OFF');
                 
             });
 
             //金額到達ONボタンクリック
             $('#notify_if_reach_on_button').on('click', function() {
-                $('#notify_if_reach_on_button').addClass('chosen').removeClass('btn-base');
-                $('#notify_if_reach_off_button').removeClass('chosen').addClass('btn-base');
+                $('#notify_if_reach_on_button').addClass('on').removeClass('btn-base');
+                $('#notify_if_reach_off_button').removeClass('off').addClass('btn-base');
                 $('#id_notify_if_reach').val('ON');
                 $('#show_if_notify').show();
             });
             //金額到達OFFボタンクリック
             $('#notify_if_reach_off_button').on('click', function() {
-                $('#notify_if_reach_off_button').addClass('chosen').removeClass('btn-base');
-                $('#notify_if_reach_on_button').removeClass('chosen').addClass('btn-base');
+                $('#notify_if_reach_off_button').addClass('off').removeClass('btn-base');
+                $('#notify_if_reach_on_button').removeClass('on').addClass('btn-base');
                 $('#id_notify_if_reach').val('OFF');
                 $('#show_if_notify').hide();
             });
-
-
             
+            asset_names = {
+               
+            }
+            
+            simbols = {
+                'jpy': '¥',
+                'btc': '₿'
+            }
+            call_get_assets_api()
+            .done(response => {
+                if (response.assets) {
+                    var asset_html = "";
+                    var total_asset_in_jpy = 0;
+                    response.assets.forEach(asset => {
+                        $('#' + asset.asset).html(asset.onhand_amount);
+                        if (asset.asset == 'ltc' || asset.asset == 'eth') {
+                            call_get_ticker_api(asset.asset + '_' + 'btc')
+                            .done(function(res) {
+                                if (res.code) {
+                                    return;
+                                }
+                                call_get_ticker_api('btc_jpy')
+                                .done(function(res2) {
+                                    total_asset_in_jpy += parseInt(res.buy) * parseInt(res2.buy) * asset.onhand_amount;
+                                    $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
+                                })
+                                .fail(function() {
+                                    alert('failed');
+                                });
+                            })
+                            .fail(function() {
+                                alert('fail');
+                            });
+                        } else if (asset.asset != 'jpy') {
+                            call_get_ticker_api(asset.asset + '_jpy')
+                            .done(function(res) {
+                                total_asset_in_jpy += parseInt(res.buy * asset.onhand_amount);
+                                $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
+                            })
+                            .fail(function() {
+                                alert('failed');
+                            });
+                        } else {
+                            total_asset_in_jpy += asset.onhand_amount;
+                            $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
+
+                        }
+                    });
+                    //$("#asset_table").html(asset_html);
+                } else {
+                    if (response.error) {
+                        alert(response.error);
+                    } else {
+                        alert('想定外のエラーです');
+                    }
+                }
+            });
         });
     </script>
 {% endblock %}

@@ -63,8 +63,8 @@ select {
 }
 
 button.btn-base {
-    background: gray;
-    color: #008080;
+    background: #333333;
+    color: gray;
     font-size: 2vmin;
 }
 
@@ -91,9 +91,19 @@ span.my_placeholder {
     font-size: 2vmin;
 }
 
-button.chosen {
-    background: green;
-    font-size: 2vmin;
+button.buy {
+    background: teal;
+}
+
+button.sell {
+    background: orangered;
+}
+button.on {
+    background: orangered;
+}
+
+button.off {
+    background: teal;
 }
 
 .green_button {
