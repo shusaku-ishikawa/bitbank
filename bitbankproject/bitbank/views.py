@@ -19,13 +19,10 @@ from .forms import (
 )
 from .models import Order
 from django.urls import reverse
-
+from django.utils import timezone
 import os, json, python_bitbankcc
 
 User = get_user_model()
-
-class Top(generic.TemplateView):
-    template_name = 'bitbank/top.html'
 
 class Login(LoginView):
     """ログインページ"""
@@ -202,6 +199,7 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
                         # 正常に処理された場合
                         self.object.order_id = res_dict.get('order_id')
                         self.object.status = res_dict.get('status')
+                        self.object.ordered_at = timezone.datetime.now()
                 except:
                     self.object.status = "通信エラー"
 

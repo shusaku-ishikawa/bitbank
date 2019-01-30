@@ -85,7 +85,7 @@ class MyOrderForm(forms.ModelForm):
         model = Order
  
         fields = ('pair', 'special_order', 'side', 'order_type', 'start_amount', 'price', \
-                  'limit_price', 'notify_if_filled', 'notify_if_reach', \
+                  'notify_if_filled', 'notify_if_reach', \
                   'price_threshold_1', 'price_threshold_2','price_threshold_3','price_threshold_4','price_threshold_5')
 
     def __init__(self, *arg, **kwargs):

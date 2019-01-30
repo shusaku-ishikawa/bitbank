@@ -135,8 +135,8 @@ class Order(models.Model):
     )
 
     SIDE = (
-        ('BUY', '買い'),
-        ('SELL', '売り'),
+        ('buy', '買い'),
+        ('sell', '売り'),
     )
     STATUS = (
         ('UNFILLED', '注文中'),
@@ -161,12 +161,14 @@ class Order(models.Model):
     pair = models.CharField(
         verbose_name = _('通貨'),
         max_length = 50,
+        default = 'btc_jpy',
         choices = PAIR
     )
 
     special_order = models.CharField(
         verbose_name = _('特殊注文'), 
         max_length = 50,
+        default = 'SINGLE',
         choices = SPECIAL_ORDER
     )
 
@@ -180,6 +182,7 @@ class Order(models.Model):
     order_type = models.CharField(
         verbose_name = _('注文方法'),
         max_length = 50,
+        default = '成行',
         choices = ORDER_TYPE
     )
 
@@ -193,17 +196,6 @@ class Order(models.Model):
         ]
     )
 
-
-
-    limit_price = models.FloatField(
-        verbose_name = _('逆指値価格'),
-        null = True,
-        blank = True,
-        validators = [
-            MinValueValidator(0),
-            MaxValueValidator(1000000)
-        ]
-    )
 
     start_amount = models.FloatField(
         verbose_name = _('注文数量'),
@@ -253,7 +245,7 @@ class Order(models.Model):
 
     ordered_at = models.DateTimeField(
         verbose_name = _('注文日時'),
-        auto_now_add = True,
+        auto_now_add = False,
         auto_now = False,
     )
 

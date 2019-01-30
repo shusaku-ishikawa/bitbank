@@ -4,55 +4,173 @@
         
     {% csrf_token %}
 
-     
-    <div class="row align-items-center">
-        {{ form.non_field_errors }}
-        <div class="col-6">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">通貨</span>
+    {{ form.non_field_errors }}
+    <div class="row">
+        
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <table id="market_table" class="table table-responsive">
+                        <thead>
+                            <tr>
+                                    <th></th>
+                                    <th>sell</th>
+                                    <th>buy</th>
+                                    <th>high</th>
+                                    <th>low</th>
+                                    <th>last</th>
+                                    <th>vol</th>
+                                    <!-- <th>timestamp</th> -->
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>btc_jpy</th>
+                                <td id="btc_jpy_sell"></td>
+                                <td id="btc_jpy_buy"></td>
+                                <td id="btc_jpy_high"></td>
+                                <td id="btc_jpy_low"></td>
+                                <td id="btc_jpy_last"></td>
+                                <td id="btc_jpy_vol"></td>
+                                <!-- <td id="btc_jpy_timestamp"></td> -->
+                            </tr>
+                            <tr>
+                                    <th>xrp_jpy</th>
+                                    <td id="xrp_jpy_sell"></td>
+                                    <td id="xrp_jpy_buy"></td>
+                                    <td id="xrp_jpy_high"></td>
+                                    <td id="xrp_jpy_low"></td>
+                                    <td id="xrp_jpy_last"></td>
+                                    <td id="xrp_jpy_vol"></td>
+                                    <!-- <td id="xrp_jpy_timestamp"></td> -->
+                            </tr>
+                            <tr>
+                                    <th>ltc_btc</th>
+                                    <td id="ltc_btc_sell"></td>
+                                    <td id="ltc_btc_buy"></td>
+                                    <td id="ltc_btc_high"></td>
+                                    <td id="ltc_btc_low"></td>
+                                    <td id="ltc_btc_last"></td>
+                                    <td id="ltc_btc_vol"></td>
+                                    <!-- <td id="ltc_btc_timestamp"></td> -->
+                            </tr>
+                            <tr>
+                                    <th>eth_btc</th>
+                                    <td id="eth_btc_sell"></td>
+                                    <td id="eth_btc_buy"></td>
+                                    <td id="eth_btc_high"></td>
+                                    <td id="eth_btc_low"></td>
+                                    <td id="eth_btc_last"></td>
+                                    <td id="eth_btc_vol"></td>
+                                    <!-- <td id="eth_btc_timestamp"></td> -->
+                            </tr>
+                            <tr>
+                                    <th>mona_jpy</th>
+                                    <td id="mona_jpy_sell"></td>
+                                    <td id="mona_jpy_buy"></td>
+                                    <td id="mona_jpy_high"></td>
+                                    <td id="mona_jpy_low"></td>
+                                    <td id="mona_jpy_last"></td>
+                                    <td id="mona_jpy_vol"></td>
+                                    <!-- <td id="mona_jpy_timestamp"></td> -->
+                            </tr>
+                            <tr>
+                                    <th>mona_btc</th>
+                                    <td id="mona_btc_sell"></td>
+                                    <td id="mona_btc_buy"></td>
+                                    <td id="mona_btc_high"></td>
+                                    <td id="mona_btc_low"></td>
+                                    <td id="mona_btc_last"></td>
+                                    <td id="mona_btc_vol"></td>
+                                    <!-- <td id="mona_btc_timestamp"></td> -->
+                            </tr>
+                            <tr>
+                                    <th>bcc_jpy</th>
+                                    <td id="bcc_jpy_sell"></td>
+                                    <td id="bcc_jpy_buy"></td>
+                                    <td id="bcc_jpy_high"></td>
+                                    <td id="bcc_jpy_low"></td>
+                                    <td id="bcc_jpy_last"></td>
+                                    <td id="bcc_jpy_vol"></td>
+                                    <!-- <td id="bcc_jpy_timestamp"></td> -->
+                            </tr>
+                            <tr>
+                                    <th>bcc_btc</th>
+                                    <td id="bcc_btc_sell"></td>
+                                    <td id="bcc_btc_buy"></td>
+                                    <td id="bcc_btc_high"></td>
+                                    <td id="bcc_btc_low"></td>
+                                    <td id="bcc_btc_last"></td>
+                                    <td id="bcc_btc_vol"></td>
+                                    <!-- <td id="bcc_btc_timestamp"></td> -->
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                {{form.pair}}
-                {{ form.pair.errors }}
-            </div>
-            <hr>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">特殊注文</span>
-                </div>
-                {{form.special_order}}
-                {{ form.special_order.errors }}
-            </div>  
-        </div>
-        <div class="col-6">
-            <table id="asset_table" class="table table-striped table-responsive">
-                <thead>
-                    <tr>
-                        <th>通貨</th>
-                        <th>On hand</th>
-                        <th>Locked</th>
-                        <th>Free</th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                </tbody>
-            </table>
+
+            </div>
+
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="asset_table" class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>通貨</th>
+                                <th>On hand</th>
+                                <th>Locked</th>
+                                <th>Free</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
         </div>
     </div>
     <hr>
-    <div class="row align-items-center">
+    <div class="row">
         <div class="col-6">
+            <div class="row">
+                <div class="col-6">
+                    <div class="input-group xs-3">
+                        <div class="input-group-prepend">
+                            <span class="my_placeholder">通貨</span>
+                        </div>
+                        {{form.pair}}
+                        {{ form.pair.errors }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group xs-3">
+                        <div class="input-group-prepend">
+                            <span class="my_placeholder">特殊注文</span>
+                        </div>
+                        {{form.special_order}}
+                        {{ form.special_order.errors }}
+                    </div>  
+                </div>
+            </div>
+            
+            <hr>
+            
+            <hr>
             <div class="btn-group d-flex" role="group">
                 <button id="sell_button" type="button" class="btn w-100 btn-base">買い</button>
                 <button id="buy_button" type="button" class="btn w-100 btn-base">売り</button>
             </div>
-            <div class="input-group" style="display: none">
+            <div class="input-group xs-3" style="display: none">
                 {{form.side}}
                 {{ form.side.errors }}
             </div>
             <hr>
-            <div class="input-group">
+            <div class="input-group xs-3">
                 <div class="input-group-prepend">
                     <span class="my_placeholder">注文方法</span>
                 </div>
@@ -62,134 +180,132 @@
             <hr>
             <div style="display: none" class="input-group show_if_limit">
                 <div class="input-group-prepend">
-                    <span class="my_placeholder">注文価格</span>
+                    <span id="price_label" class="my_placeholder">注文価格</span>
                 </div>
                 {{form.price}}
                 {{form.price.errors}}                    
                 <div class="input-group-append">
-                    <span class="my_placeholder">円</span>
+                    <span class="my_placeholder pair">jpy</span>
                 </div>
             </div>
             <hr>            
-            <div style="display:none" class="input-group show_if_reverse_limit">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">逆指値の指値価格</span>
-                </div>
-                {{form.limit_price}}
-                {{form.limit_price.errors}}
-                <div class="input-group-append">
-                    <span class="my_placeholder">円</span>
-                </div>
-            </div>
-            <hr>
+            
             <div class="d-flex justify-content-center">
-                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/>
             </div>
             <hr>
-            <div class="input-group">
+            <div class="input-group xs-3">
                 <div class="input-group-prepend">
                     <span class="my_placeholder">予想</span>
                 </div>
                 <input type="number" id="expect_price" class="form-control">
                 <div class="input-group-append">
-                    <span class="my_placeholder">円</span>
+                    <span class="my_placeholder pair">jpy</span>
                 </div>
             </div>
             <hr>
-            <div class="input-group">
+            <div class="input-group xs-3">
                 <div class="input-group-prepend">
                     <span class="my_placeholder">注文数量</span>
                 </div>
                 {{form.start_amount}}
                 {{form.start_amount.errors}}
                 <div class="input-group-append">
-                    <span class="my_placeholder"></span>
+                    <span class="my_placeholder unit">btc</span>
                 </div>
             </div>
             <hr>
-            <div class="input-group">
+            <div class="input-group xs-3">
                 <button id="id_order_button" type="submit" class="btn btn-lg btn-block green_button">注文</button>
             </div>        
         </div>
         <div class="col-6">
-            約定通知
-            <div class="btn-group d-flex" role="group">
-                <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>
-                <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+            <div>
+                    <label class="control-label" for="id_notify_if_filled">約定通知</label>
+                    <div class="btn-group d-flex" role="group">
+                        <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>
+                        <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                    </div>
             </div>
+            
 
-            <div style="display: none" class="input-group">
+            <div style="display: none" class="input-group xs-3">
                 {{form.notify_if_filled}}
                 {{form.notify_if_filled.errors}}
                 
             </div>
             <hr>
-            金額到達通知
-            <div class="btn-group d-flex" role="group">
-                <button id="notify_if_reach_on_button" type="button" class="btn w-100 btn-base">ON</button>
-                <button id="notify_if_reach_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+            <div>
+                <label class="control-label" for="id_notify_if_reach">金額到達通知</label>
+                <div class="btn-group d-flex" role="group">
+                    <button id="notify_if_reach_on_button" type="button" class="btn w-100 btn-base">ON</button>
+                    <button id="notify_if_reach_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                </div>
             </div>
 
-            <div style="display: none" class="input-group">
+            <div style="display: none" class="input-group xs-3">
                 {{form.notify_if_reach}}
                 {{form.notify_if_reach.errors}}
             </div>
             <hr>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="my_placeholder">①価格到達</span> 
+            <div id="show_if_notify">
+                <div class="input-group xs-3">
+                    <div class="input-group-prepend">
+                    <span class="my_placeholder">①価格到達</span> 
+                    </div>
+                    {{form.price_threshold_1}}
+                    {{form.price_threshold_1.errors}}
+                    
+                    <div class="input-group-append">
+                        <span class="my_placeholder pair">jpy</span>
+                    </div>
                 </div>
-                {{form.price_threshold_1}}
-                {{form.price_threshold_1.errors}}
-                
-                <div class="input-group-append">
-                    <span class="my_placeholder">円</span>
+                <hr>            
+                <div class="input-group xs-3">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">②価格到達</span>
+                    </div>
+                    {{form.price_threshold_2}}
+                    {{form.price_threshold_2.errors}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder pair">jpy</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="input-group xs-3">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">③価格到達</span>
+                    </div>
+                    {{form.price_threshold_3}}
+                    {{form.price_threshold_3.errors}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder pair">jpy</span>
+                    </div>
+                </div>
+                <hr>            
+                <div class="input-group xs-3">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">④価格到達</span>
+                    </div>
+                    {{form.price_threshold_4}}
+                    {{form.price_threshold_4.errors}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder pair">jpy</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="input-group xs-3">
+                    <div class="input-group-prepend">
+                        <span class="my_placeholder">⑤価格到達</span>
+                    </div>
+                    {{form.price_threshold_5}}
+                    {{form.price_threshold_5.errors}}
+                    <div class="input-group-append">
+                        <span class="my_placeholder pair">jpy</span>
+                    </div>
                 </div>
             </div>
-            <hr>            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">②価格到達</span>
-                </div>
-                {{form.price_threshold_2}}
-                {{form.price_threshold_2.errors}}
-                <div class="input-group-append">
-                    <span class="my_placeholder">円</span>
-                </div>
-            </div>
-            <hr>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">③価格到達</span>
-                </div>
-                {{form.price_threshold_3}}
-                {{form.price_threshold_3.errors}}
-                <div class="input-group-append">
-                    <span class="my_placeholder">円</span>
-                </div>
-            </div>
-            <hr>            
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">④価格到達</span>
-                </div>
-                {{form.price_threshold_4}}
-                {{form.price_threshold_4.errors}}
-                <div class="input-group-append">
-                    <span class="my_placeholder">円</span>
-                </div>
-            </div>
-            <hr>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="my_placeholder">⑤価格到達</span>
-                </div>
-                {{form.price_threshold_5}}
-                {{form.price_threshold_5.errors}}
-                <div class="input-group-append">
-                    <span class="my_placeholder">円</span>
-                </div>
-            </div>
+            
         </div> 
     </div>        
 </form>
@@ -215,6 +331,31 @@
                 },
             });
         }
+        
+        function update_market_info() {
+            var pairs = ['btc_jpy', 'xrp_jpy', 'ltc_btc', 'eth_btc', 'mona_jpy', 'mona_btc', 'bcc_jpy', 'bcc_btc'];
+            pairs.forEach(pair => {
+                call_get_ticker_api(pair)
+                .done(function(ticker) {
+                    if (ticker.code) {
+                        return;
+                    }
+                    $('#' + pair + '_sell').html(ticker.sell);
+                    $('#' + pair + '_buy').html(ticker.buy);
+                    $('#' + pair + '_high').html(ticker.high);
+                    $('#' + pair + '_low').html(ticker.low);
+                    $('#' + pair + '_last').html(ticker.last);
+                    $('#' + pair + '_vol').html(ticker.vol);
+                    //$('#' + pair + '_timestamp').html(new Date(ticker.timestamp));
+                })
+                .fail(function() {
+                    alert('failed');
+                })
+                .always(function() {
+
+                });
+            });  
+        }
 
         $(function() {
             // With JQuery
@@ -227,38 +368,79 @@
             $('#ex1').slider().on('slideStop', function(ev) {
                 if ($('#id_pair').val() != '') {
                     var currency = $('#id_pair').val().split('_')[1];
+                    
                     var free_amount = $('#free_' + $('#id_pair').val().split('_')[1]).html();
+                    if (free_amount === undefined) {
+                        return;
+                    }
+
                     var newVal = $('#ex1').data('slider').getValue();
+                    
                     var market_price;
                     
-                    if ($('#id_order_type').val() == '指値' || $('#id_order_type').val() == 'ストップリミット') {
+                    if ($('#id_order_type').val() == '指値' || $('#id_order_type').val() == '逆指値' || $('#id_order_type').val() == 'ストップリミット') {
                         if ($('#id_price').val() != '' && $('#id_price').val() != 0) {
-                            $('#id_start_amount').val(free_amount * newVal / ($('#id_price').val() * 100));
-                            $('#expect_price').val(free_amount * newVal / 100);                        
+                            var floored = Math.floor((free_amount * newVal / ($('#id_price').val() * 100)) * 10000) / 10000 
+                            $('#id_start_amount').val(floored);
+                            $('#expect_price').val(Math.floor($('#id_price').val() * floored));                        
                         }
+                    } else if ($('#id_order_type').val() == '成行') {
+                        var current_price;
+                        call_get_ticker_api($('#id_pair').val())
+                        .done(function (val) {
+                            if ($('#id_side').val() == 'sell') {
+                                current_price = val.sell;
+                            } else {
+                                current_price = val.buy;
+                            }
+                            var floored = Math.floor((free_amount * newVal / (current_price * 100)) * 10000) / 10000 
+                            $('#id_start_amount').val(floored);
+                            $('#expect_price').val(Math.floor(current_price * floored));                        
+                        })
+                        .fail(function() {
+                            alert('現在のTickerを取得できませんでした。');
+                        })
+                        .always(function() {
+                        });
                     }
                 }
-                
+            });
+            
+            $('#id_pair').on('change', function() {
+                var unit = $('#id_pair').val().split('_')[0];
+                var currency = $('#id_pair').val().split('_')[1];
+                if (currency != '') {
+                    $('span.pair').html(currency);
+                    $('span.unit').html(unit);
+                }
             });
 
             //逆指値の時のみ
             $('#id_order_type').on('change', function() {
-                if ($(this).val() == '逆指値') {
-                    $('.show_if_reverse_limit').show();
-                } else {
-                    $('.show_if_reverse_limit').hide();
-                }
-                if ($(this).val() == '指値') {
-                    $('.show_if_limit').show();
-                } else {
+                if ($('#id_order_type').val() == '成行') {
                     $('.show_if_limit').hide();
+                } else {
+                    $('.show_if_limit').show();
+
+                    switch($('#id_order_type').val()) {
+                        case '指値':
+                            $('#price_label').html('注文金額');
+                            break;
+
+                        case '逆指値':
+                            $('#price_label').html('逆指値金額');
+                            break;
+                        
+                        case 'ストップリミット':
+                            $('#price_label').html('逆指値&注文金額');
+                            break;
+                    }
                 }
-                
             });
             
 
             // 売り買いボタン初期化
-            if ($('#id_side').val() == 'SELL') {
+            if ($('#id_side').val() == 'sell') {
                 $('#sell_button').addClass('chosen').removeClass('btn-base');
                 $('#buy_button').removeClass('chosen').addClass('btn-base');
             } else {
@@ -278,23 +460,25 @@
             if ($('#id_notify_if_reach').val() == 'ON') {
                 $('#notify_if_reach_on_button').addClass('chosen').removeClass('btn-base');
                 $('#notify_if_reach_off_button').removeClass('chosen').addClass('btn-base');
+                $('#show_if_notify').show();
             } else {
                 $('#notify_if_reach_off_button').addClass('chosen').removeClass('btn-base');
                 $('#notify_if_reach_on_button').removeClass('chosen').addClass('btn-base');
+                $('#show_if_notify').hide();
             }
             
             //SELLボタンクリック
             $('#sell_button').on('click', function() {
                 $('#sell_button').addClass('chosen').removeClass('btn-base');
                 $('#buy_button').removeClass('chosen').addClass('btn-base');
-                $('#id_side').val('SELL');
+                $('#id_side').val('sell');
             });
             
             //BUYボタンクリック
             $('#buy_button').on('click', function() {
                 $('#buy_button').addClass('chosen').removeClass('btn-base');
                 $('#sell_button').removeClass('chosen').addClass('btn-base');
-                $('#id_side').val('BUY');
+                $('#id_side').val('buy');
             });
 
             //通知ONボタンクリック
@@ -302,12 +486,14 @@
                 $('#notify_if_filled_on_button').addClass('chosen').removeClass('btn-base');
                 $('#notify_if_filled_off_button').removeClass('chosen').addClass('btn-base');
                 $('#id_notify_if_filled').val('ON');
+                
             });
             //通知OFFボタンクリック
             $('#notify_if_filled_off_button').on('click', function() {
                 $('#notify_if_filled_off_button').addClass('chosen').removeClass('btn-base');
                 $('#notify_if_filled_on_button').removeClass('chosen').addClass('btn-base');
                 $('#id_notify_if_filled').val('OFF');
+                
             });
 
             //金額到達ONボタンクリック
@@ -315,12 +501,14 @@
                 $('#notify_if_reach_on_button').addClass('chosen').removeClass('btn-base');
                 $('#notify_if_reach_off_button').removeClass('chosen').addClass('btn-base');
                 $('#id_notify_if_reach').val('ON');
+                $('#show_if_notify').show();
             });
             //金額到達OFFボタンクリック
-            $('#notify_id_reach_off_button').on('click', function() {
+            $('#notify_if_reach_off_button').on('click', function() {
                 $('#notify_if_reach_off_button').addClass('chosen').removeClass('btn-base');
                 $('#notify_if_reach_on_button').removeClass('chosen').addClass('btn-base');
                 $('#id_notify_if_reach').val('OFF');
+                $('#show_if_notify').hide();
             });
 
 
@@ -345,6 +533,7 @@
                     }
                 }
             });
+            setInterval(update_market_info, 3000);
         });
     </script>
 {% endblock %}

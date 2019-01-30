@@ -18,7 +18,7 @@
 
 }
 #asset_table {
-    font-size: 3vmin;
+    font-size: 2vmin;
 }
 body {
     color: white;
@@ -26,19 +26,22 @@ body {
     /* background: white; */
 }
 
+label.control-label {
+    font-size: 2vmin;
+}
 .form-control {
     color: white;
     background-color : #333333;
     border: none;
     border-radius : 0;
     display: inline;
-    font-size: 3vmin;
+    font-size: 2vmin;
     /* text-align: right; */
 }
 
 div.input-group, div.btn-group {
-    padding-left: 4vmin;
-    padding-right: 4vmin;
+    padding-left: 2vmin;
+    padding-right: 2vmin;
 }
 
 
@@ -62,7 +65,7 @@ select {
 button.btn-base {
     background: gray;
     color: #008080;
-    font-size: 3vmin;
+    font-size: 2vmin;
 }
 
 input[type="number"]{
@@ -72,7 +75,7 @@ input[type="number"]{
 div.card {
     border: solid 3px #FF6600;
     background: #222222;
-    width: 18rem;
+    width: 100%;
 } 
 
 .form-control:focus{
@@ -85,22 +88,22 @@ span.my_placeholder {
     display: table-cell;
     vertical-align: middle;
     color: gray;
-    font-size: 3vmin;
+    font-size: 2vmin;
 }
 
 button.chosen {
     background: green;
-    font-size: 3vmin;
+    font-size: 2vmin;
 }
 
 .green_button {
     background-color: #008080;
-    font-size: 3vmin;
+    font-size: 2vmin;
 }
 
 .red_button {
     background-color: #FF6633;
-    font-size: 3vmin;
+    font-size: 2vmin;
 }
 
     
