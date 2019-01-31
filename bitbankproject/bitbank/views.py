@@ -17,6 +17,7 @@ from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
     MyPasswordResetForm, MySetPasswordForm, MyOrderForm, MyAlertForm
 )
+from django.core import serializers
 from .models import Order, Alert
 from django.urls import reverse
 from django.utils import timezone
@@ -52,7 +53,7 @@ class UserUpdate(OnlyYouMixin, generic.UpdateView):
 
 class Logout(LoginRequiredMixin, LogoutView):
     """ログアウトページ"""
-    template_name = 'bitbank/top.html'
+    template_name = 'bitbank/logout.html'
 
 class UserCreate(generic.CreateView):
     """ユーザー仮登録"""
@@ -183,13 +184,18 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
             elif order_type == '指値':
                 order_type_rome = 'limit'
 
-            if self.request.api_key != "" and self.request.user.api_secret_key != "":
+            if self.request.user.api_key != "" and self.request.user.api_secret_key != "":
                 try:
-                    res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).order( \
-                        form.cleaned_data['pair'], \
-                        form.cleaned_data['price'], \
-                        form.cleaned_data['start_amount'], \
-                        form.cleaned_data['side'], \
+                    print(form.cleaned_data['pair'])
+                    print(form.cleaned_data['price'])
+                    print(form.cleaned_data['start_amount'])
+                    print(form.cleaned_data['side'])
+                    
+                    res_dict = python_bitbankcc.private(self.request.user.api_key, self.request.user.api_secret_key).order(
+                        form.cleaned_data['pair'],
+                        form.cleaned_data['price'],
+                        form.cleaned_data['start_amount'],
+                        form.cleaned_data['side'],
                         order_type_rome
                     )
                     # エラーコードがセットされている場合
@@ -202,7 +208,8 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
                         self.object.ordered_at = timezone.datetime.now()
                 except:
                     self.object.status = "通信エラー"
-
+                    import traceback
+                    traceback.print_exc()
             else:
                 self.object.status = "API KEY未登録"
 
@@ -216,6 +223,14 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
 
+    def get_context_data(self, **kwargs):
+        context = super(OrderCreate, self).get_context_data(**kwargs)
+        context['active_orders'] = Order.objects.filter(user=self.request.user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED'])
+        context['order_history'] = Order.objects.filter(user=self.request.user).filter(order_id__isnull=False)
+        context['stop_orders'] = Order.objects.filter(user=self.request.user).filter(order_type__in=['逆指値', 'ストップリミット']).filter(order_id__isnull=True)
+        context['alerts'] = Alert.objects.filter(user=self.request.user).filter(is_active="有効")
+        
+        return context
 
 class OrderDetail(LoginRequiredMixin, generic.DetailView):
     """注文詳細"""
@@ -285,6 +300,36 @@ def ajax_get_assets(request):
             }
 
     return JsonResponse(res_dict)
+
+def ajax_get_active_orders(request):
+    user = request.user
+    
+    active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED'])
+    serialized_qs = serializers.serialize('json', active_orders)
+    data = {
+        'active_orders': serialized_qs
+    }
+    return JsonResponse(data)
+
+def ajax_get_stop_orders(request):
+    user = request.user
+    
+    stop_orders = Order.objects.filter(user=user).filter(order_type__in=['逆指値', 'ストップリミット']).filter(order_id__isnull=True)
+    serialized_qs = serializers.serialize('json', stop_orders)
+    data = {
+        'active_orders': serialized_qs
+    }
+    return JsonResponse(data)
+    
+def ajax_get_order_histroy(request):
+    user = request.user
+    
+    order_history = Order.objects.filter(user=user)
+    serialized_qs = serializers.serialize('json', order_history)
+    data = {
+        'order_history': serialized_qs
+    }
+    return JsonResponse(data)
 
 def ajax_cancel_order(request):
     user = request.user

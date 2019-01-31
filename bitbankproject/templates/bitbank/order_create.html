@@ -9,7 +9,7 @@
         
         <div class="col-md-6 col-xs-12">
             <div class="row">
-                <div class="col-md-8 offset-md-2 col-xs-12">
+                <div class="col-md-8 offset-md-3 col-xs-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">通貨</span>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-8 offset-md-2 col-xs-12">
+                <div class="col-md-8 offset-md-3 col-xs-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">特殊注文</span>
@@ -31,12 +31,12 @@
             </div>
         </div>
         <div class="col-md-6 col-xs-6">
-            <div class="card">
+            <div class="card" style="border:none">
                 <div class="card-header">
                     保有資産
                 </div>
                 <div class="card-body">
-                    <table id="asset_table" class="table table-sm table-borderless">
+                    <table id="asset_table" class="table table-sm table-dark">
             
                         <tr><th>合計評価額</th><td align="right" id="total_in_jpy"></td></tr>
                         <tr><th>日本円</th><td align="right" id="jpy"></td></tr>
@@ -57,7 +57,7 @@
     <div class="row">
         <div class="col-md-6 col-xs-6">
             <div class="row">
-                <div class="col-md-8 offset-md-2 col-xs-12">
+                <div class="col-md-8 offset-md-3 col-xs-12">
                     <div class="btn-group d-flex" role="group">
                         <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
                         <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
@@ -71,7 +71,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-md-8 offset-md-2 col-xs-12">
+                <div class="col-md-8 offset-md-3 col-xs-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">注文方法</span>
@@ -84,7 +84,7 @@
             
             <hr>
             <div style="display: none" class="row show_if_limit">
-                <div class="col-md-8 offset-md-2 col-xs-12">
+                <div class="col-md-8 offset-md-3 col-xs-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">注文価格</span>
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div style="display: none" class="row show_if_stop_limit">
-                <div class="col-md-8 offset-md-2 col-xs-12">
+                <div class="col-md-8 offset-md-3 col-xs-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">逆指値指値</span>
@@ -115,8 +115,8 @@
             
             <hr>            
             <div class="row">
-                <div class="col-md-8 offset-md-2 col-xs-12">
-                    <div class="input-group xs-3">
+                <div class="col-md-8 offset-md-3 col-xs-12">
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">注文数量</span>
                         </div>
@@ -135,7 +135,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-md-8 offset-md-2 col-xs-12">
+                <div class="col-md-8 offset-md-3 col-xs-12">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="my_placeholder">予想</span>
@@ -152,17 +152,18 @@
 
             <hr>
             <div class="row">
-                <div class="col-md-8 offset-md-2 col-xs-12">
-                    <div class="input-group xs-3">
-                        <button id="id_order_button" type="submit" class="btn btn-lg btn-block green_button">注文</button>
+                <div class="col-md-8 offset-md-3 col-xs-12">
+                    <div class="input-group">
+                        <button id="id_order_button" type="submit" class="btn btn-lg btn-block red_button">注文</button>
                     </div>  
                 </div>
             </div>
                   
         </div>
+        
         <div class="col-md-6 col-xs-12">
             <div class="row">
-                <div class="col-md-8 offset-md-2 col-xs-12">
+                <div class="col-md-8 col-xs-12">
                     <label class="control-label" for="id_notify_if_filled">約定通知</label>
                     <div class="btn-group d-flex" role="group">
                         <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
@@ -172,91 +173,166 @@
                 </div>  
             </div>
             
-
             <div style="display: none" class="input-group xs-3">
                 {{form.notify_if_filled}}
                 {{form.notify_if_filled.errors}}
                 
             </div>
-            <!-- <div class="row">
-                <div class="col-md-8 offset-md-2 col-xs-12">
-                    <label class="control-label" for="id_notify_if_reach">金額到達通知</label>
-                    <div class="btn-group d-flex" role="group">
-                        <button id="notify_if_reach_off_button" type="button" class="btn w-100 btn-base">OFF</button>
-                        <button id="notify_if_reach_on_button" type="button" class="btn w-100 btn-base">ON</button>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div style="display: none" class="input-group">
-                {{form.notify_if_reach}}
-                {{form.notify_if_reach.errors}}
-            </div>
-            <hr>
-            <div class="col-md-8 offset-md-2 col-xs-12" id="show_if_notify">
-                <div class="input-group xs-3">
-                    <div class="input-group-prepend">
-                    <span class="my_placeholder">①価格到達</span> 
-                    </div>
-                    {{form.price_threshold_1}}
-                    {{form.price_threshold_1.errors}}
-                    
-                    <div class="input-group-append">
-                        <span class="my_placeholder pair">jpy</span>
-                    </div>
-                </div>
-                <hr>            
-                <div class="input-group xs-3">
-                    <div class="input-group-prepend">
-                        <span class="my_placeholder">②価格到達</span>
-                    </div>
-                    {{form.price_threshold_2}}
-                    {{form.price_threshold_2.errors}}
-                    <div class="input-group-append">
-                        <span class="my_placeholder pair">jpy</span>
-                    </div>
-                </div>
-                <hr>
-                <div class="input-group xs-3">
-                    <div class="input-group-prepend">
-                        <span class="my_placeholder">③価格到達</span>
-                    </div>
-                    {{form.price_threshold_3}}
-                    {{form.price_threshold_3.errors}}
-                    <div class="input-group-append">
-                        <span class="my_placeholder pair">jpy</span>
-                    </div>
-                </div>
-                <hr>            
-                <div class="input-group xs-3">
-                    <div class="input-group-prepend">
-                        <span class="my_placeholder">④価格到達</span>
-                    </div>
-                    {{form.price_threshold_4}}
-                    {{form.price_threshold_4.errors}}
-                    <div class="input-group-append">
-                        <span class="my_placeholder pair">jpy</span>
-                    </div>
-                </div>
-                <hr>
-                <div class="input-group xs-3">
-                    <div class="input-group-prepend">
-                        <span class="my_placeholder">⑤価格到達</span>
-                    </div>
-                    {{form.price_threshold_5}}
-                    {{form.price_threshold_5.errors}}
-                    <div class="input-group-append">
-                        <span class="my_placeholder pair">jpy</span>
-                    </div>
-                </div>
-            </div> -->
         </div> 
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-11 offset-md-1 col-xs-12" style="font-size: 2vmin">
+            <div class="tab">
+                <button type="button" class="tablinks" onclick="openTab(event, 'active_orders')">注文一覧</button>
+                <button type="button" class="tablinks" onclick="openTab(event, 'stop_orders')">ストップ注文</button>
+                <button type="button" class="tablinks" onclick="openTab(event, 'order_history')">注文履歴</button>
+                
+                <button type="button" class="tablinks" onclick="openTab(event, 'alerts')">アラート</button>
+            </div>
+                
+            <div id="active_orders" class="tabcontent">
+                <table class="table table-responsive table-dark">
+                    <thead>
+                            <th>注文ID</th>
+                            <th>通貨ペア</th>
+                            <th>タイプ</th>
+                            <th>売買</th>
+                            <th>数量</th>
+                            <th>価格</th>
+                            <th>約定済数量</th>
+                            <th>平均価格</th>
+                            <th>注文日時</th>
+                            <th>ステータス</th>
+                            <th>キャンセル</th>  
+                    </thead>
+                    <tbody>
+                            {% for active_order in active_orders %}
+                            <tr>
+                                <td>{{ active_order.order_id }}</td>
+                                <td>{{ active_order.pair }}</td>
+                                <td>{{ active_order.order_type }}</td>
+                                <td>{{ active_order.side }}</td>
+                                <td>{{ active_order.start_amount}}</td>
+                                <td>{{ active_order.price }}</td>
+                                <td>{{ active_order.executed_amount}}</td>
+                                <td>{{ active_order.average_price}}</td>
+                                <td>{{ active_order.ordered_at }}</td>
+                                <td>{{ active_order.status}}</td>
+                                <td><button type="button" class="btn btn-sm" style="background: red" id="{{ order.order_id }}" >キャンセル</button></td>
+                            </tr>
+                            {% endfor %}
+                    </tbody>  
+                </table>
+            </div>
+                
+            <div id="order_history" class="tabcontent">
+                <table class="table table-responsive table-dark">
+                    <thead>
+                        <th>注文ID</th>
+                        <th>通貨ペア</th>
+                        <th>タイプ</th>
+                        <th>売買</th>
+                        <th>数量</th>
+                        <th>価格</th>
+                        <th>約定済数量</th>
+                        <th>平均価格</th>
+                        <th>注文日時</th>
+                        <th>ステータス</th>  
+                    </thead>
+                    <tbody>
+                        {% for order in order_history %}
+                        <tr>
+                            <td>{{ order.order_id }}</td>
+                            <td>{{ order.pair }}</td>
+                            <td>{{ order.order_type }}</td>
+                            <td>{{ order.side }}</td>
+                            <td>{{ order.start_amount}}</td>
+                            <td>{{ order.price }}</td>
+                            <td>{{ order.executed_amount}}</td>
+                            <td>{{ order.average_price}}</td>
+                            <td>{{ order.ordered_at }}</td>
+                            <td>{{ order.status}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>  
+                </table>        
+            </div>
+            <div id="stop_orders" class="tabcontent">
+                <table class="table table-responsive table-dark">
+                    <thead>
+                        <th>通貨ペア</th>
+                        <th>タイプ</th>
+                        <th>売買</th>
+                        <th>数量</th>
+                        <th>価格</th>
+                        <th>約定済数量</th>
+                        <th>平均価格</th>
+                        <th>注文日時</th>
+                        <th>ステータス</th>  
+                    </thead>
+                    <tbody>
+                        {% for stop_order in stop_orders %}
+                        <tr>
+                            <td>{{ stop_order.pair }}</td>
+                            <td>{{ stop_order.order_type }}</td>
+                            <td>{{ stop_order.side }}</td>
+                            <td>{{ stop_order.start_amount}}</td>
+                            <td>{{ stop_order.price }}</td>
+                            <td>{{ stop_order.executed_amount}}</td>
+                            <td>{{ stop_order.average_price}}</td>
+                            <td>{{ stop_order.ordered_at }}</td>
+                            <td>{{ stop_order.status}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>  
+                </table>        
+            </div>
+            <div id="alerts" class="tabcontent">
+                
+                <table class="table table-responsive table-dark">
+                    <thead>
+                        <th>通貨ペア</th>
+                        <th>閾値</th>
+                        <th>上下</th>
+                    </thead>
+                    <tbody>
+                        {% for alert in alerts %}
+                        <tr>
+                            <td>{{ alert.pair }}</td>
+                            <td>{{ alert.threshold }}</td>
+                            <td>{{ alert.over_or_below }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>  
+                </table>        
+            </div>
+        </div>
     </div>        
 </form>
 {% endblock %}
 {% block extra_js %}
     <script>
+        function openTab(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
 
         function call_get_assets_api() {
             return $.ajax({
@@ -277,31 +353,6 @@
             });
         }
         
-        // function update_market_info() {
-        //     var pairs = ['btc_jpy', 'xrp_jpy', 'ltc_btc', 'eth_btc', 'mona_jpy', 'mona_btc', 'bcc_jpy', 'bcc_btc'];
-        //     pairs.forEach(pair => {
-        //         call_get_ticker_api(pair)
-        //         .done(function(ticker) {
-        //             if (ticker.code) {
-        //                 return;
-        //             }
-        //             $('#' + pair + '_sell').html(ticker.sell);
-        //             $('#' + pair + '_buy').html(ticker.buy);
-        //             $('#' + pair + '_high').html(ticker.high);
-        //             $('#' + pair + '_low').html(ticker.low);
-        //             $('#' + pair + '_last').html(ticker.last);
-        //             $('#' + pair + '_vol').html(ticker.vol);
-        //             //$('#' + pair + '_timestamp').html(new Date(ticker.timestamp));
-        //         })
-        //         .fail(function() {
-        //             alert('failed');
-        //         })
-        //         .always(function() {
-
-        //         });
-        //     });  
-        // }
-
         $(function() {
             // With JQuery
             $('#ex1').slider({
@@ -495,13 +546,14 @@
                             call_get_ticker_api(asset.asset + '_jpy')
                             .done(function(res) {
                                 total_asset_in_jpy += parseInt(res.buy * asset.onhand_amount);
+                                
                                 $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
                             })
                             .fail(function() {
                                 alert('failed');
                             });
                         } else {
-                            total_asset_in_jpy += asset.onhand_amount;
+                            total_asset_in_jpy += parseInt(asset.onhand_amount);
                             $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
 
                         }
@@ -524,5 +576,6 @@
                 }
             });
         });
+        
     </script>
 {% endblock %}

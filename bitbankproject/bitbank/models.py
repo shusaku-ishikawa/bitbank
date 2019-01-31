@@ -190,6 +190,7 @@ class Order(models.Model):
         verbose_name = _('注文価格'),
         null = True,
         blank = True,
+        default = 0,
         validators = [
             MinValueValidator(0),
             MaxValueValidator(1000000)
@@ -199,6 +200,7 @@ class Order(models.Model):
         verbose_name = _('逆指値の指値'),
         null = True,
         blank = True,
+        default = 0,
         validators = [
             MinValueValidator(0),
             MaxValueValidator(1000000)

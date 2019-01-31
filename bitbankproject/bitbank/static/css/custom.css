@@ -120,7 +120,39 @@ button.off {
 .errorlist {
     color: red;
 }
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    background-color: #222222;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button.tablinks {
+    background-color: inherit;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    text-decoration: underline;
+  }
 
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    border-top: none;
+  }
 .form-control::-webkit-input-placeholder { color: #BBBBBB; font-weight: bold}  /* WebKit, Blink, Edge */
 .form-control:-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 4 to 18 */
 .form-control::-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 19+ */
