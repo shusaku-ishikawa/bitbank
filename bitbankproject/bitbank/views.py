@@ -15,9 +15,9 @@ from django.template.loader import get_template
 from django.views import generic
 from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
-    MyPasswordResetForm, MySetPasswordForm, MyOrderForm
+    MyPasswordResetForm, MySetPasswordForm, MyOrderForm, MyAlertForm
 )
-from .models import Order
+from .models import Order, Alert
 from django.urls import reverse
 from django.utils import timezone
 import os, json, python_bitbankcc
@@ -226,6 +226,36 @@ class OrderList(LoginRequiredMixin, generic.ListView):
     """注文一覧"""
     model = Order
     template_name = 'bitbank/order_list.html'
+
+class AlertCreate(LoginRequiredMixin, generic.CreateView):
+    """アラート登録"""
+    model = Alert
+    template_name = 'bitbank/alert_create.html'
+    form_class = MyAlertForm
+
+    def form_valid(self, form):
+        self.object = form.save(commit = False)
+        self.object.user = self.request.user
+        self.object.is_active = '有効'
+        self.object.save()
+        return http.HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('bitbank:alert_detail', kwargs={'pk' : self.object.pk})
+
+    def get_queryset(self):
+        return Alert.objects.filter(user=self.request.user)
+
+
+class AlertDetail(LoginRequiredMixin, generic.DetailView):
+    """アラート詳細"""
+    model = Alert
+    template_name = 'bitbank/alert_detail.html'
+
+class AlertList(LoginRequiredMixin, generic.ListView):
+    """アラート一覧"""
+    model = Alert
+    template_name = 'bitbank/alert_list.html'
 
 def ajax_get_ticker(request):
     user = request.user

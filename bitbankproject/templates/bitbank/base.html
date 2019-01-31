@@ -49,6 +49,12 @@
             <a class="nav-item nav-link" href="{% url 'bitbank:order' %}">注文</a>
           </li>
           <li>
+            <a class="nav-item nav-link" href="{% url 'bitbank:alert' %}">通知設定</a>
+          </li>
+          <li>
+            <a class="nav-item nav-link" href="{% url 'bitbank:alert_list' %}">通知一覧</a>
+          </li>
+          <li>
             <a class="nav-item nav-link" href="{% url 'bitbank:order_list' %}">注文履歴</a>
           </li>
           {% else %}

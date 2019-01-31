@@ -83,16 +83,36 @@
             </div>
             
             <hr>
-            <div style="display: none" class="input-group show_if_limit">
-                <div class="input-group-prepend">
-                    <span id="price_label" class="my_placeholder">注文価格</span>
-                </div>
-                {{form.price}}
-                {{form.price.errors}}                    
-                <div class="input-group-append">
-                    <span class="my_placeholder pair">jpy</span>
+            <div style="display: none" class="row show_if_limit">
+                <div class="col-md-8 offset-md-2 col-xs-12">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="my_placeholder">注文価格</span>
+                        </div>
+                        {{form.price}}
+                        {{form.price.errors}}                    
+                        <div class="input-group-append">
+                            <span class="my_placeholder pair">jpy</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div style="display: none" class="row show_if_stop_limit">
+                <div class="col-md-8 offset-md-2 col-xs-12">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="my_placeholder">逆指値指値</span>
+                        </div>
+                        {{form.price_for_stop_limit}}
+                        {{form.price_for_stop_limit.errors}}                    
+                        <div class="input-group-append">
+                            <span class="my_placeholder pair">jpy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>  
+            
             <hr>            
             <div class="row">
                 <div class="col-md-8 offset-md-2 col-xs-12">
@@ -111,7 +131,7 @@
             <hr>
             <div class="row d-flex justify-content-center">
                     <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/>
-                    <span>sss</span>
+                    <span id="amount_percentage"></span>
             </div>
             <hr>
             <div class="row">
@@ -158,8 +178,7 @@
                 {{form.notify_if_filled.errors}}
                 
             </div>
-            <hr>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-8 offset-md-2 col-xs-12">
                     <label class="control-label" for="id_notify_if_reach">金額到達通知</label>
                     <div class="btn-group d-flex" role="group">
@@ -231,8 +250,7 @@
                         <span class="my_placeholder pair">jpy</span>
                     </div>
                 </div>
-            </div>
-            
+            </div> -->
         </div> 
     </div>        
 </form>
@@ -292,44 +310,55 @@
                 },
             });
 
-            $('#ex1').slider().on('slideStop', function(ev) {
-                if ($('#id_pair').val() != '') {
-                    var currency = $('#id_pair').val().split('_')[1];
-                    
-                    var free_amount = $('#free_' + $('#id_pair').val().split('_')[1]).html();
-                    if (free_amount === undefined) {
-                        return;
-                    }
+            var free_amounts = {
+            };
 
-                    var newVal = $('#ex1').data('slider').getValue();
-                    
-                    var market_price;
-                    
-                    if ($('#id_order_type').val() == '指値' || $('#id_order_type').val() == '逆指値' || $('#id_order_type').val() == 'ストップリミット') {
-                        if ($('#id_price').val() != '' && $('#id_price').val() != 0) {
-                            var floored = Math.floor((free_amount * newVal / ($('#id_price').val() * 100)) * 10000) / 10000 
-                            $('#id_start_amount').val(floored);
-                            $('#expect_price').val(Math.floor($('#id_price').val() * floored));                        
-                        }
-                    } else if ($('#id_order_type').val() == '成行') {
-                        var current_price;
-                        call_get_ticker_api($('#id_pair').val())
-                        .done(function (val) {
-                            if ($('#id_side').val() == 'sell') {
-                                current_price = val.sell;
-                            } else {
-                                current_price = val.buy;
-                            }
-                            var floored = Math.floor((free_amount * newVal / (current_price * 100)) * 10000) / 10000 
-                            $('#id_start_amount').val(floored);
-                            $('#expect_price').val(Math.floor(current_price * floored));                        
-                        })
-                        .fail(function() {
-                            alert('現在のTickerを取得できませんでした。');
-                        })
-                        .always(function() {
-                        });
+            call_get_assets_api()
+            .done(function(res) {
+              
+                res.assets.forEach(asset => {
+                    free_amounts[asset.asset] = asset.free_amount;
+                });
+            })
+            .fail(function() {
+                alert('failed');
+            });
+
+            $('#ex1').slider().on('slideStop', function(ev){
+                var newVal = $('#ex1').data('slider').getValue();
+                $('#amount_percentage').html(newVal + '%');
+
+                if($('#id_pair').val() == '') {
+                    return;
+                }
+                var currency = $('#id_pair').val().split('_')[1];
+                var free_amount = free_amounts[currency];
+                
+               
+                if ($('#id_order_type').val() == '指値' || $('#id_order_type').val() == '逆指値' || $('#id_order_type').val() == 'ストップリミット') {
+                    if ($('#id_price').val() != '' && $('#id_price').val() != 0) {
+                        var floored = Math.floor((free_amount * newVal / ($('#id_price').val() * 100)) * 10000) / 10000 
+                        $('#id_start_amount').val(floored);
+                        $('#expect_price').val(Math.floor($('#id_price').val() * floored));                        
                     }
+                } else if ($('#id_order_type').val() == '成行') {
+                    var current_price;
+                    call_get_ticker_api($('#id_pair').val())
+                    .done(function (val) {
+                        if ($('#id_side').val() == 'sell') {
+                            current_price = val.sell;
+                        } else {
+                            current_price = val.buy;
+                        }
+                        var floored = Math.floor((free_amount * newVal / (current_price * 100)) * 10000) / 10000 
+                        $('#id_start_amount').val(floored);
+                        $('#expect_price').val(Math.floor(current_price * floored));                        
+                    })
+                    .fail(function() {
+                        alert('現在のTickerを取得できませんでした。');
+                    })
+                    .always(function() {
+                    });
                 }
             });
             
@@ -346,22 +375,13 @@
             $('#id_order_type').on('change', function() {
                 if ($('#id_order_type').val() == '成行') {
                     $('.show_if_limit').hide();
+                    $('.show_if_stop_limit').hide();
+                } else if($('#id_order_type').val() == 'ストップリミット') {
+                    $('.show_if_limit').show();
+                    $('.show_if_stop_limit').show();
                 } else {
                     $('.show_if_limit').show();
-
-                    switch($('#id_order_type').val()) {
-                        case '指値':
-                            $('#price_label').html('注文金額');
-                            break;
-
-                        case '逆指値':
-                            $('#price_label').html('逆指値金額');
-                            break;
-                        
-                        case 'ストップリミット':
-                            $('#price_label').html('逆指値&注文金額');
-                            break;
-                    }
+                    $('.show_if_stop_limit').hide();
                 }
             });
             
@@ -375,7 +395,7 @@
                 $('#sell_button').removeClass('sell').addClass('btn-base');
             }
 
-            // 通知ボタン初期化
+            //通知ボタン初期化
             if ($('#id_notify_if_filled').val() == 'ON') {
                 $('#notify_if_filled_on_button').addClass('on').removeClass('btn-base');
                 $('#notify_if_filled_off_button').removeClass('off').addClass('btn-base');
@@ -384,15 +404,15 @@
                 $('#notify_if_filled_on_button').removeClass('on').addClass('btn-base');
             }
             // 金額到達ボタン初期化
-            if ($('#id_notify_if_reach').val() == 'ON') {
-                $('#notify_if_reach_on_button').addClass('on').removeClass('btn-base');
-                $('#notify_if_reach_off_button').removeClass('off').addClass('btn-base');
-                $('#show_if_notify').show();
-            } else {
-                $('#notify_if_reach_off_button').addClass('off').removeClass('btn-base');
-                $('#notify_if_reach_on_button').removeClass('on').addClass('btn-base');
-                $('#show_if_notify').hide();
-            }
+            // if ($('#id_notify_if_reach').val() == 'ON') {
+            //     $('#notify_if_reach_on_button').addClass('on').removeClass('btn-base');
+            //     $('#notify_if_reach_off_button').removeClass('off').addClass('btn-base');
+            //     $('#show_if_notify').show();
+            // } else {
+            //     $('#notify_if_reach_off_button').addClass('off').removeClass('btn-base');
+            //     $('#notify_if_reach_on_button').removeClass('on').addClass('btn-base');
+            //     $('#show_if_notify').hide();
+            // }
             
             //SELLボタンクリック
             $('#sell_button').on('click', function() {
@@ -423,20 +443,20 @@
                 
             });
 
-            //金額到達ONボタンクリック
-            $('#notify_if_reach_on_button').on('click', function() {
-                $('#notify_if_reach_on_button').addClass('on').removeClass('btn-base');
-                $('#notify_if_reach_off_button').removeClass('off').addClass('btn-base');
-                $('#id_notify_if_reach').val('ON');
-                $('#show_if_notify').show();
-            });
-            //金額到達OFFボタンクリック
-            $('#notify_if_reach_off_button').on('click', function() {
-                $('#notify_if_reach_off_button').addClass('off').removeClass('btn-base');
-                $('#notify_if_reach_on_button').removeClass('on').addClass('btn-base');
-                $('#id_notify_if_reach').val('OFF');
-                $('#show_if_notify').hide();
-            });
+            // //金額到達ONボタンクリック
+            // $('#notify_if_reach_on_button').on('click', function() {
+            //     $('#notify_if_reach_on_button').addClass('on').removeClass('btn-base');
+            //     $('#notify_if_reach_off_button').removeClass('off').addClass('btn-base');
+            //     $('#id_notify_if_reach').val('ON');
+            //     $('#show_if_notify').show();
+            // });
+            // //金額到達OFFボタンクリック
+            // $('#notify_if_reach_off_button').on('click', function() {
+            //     $('#notify_if_reach_off_button').addClass('off').removeClass('btn-base');
+            //     $('#notify_if_reach_on_button').removeClass('on').addClass('btn-base');
+            //     $('#id_notify_if_reach').val('OFF');
+            //     $('#show_if_notify').hide();
+            // });
             
             asset_names = {
                
@@ -493,6 +513,14 @@
                     } else {
                         alert('想定外のエラーです');
                     }
+                }
+            });
+
+            $('#id_order_button').on('submit', function() {
+                if ($('#id_order_type').val() == 'ストップリミット') {
+                    if ($('#id_price_for_stop_limit').val() == "" || $('#id_price_for_stop_limit').val() == 0 ) {
+                        return false;
+                    } 
                 }
             });
         });

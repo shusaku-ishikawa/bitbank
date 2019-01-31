@@ -108,7 +108,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Order(models.Model):
-
     PAIR = (
         ('btc_jpy', 'btc_jpy'),
         ('xrp_jpy', 'xrp_jpy'),
@@ -119,6 +118,7 @@ class Order(models.Model):
         ('bcc_jpy', 'bcc_jpy'),
         ('bcc_btc', 'bcc_btc'),
     )
+
 
     SPECIAL_ORDER = (
         ('SINGLE', 'SINGLE'),
@@ -195,7 +195,15 @@ class Order(models.Model):
             MaxValueValidator(1000000)
         ]
     )
-
+    price_for_stop_limit = models.FloatField(
+        verbose_name = _('逆指値の指値'),
+        null = True,
+        blank = True,
+        validators = [
+            MinValueValidator(0),
+            MaxValueValidator(1000000)
+        ]
+    )
 
     start_amount = models.FloatField(
         verbose_name = _('注文数量'),
@@ -245,6 +253,7 @@ class Order(models.Model):
 
     ordered_at = models.DateTimeField(
         verbose_name = _('注文日時'),
+        null = True,
         auto_now_add = False,
         auto_now = False,
     )
@@ -261,41 +270,86 @@ class Order(models.Model):
         choices = NOTIFY_STR,
     )
 
-    notify_if_reach = models.CharField(
-        verbose_name = _('価格到達通知'),
-        max_length = 10,
-        default = 'OFF',
-        choices = NOTIFY_STR,
+    # notify_if_reach = models.CharField(
+    #     verbose_name = _('価格到達通知'),
+    #     max_length = 10,
+    #     default = 'OFF',
+    #     choices = NOTIFY_STR,
+    # )
+
+    # price_threshold_1 = models.FloatField(
+    #     verbose_name = _('①価格到達通知設定'),
+    #     null = True,
+    #     blank = True
+    # )
+    # price_threshold_2 = models.FloatField(
+    #     verbose_name = _('②価格到達通知設定'),
+    #     null = True,
+    #     blank = True
+    # )
+    
+    # price_threshold_3 = models.FloatField(
+    #     verbose_name = _('③価格到達通知設定'),
+    #     null = True,
+    #     blank = True
+    # )
+    
+    # price_threshold_4 = models.FloatField(
+    #     verbose_name = _('④価格到達通知設定'),
+    #     null = True,
+    #     blank = True
+    # )
+    
+    # price_threshold_5 = models.FloatField(
+    #     verbose_name = _('⑤価格到達通知設定'),
+    #     null = True,
+    #     blank = True
+    # )
+
+class Alert(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    pair = models.CharField(
+        verbose_name = _('通貨'),
+        max_length = 50,
+        default = 'btc_jpy',
+        choices = Order.PAIR
     )
 
-    price_threshold_1 = models.FloatField(
-        verbose_name = _('①価格到達通知設定'),
-        null = True,
-        blank = True
-    )
-    price_threshold_2 = models.FloatField(
-        verbose_name = _('②価格到達通知設定'),
-        null = True,
-        blank = True
-    )
-    
-    price_threshold_3 = models.FloatField(
-        verbose_name = _('③価格到達通知設定'),
-        null = True,
-        blank = True
-    )
-    
-    price_threshold_4 = models.FloatField(
-        verbose_name = _('④価格到達通知設定'),
-        null = True,
-        blank = True
-    )
-    
-    price_threshold_5 = models.FloatField(
-        verbose_name = _('⑤価格到達通知設定'),
-        null = True,
-        blank = True
+    threshold = models.FloatField(
+        verbose_name = _('到達金額'),
+        null = False,
+        blank = False
     )
 
+    OVER_OR_BELOW = (
+        ('超えたら', 'を超えたら'),
+        ('下回ったら', 'を下回ったら')
+    )
+    ACTIVE_OR_INACTIVE = (
+        ('有効', '有効'),
+        ('無効', '無効')
+    )
 
+    over_or_below = models.CharField(
+        verbose_name = _('上下'),
+        max_length = 50,
+        choices = OVER_OR_BELOW,
+        null = False,
+        blank = False,
+    )
+
+    alerted_at = models.DateTimeField(
+        verbose_name = _('通知日時'),   
+        auto_now = False,
+        blank = True,
+        null = True
+    )
+    is_active = models.CharField(
+        verbose_name = _('有効'),
+        max_length = 50,
+        blank = True,
+        default = "有効",
+        null = True,
+    )
     

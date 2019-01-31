@@ -1,0 +1,46 @@
+{% extends "bitbank/base.html" %}
+{% block content %}
+{% csrf_token %}
+<div class="row">
+    <div class="col-md-8 offset-md-2 col-xs-12">
+        <table class="table table-responsive">
+            <tbody>
+                <tr>
+                    <th>通貨</th>
+                    <td>{{ alert.pair }}</td>
+                </tr>
+                <tr>
+                    <th>到達金額</th>
+                    <td>{{ alert.threshold }}</td>
+                </tr>
+        
+                    <th>超えたら/下回ったら</th>
+                    <td>{{ alert.over_or_below }}</td>
+                </tr>
+                <tr>
+                    <th>ステータス</th>
+                    <td>{{ alert.is_active }}</td>
+                </tr>
+                <tr>
+                    <th>通知日時</th>
+                    <td>{{ alert.alerted_at }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 offset-md-8 col-xs-8">
+        <a class="btn green_button" href="{% url 'bitbank:alert_list' %}">一覧へ戻る</a>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block extra_js %}
+<script>
+   
+</script>
+
+{% endblock %}
+
