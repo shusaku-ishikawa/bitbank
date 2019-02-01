@@ -184,9 +184,9 @@
     <div class="row">
         <div class="col-md-11 offset-md-1 col-xs-12" style="font-size: 2vmin">
             <div class="tab">
-                <button type="button" class="tablinks" onclick="openTab(event, 'active_orders')">注文一覧</button>
-                <button type="button" class="tablinks" onclick="openTab(event, 'stop_orders')">ストップ注文</button>
-                <button type="button" class="tablinks" onclick="openTab(event, 'order_history')">注文履歴</button>
+                <button id="order_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">アクティブ注文</button>
+                <button id="stop_order_button" type="button" class="tablinks" onclick="openTab(event, 'stop_orders')">ストップ注文</button>
+                <button id="order_history_button" type="button" class="tablinks" onclick="openTab(event, 'order_history')">注文履歴</button>
                 
                 <button type="button" class="tablinks" onclick="openTab(event, 'alerts')">アラート</button>
             </div>
@@ -207,21 +207,7 @@
                             <th>キャンセル</th>  
                     </thead>
                     <tbody>
-                            {% for active_order in active_orders %}
-                            <tr>
-                                <td>{{ active_order.order_id }}</td>
-                                <td>{{ active_order.pair }}</td>
-                                <td>{{ active_order.order_type }}</td>
-                                <td>{{ active_order.side }}</td>
-                                <td>{{ active_order.start_amount}}</td>
-                                <td>{{ active_order.price }}</td>
-                                <td>{{ active_order.executed_amount}}</td>
-                                <td>{{ active_order.average_price}}</td>
-                                <td>{{ active_order.ordered_at }}</td>
-                                <td>{{ active_order.status}}</td>
-                                <td><button type="button" class="btn btn-sm" style="background: red" id="{{ order.order_id }}" >キャンセル</button></td>
-                            </tr>
-                            {% endfor %}
+                           
                     </tbody>  
                 </table>
             </div>
@@ -241,20 +227,7 @@
                         <th>ステータス</th>  
                     </thead>
                     <tbody>
-                        {% for order in order_history %}
-                        <tr>
-                            <td>{{ order.order_id }}</td>
-                            <td>{{ order.pair }}</td>
-                            <td>{{ order.order_type }}</td>
-                            <td>{{ order.side }}</td>
-                            <td>{{ order.start_amount}}</td>
-                            <td>{{ order.price }}</td>
-                            <td>{{ order.executed_amount}}</td>
-                            <td>{{ order.average_price}}</td>
-                            <td>{{ order.ordered_at }}</td>
-                            <td>{{ order.status}}</td>
-                        </tr>
-                        {% endfor %}
+
                     </tbody>  
                 </table>        
             </div>
@@ -266,25 +239,11 @@
                         <th>売買</th>
                         <th>数量</th>
                         <th>価格</th>
-                        <th>約定済数量</th>
-                        <th>平均価格</th>
-                        <th>注文日時</th>
-                        <th>ステータス</th>  
+                        <th>ストップ注文価格</th>
+                        
                     </thead>
                     <tbody>
-                        {% for stop_order in stop_orders %}
-                        <tr>
-                            <td>{{ stop_order.pair }}</td>
-                            <td>{{ stop_order.order_type }}</td>
-                            <td>{{ stop_order.side }}</td>
-                            <td>{{ stop_order.start_amount}}</td>
-                            <td>{{ stop_order.price }}</td>
-                            <td>{{ stop_order.executed_amount}}</td>
-                            <td>{{ stop_order.average_price}}</td>
-                            <td>{{ stop_order.ordered_at }}</td>
-                            <td>{{ stop_order.status}}</td>
-                        </tr>
-                        {% endfor %}
+                        
                     </tbody>  
                 </table>        
             </div>
@@ -313,24 +272,215 @@
 {% endblock %}
 {% block extra_js %}
     <script>
-        function openTab(evt, cityName) {
+        function call_cancel_order(pair, order_id) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_cancel_order" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    pair: pair,
+                    order_id: order_id
+                }
+            });
+        }
+        function call_cancel_stop_order(pk) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_cancel_stop_order" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    pk: pk
+                }
+            });
+        }
+
+
+        function call_get_active_orders() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_active_orders" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+        }
+        function call_get_order_history() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_order_history" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+            
+        }
+        function call_get_stop_orders() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_stop_orders" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+        }
+        
+        function get_datetime_string(unix_time) {
+            // Create a new JavaScript Date object based on the timestamp
+            // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+            var date = new Date(unix_time*1000);
+            var y = date.getFullYear();
+            var m = ("00" + (date.getMonth()+1)).slice(-2);
+            var d = ("00" + date.getDate()).slice(-2);
+            var formattedDate = y + "/" + m + "/" + d;
+            // Hours part from the timestamp
+            var hours = date.getHours();
+            // Minutes part from the timestamp
+            var minutes = "0" + date.getMinutes();
+            // Seconds part from the timestamp
+            var seconds = "0" + date.getSeconds();
+
+            // Will display time in 10:30:23 format
+            var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+            return formattedDate + ' ' + formattedTime;
+        }
+        
+        function hyphen_if_null(subj) {
+            if (subj == null || subj == undefined) {
+                return '-';
+            } else {
+                return subj;
+            }
+        } 
+        function openTab(evt, tab_id) {
             // Declare all variables
             var i, tabcontent, tablinks;
 
-            // Get all elements with class="tabcontent" and hide them
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
+            switch( tab_id ) {
+                case 'active_orders':
+                    call_get_active_orders()
+                    .done(function(res) {
+                        var table_html;
+
+                        $.parseJSON(res.active_orders).forEach(active_order => {
+                            table_html += '<td>' + active_order.fields.order_id + '</td>';
+                            table_html += '<td>' + active_order.fields.pair + '</td>';
+                            table_html += '<td>' + active_order.fields.order_type + '</td>';
+                            table_html += '<td>' + active_order.fields.side + '</td>';
+                            table_html += '<td>' + active_order.fields.start_amount + '</td>';
+                            table_html += '<td>' + hyphen_if_null(active_order.fields.price) + '</td>';
+                            table_html += '<td>' + hyphen_if_null(active_order.fields.executed_amount) + '</td>';
+                            table_html += '<td>' + hyphen_if_null(active_order.fields.average_price) + '</td>';
+                            table_html += '<td>' + hyphen_if_null(active_order.fields.ordered_at) + '</td>';
+                            table_html += '<td>' + hyphen_if_null(active_order.fields.status) + '</td>';
+                            table_html += '<td><button type="button" class="btn btn-sm red_button" id="cancel_order_button">キャンセル</button></td>';
+                            
+                        });
+                        
+                        $('#active_orders > table > tbody').html(table_html);
+                        //キャンセルボタンクリック時のイベント追加
+                        $('#cancel_order_button').on('click', function() {
+                            var order_id = $(this).parent().prevAll().eq(9).html();
+                            var pair = $(this).parent().prevAll().eq(8).html();
+                            call_cancel_order(pair, order_id)
+                            .done(function(res) {
+                                if (res.error) {
+                                    alert(res.error);
+                                    return;
+                                }
+                            
+                                alert('注文がキャンセルされました。');
+                                $('#order_history_button').click();
+                            })
+                            .fail(function() {
+
+                            });
+                            
+                        });
+                    })
+                    .fail(function() {
+                        alert('get_active_orders failed');
+                    });
+
+                    break;
+
+
+                case 'order_history':
+                    call_get_order_history()
+                    .done(function(res) {
+                        var table_html;
+
+                        $.parseJSON(res.order_history).forEach(order => {
+                            table_html += '<tr>';
+                            table_html += '<td>' + order.fields.order_id + '</td>';
+                            table_html += '<td>' + order.fields.pair + '</td>';
+                            table_html += '<td>' + order.fields.order_type + '</td>';
+                            table_html += '<td>' + order.fields.side + '</td>';
+                            table_html += '<td>' + order.fields.start_amount + '</td>';
+                            table_html += '<td>' + hyphen_if_null(order.fields.price) + '</td>';
+                            table_html += '<td>' + order.fields.executed_amount + '</td>';
+                            table_html += '<td>' + order.fields.average_price + '</td>';
+                            table_html += '<td>' + order.fields.ordered_at + '</td>';
+                            table_html += '<td>' + order.fields.status + '</td>';
+                            table_html += '</tr>';
+                        });
+                        $('#order_history > table > tbody').html(table_html);
+                    })
+                    .fail(function() {
+                        alert('get_order_history failed');
+                    });
+                    break;
+                
+                case 'stop_orders': 
+                    call_get_stop_orders()
+                    .done(function(res) {
+                        var table_html;
+                        $.parseJSON(res.stop_orders).forEach(stop_order => {
+                            table_html += '<tr>';
+                            table_html += '<td>' + stop_order.fields.pair + '</td>';
+                            table_html += '<td>' + stop_order.fields.order_type + '</td>';
+                            table_html += '<td>' + stop_order.fields.side + '</td>';
+                            table_html += '<td>' + stop_order.fields.start_amount + '</td>';
+                            table_html += '<td>' + hyphen_if_null(stop_order.fields.price) + '</td>';
+                            table_html += '<td>' + hyphen_if_null(stop_order.fields.price_for_stop_limit) + '</td>';
+                            table_html += '<td><button name="' + stop_order.fields.pk + '"  type="button" class="btn btn-sm red_button" id="cancel_stop_order_button">キャンセル</button></td>';
+                            table_html += '</tr>';
+                        });
+
+                        $('#stop_orders > table > tbody').html(table_html);
+
+                        $('#cancel_stop_order_button').on('click', function() {
+                            var pk = $(this).attr('name');
+                            call_cancel_stop_order(pk)
+                            .done(function(res) {
+                                if (res.error) {
+                                    alert(res.error);
+                                    return;
+                                }
+                                alert('注文がキャンセルされました。');
+                                $('#stop_orders_button').click();
+                            })
+                            .fail(function() {
+
+                            });
+                            
+                        });
+                    })
+                    .fail(function() {
+                        alert('get_stop_orders failed');
+                    });
+                    break;
             }
+
+
+
+            // Get all elements with class="tabcontent" and hide them
+            $('.tabcontent').each((i, tabcontent) => {
+                $(tabcontent).hide();
+            });
+        
 
             // Get all elements with class="tablinks" and remove the class "active"
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
+            $('.tablinks').each((i, tablink) => {
+                $(tablink).removeClass('active');
+            });
 
             // Show the current tab, and add an "active" class to the button that opened the tab
-            document.getElementById(cityName).style.display = "block";
+            $('#' + tab_id).show();
             evt.currentTarget.className += " active";
         }
 
@@ -354,27 +504,15 @@
         }
         
         $(function() {
-            // With JQuery
+            // スライダー初期化
             $('#ex1').slider({
                 formatter: function(value) {
                     return 'Current value: ' + value;
                 },
             });
 
-            var free_amounts = {
-            };
-
-            call_get_assets_api()
-            .done(function(res) {
-              
-                res.assets.forEach(asset => {
-                    free_amounts[asset.asset] = asset.free_amount;
-                });
-            })
-            .fail(function() {
-                alert('failed');
-            });
-
+            
+            // スライダーイベント
             $('#ex1').slider().on('slideStop', function(ev){
                 var newVal = $('#ex1').data('slider').getValue();
                 $('#amount_percentage').html(newVal + '%');
@@ -413,6 +551,9 @@
                 }
             });
             
+            
+
+            // 通貨変更時に数量、金額の通貨部分を更新
             $('#id_pair').on('change', function() {
                 var unit = $('#id_pair').val().split('_')[0];
                 var currency = $('#id_pair').val().split('_')[1];
@@ -422,7 +563,7 @@
                 }
             });
 
-            //逆指値の時のみ
+            //タイプによって金額入力ボックス表示・非表示
             $('#id_order_type').on('change', function() {
                 if ($('#id_order_type').val() == '成行') {
                     $('.show_if_limit').hide();
@@ -454,16 +595,7 @@
                 $('#notify_if_filled_off_button').addClass('off').removeClass('btn-base');
                 $('#notify_if_filled_on_button').removeClass('on').addClass('btn-base');
             }
-            // 金額到達ボタン初期化
-            // if ($('#id_notify_if_reach').val() == 'ON') {
-            //     $('#notify_if_reach_on_button').addClass('on').removeClass('btn-base');
-            //     $('#notify_if_reach_off_button').removeClass('off').addClass('btn-base');
-            //     $('#show_if_notify').show();
-            // } else {
-            //     $('#notify_if_reach_off_button').addClass('off').removeClass('btn-base');
-            //     $('#notify_if_reach_on_button').removeClass('on').addClass('btn-base');
-            //     $('#show_if_notify').hide();
-            // }
+
             
             //SELLボタンクリック
             $('#sell_button').on('click', function() {
@@ -494,24 +626,14 @@
                 
             });
 
-            // //金額到達ONボタンクリック
-            // $('#notify_if_reach_on_button').on('click', function() {
-            //     $('#notify_if_reach_on_button').addClass('on').removeClass('btn-base');
-            //     $('#notify_if_reach_off_button').removeClass('off').addClass('btn-base');
-            //     $('#id_notify_if_reach').val('ON');
-            //     $('#show_if_notify').show();
-            // });
-            // //金額到達OFFボタンクリック
-            // $('#notify_if_reach_off_button').on('click', function() {
-            //     $('#notify_if_reach_off_button').addClass('off').removeClass('btn-base');
-            //     $('#notify_if_reach_on_button').removeClass('on').addClass('btn-base');
-            //     $('#id_notify_if_reach').val('OFF');
-            //     $('#show_if_notify').hide();
-            // });
             
+            // 
             asset_names = {
                
             }
+            //資産情報取得用
+            var free_amounts = {
+            };
             
             simbols = {
                 'jpy': '¥',
@@ -523,6 +645,7 @@
                     var asset_html = "";
                     var total_asset_in_jpy = 0;
                     response.assets.forEach(asset => {
+                        free_amounts[asset.asset] = asset.free_amount;
                         $('#' + asset.asset).html(asset.onhand_amount);
                         if (asset.asset == 'ltc' || asset.asset == 'eth') {
                             call_get_ticker_api(asset.asset + '_' + 'btc')
@@ -567,14 +690,17 @@
                     }
                 }
             });
-
+            // 注文時の追加バリデーション
             $('#id_order_button').on('submit', function() {
+                //
                 if ($('#id_order_type').val() == 'ストップリミット') {
                     if ($('#id_price_for_stop_limit').val() == "" || $('#id_price_for_stop_limit').val() == 0 ) {
                         return false;
-                    } 
+                    }
                 }
             });
+
+
         });
         
     </script>

@@ -1,3 +1,4 @@
+import traceback
 from django import http
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -186,11 +187,6 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
 
             if self.request.user.api_key != "" and self.request.user.api_secret_key != "":
                 try:
-                    print(form.cleaned_data['pair'])
-                    print(form.cleaned_data['price'])
-                    print(form.cleaned_data['start_amount'])
-                    print(form.cleaned_data['side'])
-                    
                     res_dict = python_bitbankcc.private(self.request.user.api_key, self.request.user.api_secret_key).order(
                         form.cleaned_data['pair'],
                         form.cleaned_data['price'],
@@ -206,9 +202,9 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
                         self.object.order_id = res_dict.get('order_id')
                         self.object.status = res_dict.get('status')
                         self.object.ordered_at = timezone.datetime.now()
-                except:
-                    self.object.status = "通信エラー"
-                    import traceback
+                except Exception as e:
+                    self.object.status = e.args
+                    
                     traceback.print_exc()
             else:
                 self.object.status = "API KEY未登録"
@@ -225,10 +221,10 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(OrderCreate, self).get_context_data(**kwargs)
-        context['active_orders'] = Order.objects.filter(user=self.request.user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED'])
-        context['order_history'] = Order.objects.filter(user=self.request.user).filter(order_id__isnull=False)
-        context['stop_orders'] = Order.objects.filter(user=self.request.user).filter(order_type__in=['逆指値', 'ストップリミット']).filter(order_id__isnull=True)
-        context['alerts'] = Alert.objects.filter(user=self.request.user).filter(is_active="有効")
+        # context['active_orders'] = Order.objects.filter(user=self.request.user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED'])
+        # context['order_history'] = Order.objects.filter(user=self.request.user).filter(order_id__isnull=False)
+        # context['stop_orders'] = Order.objects.filter(user=self.request.user).filter(order_type__in=['逆指値', 'ストップリミット']).filter(order_id__isnull=True)
+        # context['alerts'] = Alert.objects.filter(user=self.request.user).filter(is_active="有効")
         
         return context
 
@@ -278,10 +274,13 @@ def ajax_get_ticker(request):
     try:
         pub = python_bitbankcc.public()
         res_dict = pub.get_ticker(pair)
-    except:
+
+    except Exception as e:
         res_dict = {
-            'error': '通信エラー'
+            'error': e.args
         }
+        traceback.print_exc()
+
     return JsonResponse(res_dict)
 
 def ajax_get_assets(request):
@@ -294,10 +293,11 @@ def ajax_get_assets(request):
     else:
         try:
             res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).get_asset()
-        except:
-            res_dict =  {
-                'error': '通信エラー'
+        except Exception as e:
+            res_dict = {
+                'error': e.args
             }
+            traceback.print_exc()
 
     return JsonResponse(res_dict)
 
@@ -317,14 +317,14 @@ def ajax_get_stop_orders(request):
     stop_orders = Order.objects.filter(user=user).filter(order_type__in=['逆指値', 'ストップリミット']).filter(order_id__isnull=True)
     serialized_qs = serializers.serialize('json', stop_orders)
     data = {
-        'active_orders': serialized_qs
+        'stop_orders': serialized_qs
     }
     return JsonResponse(data)
     
 def ajax_get_order_histroy(request):
     user = request.user
     
-    order_history = Order.objects.filter(user=user)
+    order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED'])
     serialized_qs = serializers.serialize('json', order_history)
     data = {
         'order_history': serialized_qs
@@ -346,9 +346,32 @@ def ajax_cancel_order(request):
             subj_order = Order.objects.filter(order_id = order_id).get()
             subj_order.status = res_dict.get("status")
             subj_order.save()
-        except:
+        except Exception as e:
             res_dict = {
-                'error': '通信エラー'
+                'error': e.args
             }
+            traceback.print_exc()
             
     return JsonResponse(res_dict)
+
+def ajax_cancel_stop_order(request):
+    user = request.user
+    pk = request.POST.get('pk')
+
+    order_to_delete = Order.objects.filter(pk=pk)
+    if order_to_delete.order_id != null:
+        date = {
+            'error': '既に注文済みです。アクティブ注文より取消を実施してください'
+        }
+    else:
+        try:
+            order_to_delete.delete()
+            data = {
+                'success': 'success'
+            }
+        except Exception as e:
+            data = {
+                'error': e.args
+            }
+        
+    return JsonResponse(data)

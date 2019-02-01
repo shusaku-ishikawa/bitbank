@@ -190,7 +190,6 @@ class Order(models.Model):
         verbose_name = _('注文価格'),
         null = True,
         blank = True,
-        default = 0,
         validators = [
             MinValueValidator(0),
             MaxValueValidator(1000000)
@@ -272,41 +271,7 @@ class Order(models.Model):
         choices = NOTIFY_STR,
     )
 
-    # notify_if_reach = models.CharField(
-    #     verbose_name = _('価格到達通知'),
-    #     max_length = 10,
-    #     default = 'OFF',
-    #     choices = NOTIFY_STR,
-    # )
-
-    # price_threshold_1 = models.FloatField(
-    #     verbose_name = _('①価格到達通知設定'),
-    #     null = True,
-    #     blank = True
-    # )
-    # price_threshold_2 = models.FloatField(
-    #     verbose_name = _('②価格到達通知設定'),
-    #     null = True,
-    #     blank = True
-    # )
-    
-    # price_threshold_3 = models.FloatField(
-    #     verbose_name = _('③価格到達通知設定'),
-    #     null = True,
-    #     blank = True
-    # )
-    
-    # price_threshold_4 = models.FloatField(
-    #     verbose_name = _('④価格到達通知設定'),
-    #     null = True,
-    #     blank = True
-    # )
-    
-    # price_threshold_5 = models.FloatField(
-    #     verbose_name = _('⑤価格到達通知設定'),
-    #     null = True,
-    #     blank = True
-    # )
+   
 
 class Alert(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -347,6 +312,7 @@ class Alert(models.Model):
         blank = True,
         null = True
     )
+
     is_active = models.CharField(
         verbose_name = _('有効'),
         max_length = 50,
