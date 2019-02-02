@@ -10,15 +10,16 @@
 @media (max-width: 480px) {
 /*code for mobile here*/
 
-
+}
 
 #ex1Slider .slider-selection {
-	background: #BABABA;
+	background: green;
 }
 
-}
-#asset_table {
-    font-size: 2vmin;
+
+table.table {
+    font-size: 1.8vmin !important;
+    font-weight: normal !important;
 }
 body {
     color: white;
@@ -50,6 +51,8 @@ div.input-group-prepend, div.input-group-append {
     background-color : #333333;
     border: none;
     border-radius: 0;
+    display: table-cell;
+    vertical-align: middle
 }
 
 select.input-group-append {
@@ -89,16 +92,13 @@ div.card {
     color: green;
     background-color :#333333;
 }
-
-span.my_placeholder {
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+div.input-group-text.placeholder {
     color: gray;
     font-size: 2vmin;
-    padding-left: 1vmin;
-    padding-right: 1vmin;
+    background: #333333;
+    border:none;
 }
+
 
 button.buy {
     background: teal;
@@ -167,4 +167,3 @@ button.off {
 .form-control::-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 19+ */
 .form-control:-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Internet Explorer 10-11 */
 .form-control::-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Microso
-

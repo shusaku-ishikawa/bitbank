@@ -22,7 +22,7 @@ class UserCreateForm(UserCreationForm):
     class Meta:
         model = User
         if User.USERNAME_FIELD == 'email':
-            fields = ('email', 'full_name', 'api_key', 'api_secret_key', 'email_for_notice')
+            fields = ('email', 'full_name', 'api_key', 'api_secret_key', 'email_for_notice', 'notify_if_filled')
         else:
             fields = ('username', 'email')
 
@@ -39,7 +39,7 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         if User.USERNAME_FIELD == 'email':
-            fields = ('email', 'full_name', 'api_key', 'api_secret_key', 'email_for_notice')
+            fields = ('email', 'full_name', 'api_key', 'api_secret_key', 'email_for_notice', 'notify_if_filled')
         else:
             fields = ('username', 'email', 'first_name', 'last_name')
 
@@ -83,10 +83,8 @@ class MyOrderForm(forms.ModelForm):
 
     class Meta:
         model = Order
-        fields = ('pair', 'special_order', 'side', 'order_type', 'start_amount', 'price', 'price_for_stop_limit', 'notify_if_filled')
-                #    'notify_if_reach', \
-                #   'price_threshold_1', 'price_threshold_2','price_threshold_3','price_threshold_4','price_threshold_5')
-
+        fields = ('pair', 'special_order', 'side', 'order_type', 'start_amount', 'price', 'price_for_stop_limit')
+                
     def __init__(self, *arg, **kwargs):
         super().__init__(*arg, **kwargs)
         for field in self.fields.values():

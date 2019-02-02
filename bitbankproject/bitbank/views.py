@@ -238,7 +238,7 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
             # オブジェクト作成
             self.object = form.save(commit = False)
             self.object.order_id = None
-            self.object.status = None
+            self.object.status = 'READY_TO_ORDER'
             self.object.ordered_at = None
             messages.success(self.request, 'ストップ注文を正常に受け付けました')
 
@@ -256,10 +256,7 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(OrderCreate, self).get_context_data(**kwargs)
-        # context['active_orders'] = Order.objects.filter(user=self.request.user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED'])
-        # context['order_history'] = Order.objects.filter(user=self.request.user).filter(order_id__isnull=False)
-        # context['stop_orders'] = Order.objects.filter(user=self.request.user).filter(order_type__in=['逆指値', 'ストップリミット']).filter(order_id__isnull=True)
-        # context['alerts'] = Alert.objects.filter(user=self.request.user).filter(is_active="有効")
+        context['notify_if_filled'] = User.objects.filter(pk=self.request.user.pk).get().notify_if_filled
         
         return context
 
@@ -361,23 +358,14 @@ def ajax_get_assets(request):
 def ajax_get_active_orders(request):
     user = request.user
     
-    active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED'])
+    active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER'])
     serialized_qs = serializers.serialize('json', active_orders)
     data = {
         'active_orders': serialized_qs
     }
     return JsonResponse(data)
 
-def ajax_get_stop_orders(request):
-    user = request.user
-    
-    stop_orders = Order.objects.filter(user=user).filter(order_type__in=['逆指値', 'ストップリミット']).filter(order_id__isnull=True)
-    serialized_qs = serializers.serialize('json', stop_orders)
-    data = {
-        'stop_orders': serialized_qs
-    }
-    return JsonResponse(data)
-    
+  
 def ajax_get_order_histroy(request):
     user = request.user
     
@@ -392,43 +380,49 @@ def ajax_cancel_order(request):
     user = request.user
 
     if user.api_key == "" or user.api_secret_key == "":
-        res_dict = {
+        res = {
             'error': 'API KEYが登録されていません'
         }
     else:
         try:
-            pair = request.POST.get("pair")
-            order_id = request.POST.get("order_id")
-            res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).cancel_order(pair, order_id)
-            subj_order = Order.objects.filter(order_id = order_id).get()
+            pk = request.POST.get("pk")
+            subj_order = Order.objects.filter(pk = pk).get()
+            if subj_order.order_id != None:
+                res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).cancel_order(pair, order_id)
+            else:
+                # 未発注の場合はステータスをキャンセル済みに変更
+                subj_order.status = 'CANCELED_UNFILLED'
+            
             subj_order.status = res_dict.get("status")
             subj_order.save()
+            res = {
+                'success': 'success'
+            }
         except Exception as e:
-            res_dict = {
+            res = {
                 'error': e.args
             }
             traceback.print_exc()
             
-    return JsonResponse(res_dict)
+    return JsonResponse(res)
 
-def ajax_cancel_stop_order(request):
+def ajax_get_notify_if_filled(request):
     user = request.user
-    pk = request.POST.get('pk')
+    res = {
+        'notify_if_filled': request.user.notify_if_filled
+    }
+    return JsonResponse(res)
 
-    order_to_delete = Order.objects.get(pk=pk)
-    if order_to_delete.order_id != None:
-        date = {
-            'error': '既に注文済みです。アクティブ注文より取消を実施してください'
+def ajax_change_notify_if_filled(request):
+    try:
+        user = request.user
+        new_val = request.POST.get('notify_if_filled')
+        user.notify_if_filled = new_val
+        res = {
+            'success': 'success'
         }
-    else:
-        try:
-            order_to_delete.delete()
-            data = {
-                'success': 'success'
-            }
-        except Exception as e:
-            data = {
-                'error': e.args
-            }
-        
-    return JsonResponse(data)
+    except Exception as e:
+        res = {
+            'error': e.args
+        }
+    return JsonResponse(res)

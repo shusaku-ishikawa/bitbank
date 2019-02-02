@@ -46,9 +46,13 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """カスタムユーザーモデル."""
-
+    NOTIFY_STR = (
+            ('ON', 'ON'),
+            ('OFF', 'OFF')
+    )
     email = models.EmailField(_('登録メールアドレス'), unique=True)
     email_for_notice = models.EmailField(_('通知用メールアドレス'), default="")
     # first_name = models.CharField(_('first name'), max_length=30, blank=True)
@@ -56,7 +60,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(_('名前'), max_length=150, blank=True)
     api_key = models.CharField(_('API KEY'), max_length=255, default="")
     api_secret_key = models.CharField(_('API SECRET KEY'), max_length=255, default="")
-    
+    notify_if_filled = models.CharField(
+        verbose_name = _('約定通知'),
+        max_length = 10,
+        default = 'OFF',
+        choices = NOTIFY_STR,
+    )
 
     is_staff = models.BooleanField(
         _('staff status'),
@@ -147,10 +156,7 @@ class Order(models.Model):
         ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
     )
 
-    NOTIFY_STR = (
-        ('ON', 'ON'),
-        ('OFF', 'OFF')
-    )
+    
     NOTIFY = (
         (True, 'ON'),
         (False, 'OFF')
@@ -192,7 +198,6 @@ class Order(models.Model):
         blank = True,
         validators = [
             MinValueValidator(0),
-            MaxValueValidator(1000000)
         ]
     )
     price_for_stop_limit = models.FloatField(
@@ -201,7 +206,6 @@ class Order(models.Model):
         blank = True,
         validators = [
             MinValueValidator(0),
-            MaxValueValidator(1000000)
         ]
     )
 
@@ -263,14 +267,6 @@ class Order(models.Model):
         verbose_name = _('更新日時'),   
         auto_now = True,
     )
-
-    notify_if_filled = models.CharField(
-        verbose_name = _('約定通知'),
-        max_length = 10,
-        default = 'OFF',
-        choices = NOTIFY_STR,
-    )
-
    
 
 class Alert(models.Model):
