@@ -5,7 +5,7 @@
     <tbody>
         <tr>
             <th>取引ID</th>
-            <td>{{ order.order_id }}</td>
+            <td id="order_id">{{ order.order_id }}</td>
         </tr>
         <tr>
             <th>注文時間</th>
@@ -13,7 +13,7 @@
         </tr>
 
             <th>通貨</th>
-            <td>{{ order.pair }}</td>
+            <td id="pair">{{ order.pair }}</td>
         </tr>
         <tr>
             <th>買い/売り</th>
@@ -71,10 +71,17 @@
 {% block extra_js %}
 <script>
     $('#cancel_order_button').on('click', function() {
+        var pair = $('#pair').html();
+        var order_id = $('#order_id').html();
+        
         $.ajax({
             'url': '{% url "bitbank:ajax_cancel_order" %}',
             'type': 'POST',
-            'dataType': 'json'
+            'dataType': 'json',
+            'data': {
+                'pair': pair,
+                'order_id': order_id
+            }
         }).done( response => {
             //エラーコードがセットされていない場合はページ再読み込み
             if (!response.code && !response.error) {

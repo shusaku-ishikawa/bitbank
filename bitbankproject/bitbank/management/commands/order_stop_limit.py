@@ -20,20 +20,28 @@ class Command(BaseCommand):
             # API KEYが登録されているユーザのみ処理
             if user.api_key != "" or user.api_secret_key != "":
                 # キー情報セット
-                prv = python_bitbankcc.private(user.api_key, user.api_secret_key)
+                try:
+                    prv = python_bitbankcc.private(user.api_key, user.api_secret_key)
+                except Exception as e:
+                    logger.error('User:'user.email + ' Message: ' e.args)
+                    continue
+
                 # 通貨ペアをイテレーション
                 for seq, pair in enumerate(Order.PAIR):
                     # Tickerの取得
-                    ticker_dict = pub.get_ticker(pair)
-                    
+                    try:
+                        ticker_dict = pub.get_ticker(pair[0])
+                    except Exception as e:
+                        logger.error('User:'user.email + ' Pair: ' + pair[0] + ' Message: ' e.args)
+                        continue
                     # 逆指値の注文取得
                     stop_market_orders_by_pair = Order.objects.filter(pair=pair[0]).filter(order_type='逆指値').filter(order_id__isnull=True)
                     
                     # 各注文を処理
                     for stop_market_order in stop_market_orders_by_pair:
                         # 売りの場合
-                        if (stop_market_order.side == 'sell' and ticker_dict.get('sell') <= stop_market_order.price) or \
-                            (stop_market_order.side == 'buy' and ticker_dict.get('buy') >= stop_market_order.price):
+                        if (stop_market_order.side == 'sell' and float(ticker_dict.get('sell')) <= stop_market_order.price) or \
+                            (stop_market_order.side == 'buy' and float(ticker_dict.get('buy')) >= stop_market_order.price):
                             # 成行で売り注文
                             try:
                                 res_dict = prv.order(
@@ -43,16 +51,12 @@ class Command(BaseCommand):
                                     stop_market_order.side, # 注文サイド
                                     'market' # 注文タイプ
                                 )
-                                if 'code' in res_dict:
-                                    stop_market_order.status = res_dict.get('code')
-                                    stop_market_order.save()
-                                if 'order_id' in res_dict:
-                                    stop_market_order.order_id = res_dict.get('order_id')
-                                    stop_market_order.ordered_at = timezone.timezone.now()
-                                    stop_market_order.status = res_dict.get('status')
-                                    
+                                stop_market_order.order_id = res_dict.get('order_id')
+                                stop_market_order.ordered_at = res_dict.get('ordered_at')
+                                stop_market_order.status = res_dict.get('status')
+                                
                             except:
-                                stop_market_order.status = '通信エラー'
+                                
                             finally:
                                 stop_market_order.save()    
                     

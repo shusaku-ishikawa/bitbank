@@ -92,19 +92,3 @@ class MyOrderForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
         
-class MyAlertForm(forms.ModelForm):
-
-    class Meta:
-        model = Alert
-        fields = ('pair', 'threshold', 'over_or_below', 'is_active', 'alerted_at')
-              
-
-    def __init__(self, *arg, **kwargs):
-        super().__init__(*arg, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
-        
-
-
-

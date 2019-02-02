@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from django import forms
+from unixtimestampfield.fields import UnixTimeStampField
 
 
 
@@ -144,7 +145,6 @@ class Order(models.Model):
         ('FULLY_FILLED', '約定済み'),
         ('CANCELED_UNFILLED', '取消済'),
         ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
-        ('ERROR', 'エラー'),
     )
 
     NOTIFY_STR = (
@@ -199,7 +199,6 @@ class Order(models.Model):
         verbose_name = _('逆指値の指値'),
         null = True,
         blank = True,
-        default = 0,
         validators = [
             MinValueValidator(0),
             MaxValueValidator(1000000)
@@ -252,8 +251,9 @@ class Order(models.Model):
         null = True,
     )
 
-    ordered_at = models.DateTimeField(
-        verbose_name = _('注文日時'),
+    ordered_at = UnixTimeStampField(
+        verbose_name = _('注文時刻unixtime'),
+        use_numeric = True,
         null = True,
         auto_now_add = False,
         auto_now = False,
@@ -289,19 +289,10 @@ class Alert(models.Model):
         blank = False
     )
 
-    OVER_OR_BELOW = (
-        ('超えたら', 'を超えたら'),
-        ('下回ったら', 'を下回ったら')
-    )
-    ACTIVE_OR_INACTIVE = (
-        ('有効', '有効'),
-        ('無効', '無効')
-    )
-
-    over_or_below = models.CharField(
+    over_or_under = models.CharField(
         verbose_name = _('上下'),
         max_length = 50,
-        choices = OVER_OR_BELOW,
+        default = '以上',
         null = False,
         blank = False,
     )
@@ -313,11 +304,9 @@ class Alert(models.Model):
         null = True
     )
 
-    is_active = models.CharField(
+    is_active = models.BooleanField(
         verbose_name = _('有効'),
-        max_length = 50,
-        blank = True,
-        default = "有効",
+        default = True,
         null = True,
     )
     

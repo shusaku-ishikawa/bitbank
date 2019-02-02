@@ -1,45 +1,167 @@
+@media (min-width: 1100px) {
+    /*code for destop*/
+
+ 
+
+}
+@media (max-width: 1100px) {
+/*code for ipad and netbooks*/
+}
+@media (max-width: 480px) {
+/*code for mobile here*/
+
+
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+}
+#asset_table {
+    font-size: 2vmin;
+}
 body {
     color: white;
-    background: #222222
-}
-div.card {
-    border: solid 3px #FF6600;
     background: #222222;
-    width: 18rem;
-} 
+    /* background: white; */
+}
+
+label.control-label {
+    font-size: 2vmin;
+}
 .form-control {
     color: white;
     background-color : #333333;
     border: none;
     border-radius : 0;
+    display: inline;
+    font-size: 2vmin;
+    /* text-align: right; */
 }
-span {
+
+div.input-group, div.btn-group {
+    padding-left: 2vmin;
+    padding-right: 2vmin;
+}
+
+
+div.input-group-prepend, div.input-group-append {
     color: white;
     background-color : #333333;
     border: none;
-    border-radius : 0;
+    border-radius: 0;
 }
-/* input[type="text"], input[type="password"], input[type="email"], textarea {
-    background-color : #808080;
-    border: none;
-    border-radius : 0;
-} */
+
+select.input-group-append {
+    background-color: #333333;
+    color: gray;
+    border-style: solid;
+    border-radius: 0;
+}
+
+select {
+    text-align-last:center;
+}
 
 .btn {
     color: white;
     border-radius: 0;
+    
 }
+
+button.btn-base {
+    background: #333333;
+    color: gray;
+    font-size: 2vmin;
+}
+
+input[type="number"]{
+    text-align: right;
+}
+
+div.card {
+    border: solid 3px #FF6600;
+    background: #222222;
+    width: 100%;
+} 
+
+.form-control:focus{
+    color: green;
+    background-color :#333333;
+}
+
+span.my_placeholder {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    color: gray;
+    font-size: 2vmin;
+    padding-left: 1vmin;
+    padding-right: 1vmin;
+}
+
+button.buy {
+    background: teal;
+}
+
+button.sell {
+    background: orangered;
+}
+button.on {
+    background: orangered;
+}
+
+button.off {
+    background: teal;
+}
+
 .green_button {
-    background-color: #008080
+    background-color: #008080;
+    font-size: 2vmin;
 }
 
 .red_button {
-    background-color: #FF6633
+    background-color: #FF6633;
+    font-size: 2vmin;
 }
 
+    
 .errorlist {
     color: red;
 }
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    background-color: #222222;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button.tablinks {
+    background-color: inherit;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    text-decoration: underline;
+  }
+
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    border-top: none;
+  }
 .form-control::-webkit-input-placeholder { color: #BBBBBB; font-weight: bold}  /* WebKit, Blink, Edge */
 .form-control:-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 4 to 18 */
 .form-control::-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 19+ */

@@ -1,4 +1,6 @@
 import traceback
+from django import forms
+from django.contrib import messages
 from django import http
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -16,12 +18,14 @@ from django.template.loader import get_template
 from django.views import generic
 from .forms import (
     LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
-    MyPasswordResetForm, MySetPasswordForm, MyOrderForm, MyAlertForm
+    MyPasswordResetForm, MySetPasswordForm, MyOrderForm
 )
 from django.core import serializers
 from .models import Order, Alert
 from django.urls import reverse
 from django.utils import timezone
+from django.forms.utils import ErrorList
+
 import os, json, python_bitbankcc
 
 User = get_user_model()
@@ -172,11 +176,12 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
     form_class = MyOrderForm
 
     def form_valid(self, form):
+        if self.request.user.api_key == "" or self.request.user.api_secret_key == "":
+            form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
+                u'APIキーが登録されていません'
+            ])
+            return self.form_invalid(form)
 
-        """bitbank api """
-        self.object = form.save(commit = False)
-        self.object.user = self.request.user
-  
         order_type = form.cleaned_data['order_type']
 
         if order_type in {'成行', '指値'}:
@@ -184,37 +189,67 @@ class OrderCreate(LoginRequiredMixin, generic.CreateView):
                 order_type_rome = 'market'
             elif order_type == '指値':
                 order_type_rome = 'limit'
+                # 指値の場合は金額必須
+                if form.cleaned_data['price'] == 0 or form.cleaned_data['price'] == '' or form.cleaned_data['price'] == None:
+                    form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
+                        u'指値の際は価格を入力してください'
+                    ])
+                    return self.form_invalid(form)
 
-            if self.request.user.api_key != "" and self.request.user.api_secret_key != "":
-                try:
-                    res_dict = python_bitbankcc.private(self.request.user.api_key, self.request.user.api_secret_key).order(
-                        form.cleaned_data['pair'],
-                        form.cleaned_data['price'],
-                        form.cleaned_data['start_amount'],
-                        form.cleaned_data['side'],
-                        order_type_rome
-                    )
-                    # エラーコードがセットされている場合
-                    if 'code' in res_dict:
-                        self.object.status = res_dict('code')
-                    else:
-                        # 正常に処理された場合
-                        self.object.order_id = res_dict.get('order_id')
-                        self.object.status = res_dict.get('status')
-                        self.object.ordered_at = timezone.datetime.now()
-                except Exception as e:
-                    self.object.status = e.args
-                    
-                    traceback.print_exc()
-            else:
-                self.object.status = "API KEY未登録"
+            try:
+                res_dict = python_bitbankcc.private(self.request.user.api_key, self.request.user.api_secret_key).order(
+                    form.cleaned_data['pair'],
+                    form.cleaned_data['price'],
+                    form.cleaned_data['start_amount'],
+                    form.cleaned_data['side'],
+                    order_type_rome
+                )
+            except Exception as e:
+                traceback.print_exc()
+                form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
+                    e.args
+                ])
+                return self.form_invalid(form)
+            self.object = form.save(commit = False)
+            self.object.order_id = res_dict.get('order_id')
+            self.object.status = res_dict.get('status')
+            self.object.ordered_at = res_dict.get('ordered_at')
+            messages.success(self.request, '注文が完了しました')
 
+        elif order_type in {'逆指値', 'ストップリミット'}:
+            # 金額必須
+            if form.cleaned_data['price'] == 0 or form.cleaned_data['price'] == '' or form.cleaned_data['price'] == None:
+                form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
+                    u'指値の際は価格を入力してください'
+                ])
+                return self.form_invalid(form)
+
+
+            if order_type == '逆指値':
+                order_type_rome = 'market'
+            elif order_type == 'ストップリミット':
+                order_type = 'limit'
+                # 逆指値価格必須
+                if form.cleaned_data['price_for_stop_limit'] == 0 or form.cleaned_data['price_for_stop_limit'] == '' or form.cleaned_data['price_for_stop_limit'] == None:
+                    form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
+                        u'ストップリミットの際は逆指値価格を入力してください'
+                    ])
+                    return self.form_invalid(form)
+            # オブジェクト作成
+            self.object = form.save(commit = False)
+            self.object.order_id = None
+            self.object.status = None
+            self.object.ordered_at = None
+            messages.success(self.request, 'ストップ注文を正常に受け付けました')
+
+        # 共通項目セット、保存
+        self.object.user = self.request.user
         self.object.save()
 
         return http.HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('bitbank:order_detail', kwargs={'pk' : self.object.pk})
+        return reverse('bitbank:order')
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
@@ -233,40 +268,62 @@ class OrderDetail(LoginRequiredMixin, generic.DetailView):
     model = Order
     template_name = 'bitbank/order_detail.html'
 
-class OrderList(LoginRequiredMixin, generic.ListView):
-    """注文一覧"""
-    model = Order
-    template_name = 'bitbank/order_list.html'
+def ajax_create_alert(request):
+    user = request.user
+    pair = request.POST.get('pair')
+    threshold = request.POST.get('threshold')
+    over_or_under = request.POST.get('over_or_under')
+    try:
+        new_alert = Alert(user=user, pair=pair, threshold=threshold, over_or_under=over_or_under, is_active=True, alerted_at=None)
+        new_alert.save()
+        data = {
+            'success': 'success',
+            'pk': new_alert.pk
+        }
+    except Exception as e:
+        data = {
+            'error': e.args
+        }
+        traceback.print_exc()
+    finally:
+        return JsonResponse(data)
 
-class AlertCreate(LoginRequiredMixin, generic.CreateView):
-    """アラート登録"""
-    model = Alert
-    template_name = 'bitbank/alert_create.html'
-    form_class = MyAlertForm
+def ajax_deactivate_alert(request):
+    user = request.user
+    pk = request.POST.get('pk')
+    
+    try:
+        alert = Alert.objects.filter(pk=pk).update(is_active=False)
+        
+        data = {
+            'success': 'success'
+        }
+    except Exception as e:
+        data = {
+            'error': e.args
+        }
+        traceback.print_exc()
+    finally:
+        return JsonResponse(data)
 
-    def form_valid(self, form):
-        self.object = form.save(commit = False)
-        self.object.user = self.request.user
-        self.object.is_active = '有効'
-        self.object.save()
-        return http.HttpResponseRedirect(self.get_success_url())
+def ajax_get_active_alerts(request):
+    user = request.user
+    
+    try:
+        alerts = Alert.objects.filter(user=user).filter(is_active=True)
+        serialized_qs = serializers.serialize('json', alerts)
+        
+        data = {
+            'active_alerts': serialized_qs
+        }
+    except Exception as e:
+        data = {
+            'error': e.args
+        }
+        traceback.print_exc()
+    finally:
+        return JsonResponse(data)
 
-    def get_success_url(self):
-        return reverse('bitbank:alert_detail', kwargs={'pk' : self.object.pk})
-
-    def get_queryset(self):
-        return Alert.objects.filter(user=self.request.user)
-
-
-class AlertDetail(LoginRequiredMixin, generic.DetailView):
-    """アラート詳細"""
-    model = Alert
-    template_name = 'bitbank/alert_detail.html'
-
-class AlertList(LoginRequiredMixin, generic.ListView):
-    """アラート一覧"""
-    model = Alert
-    template_name = 'bitbank/alert_list.html'
 
 def ajax_get_ticker(request):
     user = request.user
@@ -358,8 +415,8 @@ def ajax_cancel_stop_order(request):
     user = request.user
     pk = request.POST.get('pk')
 
-    order_to_delete = Order.objects.filter(pk=pk)
-    if order_to_delete.order_id != null:
+    order_to_delete = Order.objects.get(pk=pk)
+    if order_to_delete.order_id != None:
         date = {
             'error': '既に注文済みです。アクティブ注文より取消を実施してください'
         }

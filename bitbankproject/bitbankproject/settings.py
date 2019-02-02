@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-import os
+import os, logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['133.167.78.193', 'localhost']
 
-SESSION_COOKIE_AGE = 60 * 5
+SESSION_COOKIE_AGE = 60 * 30
 
 # Application definition
 
@@ -93,7 +93,59 @@ DATABASES = {
     }
 }
 
+# Logging
+ADMINS = [('shusaku ishikawa', 'ishikawasyuusaku@gmail.com')]
 
+LOGGING = {
+    'version': 1,   # これを設定しないと怒られる
+    'disable_existing_loggers': False,
+    'formatters': { # 出力フォーマットを文字列形式で指定する
+        'all': {    # 出力フォーマットに`all`という名前をつける
+            'format': '\t'.join([
+                "[%(levelname)s]",
+                "asctime:%(asctime)s",
+                "module:%(module)s",
+                "message:%(message)s",
+            ])
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {  # ログをどこに出すかの設定
+        'file': { 
+            'level': 'DEBUG',  # DEBUG以上のログを取り扱うという意味
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'django.log'),
+            'formatter': 'all',
+            'maxBytes': 1024 * 1024,
+            'backupCount': 10,
+        },
+        'console': { # どこに出すかの設定をもう一つ、こちらの設定には`console`という名前
+            'level': 'DEBUG',
+            # こちらは標準出力に出してくれるクラスを指定
+            'class': 'logging.StreamHandler', 
+            'formatter': 'all'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+            'filters': ['require_debug_false'],
+        },
+    },
+    'loggers': {  # どんなloggerがあるかを設定する
+        'command': {  # commandという名前のloggerを定義
+            'handlers': ['file', 'console', 'mail_admins'],  # 先述のfile, consoleの設定で出力
+            'level': 'DEBUG',
+        },
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

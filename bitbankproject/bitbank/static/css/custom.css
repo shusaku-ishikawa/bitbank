@@ -49,7 +49,14 @@ div.input-group-prepend, div.input-group-append {
     color: white;
     background-color : #333333;
     border: none;
-    border-radius : 0;
+    border-radius: 0;
+}
+
+select.input-group-append {
+    background-color: #333333;
+    color: gray;
+    border-style: solid;
+    border-radius: 0;
 }
 
 select {
@@ -89,6 +96,8 @@ span.my_placeholder {
     vertical-align: middle;
     color: gray;
     font-size: 2vmin;
+    padding-left: 1vmin;
+    padding-right: 1vmin;
 }
 
 button.buy {
