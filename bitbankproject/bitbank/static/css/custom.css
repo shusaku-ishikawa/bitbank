@@ -1,21 +1,16 @@
 @media (min-width: 1100px) {
     /*code for destop*/
-
- 
-
 }
 @media (max-width: 1100px) {
 /*code for ipad and netbooks*/
 }
 @media (max-width: 480px) {
 /*code for mobile here*/
-
 }
 
 #ex1Slider .slider-selection {
 	background: green;
 }
-
 
 table.table {
     font-size: 1.8vmin !important;
@@ -27,32 +22,24 @@ body {
     /* background: white; */
 }
 
-label.control-label {
+/* label.control-label {
     font-size: 2vmin;
-}
+} */
 .form-control {
     color: white;
     background-color : #333333;
     border: none;
     border-radius : 0;
     display: inline;
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
     /* text-align: right; */
 }
-
-div.input-group, div.btn-group {
-    padding-left: 2vmin;
-    padding-right: 2vmin;
-}
-
 
 div.input-group-prepend, div.input-group-append {
     color: white;
     background-color : #333333;
     border: none;
     border-radius: 0;
-    display: table-cell;
-    vertical-align: middle
 }
 
 select.input-group-append {
@@ -69,13 +56,11 @@ select {
 .btn {
     color: white;
     border-radius: 0;
-    
 }
 
 button.btn-base {
     background: #333333;
     color: gray;
-    font-size: 2vmin;
 }
 
 input[type="number"]{
@@ -89,12 +74,12 @@ div.card {
 } 
 
 .form-control:focus{
-    color: green;
     background-color :#333333;
 }
+
 div.input-group-text.placeholder {
     color: gray;
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
     background: #333333;
     border:none;
 }
@@ -117,12 +102,12 @@ button.off {
 
 .green_button {
     background-color: #008080;
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
 }
 
 .red_button {
     background-color: #FF6633;
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
 }
 
     
@@ -143,7 +128,7 @@ button.off {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 1em 1em;
     transition: 0.3s;
   }
   

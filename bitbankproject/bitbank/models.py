@@ -1,14 +1,12 @@
-from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.core.mail import send_mail
-from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.base_user import AbstractBaseUser
-from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
-from django.contrib.auth.base_user import BaseUserManager
 from django import forms
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.core.mail import send_mail
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from unixtimestampfield.fields import UnixTimeStampField
-
 
 
 class UserManager(BaseUserManager):
@@ -105,7 +103,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
-        send_mail(subject, message, from_email, [self.email], **kwargs)
+        send_mail(subject, message, from_email, [self.email_for_notice], **kwargs)
 
     @property
     def username(self):
@@ -118,92 +116,82 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Order(models.Model):
-    PAIR = (
-        ('btc_jpy', 'btc_jpy'),
-        ('xrp_jpy', 'xrp_jpy'),
-        ('ltc_btc', 'ltc_btc'),
-        ('eth_btc', 'eth_btc'),
-        ('mona_jpy', 'mona_jpy'),
-        ('mona_btc', 'mona_btc'),
-        ('bcc_jpy', 'bcc_jpy'),
-        ('bcc_btc', 'bcc_btc'),
-    )
+    PAIR = [
+        'btc_jpy',
+        'xrp_jpy',
+        'ltc_btc',
+        'eth_btc',
+        'mona_jpy',
+        'mona_btc',
+        'bcc_jpy',
+        'bcc_btc',
+    ]
 
 
-    SPECIAL_ORDER = (
-        ('SINGLE', 'SINGLE'),
-        ('IFD', 'IFD'),
-        ('OCO', 'OCO'),
-        ('IFDOCO', 'IFDOCO'),  
-    )
+    SPECIAL_ORDER = [
+        'SINGLE',
+        # 'IFD',
+        # 'OCO',
+        # 'IFDOCO'  
+    ]
 
-    ORDER_TYPE = (
-        ('成行', '成行'),
-        ('指値', '指値'),
-        ('逆指値', '逆指値'),
-        ('ストップリミット', 'ストップリミット'),
-    )
+    ORDER_TYPE = [
+        '成行',
+        '指値',
+        '逆指値',
+        'ストップリミット'
+    ]
 
-    SIDE = (
-        ('buy', '買い'),
-        ('sell', '売り'),
-    )
-    STATUS = (
-        ('UNFILLED', '注文中'),
-        ('PARTIALLY_FILLED', '注文中(一部約定)'),
-        ('FULLY_FILLED', '約定済み'),
-        ('CANCELED_UNFILLED', '取消済'),
-        ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
-    )
+    # SIDE = (
+    #     ('buy', '買い'),
+    #     ('sell', '売り'),
+    # )
+    # STATUS = (
+    #     ('UNFILLED', '注文中'),
+    #     ('PARTIALLY_FILLED', '注文中(一部約定)'),
+    #     ('FULLY_FILLED', '約定済み'),
+    #     ('CANCELED_UNFILLED', '取消済'),
+    #     ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
+    # )
 
     
-    NOTIFY = (
-        (True, 'ON'),
-        (False, 'OFF')
-    )
+    # NOTIFY = (
+    #     (True, 'ON'),
+    #     (False, 'OFF')
+    # )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     pair = models.CharField(
         verbose_name = _('通貨'),
         max_length = 50,
-        default = 'btc_jpy',
-        choices = PAIR
     )
 
     special_order = models.CharField(
         verbose_name = _('特殊注文'), 
         max_length = 50,
-        default = 'SINGLE',
-        choices = SPECIAL_ORDER
     )
 
     side = models.CharField(
         verbose_name = '買い/売り',
         max_length = 50,
-        default = "SELL",
-        choices = SIDE,
     )
 
     order_type = models.CharField(
         verbose_name = _('注文方法'),
         max_length = 50,
-        default = '成行',
-        choices = ORDER_TYPE
     )
 
     price = models.FloatField(
         verbose_name = _('注文価格'),
         null = True,
-        blank = True,
         validators = [
             MinValueValidator(0),
         ]
     )
-    price_for_stop_limit = models.FloatField(
-        verbose_name = _('逆指値の指値'),
+    price_for_stop = models.FloatField(
+        verbose_name = _('ストップ価格'),
         null = True,
-        blank = True,
         validators = [
             MinValueValidator(0),
         ]
@@ -220,7 +208,6 @@ class Order(models.Model):
     remaining_amount = models.FloatField(
         verbose_name = _('未約定数量'),
         null = True,
-        blank = True,
         validators = [
             MinValueValidator(0.0)
         ]
@@ -229,7 +216,6 @@ class Order(models.Model):
     executed_amount = models.FloatField(
         verbose_name = _('約定済数量'),
         null = True,
-        blank = True,
         validators = [
             MinValueValidator(0.0)
         ]
@@ -238,21 +224,31 @@ class Order(models.Model):
     average_price = models.FloatField(
         verbose_name = _('約定平均価格'),
         null = True,
-        blank = True,
     )
 
     status = models.CharField(
         verbose_name = _('注文ステータス'),
         null = True,
-        blank = True,
         max_length = 50,
     )
 
     order_id = models.CharField(
         verbose_name = _('取引ID'),
         max_length = 50,
-        blank = True,
         null = True,
+    )
+
+    order_if_done = models.ForeignKey(
+        'self',
+        null = True,
+        on_delete = models.CASCADE
+    )
+
+    cancel_if_done = models.ForeignKey(
+        'self',
+        null = True,
+        on_delete = models.CASCADE,
+        related_name = '+'
     )
 
     ordered_at = UnixTimeStampField(
@@ -276,33 +272,26 @@ class Alert(models.Model):
         verbose_name = _('通貨'),
         max_length = 50,
         default = 'btc_jpy',
-        choices = Order.PAIR
     )
 
     threshold = models.FloatField(
         verbose_name = _('到達金額'),
         null = False,
-        blank = False
     )
 
     over_or_under = models.CharField(
         verbose_name = _('上下'),
         max_length = 50,
-        default = '以上',
         null = False,
-        blank = False,
     )
 
     alerted_at = models.DateTimeField(
         verbose_name = _('通知日時'),   
         auto_now = False,
-        blank = True,
         null = True
     )
 
     is_active = models.BooleanField(
         verbose_name = _('有効'),
-        default = True,
         null = True,
     )
-    

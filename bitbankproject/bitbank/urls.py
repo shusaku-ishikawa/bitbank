@@ -27,7 +27,6 @@ urlpatterns = [
     path('ajax_cancel_order/', views.ajax_cancel_order, name="ajax_cancel_order"),
     path('ajax_get_notify_if_filled/', views.ajax_get_notify_if_filled, name="ajax_get_notify_if_filled"),
     path('ajax_change_notify_if_filled/', views.ajax_change_notify_if_filled, name="ajax_change_notify_if_filled"),
-    path('order/', views.OrderCreate.as_view(), name='order'),
-    path('order_detail/<int:pk>/', views.OrderDetail.as_view(), name='order_detail'),
-    path('logout/', views.Logout.as_view(), name='logout'),
+    path('ajax_create_order/', views.ajax_create_order, name="ajax_create_order"),
+    path('order/', views.MainPage.as_view(), name='order'),
 ]

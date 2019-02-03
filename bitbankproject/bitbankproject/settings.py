@@ -38,12 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'bitbank',
 ]
 
 AUTH_USER_MODEL = 'bitbank.User'
 LOGIN_URL = 'bitbank:login'
-LOGIN_REDIRECT_URL = 'bitbank:order'
+LOGIN_REDIRECT_URL = 'bitbank:main'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,10 +119,18 @@ LOGGING = {
         },
     },
     'handlers': {  # ログをどこに出すかの設定
-        'file': { 
+        'file_transaction': { 
             'level': 'DEBUG',  # DEBUG以上のログを取り扱うという意味
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'django.log'),
+            'filename': os.path.join(BASE_DIR, 'logs/transactino.log'),
+            'formatter': 'all',
+            'maxBytes': 1024 * 1024,
+            'backupCount': 10,
+        },
+        'file_batch': { 
+            'level': 'DEBUG',  # DEBUG以上のログを取り扱うという意味
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/batch.log'),
             'formatter': 'all',
             'maxBytes': 1024 * 1024,
             'backupCount': 10,
@@ -140,8 +149,12 @@ LOGGING = {
         },
     },
     'loggers': {  # どんなloggerがあるかを設定する
-        'command': {  # commandという名前のloggerを定義
-            'handlers': ['file', 'console', 'mail_admins'],  # 先述のfile, consoleの設定で出力
+        'transaction_logger': { 
+            'handlers': ['file_transaction', 'console', 'mail_admins'],  # 先述のfile, consoleの設定で出力
+            'level': 'DEBUG',
+        },
+        'batch_logger': { 
+            'handlers': ['file_batch', 'console', 'mail_admins'],  # 先述のfile, consoleの設定で出力
             'level': 'DEBUG',
         },
     },
@@ -197,5 +210,12 @@ DEFAULT_CHARSET = 'utf-8'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'ishikawasyuusaku@gmail.com'
-EMAIL_HOST_PASSWORD = '332191-a'
+EMAIL_HOST_PASSWORD = '332191-Aa2'
 EMAIL_USE_TLS = True
+
+# JOBs
+CRONJOBS = [
+    ('* * * * *', 'django.core.management.call_command', ['monitor_order_status']),
+    ('* * * * *', 'django.core.management.call_command', ['monitor_ticker']),
+]
+CRONTAB_LOCK_JOBS = True

@@ -1,4 +1,0 @@
-[INFO]	asctime:2019-02-02 11:58:45,204	module:update_order_status	message:update_order_status started	process:50313	thread:140734812288448
-[INFO]	asctime:2019-02-02 11:58:45,226	module:update_order_status	message:update_order_status completed	process:50313	thread:140734812288448
-[ERROR]	asctime:2019-02-02 12:17:43,321	module:update_order_status	message:update_order_status started	process:50886	thread:140734739899840
-[INFO]	asctime:2019-02-02 12:17:49,190	module:update_order_status	message:update_order_status completed	process:50886	thread:140734739899840

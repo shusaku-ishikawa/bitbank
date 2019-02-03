@@ -1,32 +1,35 @@
+import json
+import logging
+import os
 import traceback
-from django import forms
-from django.contrib import messages
-from django import http
+
+import python_bitbankcc
+from django import forms, http
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import (
-    LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView,
-    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
-)
-from django.urls import reverse_lazy
+from django.contrib.auth.views import (LoginView, LogoutView,
+                                       PasswordChangeDoneView,
+                                       PasswordChangeView,
+                                       PasswordResetCompleteView,
+                                       PasswordResetConfirmView,
+                                       PasswordResetDoneView,
+                                       PasswordResetView)
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.signing import BadSignature, SignatureExpired, loads, dumps
+from django.core import serializers
+from django.core.signing import BadSignature, SignatureExpired, dumps, loads
+from django.forms.utils import ErrorList
 from django.http import Http404, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import redirect, resolve_url
 from django.template.loader import get_template
-from django.views import generic
-from .forms import (
-    LoginForm, UserCreateForm, UserUpdateForm, MyPasswordChangeForm,
-    MyPasswordResetForm, MySetPasswordForm, MyOrderForm
-)
-from django.core import serializers
-from .models import Order, Alert
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
-from django.forms.utils import ErrorList
+from django.views import generic
 
-import os, json, python_bitbankcc
+from .forms import (LoginForm, MyPasswordChangeForm, MyPasswordResetForm,
+                    MySetPasswordForm, UserCreateForm, UserUpdateForm)
+from .models import Alert, Order
 
 User = get_user_model()
 
@@ -55,10 +58,6 @@ class UserUpdate(OnlyYouMixin, generic.UpdateView):
 
     def get_success_url(self):
         return resolve_url('bitbank:user_detail', pk=self.kwargs['pk'])
-
-class Logout(LoginRequiredMixin, LogoutView):
-    """ログアウトページ"""
-    template_name = 'bitbank/logout.html'
 
 class UserCreate(generic.CreateView):
     """ユーザー仮登録"""
@@ -168,102 +167,71 @@ class PasswordResetComplete(PasswordResetCompleteView):
     """新パスワード設定しましたページ"""
     template_name = 'bitbank/password_reset_complete.html'
 
+class MainPage(LoginRequiredMixin, generic.TemplateView):
+    """メインページ"""
+    template_name = 'bitbank/order.html'
 
-class OrderCreate(LoginRequiredMixin, generic.CreateView):
-    """注文登録"""
-    model = Order
-    template_name = 'bitbank/order_create.html'
-    form_class = MyOrderForm
+    def get_context_data(self, **kwargs):
+        context = super(MainPage, self).get_context_data(**kwargs)
+        context['notify_if_filled'] = User.objects.filter(pk=self.request.user.pk).get().notify_if_filled
+        return context
 
-    def form_valid(self, form):
-        if self.request.user.api_key == "" or self.request.user.api_secret_key == "":
-            form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
-                u'APIキーが登録されていません'
-            ])
-            return self.form_invalid(form)
+def ajax_create_order(request):
+    logger = logging.getLogger('transaction_logger')
+    logger.info('transaction start')
+    user = request.user
+    pair = request.POST.get('pair')
+    special_order = request.POST.get('special_order')
 
-        order_type = form.cleaned_data['order_type']
-
+    if special_order == 'SINGLE':
+        side = request.POST.get('side')
+        order_type = request.POST.get('order_type')
+        price = None if request.POST.get('price') == '' else request.POST.get('price')
+        price_for_stop = None if request.POST.get('price_for_stop') == '' else request.POST.get('price_for_stop')
+        start_amount = request.POST.get('start_amount')
+        order_id = None
+        status = 'READY_TO_ORDER'
+        ordered_at = None
+        
         if order_type in {'成行', '指値'}:
             if order_type == '成行':
                 order_type_rome = 'market'
             elif order_type == '指値':
                 order_type_rome = 'limit'
-                # 指値の場合は金額必須
-                if form.cleaned_data['price'] == 0 or form.cleaned_data['price'] == '' or form.cleaned_data['price'] == None:
-                    form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
-                        u'指値の際は価格を入力してください'
-                    ])
-                    return self.form_invalid(form)
-
+        
             try:
-                res_dict = python_bitbankcc.private(self.request.user.api_key, self.request.user.api_secret_key).order(
-                    form.cleaned_data['pair'],
-                    form.cleaned_data['price'],
-                    form.cleaned_data['start_amount'],
-                    form.cleaned_data['side'],
+                res_dict = python_bitbankcc.private(request.user.api_key, request.user.api_secret_key).order(
+                    pair,
+                    price,
+                    start_amount,
+                    side,
                     order_type_rome
                 )
+                status = res_dict.get('status')
+                order_id = res_dict.get('order_id')
+                ordered_at = res_dict.get('ordered_at')
+
             except Exception as e:
                 traceback.print_exc()
-                form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
-                    e.args
-                ])
-                return self.form_invalid(form)
-            self.object = form.save(commit = False)
-            self.object.order_id = res_dict.get('order_id')
-            self.object.status = res_dict.get('status')
-            self.object.ordered_at = res_dict.get('ordered_at')
-            messages.success(self.request, '注文が完了しました')
-
-        elif order_type in {'逆指値', 'ストップリミット'}:
-            # 金額必須
-            if form.cleaned_data['price'] == 0 or form.cleaned_data['price'] == '' or form.cleaned_data['price'] == None:
-                form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
-                    u'指値の際は価格を入力してください'
-                ])
-                return self.form_invalid(form)
-
-
-            if order_type == '逆指値':
-                order_type_rome = 'market'
-            elif order_type == 'ストップリミット':
-                order_type = 'limit'
-                # 逆指値価格必須
-                if form.cleaned_data['price_for_stop_limit'] == 0 or form.cleaned_data['price_for_stop_limit'] == '' or form.cleaned_data['price_for_stop_limit'] == None:
-                    form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList([
-                        u'ストップリミットの際は逆指値価格を入力してください'
-                    ])
-                    return self.form_invalid(form)
-            # オブジェクト作成
-            self.object = form.save(commit = False)
-            self.object.order_id = None
-            self.object.status = 'READY_TO_ORDER'
-            self.object.ordered_at = None
-            messages.success(self.request, 'ストップ注文を正常に受け付けました')
-
-        # 共通項目セット、保存
-        self.object.user = self.request.user
-        self.object.save()
-
-        return http.HttpResponseRedirect(self.get_success_url())
-
-    def get_success_url(self):
-        return reverse('bitbank:order')
-
-    def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
-
-    def get_context_data(self, **kwargs):
-        context = super(OrderCreate, self).get_context_data(**kwargs)
-        context['notify_if_filled'] = User.objects.filter(pk=self.request.user.pk).get().notify_if_filled
+                logger.error(e.args)
+                return JsonResponse({'error': e.args})
         
-        return context
-
-class OrderDetail(LoginRequiredMixin, generic.DetailView):
-    """注文詳細"""
-    model = Order
-    template_name = 'bitbank/order_detail.html'
+        new_order = Order()
+        new_order.user = user
+        new_order.pair = pair
+        new_order.special_order = special_order
+        new_order.side = side
+        new_order.order_type = order_type
+        new_order.price = price
+        new_order.price_for_stop = price_for_stop
+        new_order.start_amount = start_amount
+        new_order.order_id = order_id
+        new_order.status = status
+        new_order.ordered_at = ordered_at
+        new_order.save()
+        return JsonResponse({'success': '注文が完了しました。'})
+    else:
+        return JsonResponse({'error': '特殊注文は未対応です'})
 
 def ajax_create_alert(request):
     user = request.user
@@ -273,17 +241,10 @@ def ajax_create_alert(request):
     try:
         new_alert = Alert(user=user, pair=pair, threshold=threshold, over_or_under=over_or_under, is_active=True, alerted_at=None)
         new_alert.save()
-        data = {
-            'success': 'success',
-            'pk': new_alert.pk
-        }
+        return JsonResponse({'success': 'success'})
     except Exception as e:
-        data = {
-            'error': e.args
-        }
         traceback.print_exc()
-    finally:
-        return JsonResponse(data)
+        return JsonResponse({'error': e.args})
 
 def ajax_deactivate_alert(request):
     user = request.user
@@ -291,17 +252,10 @@ def ajax_deactivate_alert(request):
     
     try:
         alert = Alert.objects.filter(pk=pk).update(is_active=False)
-        
-        data = {
-            'success': 'success'
-        }
+        return JsonResponse({'success': 'success'})
     except Exception as e:
-        data = {
-            'error': e.args
-        }
         traceback.print_exc()
-    finally:
-        return JsonResponse(data)
+        return JsonResponse({'error': e.args})
 
 def ajax_get_active_alerts(request):
     user = request.user
@@ -378,33 +332,33 @@ def ajax_get_order_histroy(request):
 
 def ajax_cancel_order(request):
     user = request.user
-
     if user.api_key == "" or user.api_secret_key == "":
         res = {
             'error': 'API KEYが登録されていません'
         }
-    else:
-        try:
-            pk = request.POST.get("pk")
-            subj_order = Order.objects.filter(pk = pk).get()
+        return JsonResponse(res)
+    pk = request.POST.get("pk")
+    subj_order = Order.objects.filter(pk = pk).get()
+    special_order = subj_order.special_order
+
+    # シングル注文のキャンセル
+    if special_order == 'SINGLE':
+        try:    
             if subj_order.order_id != None:
-                res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).cancel_order(pair, order_id)
+                res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).cancel_order(subj_order.pair, subj_order.order_id)
             else:
                 # 未発注の場合はステータスをキャンセル済みに変更
                 subj_order.status = 'CANCELED_UNFILLED'
             
             subj_order.status = res_dict.get("status")
             subj_order.save()
-            res = {
-                'success': 'success'
-            }
+            return JsonResponse({'success': 'success'})
+
         except Exception as e:
-            res = {
-                'error': e.args
-            }
+            return JsonResponse({'error': e.args})
             traceback.print_exc()
-            
-    return JsonResponse(res)
+    else:
+        return JsonResponse({'error': 'SINGLE以外の注文は現在サポートしていません'})
 
 def ajax_get_notify_if_filled(request):
     user = request.user

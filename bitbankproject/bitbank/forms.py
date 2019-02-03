@@ -1,9 +1,10 @@
 from django import forms
-from django.contrib.auth.forms import (
-    AuthenticationForm, UserCreationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
-)
 from django.contrib.auth import get_user_model
-from .models import Order, Alert
+from django.contrib.auth.forms import (AuthenticationForm, PasswordChangeForm,
+                                       PasswordResetForm, SetPasswordForm,
+                                       UserCreationForm)
+
+from .models import Alert, Order
 
 User = get_user_model()
 
@@ -79,14 +80,13 @@ class MySetPasswordForm(SetPasswordForm):
 
 
 
-class MyOrderForm(forms.ModelForm):
+# class MyOrderForm(forms.ModelForm):
 
-    class Meta:
-        model = Order
-        fields = ('pair', 'special_order', 'side', 'order_type', 'start_amount', 'price', 'price_for_stop_limit')
+#     class Meta:
+#         model = Order
+#         fields = ('pair', 'special_order', 'side', 'order_type', 'start_amount', 'price', 'price_for_stop_limit')
                 
-    def __init__(self, *arg, **kwargs):
-        super().__init__(*arg, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
-        
+#     def __init__(self, *arg, **kwargs):
+#         super().__init__(*arg, **kwargs)
+#         for field in self.fields.values():
+#             field.widget.attrs['class'] = 'form-control'

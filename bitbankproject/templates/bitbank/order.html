@@ -1,0 +1,1138 @@
+{% extends "bitbank/base.html" %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-11 offset-md-1 col-xs-12">
+            <div class="tab btn-group">
+                <button id="order_button" type="button" class="tablinks" onclick="openTab(event, 'order')">注文</button>
+                <button id="active_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">アクティブ注文</button>
+                <button id="order_history_button" type="button" class="tablinks" onclick="openTab(event, 'order_history')">注文履歴</button>
+                <button id="alert_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">アラート</button>
+                <button id="asset_button" type="button" class="tablinks" onclick="openTab(event, 'assets')">保有資産</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-xs-12">
+            <div id="id_ajax_message" class="alert">
+            </div>
+        </div>
+    </div>      
+            
+    <div id="order" class="tabcontent">
+        <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <!-- <div class="alert">
+                                {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>  -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text placeholder">通貨</div>
+                                </div>
+                                <select id="id_pair" class="form-control"></select>
+                                <div id="id_pair_error" class="errorlist"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                        <div class="input-group-text placeholder">特殊注文</div>
+                                </div>
+                                <select id="id_special_order" class="form-control"></select>
+                                <div id="id_special_order_error" class="errorlist"></div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="btn-group d-flex" role="group">
+                                <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
+                                <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="input-group xs-3" style="display: none">
+                        <select id="id_side" class="form-control"></select>
+                        <div id="id_side_error" class="errorlist"></div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text placeholder">注文方法</div>
+                                </div>
+                                <select id="id_order_type" class="form-control"></select>
+                                <div id="id_order_type_error" class="errorlist"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <div class="row show_if_limit_order">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                        <div class="input-group-text placeholder">注文価格</div>
+                                </div>
+                                <input id="id_price" type="number" class="form-control">
+                                <div class="input-group-append">
+                                    <div class="input-group-text placeholder pair">jpy</div>
+                                </div>
+                                <div id="id_price_error" class="errorlist"></div>     
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row show_if_stop_order">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text placeholder">ストップ価格</div>
+                                </div>
+                                <input id="id_price_for_stop" type="number" class="form-control">              
+                                <div class="input-group-append">
+                                    <div class="input-group-text placeholder pair">jpy</div>
+                                </div>
+                                <div id="id_price_for_stop_error" class="errorlist"></div> 
+                            </div>
+                        </div>
+                    </div>
+                    <hr>  
+                    
+                    <hr>            
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                        <div class="input-group-text placeholder">数量</div>
+                                </div>
+                                <input id="id_start_amount" type="number" class="form-control">  
+                                <div class="input-group-append">
+                                    <div class="input-group-text placeholder unit">btc</div>
+                                </div>
+                                <div id="id_start_amount_error" class="errorlist"> </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/>
+                            <span id="amount_percentage"></span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text placeholder">予想</div>
+                                </div>
+                                <input type="number" id="expect_price" class="form-control">
+                                <div class="input-group-append">
+                                    <div class="input-group-text placeholder pair">jpy</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-3 col-xs-12">
+                            <div class="input-group">
+                                <button id="id_order_button" type="submit" class="btn btn-lg btn-block red_button">注文</button>
+                            </div>  
+                        </div>
+                    </div>
+                    <hr>   
+                </div>
+            </div>
+    </div>
+    <div id="active_orders" class="tabcontent">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-xs-12">
+                <table class="table table-responsive table-dark">
+                    <thead>
+                        <th>注文ID</th>
+                        <th>通貨ペア</th>
+                        <th>タイプ</th>
+                        <th>売買</th>
+                        <th>数量</th>
+                        <th>価格</th>
+                        <th>約定済数量</th>
+                        <th>平均価格</th>
+                        <th>注文日時</th>
+                        <th>ステータス</th>
+                        <th>キャンセル</th>  
+                    </thead>
+                    <tbody>      
+                    </tbody>  
+                </table>
+            </div>
+        </div>
+    </div>  
+    <div id="order_history" class="tabcontent">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-xs-12">
+                <table class="table table-responsive table-dark">
+                    <thead>
+                        <th>注文ID</th>
+                        <th>通貨ペア</th>
+                        <th>タイプ</th>
+                        <th>売買</th>
+                        <th>数量</th>
+                        <th>価格</th>
+                        <th>約定済数量</th>
+                        <th>平均価格</th>
+                        <th>注文日時</th>
+                        <th>ステータス</th>  
+                    </thead>
+                    <tbody>
+                    </tbody>  
+                </table> 
+            </div>
+        </div>
+    </div>
+    <div id="assets" class="tabcontent">
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs12">
+                <div id="id_asset_message" class="alert">
+                </div>
+                <table id="asset_table" class="table table-sm table-dark">
+                    <tr><th>合計評価額</th><td align="right" id="total_in_jpy"></td></tr>
+                    <tr><th>日本円</th><td align="right" id="jpy"></td></tr>
+                    <tr><th>ビットコイン</th><td align="right" id="btc"></td></tr>
+                    <tr><th>リップル</th><td align="right" id="xrp"></td></tr>
+                    <tr><th>ライトコイン</th><td align="right" id="ltc"></td></tr>
+                    <tr><th>イーサリアム</th><td align="right" id="eth"></td></tr>
+                    <tr><th>モナーコイン</th><td align="right" id="mona"></td></tr>
+                    <tr><th>ビットコインキャッシュ</th><td align="right" id="bcc"></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="alerts" class="tabcontent">
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-8">
+                <label class="control-label">約定通知</label>
+                <div class="btn-group d-flex" role="group">
+                    <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                    <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>      
+                </div>
+            </div>  
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select class="form-control" id="id_pair_for_alert">
+                        </select>
+                    </div>
+                    <input type="number" id="id_notice_rate" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair_for_alert">jpy</div>
+                    </div>
+                    <div class="input-group-append">
+                        <button id="add_alert_button" class="btn green_button" type="button">追加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-8">
+                <table class="table table-responsive table-dark">
+                    <thead>
+                        <th>通貨ペア</th>
+                        <th>通知レート</th>
+                        <th>キャンセル</th>
+                    </thead>
+                    <tbody>
+                    </tbody>  
+                </table>    
+            </div>
+        </div> 
+    </div>      
+</form>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        PAIRS = [
+                'btc_jpy',
+                'xrp_jpy',
+                'ltc_btc',
+                'eth_btc',
+                'mona_jpy',
+                'mona_btc',
+                'bcc_jpy',
+                'bcc_btc'
+        ];
+        STATUS = {
+            'UNFILLED': '未約定',
+            'PARTIALLY_FILLED': '一部約定済',
+            'FULLY_FILLED': '約定済',
+            'CANCELED_UNFILLED': 'キャンセル済',
+            'CANCELED_PARTIALLY_FILLED': '一部キャンセル済',
+            'READY_TO_ORDER': '未注文'
+        }
+        SPECIAL_ORDERS = [
+            'SINGLE',
+            'IFD',
+            'OCO',
+            'IFDOCO'  
+        ];
+
+        ORDER_TYPES = [
+            '成行',
+            '指値',
+            '逆指値',
+            'ストップリミット'
+        ];
+            
+        SELL_BUY = {
+            'sell': '売',
+            'buy' : '買'
+        }
+        //資産情報取得用
+        var free_amount_json = {};
+
+        var market_price_json = {};
+
+        function return_formatted_datetime(unixtime) {
+            if (unixtime == 0) {
+                return '-';
+            }
+            var date = new Date(unixtime);
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            return(year + "/" + month + "/" + day + " " + hours + ":" + minutes + ":" + seconds);
+        }
+        function call_get_assets_api(is_async = true) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_assets" %}',
+                'type': 'GET',
+                'dataType': 'json',
+                'async': is_async
+            });
+        }
+        function call_get_ticker_api(pair, is_async = true) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_ticker" %}',
+                'type': 'GET',
+                'dataType': 'json',
+                'async': is_async,
+                'data': {
+                    'pair': pair
+                },
+            });
+        }
+        function call_cancel_order(pk) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_cancel_order" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    pk: pk
+                }
+            });
+        }
+        
+        function call_get_active_orders() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_active_orders" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+        }
+        function call_get_order_history() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_order_history" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+            
+        }
+      
+        function call_create_order(pair, special_order, side, order_type, price = null, price_for_stop = null, start_amount) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_create_order" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    pair: pair,
+                    special_order: special_order,
+                    side: side,
+                    order_type: order_type,
+                    price: price,
+                    price_for_stop: price_for_stop,
+                    start_amount: start_amount
+                }
+            });
+        }
+
+        function call_create_alert(pair, threshold, over_or_under) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_create_alert" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    pair: pair,
+                    threshold: threshold,
+                    over_or_under: over_or_under
+                }
+            });
+        }
+
+        function call_deactivate_alert(pk) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_deactivate_alert" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    pk: pk
+                }
+            });
+        }
+
+        function call_get_active_alerts() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_active_alerts" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+        }
+        function call_get_notify_if_filled() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_notify_if_filled" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+        }
+        function call_change_notify_if_filled(new_val) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_change_notify_if_filled" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    notify_if_filled: new_val
+                }
+            });
+        }
+        function hyphen_if_null(subj) {
+            if (subj == null || subj == undefined) {
+                return '-';
+            } else {
+                return subj;
+            }
+        }
+        function display_price_div(order_type) {
+            switch (order_type) {
+                case '成行':
+                    $('div.show_if_stop_order').hide();
+                    $('div.show_if_limit_order').hide();
+                    break;
+                case '指値':
+                    $('div.show_if_stop_order').hide();
+                    $('div.show_if_limit_order').show();
+                    break;
+                case '逆指値':
+                    $('div.show_if_stop_order').show();
+                    $('div.show_if_limit_order').hide();
+                    break;
+                case 'ストップリミット':
+                    $('div.show_if_stop_order').show();
+                    $('div.show_if_limit_order').show();
+                    break;
+            }
+        }
+
+        function initialize_ticker_json() {
+            PAIRS.forEach(pair => {
+                call_get_ticker_api(pair)
+                .done(function (res) {
+                    if (res.error) {
+                        set_error_message($('#id_ajax_message'), res.error);
+                        return;
+                    }
+                    //console.log(res);
+                    market_price_json[pair] = res;              
+                })
+                .fail(function() {
+                    set_error_message($('#id_ajax_message'));
+                })
+            });
+        }
+        function initialize_free_amount_json() {
+            call_get_assets_api()
+            .done(function(res) {
+                if (res.error) {
+                    set_error_message($('#id_ajax_message'), res.error);
+                    return;
+                }
+                res.assets.forEach(asset => {
+                    free_amount_json[asset.asset] = asset.free_amount;
+                });
+            })
+            .fail(function() {
+                set_error_message($('#id_ajax_message'));
+            });
+        }
+        function udpate_amount_by_slider() {
+            var newVal = $('#ex1').data('slider').getValue();
+            $('#amount_percentage').html(newVal + '%');
+
+            if($('#id_pair').val() == '') {
+                return;
+            }
+            var pair = $('#id_pair').val();
+            var currency = pair.split('_')[1];
+            var free_amount = free_amount_json[currency];
+            var side = $('#id_side').val();
+
+            if ($('#id_order_type').val() == '指値' || $('#id_order_type').val() == 'ストップリミット') {
+                if ($('#id_price').val() != '' && $('#id_price').val() != 0) {
+                    var floored = Math.floor((free_amount * newVal / ($('#id_price').val() * 100)) * 10000) / 10000;
+                    $('#id_start_amount').val(floored);
+                    $('#expect_price').val(Math.floor($('#id_price').val() * floored));                        
+                }
+            } else if ($('#id_order_type').val() == '成行' || $('#id_order_type').val() == '逆指値') {
+                
+                var market_price = parseFloat(market_price_json[pair][side]);
+
+                var floored = Math.floor((free_amount * newVal / (market_price * 100)) * 10000) / 10000;
+                $('#id_start_amount').val(floored);
+                if (currency == 'jpy') {
+                    $('#expect_price').val(Math.floor(market_price * floored));    
+                } else {
+                    $('#expect_price').val(market_price * floored);    
+                }
+            }
+        }
+        function update_slider_by_amount() {
+            var pair = $('#id_pair').val();
+            var currency = pair.split('_')[1];
+            var side = $('#id_side').val(); 
+            var order_type = $('#id_order_type').val();
+            var limit_orders = ['指値', 'ストップリミット'];
+            
+            var new_amount = $('#id_start_amount').val();
+
+            // limit orderの場合
+            if (limit_orders.indexOf(order_type) >= 0) {
+                var new_price = $('#id_price').val();
+            } else {
+                var new_price = market_price_json[pair][side];
+            }
+
+            if (new_amount == '' || new_amount == 0 || new_price == '' || new_price == 0) {
+                $('#ex1').data('slider').setValue(0);
+                $('#amount_percentage').html('0.0%');
+            } else {
+                var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
+                if (perc > 100.0) {
+                    $('#amount_percentage').html('資産が足りません');
+                } else {
+                    var rounded = Math.round(perc * 10) / 10;
+                    $('#ex1').data('slider').setValue(rounded);
+                    $('#amount_percentage').html(rounded + '%');
+                    if (currency == 'jpy') {
+                        $('#expect_price').val(Math.round(new_price * new_amount));
+                    } else {
+                        $('#expect_price').val(Math.round(new_price * new_amount * 10000) / 10000);
+                    } 
+                }
+            }
+        }
+
+        function place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount) {
+            call_create_order(pair, special_order, side, order_type, price, price_for_stop, start_amount)
+            .done(function(res) {
+                if (res.error) {
+                    set_error_message($('#id_ajax_message'), res.error);
+                    return;
+                }
+                set_success_message($('#id_ajax_message'), '注文が完了しました');
+                $('#id_ajax_message').show();
+            })
+            .fail(function() {
+                set_error_message($('#id_ajax_message'));
+            });
+        }
+
+        function initialize_order_tab(is_initial = false) {
+            initialize_ticker_json();
+            initialize_free_amount_json();
+            if ($('#id_side').val() == 'sell') {
+                $('#sell_button').addClass('sell').removeClass('btn-base');
+                $('#buy_button').removeClass('buy').addClass('btn-base');
+            } else {
+                $('#buy_button').addClass('buy').removeClass('btn-base');
+                $('#sell_button').removeClass('sell').addClass('btn-base');
+            }
+            $('#ex1').slider({
+                formatter: function(value) {
+                    return 'Current value: ' + value;
+                },
+            });
+
+            display_price_div($('#id_order_type').val());
+            //画面ロード時のみ
+            if (is_initial) {
+                var pair_option_html = '';
+                var special_order_option_html = '';
+                var side_option_html = '';
+                var order_type_option_html = '';
+
+
+                PAIRS.forEach(pair => {
+                    pair_option_html += '<option value="' + pair + '">' + pair + '</option>';
+                });
+                SPECIAL_ORDERS.forEach(special_order => {
+                    special_order_option_html += '<option value="' + special_order + '">' + special_order + '</option>';
+                });
+
+                Object.keys(SELL_BUY).forEach(side => {
+                    side_option_html += '<option value="' + side + '">' + side + '</option>';
+                });
+
+                ORDER_TYPES.forEach(order_type => {
+                    order_type_option_html += '<option value="' + order_type + '">' + order_type + '</option>';
+                });
+                
+                // 選択肢追加
+                $('#id_pair').html(pair_option_html);
+                $('#id_pair').val(PAIRS[0]);
+
+                $('#id_special_order').html(special_order_option_html);
+                $('#id_special_order').val(SPECIAL_ORDERS[0]);
+                
+                $('#id_side').html(side_option_html);
+                $('#id_side').val(Object.keys(SELL_BUY)[1]);
+
+                $('#id_order_type').html(order_type_option_html);
+                $('#id_order_type').val(ORDER_TYPES[0])
+                
+
+                // イベントバインディング
+                $('#ex1').slider().on('slide', function(ev){
+                    udpate_amount_by_slider();
+                });
+                $('#ex1').slider().on('slideStop', function(ev){
+                    udpate_amount_by_slider();
+                });
+    
+                $('#id_price').on('change', function() { 
+                    update_slider_by_amount();
+                });
+                
+                $('#id_start_amount').on('change', function() {
+                    update_slider_by_amount();
+                });
+
+                $('#id_pair').on('change', function() {
+                    $('#id_start_amount').val('');
+                    $('#id_price').val('');
+                    $('#id_price_for_stop').val('');
+                    $('#ex1').data('slider').setValue(0);
+                    $('#amount_percentage').html('0.0%');
+                    $('#expect_price').val('');
+
+                    // 数量、金額の通貨部分を更新
+                    var unit = $('#id_pair').val().split('_')[0];
+                    var currency = $('#id_pair').val().split('_')[1];
+                    if (currency != '') {
+                        $('span.pair').html(currency);
+                        $('span.unit').html(unit);
+                    }
+
+                    // 一覧タブを更新
+                    $('.tablinks.active').click();
+                });
+                
+                $('#id_order_type').on('change', function() {
+                    var new_order_type = $('#id_order_type').val();
+                    display_price_div(new_order_type);
+                });
+            
+                $('#sell_button').on('click', function() {
+                    $('#sell_button').addClass('sell').removeClass('btn-base');
+                    $('#buy_button').removeClass('buy').addClass('btn-base');
+                    $('#id_side').val('sell');
+                    
+                });
+                
+                $('#buy_button').on('click', function() {
+                    $('#buy_button').addClass('buy').removeClass('btn-base');
+                    $('#sell_button').removeClass('sell').addClass('btn-base');
+                    $('#id_side').val('buy');
+                });
+                $('#id_order_button').on('click', function(e) {
+                    e.preventDefault();
+                    var pair = $('#id_pair').val();
+                    var special_order = $('#id_special_order').val();
+                    var side = $('#id_side').val();
+                    var order_type = $('#id_order_type').val();
+                    var price = $('#id_price').val() == '' ? null : parseFloat($('#id_price').val());
+                    var price_for_stop = $('#id_price_for_stop').val() == '' ? null : parseFloat($('#id_price_for_stop').val());
+                    var start_amount = $('#id_start_amount').val();
+                    
+                    switch (special_order) {
+                        case 'SINGLE':
+                            if (order_type == '指値' || order_type == 'ストップリミット') {
+                                call_get_ticker_api(pair)
+                                .done(function(res) {
+                                    if (res.error) {
+                                        set_error_message($('#id_ajax_message'), res.error);
+                                        return;
+                                    }
+                                        
+                                    if (order_type == '指値') {
+                                        if ((side == 'buy' && parseFloat(res.buy) < price) || (side == 'sell' && parseFloat(res.sell) > price)){
+                                            $.confirm({
+                                                title: '<span style="color:black>確認</span>',
+                                                content: '<span style="color:black">注文後即約定されますがこの価格でよろしいですか</span>',
+                                                type: 'red',
+                                                buttons: {
+                                                    confirm: {
+                                                        text: '続行',
+                                                        btnClass: 'btn-success',
+                                                        
+                                                        action: function () {
+                                                            place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
+                                                        }
+                                                    },
+                                                    cancel:{
+                                                        text: 'キャンセル',
+                                                        btnClass: 'btn-red',
+                                                        action: function () {
+                                                        },
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                })
+                                .fail(function() {
+                                    set_error_message($('#id_ajax_message'));
+                                });
+                            } else if (order_type == '成行'|| order_type == '逆指値') {
+                                // そのまま注文
+                                place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
+                            }
+                            break;
+                        case 'IFD':
+                            break;
+                        case 'OCO':
+                            break;
+                        case 'IFDOCO':
+                            break;
+                    }
+                });  
+            }
+        }
+        
+        function initialize_active_orders_tab(is_initial = false) {
+            call_get_active_orders()
+            .done(function(res) {
+                var table_html = "";
+                if (res.error) {
+                    set_error_message($('#id_ajax_message'), res.error);
+                    return;
+                }
+                $.parseJSON(res.active_orders).forEach(active_order => {
+                    table_html += '<tr>';
+                    table_html += '<td align="right">' + hyphen_if_null(active_order.fields.order_id) + '</td>';
+                    table_html += '<td align="center">' + active_order.fields.pair + '</td>';
+                    table_html += '<td align="center">' + active_order.fields.order_type + '</td>';
+                    table_html += '<td align="center">' + SELL_BUY[active_order.fields.side] + '</td>';
+                    table_html += '<td align="right">' + active_order.fields.start_amount + '</td>';
+                    table_html += '<td align="right">' + hyphen_if_null(active_order.fields.price) + '</td>';
+                    table_html += '<td align="right">' + hyphen_if_null(active_order.fields.executed_amount) + '</td>';
+                    table_html += '<td align="right">' + hyphen_if_null(active_order.fields.average_price) + '</td>';
+                    table_html += '<td align="right">' + return_formatted_datetime(parseInt(active_order.fields.ordered_at)) + '</td>';
+                    table_html += '<td align="right">' + STATUS[active_order.fields.status] + '</td>';
+                    table_html += '<td align="center"><button pk="' + active_order.pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button"><i style="color:red" class="fa fa-close"></i></button></td>';  
+                    table_html += '</tr>';
+                });
+                $('#active_orders').find('tbody').html(table_html);
+                // //絞り込みする場合
+                // if ($('#id_filter_by_pair').prop('checked')) {
+                    
+                //     var pair = $('#id_pair').val();
+                //     $('#active_orders').find('.table').children('tbody').children('tr').each((i, row) => {
+                //         if ($(row).find("td:eq(1)").html() == pair) {
+                //             $(row).show();
+                //         } else {
+                //             alert($(row).find("td:eq(1)").html());
+                //             $(row).hide();
+                //         }
+                //     });
+                // }
+
+                //キャンセルボタンクリック時のイベント追加
+                $("button[name='cancel_order_button']").on('click', function() {
+                    
+                    var pk = $(this).attr('pk');
+                    call_cancel_order(pk)
+                    .done(function(res) {
+                        if (res.error) {
+                            set_error_message('#id_ajax_message', res.error);
+                            return;
+                        }
+                    
+                        set_success_message($('#id_ajax_message'), '注文をキャンセルしました');
+                        $('#order_history_button').click();
+                        $('#id_ajax_message').show();
+                    })
+                    .fail(function() {
+                        set_error_message($('#id_ajax_message'));
+                    });
+                    
+                });
+            })
+            .fail(function() {
+                set_error_message($('#id_ajax_message'));
+            });
+        }
+        function initialize_order_history_tab(is_initial = false) {
+            call_get_order_history()
+            .done(function(res) {
+                var table_html = '';
+                $.parseJSON(res.order_history).forEach(order => {
+                    table_html += '<tr>';
+                    table_html += '<td align="right">' + order.fields.order_id + '</td>';
+                    table_html += '<td align="center">' + order.fields.pair + '</td>';
+                    table_html += '<td align="center">' + order.fields.order_type + '</td>';
+                    table_html += '<td align="center">' + SELL_BUY[order.fields.side] + '</td>';
+                    table_html += '<td align="right">' + order.fields.start_amount + '</td>';
+                    table_html += '<td align="right">' + hyphen_if_null(order.fields.price) + '</td>';
+                    table_html += '<td align="right">' + order.fields.executed_amount + '</td>';
+                    table_html += '<td align="right">' + order.fields.average_price + '</td>';
+                    table_html += '<td align="right">' + return_formatted_datetime(order.fields.ordered_at) + '</td>';
+                    table_html += '<td align="center">' + STATUS[order.fields.status] + '</td>';
+                    table_html += '</tr>';
+                    
+                });
+                $('#order_history').find('tbody').html(table_html);
+                // //絞り込みする場合
+                // if ($('#id_filter_by_pair').prop('checked')) {
+                //     var pair = $('#id_pair').val();
+                //     $('#order_history').find('.table').find('tr').each((i, row) => {
+                //         if ($(row).find("td:eq(1)").html() == pair) {
+                //             $(row).show();
+                //         } else {
+                //             $(row).hide();
+                //         }
+                //     });
+                // }
+                
+            })
+            .fail(function() {
+                set_error_message($('#id_ajax_message'));
+            });
+        }
+      
+        function initialize_alerts_tab(is_initial = false) {
+            
+            call_get_notify_if_filled()
+            .done(function(res) {
+                if (res.error) {
+                    set_error_message($('#id_ajax_message'), res.error);
+                    return;
+                }
+                if (res.notify_if_filled == 'ON') {
+                    $('#notify_if_filled_on_button').click();
+                } else {
+                    $('#notify_if_filled_off_button').click();
+                }
+            })
+            .fail(function() {
+                set_error_message($('#id_ajax_message'));
+            });
+
+            call_get_active_alerts()
+            .done(function(res) {
+                var table_html = '';
+                $.parseJSON(res.active_alerts).forEach(active_alert => {
+                    table_html += '<tr>';
+                    table_html += '<td align="center">' + active_alert.fields.pair + '</td>';
+                    table_html += '<td align="right">' + active_alert.fields.threshold + '</td>';
+                    table_html += '<td><button pk="' + active_alert.pk + '"  type="button" class="btn btn-outline-secondary" name="deactivate_alert_button"><i style="color:red" class="fa fa-close"></i></button></td>';
+                    table_html += '</tr>';
+                });
+                $('#alerts').find('tbody').html(table_html);
+                // //絞り込みする場合
+                // if ($('#id_filter_by_pair').prop('checked')) {
+                //     var pair = $('#id_pair').val();
+                //     $('#alerts > table > tbody > tr').each((i, row) => {
+                //         if ($(row).find("td:eq(0)").html() == pair) {
+                //             $(row).show();
+                //         } else {
+                //             $(row).hide();
+                //         }
+                //     });
+                // }
+                $("button[name='deactivate_alert_button']").on('click', function() {
+                    var pk = $(this).attr('pk');
+                    call_deactivate_alert(pk)
+                    .done(function(res) {
+                        if (res.error) {
+                            alert(res.error);
+                            return;
+                        }
+                        set_success_message('#id_ajax_message', '通知設定を解除しました');
+                        
+                        $('#alert_button').click();
+                        $('#id_ajax_message').show();
+                    })
+                    .fail(function() {
+                       set_error_message($('#id_ajax_message'));
+                    });
+                });
+            })
+            .fail(function() {
+                set_error_message($('#id_ajax_message'));
+            });
+            // 初回時のみの処理
+            if (is_initial) {
+                var option_html = '';
+                PAIRS.forEach(pair => {
+                    option_html += '<option value="' + pair + '">' + pair + '</option>';
+                });
+                $('#id_pair_for_alert').html(option_html);
+                
+                $('#id_pair_for_alert').on('change', function() {
+                    var currency = $('#id_pair_for_alert').val().split('_')[1];
+                    $('#id_notice_rate').val('');
+                    $('.pair_for_alert').html(currency);
+                });
+                $('#notify_if_filled_on_button').on('click', function() {
+                    if ($(this).hasClass('on')) {
+                        // すでにONの場合は何もしない
+                    } else {
+                        call_change_notify_if_filled('ON')
+                        .done(function(res) {
+                            if (res.error) {
+                                set_error_message($('#id_ajax_message'), res.error);
+                                return;
+                            }
+                            $('#notify_if_filled_on_button').addClass('on').removeClass('btn-base');
+                            $('#notify_if_filled_off_button').removeClass('off').addClass('btn-base');
+                        })
+                        .fail(function() {
+                            set_error_message($('#id_ajax_message'));
+                        });
+                    }
+                });
+                $('#notify_if_filled_off_button').on('click', function() {
+                    if ($(this).hasClass('off')) {
+                        // すでにOFFの場合は何もしない
+                    } else {
+                        call_change_notify_if_filled('OFF')
+                        .done(function(res) {
+                            if (res.error) {
+                                set_error_message($('#id_ajax_message'), res.error);
+                                return;
+                            }
+                            $('#notify_if_filled_on_button').removeClass('on').addClass('btn-base');
+                            $('#notify_if_filled_off_button').addClass('off').removeClass('btn-base');
+                        })
+                        .fail(function() {
+                            set_error_message($('#id_ajax_message'));
+                        });
+                    }
+                });
+                $('#add_alert_button').on('click', function() {
+                    var threshold = $('#id_notice_rate').val();
+                    var pair = $('#id_pair_for_alert').val();
+                    var over_or_under;
+
+                    if (threshold == '' || threshold == 0) {
+                        alert('通知金額を入力して下さい');
+                        return;
+                    }
+
+                    call_get_ticker_api(pair)
+                    .done(function(res) {
+                        if (res.error) {
+                            set_error_message($('#id_ajax_messsage'), res.error)
+                            return;
+                        }
+                        if (parseFloat(threshold) >= parseFloat(res.buy)) {
+                            over_or_under = '以上';
+                        } else {
+                            over_or_under = '以下';
+                        }
+                        call_create_alert(pair, threshold, over_or_under)
+                        .done(function(res) {
+                            
+                            if (res.error) {
+                                set_error_message($('#id_ajax_messsage'), res.error)
+                                return;
+                            }
+                            set_success_message($('#id_ajax_message'), 'アラートを追加しました');
+
+                            $('#alert_button').click();
+                            $('#id_ajax_message').show();
+                        })
+                        .fail(function() {
+                            set_error_message($('#id_ajax_message'));
+                        });
+                    });
+                });
+            }
+        }
+        function initialize_asset_tab(is_initial = false) {
+            call_get_assets_api()
+            .done(response => {
+                if (response.assets) {
+                    var asset_html = "";
+                    var total_asset_in_jpy = 0;
+                    response.assets.forEach(asset => {
+                        
+                        $('#' + asset.asset).html(asset.onhand_amount);
+                        if (asset.asset == 'ltc' || asset.asset == 'eth') {
+                            call_get_ticker_api(asset.asset + '_' + 'btc')
+                            .done(function(res) {
+                                if (res.error) {
+                                    set_error_message($('#id_ajax_message'), res.error);
+                                    return;
+                                }
+                                call_get_ticker_api('btc_jpy')
+                                .done(function(res2) {
+                                    total_asset_in_jpy += parseInt(res.buy) * parseInt(res2.buy) * asset.onhand_amount;
+                                    $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
+                                })
+                                .fail(function() {
+                                    alert('failed');
+                                });
+                            })
+                            .fail(function() {
+                                $('#id_asset_message')
+                            });
+                        } else if (asset.asset != 'jpy') {
+                            call_get_ticker_api(asset.asset + '_jpy')
+                            .done(function(res) {
+                                if (res.error) {
+                                    set_error_message($('#id_ajax_message'), res.error);
+                                    return;
+                                }
+                                total_asset_in_jpy += parseInt(res.buy * asset.onhand_amount);
+                                $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
+                            })
+                            .fail(function() {
+                                set_error_message($('#id_ajax_message'));
+                            });
+                        } else {
+                            total_asset_in_jpy += parseInt(asset.onhand_amount);
+                            $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
+                        }
+                    });
+                    //$("#asset_table").html(asset_html);
+                } else {
+                    if (response.error) {
+                        set_error_message($('#id_ajax_message'), response.error);
+                    }
+                }
+            })
+            .fail(function() {
+                sset_error_message($('#id_ajax_message'));
+            });
+        }
+
+        function set_error_message(target, message="ログインし直してください") {
+            $(target).addClass('alert-danger');
+            $(target).removeClass('alert-success');
+            $(target).html(message);
+            $(target).show();
+        }
+
+        function set_success_message(target, message="正常に処理しました") {
+            $(target).addClass('alert-danger');
+            $(target).removeClass('alert-success');
+            $(target).html('<i class="fa fa-check" aria-hidden="true"></i>' + message);
+            $(target).show();
+        }
+
+        function openTab(evt, tab_id) {
+
+            $('#id_ajax_message').hide();
+
+            switch( tab_id ) {
+                case 'order':
+                    initialize_order_tab(false);
+                    break;
+                case 'active_orders':
+                    initialize_active_orders_tab(false);
+                    break;
+                case 'order_history':
+                    initialize_order_history_tab(false);
+                    break;
+                case 'alerts':
+                    initialize_alerts_tab(false);
+                    break;
+                case 'assets':
+                    initialize_asset_tab(false);
+                    break;
+            }
+
+            // Get all elements with class="tabcontent" and hide them
+            $('.tabcontent').each((i, tabcontent) => {
+                $(tabcontent).hide();
+            });
+        
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            $('.tablinks').each((i, tablink) => {
+                $(tablink).removeClass('active');
+            });
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            $('#' + tab_id).show();
+            evt.target.className += " active";
+        }
+
+
+
+        $(function() {
+            initialize_order_tab(true);
+            initialize_active_orders_tab(true);
+            initialize_order_history_tab(true);
+            initialize_alerts_tab(true);
+            initialize_asset_tab(true);
+
+            $('#order_button').click();
+        });
+        
+    </script>
+{% endblock %}

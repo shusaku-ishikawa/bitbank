@@ -25,9 +25,15 @@
             <td>{{ user.api_secret_key }}</td>
         </tr>
         <tr>
+            <th>約定時の通知</th>
+            <td>{{ user.notify_if_filled }}</td>
+        </tr>
+        <tr>
             <th>通知用メールアドレス</th>
             <td>{{ user.email_for_notice }}</td>
         </tr>
+
+            
     </tbody>
 </table>
 {% endblock %}
