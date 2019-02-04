@@ -24,7 +24,7 @@ class Command(BaseCommand):
     # コマンドが実行された際に呼ばれるメソッド
     def handle(self, *args, **options):
         logger = logging.getLogger('batch_logger')
-        for i in range(10):
+        for i in range(25):
             logger.info("started")
             for user in User.objects.all():
                 # API KEYが登録されているユーザのみ処理
