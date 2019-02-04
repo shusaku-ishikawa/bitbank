@@ -8,12 +8,19 @@
 /*code for mobile here*/
 }
 
+#ex1Slider {
+    width: 100% !important;
+}
 #ex1Slider .slider-selection {
-	background: green;
+	background: teal;
+}
+
+div.slider-handle.min-slider-handle.round {
+    background: teal !important;
 }
 
 table.table {
-    font-size: 1.8vmin !important;
+    font-size: 2.2vmin;
     font-weight: normal !important;
 }
 body {
@@ -50,7 +57,10 @@ select.input-group-append {
 }
 
 select {
-    text-align-last:center;
+    text-align-last:right;
+}
+select#id_pair_for_alert {
+    text-align-last: center;
 }
 
 .btn {
@@ -75,6 +85,7 @@ div.card {
 
 .form-control:focus{
     background-color :#333333;
+    color: white;
 }
 
 div.input-group-text.placeholder {

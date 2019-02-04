@@ -22,156 +22,129 @@
             
     <div id="order" class="tabcontent">
         <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <!-- <div class="alert">
-                                {% if messages %}
-                                <ul class="messages">
-                                    {% for message in messages %}
-                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
-                            </div>  -->
-                        </div>
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">取引通貨</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text placeholder">通貨</div>
-                                </div>
-                                <select id="id_pair" class="form-control"></select>
-                                <div id="id_pair_error" class="errorlist"></div>
-                            </div>
-                        </div>
+                    <select id="id_pair" class="form-control"></select>
+                    <div id="id_pair_error" class="errorlist"></div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                            <div class="input-group-text placeholder">特殊注文</div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                        <div class="input-group-text placeholder">特殊注文</div>
-                                </div>
-                                <select id="id_special_order" class="form-control"></select>
-                                <div id="id_special_order_error" class="errorlist"></div>
-                            </div>  
-                        </div>
+                    <select id="id_special_order" class="form-control"></select>
+                    <div id="id_special_order_error" class="errorlist"></div>
+                </div>  
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="btn-group d-flex" role="group">
+                    <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
+                    <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
+                </div>
+            </div>
+        </div>
+                    
+        <div class="input-group" style="display: none">
+            <select id="id_side" class="form-control"></select>
+            <div id="id_side_error" class="errorlist"></div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">注文方法</div>
+                    </div>
+                    <select id="id_order_type" class="form-control"></select>
+                    <div id="id_order_type_error" class="errorlist"></div>
+                </div>
+            </div>
+        </div>
+                
+        <hr>
+        <div class="row show_if_limit_order">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                            <div class="input-group-text placeholder">注文価格</div>
+                    </div>
+                    <input id="id_price" type="number" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
+                    <div id="id_price_error" class="errorlist"></div>     
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row show_if_stop_order">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">逆指値価格</div>
+                    </div>
+                    <input id="id_price_for_stop" type="number" class="form-control">              
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
+                    <div id="id_price_for_stop_error" class="errorlist"></div> 
+                </div>
+            </div>
+        </div>
+        <hr>            
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                            <div class="input-group-text placeholder">数量</div>
+                    </div>
+                    <input id="id_start_amount" type="number" class="form-control" min="0"">  
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder unit">BTC</div>
+                    </div>
+                    <div id="id_start_amount_error" class="errorlist"></div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/>
+                <div><span style="float:right;" id="amount_percentage"></span></div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">予想</div>
+                    </div>
+                    <input type="number" id="expect_price" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
                     </div>
                 </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6 col-xs-6">
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="btn-group d-flex" role="group">
-                                <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
-                                <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
-                            </div>
-                        </div>
-                    </div>
-                        
-                    <div class="input-group xs-3" style="display: none">
-                        <select id="id_side" class="form-control"></select>
-                        <div id="id_side_error" class="errorlist"></div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text placeholder">注文方法</div>
-                                </div>
-                                <select id="id_order_type" class="form-control"></select>
-                                <div id="id_order_type_error" class="errorlist"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <hr>
-                    <div class="row show_if_limit_order">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                        <div class="input-group-text placeholder">注文価格</div>
-                                </div>
-                                <input id="id_price" type="number" class="form-control">
-                                <div class="input-group-append">
-                                    <div class="input-group-text placeholder pair">jpy</div>
-                                </div>
-                                <div id="id_price_error" class="errorlist"></div>     
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row show_if_stop_order">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text placeholder">ストップ価格</div>
-                                </div>
-                                <input id="id_price_for_stop" type="number" class="form-control">              
-                                <div class="input-group-append">
-                                    <div class="input-group-text placeholder pair">jpy</div>
-                                </div>
-                                <div id="id_price_for_stop_error" class="errorlist"></div> 
-                            </div>
-                        </div>
-                    </div>
-                    <hr>  
-                    
-                    <hr>            
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                        <div class="input-group-text placeholder">数量</div>
-                                </div>
-                                <input id="id_start_amount" type="number" class="form-control">  
-                                <div class="input-group-append">
-                                    <div class="input-group-text placeholder unit">btc</div>
-                                </div>
-                                <div id="id_start_amount_error" class="errorlist"> </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/>
-                            <span id="amount_percentage"></span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text placeholder">予想</div>
-                                </div>
-                                <input type="number" id="expect_price" class="form-control">
-                                <div class="input-group-append">
-                                    <div class="input-group-text placeholder pair">jpy</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-8 offset-md-3 col-xs-12">
-                            <div class="input-group">
-                                <button id="id_order_button" type="submit" class="btn btn-lg btn-block red_button">注文</button>
-                            </div>  
-                        </div>
-                    </div>
-                    <hr>   
-                </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="input-group">
+                    <button id="id_order_button" type="submit" class="btn btn-lg btn-block green_button">注文</button>
+                </div>  
             </div>
+        </div>
     </div>
     <div id="active_orders" class="tabcontent">
         <div class="row">
@@ -254,9 +227,9 @@
                         <select class="form-control" id="id_pair_for_alert">
                         </select>
                     </div>
-                    <input type="number" id="id_notice_rate" class="form-control">
+                    <input type="number" id="id_notice_rate" class="form-control" min="0">
                     <div class="input-group-append">
-                        <div class="input-group-text placeholder pair_for_alert">jpy</div>
+                        <div class="input-group-text placeholder pair_for_alert">JPY</div>
                     </div>
                     <div class="input-group-append">
                         <button id="add_alert_button" class="btn green_button" type="button">追加</button>
@@ -283,16 +256,27 @@
 {% endblock %}
 {% block extra_js %}
     <script>
-        PAIRS = [
-                'btc_jpy',
-                'xrp_jpy',
-                'ltc_btc',
-                'eth_btc',
-                'mona_jpy',
-                'mona_btc',
-                'bcc_jpy',
-                'bcc_btc'
-        ];
+        // PAIRS = [
+        //         'btc_jpy',
+        //         'xrp_jpy',
+        //         'ltc_btc',
+        //         'eth_btc',
+        //         'mona_jpy',
+        //         'mona_btc',
+        //         'bcc_jpy',
+        //         'bcc_btc'
+        // ];
+        PAIRS = {
+            'btc_jpy': 'BTC/JPY',
+            'xrp_jpy': 'XRP/JPY',
+            'ltc_btc': 'LTC/BTC',
+            'eth_btc': 'ETH/BTC',
+            'mona_jpy': 'MONA/JPY',
+            'mona_btc': 'MONA/BTC',
+            'bcc_jpy': 'BCC/JPY',
+            'bcc_btc': 'BCC/BTC'
+        }
+
         STATUS = {
             'UNFILLED': '未約定',
             'PARTIALLY_FILLED': '一部約定済',
@@ -319,6 +303,11 @@
             'sell': '売',
             'buy' : '買'
         }
+        function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            return !(charCode > 31 && (charCode < 48 || charCode > 57));
+        }
+
         //資産情報取得用
         var free_amount_json = {};
 
@@ -477,7 +466,7 @@
         }
 
         function initialize_ticker_json() {
-            PAIRS.forEach(pair => {
+            Object.keys(PAIRS).forEach(pair => {
                 call_get_ticker_api(pair)
                 .done(function (res) {
                     if (res.error) {
@@ -560,7 +549,7 @@
             } else {
                 var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
                 if (perc > 100.0) {
-                    $('#amount_percentage').html('資産が足りません');
+                    $('#amount_percentage').html('資金不足');
                 } else {
                     var rounded = Math.round(perc * 10) / 10;
                     $('#ex1').data('slider').setValue(rounded);
@@ -614,11 +603,16 @@
                 var order_type_option_html = '';
 
 
-                PAIRS.forEach(pair => {
-                    pair_option_html += '<option value="' + pair + '">' + pair + '</option>';
+                Object.keys(PAIRS).forEach(pair => {
+                    pair_option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
                 });
                 SPECIAL_ORDERS.forEach(special_order => {
-                    special_order_option_html += '<option value="' + special_order + '">' + special_order + '</option>';
+                    if (special_order == 'SINGLE') {
+                        special_order_option_html += '<option selected value="' + special_order + '">' + special_order + '</option>';
+                    } else {
+                        special_order_option_html += '<option disabled value="' + special_order + '">' + special_order + '</option>';
+                    }
+                    
                 });
 
                 Object.keys(SELL_BUY).forEach(side => {
@@ -631,7 +625,7 @@
                 
                 // 選択肢追加
                 $('#id_pair').html(pair_option_html);
-                $('#id_pair').val(PAIRS[0]);
+                $('#id_pair').val(Object.keys(PAIRS)[0]);
 
                 $('#id_special_order').html(special_order_option_html);
                 $('#id_special_order').val(SPECIAL_ORDERS[0]);
@@ -650,7 +644,14 @@
                 $('#ex1').slider().on('slideStop', function(ev){
                     udpate_amount_by_slider();
                 });
-    
+                
+                $('#id_start_amount').on('keydown', function(e) {
+                    if(!((e.keyCode > 95 && e.keyCode < 106)
+                    || (e.keyCode > 47 && e.keyCode < 58) 
+                    || e.keyCode == 8 || e.keyCode == 190)) {
+                        return false;
+                    }
+                });
                 $('#id_price').on('change', function() { 
                     update_slider_by_amount();
                 });
@@ -668,11 +669,11 @@
                     $('#expect_price').val('');
 
                     // 数量、金額の通貨部分を更新
-                    var unit = $('#id_pair').val().split('_')[0];
-                    var currency = $('#id_pair').val().split('_')[1];
+                    var unit = $('#id_pair').val().split('_')[0].toUpperCase();
+                    var currency = $('#id_pair').val().split('_')[1].toUpperCase();
                     if (currency != '') {
-                        $('span.pair').html(currency);
-                        $('span.unit').html(unit);
+                        $('div.pair').html(currency);
+                        $('div.unit').html(unit);
                     }
 
                     // 一覧タブを更新
@@ -683,18 +684,22 @@
                     var new_order_type = $('#id_order_type').val();
                     display_price_div(new_order_type);
                 });
-            
+                
+                $('#id_start_amount').on('change', function() {
+
+                });
                 $('#sell_button').on('click', function() {
                     $('#sell_button').addClass('sell').removeClass('btn-base');
                     $('#buy_button').removeClass('buy').addClass('btn-base');
                     $('#id_side').val('sell');
-                    
+                    $('#id_order_button').removeClass('green_button').addClass('red_button'); 
                 });
                 
                 $('#buy_button').on('click', function() {
                     $('#buy_button').addClass('buy').removeClass('btn-base');
                     $('#sell_button').removeClass('sell').addClass('btn-base');
                     $('#id_side').val('buy');
+                    $('#id_order_button').removeClass('red_button').addClass('green_button');
                 });
                 $('#id_order_button').on('click', function(e) {
                     e.preventDefault();
@@ -772,7 +777,7 @@
                 $.parseJSON(res.active_orders).forEach(active_order => {
                     table_html += '<tr>';
                     table_html += '<td align="right">' + hyphen_if_null(active_order.fields.order_id) + '</td>';
-                    table_html += '<td align="center">' + active_order.fields.pair + '</td>';
+                    table_html += '<td align="center">' + PAIRS[active_order.fields.pair] + '</td>';
                     table_html += '<td align="center">' + active_order.fields.order_type + '</td>';
                     table_html += '<td align="center">' + SELL_BUY[active_order.fields.side] + '</td>';
                     table_html += '<td align="right">' + active_order.fields.start_amount + '</td>';
@@ -831,7 +836,7 @@
                 $.parseJSON(res.order_history).forEach(order => {
                     table_html += '<tr>';
                     table_html += '<td align="right">' + order.fields.order_id + '</td>';
-                    table_html += '<td align="center">' + order.fields.pair + '</td>';
+                    table_html += '<td align="center">' + PAIRS[order.fields.pair] + '</td>';
                     table_html += '<td align="center">' + order.fields.order_type + '</td>';
                     table_html += '<td align="center">' + SELL_BUY[order.fields.side] + '</td>';
                     table_html += '<td align="right">' + order.fields.start_amount + '</td>';
@@ -885,7 +890,7 @@
                 var table_html = '';
                 $.parseJSON(res.active_alerts).forEach(active_alert => {
                     table_html += '<tr>';
-                    table_html += '<td align="center">' + active_alert.fields.pair + '</td>';
+                    table_html += '<td align="center">' + PAIRS[active_alert.fields.pair] + '</td>';
                     table_html += '<td align="right">' + active_alert.fields.threshold + '</td>';
                     table_html += '<td><button pk="' + active_alert.pk + '"  type="button" class="btn btn-outline-secondary" name="deactivate_alert_button"><i style="color:red" class="fa fa-close"></i></button></td>';
                     table_html += '</tr>';
@@ -926,13 +931,19 @@
             // 初回時のみの処理
             if (is_initial) {
                 var option_html = '';
-                PAIRS.forEach(pair => {
-                    option_html += '<option value="' + pair + '">' + pair + '</option>';
+                Object.keys(PAIRS).forEach(pair => {
+                    option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
                 });
                 $('#id_pair_for_alert').html(option_html);
-                
+                $('#id_notice_rate').on('keydown', function(e) {
+                    if(!((e.keyCode > 95 && e.keyCode < 106)
+                    || (e.keyCode > 47 && e.keyCode < 58) 
+                    || e.keyCode == 8 || e.keyCode == 190)) {
+                        return false;
+                    }
+                });
                 $('#id_pair_for_alert').on('change', function() {
-                    var currency = $('#id_pair_for_alert').val().split('_')[1];
+                    var currency = $('#id_pair_for_alert').val().split('_')[1].toUpperCase();
                     $('#id_notice_rate').val('');
                     $('.pair_for_alert').html(currency);
                 });
