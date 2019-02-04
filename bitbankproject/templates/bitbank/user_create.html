@@ -8,7 +8,13 @@
                     {{ form.non_field_errors }}
                     {% for field in form %}
                         {% if field.name == 'notify_if_filled' %}
-                            {{ form.notify_if_filled }}
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                        <div class="input-group-text placeholder">約定通知</div>
+                                        {{ form.notify_if_filled }}
+                                </div>
+                            </div>  
+                            
                         {% else %}
                             {{ field }}
                             {{ field.errors }}
