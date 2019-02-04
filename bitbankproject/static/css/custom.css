@@ -1,24 +1,20 @@
 @media (min-width: 1100px) {
     /*code for destop*/
-
- 
-
 }
 @media (max-width: 1100px) {
 /*code for ipad and netbooks*/
 }
 @media (max-width: 480px) {
 /*code for mobile here*/
-
-
+}
 
 #ex1Slider .slider-selection {
-	background: #BABABA;
+	background: green;
 }
 
-}
-#asset_table {
-    font-size: 2vmin;
+table.table {
+    font-size: 1.8vmin !important;
+    font-weight: normal !important;
 }
 body {
     color: white;
@@ -26,24 +22,18 @@ body {
     /* background: white; */
 }
 
-label.control-label {
+/* label.control-label {
     font-size: 2vmin;
-}
+} */
 .form-control {
     color: white;
     background-color : #333333;
     border: none;
     border-radius : 0;
     display: inline;
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
     /* text-align: right; */
 }
-
-div.input-group, div.btn-group {
-    padding-left: 2vmin;
-    padding-right: 2vmin;
-}
-
 
 div.input-group-prepend, div.input-group-append {
     color: white;
@@ -66,13 +56,11 @@ select {
 .btn {
     color: white;
     border-radius: 0;
-    
 }
 
 button.btn-base {
     background: #333333;
     color: gray;
-    font-size: 2vmin;
 }
 
 input[type="number"]{
@@ -86,19 +74,16 @@ div.card {
 } 
 
 .form-control:focus{
-    color: green;
     background-color :#333333;
 }
 
-span.my_placeholder {
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
+div.input-group-text.placeholder {
     color: gray;
-    font-size: 2vmin;
-    padding-left: 1vmin;
-    padding-right: 1vmin;
+    /* font-size: 2vmin; */
+    background: #333333;
+    border:none;
 }
+
 
 button.buy {
     background: teal;
@@ -117,12 +102,12 @@ button.off {
 
 .green_button {
     background-color: #008080;
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
 }
 
 .red_button {
     background-color: #FF6633;
-    font-size: 2vmin;
+    /* font-size: 2vmin; */
 }
 
     
@@ -143,7 +128,7 @@ button.off {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 1em 1em;
     transition: 0.3s;
   }
   
@@ -167,4 +152,3 @@ button.off {
 .form-control::-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 19+ */
 .form-control:-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Internet Explorer 10-11 */
 .form-control::-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Microso
-
