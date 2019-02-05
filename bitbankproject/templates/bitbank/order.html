@@ -5,11 +5,12 @@
     <div class="row">
         <div class="col-md-11 offset-md-1 col-xs-12">
             <div class="tab btn-group">
-                <button id="order_button" type="button" class="tablinks" onclick="openTab(event, 'order')">注文</button>
-                <button id="active_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">アクティブ注文</button>
-                <button id="order_history_button" type="button" class="tablinks" onclick="openTab(event, 'order_history')">注文履歴</button>
-                <button id="alert_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">アラート</button>
+                <button id="order_button" type="button" class="tablinks" onclick="openTab(event, 'order')">注文する</button>
+                <button id="active_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">発注一覧</button>
+                <button id="order_history_button" type="button" class="tablinks" onclick="openTab(event, 'order_history')">取引履歴</button>
+                <button id="alert_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">通知設定</button>
                 <button id="asset_button" type="button" class="tablinks" onclick="openTab(event, 'assets')">保有資産</button>
+                <button id="user_info_button" type="button" class="tablinks" onclick="openTab(event, 'user_info')">マイページ</button>
             </div>
         </div>
     </div>
@@ -28,6 +29,9 @@
                         <div class="input-group-text placeholder">取引通貨</div>
                     </div>
                     <select id="id_pair" class="form-control"></select>
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder invisible">XXX</div>
+                    </div>
                     <div id="id_pair_error" class="errorlist"></div>
                 </div>
             </div>
@@ -40,6 +44,9 @@
                             <div class="input-group-text placeholder">特殊注文</div>
                     </div>
                     <select id="id_special_order" class="form-control"></select>
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder invisible">XXX</div>
+                    </div>
                     <div id="id_special_order_error" class="errorlist"></div>
                 </div>  
             </div>
@@ -67,6 +74,9 @@
                     </div>
                     <select id="id_order_type" class="form-control"></select>
                     <div id="id_order_type_error" class="errorlist"></div>
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder invisible">XXX</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -141,7 +151,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-1 col-xs-12">
                 <div class="input-group">
-                    <button id="id_order_button" type="submit" class="btn btn-lg btn-block green_button">注文</button>
+                    <button id="id_order_button" type="button" class="btn btn-lg btn-block green_button">注文</button>
                 </div>  
             </div>
         </div>
@@ -149,45 +159,49 @@
     <div id="active_orders" class="tabcontent">
         <div class="row">
             <div class="col-md-10 offset-md-1 col-xs-12">
-                <table class="table table-responsive table-dark">
-                    <thead>
-                        <th>注文ID</th>
-                        <th>通貨ペア</th>
-                        <th>タイプ</th>
-                        <th>売買</th>
-                        <th>数量</th>
-                        <th>価格</th>
-                        <th>約定済数量</th>
-                        <th>平均価格</th>
-                        <th>注文日時</th>
-                        <th>ステータス</th>
-                        <th>キャンセル</th>  
-                    </thead>
-                    <tbody>      
-                    </tbody>  
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <thead>
+                            <th>注文ID</th>
+                            <th>取引通貨</th>
+                            <th>タイプ</th>
+                            <th>売買</th>
+                            <th>数量</th>
+                            <th>価格</th>
+                            <th>約定済数量</th>
+                            <th>平均価格</th>
+                            <th>注文日時</th>
+                            <th>ステータス</th>
+                            <th>キャンセル</th>  
+                        </thead>
+                        <tbody>      
+                        </tbody>  
+                    </table>
+                </div>
             </div>
         </div>
     </div>  
     <div id="order_history" class="tabcontent">
         <div class="row">
             <div class="col-md-10 offset-md-1 col-xs-12">
-                <table class="table table-responsive table-dark">
-                    <thead>
-                        <th>注文ID</th>
-                        <th>通貨ペア</th>
-                        <th>タイプ</th>
-                        <th>売買</th>
-                        <th>数量</th>
-                        <th>価格</th>
-                        <th>約定済数量</th>
-                        <th>平均価格</th>
-                        <th>注文日時</th>
-                        <th>ステータス</th>  
-                    </thead>
-                    <tbody>
-                    </tbody>  
-                </table> 
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <thead>
+                            <th>注文ID</th>
+                            <th>取引通貨</th>
+                            <th>タイプ</th>
+                            <th>売買</th>
+                            <th>数量</th>
+                            <th>価格</th>
+                            <th>約定済数量</th>
+                            <th>平均価格</th>
+                            <th>注文日時</th>
+                            <th>ステータス</th>  
+                        </thead>
+                        <tbody>
+                        </tbody>  
+                    </table> 
+                </div>
             </div>
         </div>
     </div>
@@ -196,16 +210,19 @@
             <div class="col-md-6 offset-md-1 col-xs12">
                 <div id="id_asset_message" class="alert">
                 </div>
-                <table id="asset_table" class="table table-sm table-dark">
-                    <tr><th>合計評価額</th><td align="right" id="total_in_jpy"></td></tr>
-                    <tr><th>日本円</th><td align="right" id="jpy"></td></tr>
-                    <tr><th>ビットコイン</th><td align="right" id="btc"></td></tr>
-                    <tr><th>リップル</th><td align="right" id="xrp"></td></tr>
-                    <tr><th>ライトコイン</th><td align="right" id="ltc"></td></tr>
-                    <tr><th>イーサリアム</th><td align="right" id="eth"></td></tr>
-                    <tr><th>モナーコイン</th><td align="right" id="mona"></td></tr>
-                    <tr><th>ビットコインキャッシュ</th><td align="right" id="bcc"></td></tr>
-                </table>
+                <div class="table-responsive">
+                    <table id="asset_table" class="table table-sm table-dark">
+                        <tr><th>合計評価額</th><td align="right" id="total_in_jpy"></td></tr>
+                        <tr><th>日本円</th><td align="right" id="jpy"></td></tr>
+                        <tr><th>ビットコイン</th><td align="right" id="btc"></td></tr>
+                        <tr><th>リップル</th><td align="right" id="xrp"></td></tr>
+                        <tr><th>ライトコイン</th><td align="right" id="ltc"></td></tr>
+                        <tr><th>イーサリアム</th><td align="right" id="eth"></td></tr>
+                        <tr><th>モナーコイン</th><td align="right" id="mona"></td></tr>
+                        <tr><th>ビットコインキャッシュ</th><td align="right" id="bcc"></td></tr>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
@@ -240,17 +257,72 @@
         <hr>
         <div class="row">
             <div class="col-md-6 offset-md-1 col-xs-8">
-                <table class="table table-responsive table-dark">
-                    <thead>
-                        <th>通貨ペア</th>
-                        <th>通知レート</th>
-                        <th>キャンセル</th>
-                    </thead>
-                    <tbody>
-                    </tbody>  
-                </table>    
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <thead>
+                            <th>取引通貨</th>
+                            <th>通知レート</th>
+                            <th>キャンセル</th>
+                        </thead>
+                        <tbody>
+                        </tbody>  
+                    </table>  
+                </div>
+
             </div>
         </div> 
+    </div>
+    <div id="user_info" class="tabcontent">
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <tbody>
+                            <tr>
+                                <th>登録日</th>
+                                <td><input id="id_date_joined" type="text" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <th>名前</th>
+                                <td><input id="id_full_name" type="text" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <th>登録メールアドレス</th>
+                                <td><input id="id_email" type="text" class="form-control"></td>
+                            </tr>
+ 
+                            <tr>
+                                <th>API KEY</th>
+                                <td><input id="id_api_key" type="text" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <th>API SECRET KEY</th>
+                                <td><input id="id_api_secret_key" type="text" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <th>通知用メールアドレス</th>
+                                <td><input id="id_email_for_notice" type="text" class="form-control"></td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-xs-12">
+                パスワード変更は<a href="{% url 'bitbank:password_change' %}">こちら</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-2 offset-md-1 col-xs-4">
+                <button id="id_update_user_info_button" type="button" class="btn btn-block green_button">更新</button>
+               
+            </div>
+            <div class="col-md-2 col-xs-4 offset-xs-1">
+                <button id="id_logout_button" type="button" class="btn btn-block red_button">ログアウト</button>
+            </div>
+        </div>
     </div>      
 </form>
 {% endblock %}
@@ -326,6 +398,8 @@
             var seconds = date.getSeconds();
             return(year + "/" + month + "/" + day + " " + hours + ":" + minutes + ":" + seconds);
         }
+        
+        
         function call_get_assets_api(is_async = true) {
             return $.ajax({
                 'url': '{% url "bitbank:ajax_get_assets" %}',
@@ -355,7 +429,27 @@
                 }
             });
         }
-        
+        function call_get_user() {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_get_user" %}',
+                'type': 'GET',
+                'dataType': 'json'
+            });
+        }
+        function call_update_user(full_name, api_key, api_secret_key, notify_if_filled, email_for_notice) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_update_user" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    full_name: full_name,
+                    api_key: api_key,
+                    api_secret_key: api_secret_key,
+                    notify_if_filled: notify_if_filled,
+                    email_for_notice: email_for_notice
+                }
+            });
+        }
         function call_get_active_orders() {
             return $.ajax({
                 'url': '{% url "bitbank:ajax_get_active_orders" %}',
@@ -1080,7 +1174,26 @@
                 sset_error_message($('#id_ajax_message'));
             });
         }
-
+        function initialize_user_info_tab(is_initial = false) {
+            call_get_user()
+            .done(function(res) {
+                if (res.error) {
+                    set_error_message($('#id_ajax_message'), res.error);
+                    return;
+                }
+                var user_json = $.parseJSON(res.user)[0];
+                console.log(user_json);
+                $('#id_date_joined').val(user_json.fields.date_joined);
+                $('#id_full_name').val(user_json.fields.full_name);
+                $('#id_api_key').val(user_json.fields.api_key);
+                $('#id_api_secret_key').val(user_json.fields.api_secret_key);
+                //$('#id_password').val(user_json.fields.password);
+                $('#id_email_for_notice').val(user_json.fields.email_for_notice);
+            })
+            .fail(function() {
+                set_error_message($('#id_ajax_message'));
+            });
+        }
         function set_error_message(target, message="ログインし直してください") {
             $(target).addClass('alert-danger');
             $(target).removeClass('alert-success');
@@ -1114,6 +1227,9 @@
                     break;
                 case 'assets':
                     initialize_asset_tab(false);
+                    break;
+                case 'user_info':
+                    initialize_user_info_tab(false);
                     break;
             }
 

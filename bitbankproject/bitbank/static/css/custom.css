@@ -23,6 +23,9 @@ table.table {
     font-size: 2.2vmin;
     font-weight: normal !important;
 }
+table.table thead tr th {
+    text-align: center;
+}
 body {
     color: white;
     background: #222222;
@@ -38,8 +41,6 @@ body {
     border: none;
     border-radius : 0;
     display: inline;
-    /* font-size: 2vmin; */
-    /* text-align: right; */
 }
 
 div.input-group-prepend, div.input-group-append {
@@ -94,6 +95,9 @@ div.input-group-text.placeholder {
     background: #333333;
     border:none;
 }
+div.input-group-text.placeholder.invisible {
+    color: #333333;
+}
 
 
 button.buy {
@@ -112,7 +116,7 @@ button.off {
 }
 
 .green_button {
-    background-color: #008080;
+    background-color: teal;
     /* font-size: 2vmin; */
 }
 
@@ -145,7 +149,7 @@ button.off {
   
   /* Change background color of buttons on hover */
   .tab button:hover {
-    background-color: #ddd;
+    background-color: #333333;
   }
   
   /* Create an active/current tablink class */

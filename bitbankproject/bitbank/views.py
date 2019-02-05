@@ -29,9 +29,9 @@ from django.views import generic
 
 from .forms import (LoginForm, MyPasswordChangeForm, MyPasswordResetForm,
                     MySetPasswordForm, UserCreateForm, UserUpdateForm)
-from .models import Alert, Order
+from .models import User, Alert, Order
 
-User = get_user_model()
+# User = get_user_model()
 
 class Login(LoginView):
     """ログインページ"""
@@ -46,18 +46,18 @@ class OnlyYouMixin(UserPassesTestMixin):
         return user.pk == self.kwargs['pk'] or user.is_superuser
 
 
-class UserDetail(OnlyYouMixin, generic.DetailView):
-    model = User
-    template_name = 'bitbank/user_detail.html'
+# class UserDetail(OnlyYouMixin, generic.DetailView):
+#     model = User
+#     template_name = 'bitbank/user_detail.html'
 
 
-class UserUpdate(OnlyYouMixin, generic.UpdateView):
-    model = User
-    form_class = UserUpdateForm
-    template_name = 'bitbank/user_form.html'
+# class UserUpdate(OnlyYouMixin, generic.UpdateView):
+#     model = User
+#     form_class = UserUpdateForm
+#     template_name = 'bitbank/user_form.html'
 
-    def get_success_url(self):
-        return resolve_url('bitbank:user_detail', pk=self.kwargs['pk'])
+#     def get_success_url(self):
+#         return resolve_url('bitbank:user_detail', pk=self.kwargs['pk'])
 
 class UserCreate(generic.CreateView):
     """ユーザー仮登録"""
@@ -175,6 +175,42 @@ class MainPage(LoginRequiredMixin, generic.TemplateView):
         context = super(MainPage, self).get_context_data(**kwargs)
         context['notify_if_filled'] = User.objects.filter(pk=self.request.user.pk).get().notify_if_filled
         return context
+
+def ajax_get_user(request):
+    pk = request.user.pk
+    user_qs = User.objects.filter(pk=pk)
+    serialized_qs = serializers.serialize('json', user_qs)
+    data = {
+        'user': serialized_qs
+    }
+    return JsonResponse(data)
+
+def ajax_update_user(request):
+    user = request.user
+    new_full_name = request.POST.get("full_name")
+    new_password = request.POST.get('password')
+    new_api_key = request.POST.get("api_key")
+    new_api_secret_key = request.POST.get("api_secret_key")
+    new_email_for_notice = request.POST.get("email_for_notice")
+    new_notify_if_filled = request.POST.get("notify_if_filled")
+    
+    try:
+        user.full_name = new_full_name
+        user.api_key = new_api_key
+        user.api_secret_key = new_api_secret_key
+        user.email_for_notice = new_email_for_notice
+        user.notify_if_filled = new_notify_if_filled
+        user.set_password(new_password)
+        user.save()
+    except Exception as e:
+        return JsonResponse({'error': e.args})
+
+    serialized_qs = serializers.serialize('json', user)
+    data = {
+        'user': serialized_qs
+    }
+    return JsonResponse(data)
+
 
 def ajax_create_order(request):
     logger = logging.getLogger('transaction_logger')

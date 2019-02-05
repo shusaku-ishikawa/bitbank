@@ -35,22 +35,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           {% if user.is_authenticated %}
-          <li>
-            <a class="nav-item nav-link" href="{% url 'bitbank:user_detail' user.pk %}">ユーザー情報閲覧</a>
-          </li>
-          <li>
-            <a class="nav-item nav-link" href="{% url 'bitbank:user_update' user.pk %}">ユーザー情報更新</a>
-          </li>
 
-          <li class="nav-item">
-              <a class="nav-item nav-link" href="{% url 'bitbank:password_change' %}">
-                  パスワードの変更
-              </a>
-          </li>
           <li>
             <a class="nav-item nav-link" href="{% url 'bitbank:login' %}">ログアウト</a>
           </li>
-          <li>
+          <li>  
             <a class="nav-item nav-link" href="{% url 'bitbank:order' %}">注文</a>
           </li>
           {% else %}
