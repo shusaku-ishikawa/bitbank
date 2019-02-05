@@ -280,11 +280,11 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-2 offset-md-1 col-xs-4">
+            <div class="col-md-2 offset-md-1 col-6">
                 <button id="id_update_user_info_button" type="button" class="btn btn-block green_button">更新</button>
                
             </div>
-            <div class="col-md-2 col-xs-4 offset-xs-1">
+            <div class="col-md-2 col-6">
                 <button id="id_logout_button" type="button" class="btn btn-block red_button">ログアウト</button>
             </div>
         </div>
@@ -983,27 +983,20 @@
                     // table_html += '<td style="text-align:center"><button pk="' + active_alert.pk + '"  type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button></td>';
                     // table_html += '</tr>';
                     table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
-                    table_html += '<div class="col-3 card-table-header">取引通貨</div>';
-                    table_html += '<div class="col-3 card-table-data">' + PAIRS[active_alert.fields.pair] + '</div>';
-                    table_html += '<div class="col-3 card-table-header">通知レート</div>';
-                    table_html += '<div class="col-3 card-table-data">' + active_alert.fields.threshold + '</div>';
+                    table_html += '<div class="col-6 card-table-header">取引通貨</div>';
+                    table_html += '<div class="col-6 card-table-data">' + PAIRS[active_alert.fields.pair] + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-6 card-table-header">通知レート</div>';
+                    table_html += '<div class="col-6 card-table-data">' + active_alert.fields.threshold + '</div>';
                     table_html += '</div>';
                     table_html += '<div class="row">';
                     table_html += '<button pk="' + active_alert.pk + '" type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button>';
-                    table_html += '</div></div></div></div></div><hr>';
+                    table_html += '</div>'
+                    table_html += '</div></div></div></div><hr>';
                 });
                 $('#alert_container').html(table_html);
-                // //絞り込みする場合
-                // if ($('#id_filter_by_pair').prop('checked')) {
-                //     var pair = $('#id_pair').val();
-                //     $('#alerts > table > tbody > tr').each((i, row) => {
-                //         if ($(row).find("td:eq(0)").html() == pair) {
-                //             $(row).show();
-                //         } else {
-                //             $(row).hide();
-                //         }
-                //     });
-                // }
+               
                 $("button[name='deactivate_alert_button']").on('click', function() {
                     var pk = $(this).attr('pk');
                     call_deactivate_alert(pk)
@@ -1186,7 +1179,7 @@
                 }
                 var user_json = $.parseJSON(res.user)[0];
                 console.log(user_json);
-                $('#id_date_joined').val(user_json.fields.date_joined);
+                $('#id_date_joined').val(return_formatted_datetime(Date.parse(user_json.fields.date_joined)));
                 $('#id_email').val(user_json.fields.    email);
                 $('#id_full_name').val(user_json.fields.full_name);
                 $('#id_api_key').val(user_json.fields.api_key);
