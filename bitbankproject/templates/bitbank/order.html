@@ -3,7 +3,7 @@
 <form action="" method="POST">
     {% csrf_token %}
     <div class="row">
-        <div class="col-md-11 offset-md-1 col-xs-12">
+        <div class="col-md-11 offset-md-1 col-12">
             <div class="tab btn-group">
                 <button id="order_button" type="button" class="tablinks" onclick="openTab(event, 'order')">注文する</button>
                 <button id="active_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">発注一覧</button>
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 offset-md-1 col-xs-12">
+        <div class="col-md-6 offset-md-1 col-12">
             <div id="id_ajax_message" class="alert">
             </div>
         </div>
@@ -23,7 +23,7 @@
             
     <div id="order" class="tabcontent">
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text placeholder">取引通貨</div>
@@ -38,7 +38,7 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 co-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
                             <div class="input-group-text placeholder">特殊注文</div>
@@ -53,7 +53,7 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="btn-group d-flex" role="group">
                     <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
                     <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
@@ -67,7 +67,7 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text placeholder">注文方法</div>
@@ -83,7 +83,7 @@
                 
         <hr>
         <div class="row show_if_limit_order">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
                             <div class="input-group-text placeholder">注文価格</div>
@@ -98,7 +98,7 @@
         </div>
         <hr>
         <div class="row show_if_stop_order">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text placeholder">逆指値価格</div>
@@ -113,7 +113,7 @@
         </div>
         <hr>            
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
                             <div class="input-group-text placeholder">数量</div>
@@ -128,14 +128,14 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/>
                 <div><span style="float:right;" id="amount_percentage"></span></div>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text placeholder">予想</div>
@@ -149,7 +149,7 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <button id="id_order_button" type="button" class="btn btn-lg btn-block green_button">注文</button>
                 </div>  
@@ -157,33 +157,11 @@
         </div>
     </div>
     <div id="active_orders" class="tabcontent">
-        <div class="row">
-            <div class="col-md-10 offset-md-1 col-xs-12">
-                <div class="table-responsive">
-                    <table class="table table-dark">
-                        <thead>
-                            <th>注文ID</th>
-                            <th>取引通貨</th>
-                            <th>タイプ</th>
-                            <th>売買</th>
-                            <th>数量</th>
-                            <th>価格</th>
-                            <th>約定済数量</th>
-                            <th>平均価格</th>
-                            <th>注文日時</th>
-                            <th>ステータス</th>
-                            <th>キャンセル</th>  
-                        </thead>
-                        <tbody>      
-                        </tbody>  
-                    </table>
-                </div>
-            </div>
-        </div>
+
     </div>  
     <div id="order_history" class="tabcontent">
         <div class="row">
-            <div class="col-md-10 offset-md-1 col-xs-12">
+            <div class="col-md-10 offset-md-1 col-12">
                 <div class="table-responsive">
                     <table class="table table-dark">
                         <thead>
@@ -255,26 +233,13 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-8">
-                <div class="table-responsive">
-                    <table class="table table-dark">
-                        <thead>
-                            <th>取引通貨</th>
-                            <th>通知レート</th>
-                            <th>キャンセル</th>
-                        </thead>
-                        <tbody>
-                        </tbody>  
-                    </table>  
-                </div>
-
-            </div>
+        <div class="container" id="alert_container">
+            
         </div> 
     </div>
     <div id="user_info" class="tabcontent">
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 <div class="table-responsive">
                     <table class="table table-dark">
                         <tbody>
@@ -309,7 +274,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-12">
+            <div class="col-md-6 offset-md-1 col-12">
                 パスワード変更は<a href="{% url 'bitbank:password_change' %}">こちら</a>
             </div>
         </div>
@@ -869,21 +834,43 @@
                     return;
                 }
                 $.parseJSON(res.active_orders).forEach(active_order => {
-                    table_html += '<tr>';
-                    table_html += '<td align="right">' + hyphen_if_null(active_order.fields.order_id) + '</td>';
-                    table_html += '<td align="center">' + PAIRS[active_order.fields.pair] + '</td>';
-                    table_html += '<td align="center">' + active_order.fields.order_type + '</td>';
-                    table_html += '<td align="center">' + SELL_BUY[active_order.fields.side] + '</td>';
-                    table_html += '<td align="right">' + active_order.fields.start_amount + '</td>';
-                    table_html += '<td align="right">' + hyphen_if_null(active_order.fields.price) + '</td>';
-                    table_html += '<td align="right">' + hyphen_if_null(active_order.fields.executed_amount) + '</td>';
-                    table_html += '<td align="right">' + hyphen_if_null(active_order.fields.average_price) + '</td>';
-                    table_html += '<td align="right">' + return_formatted_datetime(parseInt(active_order.fields.ordered_at)) + '</td>';
-                    table_html += '<td align="right">' + STATUS[active_order.fields.status] + '</td>';
-                    table_html += '<td align="center"><button pk="' + active_order.pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button"><i style="color:red" class="fa fa-close"></i></button></td>';  
-                    table_html += '</tr>';
+                    //table_html += '<div class="">'
+                    table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
+                    table_html += '<div class="col-3 card-table-header">注文ID</div>';
+                    table_html += '<div class="col-3 card-table-data">' + active_order.fields.order_id + '</div>';
+                    table_html += '<div class="col-3 card-table-header">取引通貨</div>';
+                    table_html += '<div class="col-3 card-table-data">' + PAIRS[active_order.fields.pair] + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-3 card-table-header">タイプ</div>';
+                    table_html += '<div class="col-3 card-table-data">' + active_order.fields.order_type + '</div>';
+                    table_html += '<div class="col-3 card-table-header">売/買</div>';
+                    table_html += '<div class="col-3 card-table-data">' + SELL_BUY[active_order.fields.side] + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-3 card-table-header">数量</div>';
+                    table_html += '<div class="col-3 card-table-data">' + active_order.fields.start_amount + '</div>';
+                    table_html += '<div class="col-3 card-table-header">価格</div>';
+                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.price) + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-3 card-table-header">約定数量</div>';
+                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.executed_amount) + '</div>';
+                    table_html += '<div class="col-3 card-table-header">平均価格</div>';
+                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.average_price) + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-6 card-table-header">注文日時</div>';
+                    table_html += '<div class="col-6 card-table-data">' + return_formatted_datetime(active_order.fields.ordered_at) + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-6 card-table-header">ステータス</div>';
+                    table_html += '<div class="col-6 card-table-data">' + STATUS[active_order.fields.status] + '</div></div><hr>';
+                    table_html += '<div class="row">';
+                    table_html += '<button pk="' + active_order.pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button">CANCEL</button>';
+                    table_html += '</div></div></div></div></div><hr>';
                 });
-                $('#active_orders').find('tbody').html(table_html);
+                $('#active_orders').html(table_html);
                 // //絞り込みする場合
                 // if ($('#id_filter_by_pair').prop('checked')) {
                     
@@ -928,33 +915,40 @@
             .done(function(res) {
                 var table_html = '';
                 $.parseJSON(res.order_history).forEach(order => {
-                    table_html += '<tr>';
-                    table_html += '<td align="right">' + order.fields.order_id + '</td>';
-                    table_html += '<td align="center">' + PAIRS[order.fields.pair] + '</td>';
-                    table_html += '<td align="center">' + order.fields.order_type + '</td>';
-                    table_html += '<td align="center">' + SELL_BUY[order.fields.side] + '</td>';
-                    table_html += '<td align="right">' + order.fields.start_amount + '</td>';
-                    table_html += '<td align="right">' + hyphen_if_null(order.fields.price) + '</td>';
-                    table_html += '<td align="right">' + order.fields.executed_amount + '</td>';
-                    table_html += '<td align="right">' + order.fields.average_price + '</td>';
-                    table_html += '<td align="right">' + return_formatted_datetime(order.fields.ordered_at) + '</td>';
-                    table_html += '<td align="center">' + STATUS[order.fields.status] + '</td>';
-                    table_html += '</tr>';
-                    
+                    table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
+                    table_html += '<div class="col-3 card-table-header">注文ID</div>';
+                    table_html += '<div class="col-3 card-table-data">' + order.fields.order_id + '</div>';
+                    table_html += '<div class="col-3 card-table-header">取引通貨</div>';
+                    table_html += '<div class="col-3 card-table-data">' + PAIRS[order.fields.pair] + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-3 card-table-header">タイプ</div>';
+                    table_html += '<div class="col-3 card-table-data">' + order.fields.order_type + '</div>';
+                    table_html += '<div class="col-3 card-table-header">売/買</div>';
+                    table_html += '<div class="col-3 card-table-data">' + SELL_BUY[order.fields.side] + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-3 card-table-header">数量</div>';
+                    table_html += '<div class="col-3 card-table-data">' + order.fields.start_amount + '</div>';
+                    table_html += '<div class="col-3 card-table-header">価格</div>';
+                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(order.fields.price) + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-3 card-table-header">約定数量</div>';
+                    table_html += '<div class="col-3 card-table-data">' + order.fields.executed_amount + '</div>';
+                    table_html += '<div class="col-3 card-table-header">平均価格</div>';
+                    table_html += '<div class="col-3 card-table-data">' + order.fields.average_price + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-6 card-table-header">注文日時</div>';
+                    table_html += '<div class="col-6 card-table-data">' + return_formatted_datetime(order.fields.ordered_at) + '</div>';
+                    table_html += '</div>';
+                    table_html += '<div class="row">';
+                    table_html += '<div class="col-6 card-table-header">ステータス</div>';
+                    table_html += '<div class="col-6 card-table-data">' + STATUS[order.fields.status] + '</div>';
+                    table_html += '</div></div></div></div></div><hr>';
                 });
-                $('#order_history').find('tbody').html(table_html);
-                // //絞り込みする場合
-                // if ($('#id_filter_by_pair').prop('checked')) {
-                //     var pair = $('#id_pair').val();
-                //     $('#order_history').find('.table').find('tr').each((i, row) => {
-                //         if ($(row).find("td:eq(1)").html() == pair) {
-                //             $(row).show();
-                //         } else {
-                //             $(row).hide();
-                //         }
-                //     });
-                // }
-                
+                $('#order_history').html(table_html);
             })
             .fail(function() {
                 set_error_message($('#id_ajax_message'));
@@ -983,13 +977,22 @@
             .done(function(res) {
                 var table_html = '';
                 $.parseJSON(res.active_alerts).forEach(active_alert => {
-                    table_html += '<tr>';
-                    table_html += '<td align="center">' + PAIRS[active_alert.fields.pair] + '</td>';
-                    table_html += '<td align="right">' + active_alert.fields.threshold + '</td>';
-                    table_html += '<td><button pk="' + active_alert.pk + '"  type="button" class="btn btn-outline-secondary" name="deactivate_alert_button"><i style="color:red" class="fa fa-close"></i></button></td>';
-                    table_html += '</tr>';
+                    // table_html += '<tr>';
+                    // table_html += '<td align="center">' + PAIRS[active_alert.fields.pair] + '</td>';
+                    // table_html += '<td align="right">' + active_alert.fields.threshold + '</td>';
+                    // table_html += '<td style="text-align:center"><button pk="' + active_alert.pk + '"  type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button></td>';
+                    // table_html += '</tr>';
+                    table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
+                    table_html += '<div class="col-3 card-table-header">取引通貨</div>';
+                    table_html += '<div class="col-3 card-table-data">' + PAIRS[active_alert.fields.pair] + '</div>';
+                    table_html += '<div class="col-3 card-table-header">通知レート</div>';
+                    table_html += '<div class="col-3 card-table-data">' + active_alert.fields.threshold + '</div>';
+                    table_html += '</div>';
+                    table_html += '<button pk="' + active_alert.pk + '" type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button>';
+                    table_html += '<div class="row">';
+                    table_html += '</div></div></div></div></div><hr>';
                 });
-                $('#alerts').find('tbody').html(table_html);
+                $('#alert_containerq    ').html(table_html);
                 // //絞り込みする場合
                 // if ($('#id_filter_by_pair').prop('checked')) {
                 //     var pair = $('#id_pair').val();
@@ -1184,6 +1187,7 @@
                 var user_json = $.parseJSON(res.user)[0];
                 console.log(user_json);
                 $('#id_date_joined').val(user_json.fields.date_joined);
+                $('#id_email').val(user_json.fields.    email);
                 $('#id_full_name').val(user_json.fields.full_name);
                 $('#id_api_key').val(user_json.fields.api_key);
                 $('#id_api_secret_key').val(user_json.fields.api_secret_key);

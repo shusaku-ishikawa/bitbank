@@ -79,9 +79,24 @@ input[type="number"]{
 }
 
 div.card {
-    border: solid 3px #FF6600;
     background: #222222;
     width: 100%;
+} 
+div.card.red-border {
+    border: solid 3px #FF6600;
+}
+div.card.order-card {
+    background: #333333;
+    font-size: 0.8em;
+}
+
+div.card-table-header {
+    text-align: left;
+    padding: 0.3em 0.5em
+} 
+div.card-table-data {
+    text-align: right;
+    padding: 0.3em 0.5em;
 } 
 
 .form-control:focus{
@@ -114,6 +129,10 @@ button.on {
 button.off {
     background: teal;
 }
+button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
+    color: red;
+    border: none;
+}
 
 .green_button {
     background-color: teal;
@@ -143,7 +162,7 @@ button.off {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 1em 1em;
+    padding: 2em 0.5em;
     transition: 0.3s;
   }
   

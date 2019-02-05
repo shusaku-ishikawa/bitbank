@@ -2,10 +2,9 @@
 {% block content %}
 <form action="" method="POST">
     <div class="row align-items-center">
-        <div class="col-md-5 col-xs-10 offset-md-3 offset-xs-1">
-            <div class="card">
+        <div class="col-md-5 col-10 offset-md-3 offset-1">
+            <div class="card red-border">
                 <div class="card-body">
-        
                     {{ form.non_field_errors }}
                     {% for field in form %}
                         {{ field }}
