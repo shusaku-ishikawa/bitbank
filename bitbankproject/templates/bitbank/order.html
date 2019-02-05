@@ -233,7 +233,7 @@
             </div>
         </div>
         <hr>
-        <div class="container" id="alert_container">
+        <div id="alert_container">
             
         </div> 
     </div>
@@ -988,11 +988,11 @@
                     table_html += '<div class="col-3 card-table-header">通知レート</div>';
                     table_html += '<div class="col-3 card-table-data">' + active_alert.fields.threshold + '</div>';
                     table_html += '</div>';
-                    table_html += '<button pk="' + active_alert.pk + '" type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button>';
                     table_html += '<div class="row">';
+                    table_html += '<button pk="' + active_alert.pk + '" type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button>';
                     table_html += '</div></div></div></div></div><hr>';
                 });
-                $('#alert_containerq    ').html(table_html);
+                $('#alert_container').html(table_html);
                 // //絞り込みする場合
                 // if ($('#id_filter_by_pair').prop('checked')) {
                 //     var pair = $('#id_pair').val();
