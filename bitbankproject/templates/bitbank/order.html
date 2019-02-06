@@ -10,7 +10,7 @@
                 <button id="order_history_button" type="button" class="tablinks" onclick="openTab(event, 'order_history')">取引履歴</button>
                 <button id="alert_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">通知設定</button>
                 <button id="asset_button" type="button" class="tablinks" onclick="openTab(event, 'assets')">保有資産</button>
-                <button id="user_info_button" type="button" class="tablinks" onclick="openTab(event, 'user_info')">マイページ</button>
+                <button id="user_info_button" type="button" class="tablinks" onclick="openTab(event, 'user_info')">個人情報</button>
             </div>
         </div>
     </div>
@@ -80,28 +80,13 @@
                 </div>
             </div>
         </div>
-                
-        <hr>
-        <div class="row show_if_limit_order">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                            <div class="input-group-text placeholder">注文価格</div>
-                    </div>
-                    <input id="id_price" type="number" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>
-                    <div id="id_price_error" class="errorlist"></div>     
-                </div>
-            </div>
-        </div>
-        <hr>
+        
+        <hr class="show_if_stop_order">
         <div class="row show_if_stop_order">
             <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">逆指値価格</div>
+                        <div class="input-group-text placeholder">逆指値価格(注文発動価格)</div>
                     </div>
                     <input id="id_price_for_stop" type="number" class="form-control">              
                     <div class="input-group-append">
@@ -111,6 +96,22 @@
                 </div>
             </div>
         </div>
+        <hr class="show_if_limit_order">
+        <div class="row show_if_limit_order">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">指値価格(約定希望価格)</div>
+                    </div>
+                    <input id="id_price" type="number" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
+                    <div id="id_price_error" class="errorlist"></div>     
+                </div>
+            </div>
+        </div>
+
         <hr>            
         <div class="row">
             <div class="col-md-6 offset-md-1 col-12">
@@ -129,7 +130,8 @@
         <hr>
         <div class="row">
             <div class="col-md-6 offset-md-1 col-12">
-                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/>
+                <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+                <!-- <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/> -->
                 <div><span style="float:right;" id="amount_percentage"></span></div>
             </div>
         </div>
@@ -549,7 +551,7 @@
             });
         }
         function udpate_amount_by_slider() {
-            var newVal = $('#ex1').data('slider').getValue();
+            var newVal = $('#myRange').val();
             $('#amount_percentage').html(newVal + '%');
 
             if($('#id_pair').val() == '') {
@@ -596,7 +598,7 @@
             }
 
             if (new_amount == '' || new_amount == 0 || new_price == '' || new_price == 0) {
-                $('#ex1').data('slider').setValue(0);
+                $('#myRange').val(0);
                 $('#amount_percentage').html('0.0%');
             } else {
                 var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
@@ -604,7 +606,7 @@
                     $('#amount_percentage').html('資金不足');
                 } else {
                     var rounded = Math.round(perc * 10) / 10;
-                    $('#ex1').data('slider').setValue(rounded);
+                    $('#myRange').val(rounded);
                     $('#amount_percentage').html(rounded + '%');
                     if (currency == 'jpy') {
                         $('#expect_price').val(Math.round(new_price * new_amount));
@@ -640,12 +642,8 @@
                 $('#buy_button').addClass('buy').removeClass('btn-base');
                 $('#sell_button').removeClass('sell').addClass('btn-base');
             }
-            $('#ex1').slider({
-                formatter: function(value) {
-                    return 'Current value: ' + value;
-                },
-            });
 
+            
             display_price_div($('#id_order_type').val());
             //画面ロード時のみ
             if (is_initial) {
@@ -684,7 +682,26 @@
                     // 無ければ先頭の選択肢をセット
                     $('#id_pair').val(Object.keys(PAIRS)[0]);
                 }
-                
+
+                var tar = $('#myRange')
+                var ini = (tar.val() - tar.attr('min')) / (tar.attr('max') - tar.attr('min'));
+
+                tar.css('background-image',
+                    '-webkit-gradient(linear, left top, right top, '
+                    + 'color-stop(' + ini + ', teal), '
+                    + 'color-stop(' + ini + ', #222222)'
+                    + ')'
+                );
+                tar.on("input", function () {
+                    var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
+                    $(this).css('background-image',
+                        '-webkit-gradient(linear, left top, right top, '
+                        + 'color-stop(' + val + ', teal), '
+                        + 'color-stop(' + val + ', #222222)'
+                        + ')'
+                    );
+                });
+     
 
                 $('#id_special_order').html(special_order_option_html);
                 if ($.cookie("special_order") != undefined) {
@@ -715,11 +732,8 @@
                     $('#id_order_type').val(ORDER_TYPES[0]);
                 }
 
-                // イベントバインディング
-                $('#ex1').slider().on('slide', function(ev){
-                    udpate_amount_by_slider();
-                });
-                $('#ex1').slider().on('slideStop', function(ev){
+                //イベントバインディング
+                $('#myRange').on('input', function(ev){
                     udpate_amount_by_slider();
                 });
                 
@@ -745,7 +759,7 @@
                     $('#id_start_amount').val('');
                     $('#id_price').val('');
                     $('#id_price_for_stop').val('');
-                    $('#ex1').data('slider').setValue(0);
+                    $('#myRange').val(0);
                     $('#amount_percentage').html('0.0%');
                     $('#expect_price').val('');
 
@@ -1307,9 +1321,9 @@
             initialize_asset_tab(true);
             initialize_user_info_tab(true);
 
+   
             if ($.cookie('last_visit_tab') != undefined) {
                 // 最後に訪れたタブを表示
-                console.log($.cookie('last_visit_tab'));
                 $('#' + $.cookie('last_visit_tab') + '_button').click();
             } else {
 

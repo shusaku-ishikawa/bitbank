@@ -17,6 +17,12 @@
 
 div.slider-handle.min-slider-handle.round {
     background: teal !important;
+    
+    
+}
+
+div.slider-track-high {
+    touch-action: none !important;
 }
 
 table.table {
@@ -172,9 +178,6 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
   }
   
   /* Create an active/current tablink class */
-  .tab button.active {
-    text-decoration: underline;
-  }
 
   /* Style the tab content */
   .tabcontent {
@@ -185,4 +188,45 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
 .form-control:-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 4 to 18 */
 .form-control::-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 19+ */
 .form-control:-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Internet Explorer 10-11 */
-.form-control::-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Microso
+.form-control::-ms-input-placeholder { color: #BBBBBB; font-weight: bold}  /* Microso */
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .8s;
+    transition: opacity .8s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background: teal;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: teal;
+    cursor: pointer;
+}
