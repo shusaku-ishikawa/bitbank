@@ -20,7 +20,7 @@ div.slider-handle.min-slider-handle.round {
 }
 
 table.table {
-    font-size: 2.2vmin;
+    /* font-size: 3vmin; */
     font-weight: normal !important;
 }
 table.table thead tr th {
@@ -130,7 +130,7 @@ button.off {
     background: teal;
 }
 button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
-    color: red;
+    color: orangered;
     border: none;
 }
 
@@ -140,7 +140,7 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
 }
 
 .red_button {
-    background-color: #FF6633;
+    background-color: orangered;
     /* font-size: 2vmin; */
 }
 

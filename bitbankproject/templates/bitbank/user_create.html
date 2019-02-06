@@ -2,15 +2,15 @@
 {% block content %}
 <form action="" method="POST">
     <div class="row">
-        <div class="col-md-6 offset-md-1 col-xs-12">
-            <div class="card">
+        <div class="col-md-5 offset-md-1 col-12">
+            <div class="card red-border">
                 <div class="card-body">
                     {{ form.non_field_errors }}
                     {% for field in form %}
                         {% if field.name == 'notify_if_filled' %}
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                        <div class="input-group-text placeholder">約定通知</div>
+                                        <div style="font-weight: bold" class="input-group-text placeholder">約定通知</div>
                                         {{ form.notify_if_filled }}
                                 </div>
                             </div>  
@@ -22,9 +22,15 @@
                         <hr>
                     {% endfor %}
                     {% csrf_token %}
-                    <div class="col-4 offset-4">
-                        <button type="submit" class="btn btn-block green_button">登録</button>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-block green_button float-right">登録</button>
+                        </div>
+                        <div class="col-6">
+                            <a href="{% url 'bitbank:login' %}" class="btn btn-block red_button">戻る</a>
+                        </div>
                     </div>
+                    
                 </div>
             </div>             
         </div>

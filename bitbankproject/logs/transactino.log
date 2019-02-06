@@ -4,3 +4,4 @@
 [ERROR]	asctime:2019-02-04 22:01:03,494	module:views	message:('エラーコード: 40001 内容: 注文数量が不正です',)
 [INFO]	asctime:2019-02-04 22:13:14,084	module:views	message:transaction start
 [INFO]	asctime:2019-02-05 21:44:44,364	module:views	message:transaction start
+[INFO]	asctime:2019-02-06 11:22:53,157	module:views	message:transaction start

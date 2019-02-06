@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'bitbank.User'
 LOGIN_URL = 'bitbank:login'
 LOGIN_REDIRECT_URL = 'bitbank:order'
+LOGOUT_REDIRECT_URL = 'bitbank:login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

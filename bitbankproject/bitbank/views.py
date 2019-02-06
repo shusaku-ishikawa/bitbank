@@ -38,6 +38,10 @@ class Login(LoginView):
     form_class = LoginForm
     template_name = 'bitbank/login.html'
 
+class Logout(LoginRequiredMixin, LogoutView):
+    """ログアウトページ"""
+    template_name = 'bitbank/top.html'
+
 class OnlyYouMixin(UserPassesTestMixin):
     raise_exception = True
 
@@ -46,18 +50,6 @@ class OnlyYouMixin(UserPassesTestMixin):
         return user.pk == self.kwargs['pk'] or user.is_superuser
 
 
-# class UserDetail(OnlyYouMixin, generic.DetailView):
-#     model = User
-#     template_name = 'bitbank/user_detail.html'
-
-
-# class UserUpdate(OnlyYouMixin, generic.UpdateView):
-#     model = User
-#     form_class = UserUpdateForm
-#     template_name = 'bitbank/user_form.html'
-
-#     def get_success_url(self):
-#         return resolve_url('bitbank:user_detail', pk=self.kwargs['pk'])
 
 class UserCreate(generic.CreateView):
     """ユーザー仮登録"""
@@ -186,28 +178,24 @@ def ajax_get_user(request):
     return JsonResponse(data)
 
 def ajax_update_user(request):
-    user = request.user
+    pk = request.user.pk
     new_full_name = request.POST.get("full_name")
-    new_password = request.POST.get('password')
     new_api_key = request.POST.get("api_key")
     new_api_secret_key = request.POST.get("api_secret_key")
     new_email_for_notice = request.POST.get("email_for_notice")
-    new_notify_if_filled = request.POST.get("notify_if_filled")
     
     try:
-        user.full_name = new_full_name
-        user.api_key = new_api_key
-        user.api_secret_key = new_api_secret_key
-        user.email_for_notice = new_email_for_notice
-        user.notify_if_filled = new_notify_if_filled
-        user.set_password(new_password)
-        user.save()
+        user_to_update = User.objects.get(pk=pk)
+        user_to_update.full_name = new_full_name
+        user_to_update.api_key = new_api_key
+        user_to_update.api_secret_key = new_api_secret_key
+        user_to_update.email_for_notice = new_email_for_notice
+        user_to_update.save()
     except Exception as e:
         return JsonResponse({'error': e.args})
 
-    serialized_qs = serializers.serialize('json', user)
     data = {
-        'user': serialized_qs
+        'success': 'success'
     }
     return JsonResponse(data)
 
@@ -405,9 +393,11 @@ def ajax_get_notify_if_filled(request):
 
 def ajax_change_notify_if_filled(request):
     try:
-        user = request.user
+        pk = request.user.pk
         new_val = request.POST.get('notify_if_filled')
-        user.notify_if_filled = new_val
+        user_to_update = User.objects.get(pk=pk)
+        user_to_update.notify_if_filled = new_val
+        user_to_update.save()
         res = {
             'success': 'success'
         }
