@@ -381,11 +381,12 @@ def ajax_cancel_order(request):
         try:    
             if subj_order.order_id != None:
                 res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).cancel_order(subj_order.pair, subj_order.order_id)
+                subj_order.status = res_dict.get("status")
             else:
                 # 未発注の場合はステータスをキャンセル済みに変更
                 subj_order.status = 'CANCELED_UNFILLED'
             
-            subj_order.status = res_dict.get("status")
+            
             subj_order.save()
             return JsonResponse({'success': 'success'})
 
