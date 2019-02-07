@@ -596,7 +596,7 @@
             }
 
             if (new_amount == '' || new_amount == 0 || new_price == '' || new_price == 0) {
-                $('#myRange').val(0);
+                set_slidevalue(0);
                 $('#amount_percentage').html('0.0%');
             } else {
                 var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
@@ -604,7 +604,7 @@
                     $('#amount_percentage').html('資金不足');
                 } else {
                     var rounded = Math.round(perc * 10) / 10;
-                    $('#myRange').val(rounded);
+                    set_slidevalue(rounded);
                     $('#amount_percentage').html(rounded + '%');
                     if (currency == 'jpy') {
                         $('#expect_price').val(Math.round(new_price * new_amount));
@@ -628,6 +628,17 @@
             .fail(function() {
                 set_error_message($('#id_ajax_message'));
             });
+        }
+        function set_slidevalue(new_val) {
+            var tar = $('#myRange');
+            tar.val(new_val);
+            var ini = (tar.val() - tar.attr('min')) / (tar.attr('max') - tar.attr('min'));
+            tar.css('background-image',
+                    '-webkit-gradient(linear, left top, right top, '
+                    + 'color-stop(' + ini + ', teal), '
+                    + 'color-stop(' + ini + ', #333333)'
+                    + ')'
+            );
         }
 
         function initialize_order_tab(is_initial = false) {
@@ -682,14 +693,8 @@
                 }
 
                 var tar = $('#myRange')
-                var ini = (tar.val() - tar.attr('min')) / (tar.attr('max') - tar.attr('min'));
+                set_slidevalue(0);
 
-                tar.css('background-image',
-                    '-webkit-gradient(linear, left top, right top, '
-                    + 'color-stop(' + ini + ', teal), '
-                    + 'color-stop(' + ini + ', #333333)'
-                    + ')'
-                );
                 tar.on("input", function () {
                     var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
                     $(this).css('background-image',
@@ -757,7 +762,7 @@
                     $('#id_start_amount').val('');
                     $('#id_price').val('');
                     $('#id_price_for_stop').val('');
-                    $('#myRange').val(0);
+                    set_slidevalue(0);
                     $('#amount_percentage').html('0.0%');
                     $('#expect_price').val('');
 
