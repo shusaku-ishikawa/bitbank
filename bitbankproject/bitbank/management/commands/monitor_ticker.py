@@ -105,4 +105,4 @@ class Command(BaseCommand):
                                 except:
                                     logger.error('user:' + user.email + 'pair:' + pair + ' pk:' + stop_market_order.pk + ' error: ' +  str(e.args))
                                     continue
-            logger.info('completed')
+        logger.info('completed')    
