@@ -86,7 +86,7 @@
             <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">逆指値価格(注文発動価格)</div>
+                        <div class="input-group-text placeholder">発動価格</div>
                     </div>
                     <input id="id_price_for_stop" type="number" class="form-control">              
                     <div class="input-group-append">
@@ -101,7 +101,7 @@
             <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">指値価格(約定希望価格)</div>
+                        <div class="input-group-text placeholder">指値価格</div>
                     </div>
                     <input id="id_price" type="number" class="form-control">
                     <div class="input-group-append">
@@ -131,8 +131,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-1 col-12">
                 <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
-                <!-- <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="0.1" data-slider-value="0"/> -->
-                <div><span style="float:right;" id="amount_percentage"></span></div>
+                <div><span style="float:right;" id="amount_percentage">0%</span></div>
             </div>
         </div>
         <hr>
@@ -202,7 +201,6 @@
                         <tr><th>ビットコインキャッシュ</th><td align="right" id="bcc"></td></tr>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
@@ -689,7 +687,7 @@
                 tar.css('background-image',
                     '-webkit-gradient(linear, left top, right top, '
                     + 'color-stop(' + ini + ', teal), '
-                    + 'color-stop(' + ini + ', #222222)'
+                    + 'color-stop(' + ini + ', #333333)'
                     + ')'
                 );
                 tar.on("input", function () {
@@ -697,7 +695,7 @@
                     $(this).css('background-image',
                         '-webkit-gradient(linear, left top, right top, '
                         + 'color-stop(' + val + ', teal), '
-                        + 'color-stop(' + val + ', #222222)'
+                        + 'color-stop(' + val + ', #333333)'
                         + ')'
                     );
                 });

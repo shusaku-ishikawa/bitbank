@@ -48,8 +48,8 @@ class Command(BaseCommand):
                         try:
                             alerts_by_pair = Alert.objects.filter(pair=pair).filter(is_active=True)
                             for alert in alerts_by_pair:
-                                if (alert.over_or_under == '以上' and float(ticker_dict.get('buy')) >= alert.threshold) or \
-                                    (alert.over_or_under == '以上' and float(ticker_dict.get('buy')) >= alert.threshold):
+                                if (alert.over_or_under == '以上' and float(ticker_dict.get('last')) >= alert.threshold) or \
+                                    (alert.over_or_under == '以上' and float(ticker_dict.get('last')) >= alert.threshold):
                                     context = { "user": user, "ticker_dict": ticker_dict, "pair": pair }
                                     subject = get_template('bitbank/mail_template/rate_notice/subject.txt').render(context)
                                     message = get_template('bitbank/mail_template/rate_notice/message.txt').render(context)

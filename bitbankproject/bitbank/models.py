@@ -142,23 +142,6 @@ class Order(models.Model):
         'ストップリミット'
     ]
 
-    # SIDE = (
-    #     ('buy', '買い'),
-    #     ('sell', '売り'),
-    # )
-    # STATUS = (
-    #     ('UNFILLED', '注文中'),
-    #     ('PARTIALLY_FILLED', '注文中(一部約定)'),
-    #     ('FULLY_FILLED', '約定済み'),
-    #     ('CANCELED_UNFILLED', '取消済'),
-    #     ('CANCELED_PARTIALLY_FILLED', '取消済(一部約定)'),
-    # )
-
-    
-    # NOTIFY = (
-    #     (True, 'ON'),
-    #     (False, 'OFF')
-    # )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

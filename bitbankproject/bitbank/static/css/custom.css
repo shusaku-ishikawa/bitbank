@@ -8,22 +8,6 @@
 /*code for mobile here*/
 }
 
-#ex1Slider {
-    width: 100% !important;
-}
-#ex1Slider .slider-selection {
-	background: teal;
-}
-
-div.slider-handle.min-slider-handle.round {
-    background: teal !important;
-    
-    
-}
-
-div.slider-track-high {
-    touch-action: none !important;
-}
 
 table.table {
     /* font-size: 3vmin; */
@@ -200,7 +184,7 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     width: 100%;
     height: 5px;
     border-radius: 5px;   
-    background: #d3d3d3;
+    /* background: #d3d3d3; */
     outline: none;
     opacity: 0.7;
     -webkit-transition: .8s;
