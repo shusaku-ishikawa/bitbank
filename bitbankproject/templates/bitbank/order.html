@@ -86,7 +86,7 @@
             <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">発動価格</div>
+                        <div id="id_stop_price_placeholder" class="input-group-text placeholder">逆指値価格</div>
                     </div>
                     <input id="id_price_for_stop" type="number" class="form-control">              
                     <div class="input-group-append">
@@ -101,7 +101,7 @@
             <div class="col-md-6 offset-md-1 col-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">指値価格</div>
+                        <div id="id_price_placeholder" class="input-group-text placeholder">指値価格</div>
                     </div>
                     <input id="id_price" type="number" class="form-control">
                     <div class="input-group-append">
@@ -499,20 +499,20 @@
         function display_price_div(order_type) {
             switch (order_type) {
                 case '成行':
-                    $('div.show_if_stop_order').hide();
-                    $('div.show_if_limit_order').hide();
+                    $('.show_if_stop_order').hide();
+                    $('.show_if_limit_order').hide();
                     break;
                 case '指値':
-                    $('div.show_if_stop_order').hide();
-                    $('div.show_if_limit_order').show();
+                    $('.show_if_stop_order').hide();
+                    $('.show_if_limit_order').show();
                     break;
                 case '逆指値':
-                    $('div.show_if_stop_order').show();
-                    $('div.show_if_limit_order').hide();
+                    $('.show_if_stop_order').show();
+                    $('.show_if_limit_order').hide();
                     break;
                 case 'ストップリミット':
-                    $('div.show_if_stop_order').show();
-                    $('div.show_if_limit_order').show();
+                    $('.show_if_stop_order').show();
+                    $('.show_if_limit_order').show();
                     break;
             }
         }
@@ -556,10 +556,17 @@
                 return;
             }
             var pair = $('#id_pair').val();
-            var currency = pair.split('_')[1];
-            var free_amount = free_amount_json[currency];
             var side = $('#id_side').val();
 
+            if (side == 'buy') {
+                var currency = pair.split('_')[1];
+            } else {
+                var currency = pair.split('_')[0];
+            }
+
+            var free_amount = free_amount_json[currency];
+            
+            
             if ($('#id_order_type').val() == '指値' || $('#id_order_type').val() == 'ストップリミット') {
                 if ($('#id_price').val() != '' && $('#id_price').val() != 0) {
                     var floored = Math.floor((free_amount * newVal / ($('#id_price').val() * 100)) * 10000) / 10000;
@@ -569,20 +576,32 @@
             } else if ($('#id_order_type').val() == '成行' || $('#id_order_type').val() == '逆指値') {
                 
                 var market_price = parseFloat(market_price_json[pair][side]);
-
-                var floored = Math.floor((free_amount * newVal / (market_price * 100)) * 10000) / 10000;
+                if (side == 'buy') {
+                    var floored = Math.floor((free_amount * newVal / (market_price * 100)) * 10000) / 10000;
+                } else {
+                    var floored = Math.floor((free_amount * newVal / 100) * 10000) / 10000;
+                }
+                
                 $('#id_start_amount').val(floored);
-                if (currency == 'jpy') {
+                if (pair.split('_')[1] == 'jpy') {
                     $('#expect_price').val(Math.floor(market_price * floored));    
                 } else {
+                    //console.log(currency);
                     $('#expect_price').val(market_price * floored);    
                 }
             }
         }
         function update_slider_by_amount() {
             var pair = $('#id_pair').val();
-            var currency = pair.split('_')[1];
             var side = $('#id_side').val(); 
+
+            if (side == 'buy') {
+                var currency = pair.split('_')[1];
+            } else {
+                var currency = pair.split('_')[0];
+            }
+            
+            
             var order_type = $('#id_order_type').val();
             var limit_orders = ['指値', 'ストップリミット'];
             
@@ -597,15 +616,19 @@
 
             if (new_amount == '' || new_amount == 0 || new_price == '' || new_price == 0) {
                 set_slidevalue(0);
-                $('#amount_percentage').html('0.0%');
+                
             } else {
-                var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
+                if (side == 'buy') {
+                    var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
+                } else {
+                    var perc = new_amount * 100 / parseFloat(free_amount_json[currency]);   
+                }
+                
                 if (perc > 100.0) {
                     $('#amount_percentage').html('資金不足');
                 } else {
                     var rounded = Math.round(perc * 10) / 10;
-                    set_slidevalue(rounded);
-                    $('#amount_percentage').html(rounded + '%');
+                    set_slidevalue(rounded, false);
                     if (currency == 'jpy') {
                         $('#expect_price').val(Math.round(new_price * new_amount));
                     } else {
@@ -629,9 +652,14 @@
                 set_error_message($('#id_ajax_message'));
             });
         }
-        function set_slidevalue(new_val) {
+        function set_slidevalue(new_val, trigger_input_event=true) {
             var tar = $('#myRange');
-            tar.val(new_val);
+            if (trigger_input_event) {
+                tar.val(new_val).trigger('input');
+            } else {
+                tar.val(new_val);
+            }
+            
             var ini = (tar.val() - tar.attr('min')) / (tar.attr('max') - tar.attr('min'));
             tar.css('background-image',
                     '-webkit-gradient(linear, left top, right top, '
@@ -639,11 +667,13 @@
                     + 'color-stop(' + ini + ', #333333)'
                     + ')'
             );
+            $('#amount_percentage').html(new_val + '%');
         }
 
         function initialize_order_tab(is_initial = false) {
             initialize_ticker_json();
             initialize_free_amount_json();
+
             if ($('#id_side').val() == 'sell') {
                 $('#sell_button').addClass('sell').removeClass('btn-base');
                 $('#buy_button').removeClass('buy').addClass('btn-base');
@@ -696,6 +726,7 @@
                 set_slidevalue(0);
 
                 tar.on("input", function () {
+                    udpate_amount_by_slider();
                     var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
                     $(this).css('background-image',
                         '-webkit-gradient(linear, left top, right top, '
@@ -735,35 +766,31 @@
                     $('#id_order_type').val(ORDER_TYPES[0]);
                 }
 
-                //イベントバインディング
-                $('#myRange').on('input', function(ev){
-                    udpate_amount_by_slider();
-                });
-                
-                $('#id_start_amount').on('keydown', function(e) {
+                $('#id_start_amount')
+                .on('keydown', function(e) {
                     if(!((e.keyCode > 95 && e.keyCode < 106)
                     || (e.keyCode > 47 && e.keyCode < 58) 
                     || e.keyCode == 8 || e.keyCode == 190)) {
                         return false;
                     }
+                })
+                .on('change', function() {
+                    update_slider_by_amount();
                 });
+
+
                 $('#id_price').on('change', function() { 
                     update_slider_by_amount();
                 });
                 
-                $('#id_start_amount').on('change', function() {
-                    update_slider_by_amount();
-                });
-
+                
                 $('#id_pair').on('change', function() {
-                    //console.log($(this).val());
                     $.cookie("order_pair", $(this).val(), { expires: 7 });
 
                     $('#id_start_amount').val('');
                     $('#id_price').val('');
                     $('#id_price_for_stop').val('');
                     set_slidevalue(0);
-                    $('#amount_percentage').html('0.0%');
                     $('#expect_price').val('');
 
                     // 数量、金額の通貨部分を更新
@@ -779,29 +806,49 @@
                 });
                 
                 $('#id_order_type').on('change', function() {
+                    set_slidevalue(0);
                     var new_order_type = $(this).val();
                     $.cookie("order_type", new_order_type, { expires: 7 });
-
-                    display_price_div(new_order_type);
+                    if (new_order_type == '指値') {
+                        $('#id_price_placeholder').html('指値価格');
+                    } else if (new_order_type == '逆指値') {
+                        $('#id_stop_price_placeholder').html('逆指値価格');
+                    } else if (new_order_type == 'ストップリミット') {
+                        $('#id_stop_price_placeholder').html('逆指値(発動価格)');
+                        $('#id_price_placeholder').html('指値(約定希望価格)');
+                    }
+            
+                   display_price_div(new_order_type);
                 });
                 
-                $('#id_start_amount').on('change', function() {
 
+                $('#id_side').on('value_change', function() {
+                    set_slidevalue(0);
                 });
+
                 $('#sell_button').on('click', function() {
-                    $.cookie('order_side', 'sell', {expire: 7});
-                    $(this).addClass('sell').removeClass('btn-base');
-                    $('#buy_button').removeClass('buy').addClass('btn-base');
-                    $('#id_side').val('sell');
-                    $('#id_order_button').removeClass('green_button').addClass('red_button'); 
+                    // 変更があった場合のみ処理
+                    if ($('#id_side').val() == 'buy') {
+                        $.cookie('order_side', 'sell', {expire: 7});
+                        $(this).addClass('sell').removeClass('btn-base');
+                        $('#buy_button').removeClass('buy').addClass('btn-base');
+                        $('#id_side').val('sell').trigger('value_change');
+                        $('#id_order_button').removeClass('green_button').addClass('red_button'); 
+                    } else {
+                        // do nothing
+                    }
+                    
                 });
                 
                 $('#buy_button').on('click', function() {
-                    $.cookie('order_side', 'buy', {expire: 7});
-                    $(this).addClass('buy').removeClass('btn-base');
-                    $('#sell_button').removeClass('sell').addClass('btn-base');
-                    $('#id_side').val('buy');
-                    $('#id_order_button').removeClass('red_button').addClass('green_button');
+                    // 変更があった場合のみ処理
+                    if ($('#id_side').val() == 'sell') {
+                        $.cookie('order_side', 'buy', {expire: 7});
+                        $(this).addClass('buy').removeClass('btn-base');
+                        $('#sell_button').removeClass('sell').addClass('btn-base');
+                        $('#id_side').val('buy').trigger('value_change');
+                        $('#id_order_button').removeClass('red_button').addClass('green_button');
+                    }
                 });
                 $('#id_order_button').on('click', function(e) {
                     e.preventDefault();
@@ -881,7 +928,7 @@
                     //table_html += '<div class="">'
                     table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
                     table_html += '<div class="col-3 card-table-header">注文ID</div>';
-                    table_html += '<div class="col-3 card-table-data">' + active_order.fields.order_id + '</div>';
+                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.order_id) + '</div>';
                     table_html += '<div class="col-3 card-table-header">取引通貨</div>';
                     table_html += '<div class="col-3 card-table-data">' + PAIRS[active_order.fields.pair] + '</div>';
                     table_html += '</div>';
@@ -1264,6 +1311,9 @@
             $(target).removeClass('alert-success');
             $(target).html(message);
             $(target).show();
+            setTimeout(function() {
+                $(target).fadeOut();
+            }, 2000);
         }
 
         function set_success_message(target, message="正常に処理しました") {
@@ -1271,6 +1321,9 @@
             $(target).removeClass('alert-success');
             $(target).html('<i class="fa fa-check" aria-hidden="true"></i>' + message);
             $(target).show();
+            setTimeout(function() {
+                $(target).fadeOut();
+            }, 2000);
         }
 
         function openTab(evt, tab_id) {

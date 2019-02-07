@@ -213,11 +213,22 @@ def ajax_create_order(request):
         price = None if request.POST.get('price') == '' else request.POST.get('price')
         price_for_stop = None if request.POST.get('price_for_stop') == '' else request.POST.get('price_for_stop')
         start_amount = request.POST.get('start_amount')
+        
+        if start_amount == '' or start_amount == '0':
+            return JsonResponse({'error': '数量は必須です'})
+
         order_id = None
         status = 'READY_TO_ORDER'
         ordered_at = None
         
+        if order_type in {'指値', 'ストップリミット'} and price == None:
+            return JsonResponse({'error': '価格は必須です'})
+        
+        if order_type in {'逆指値', 'ストップリミット'} and price_for_stop == None:
+            return JsonResponse({'error': '発動価格は必須です'})
+
         if order_type in {'成行', '指値'}:
+        
             if order_type == '成行':
                 order_type_rome = 'market'
             elif order_type == '指値':
