@@ -2,7 +2,7 @@ import json
 import logging
 import os
 from datetime import datetime
-
+from time import sleep
 import python_bitbankcc
 from django.core.management.base import BaseCommand
 from django.template.loader import get_template
@@ -75,4 +75,5 @@ class Command(BaseCommand):
                                     subj_order.save()
                                 except Exception as e:
                                     logger.error('user:' + user.email + ' pair:' + pair + ' order id: ' + str(orders_by_pair) + ' error: ' + str(e.args))
-            logger.info('completed')
+            sleep(1)
+        logger.info('completed')

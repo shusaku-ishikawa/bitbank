@@ -1,7 +1,7 @@
 import json
 import logging
 import os
-
+from time import sleep
 import python_bitbankcc
 from django.core.management.base import BaseCommand
 from django.utils import timezone
@@ -13,11 +13,6 @@ from ...models import Order, User, Alert
 class Command(BaseCommand):
     # python manage.py help count_entryで表示されるメッセージ
     help = '逆指値、ストップリミット注文を出します'
-
-    # コマンドライン引数を指定します。(argparseモジュール https://docs.python.org/2.7/library/argparse.html)
-    # 今回はblog_idという名前で取得する。（引数は最低でも1個, int型）
-    # def add_arguments(self, parser):
-    #     parser.add_argument('user_pk', nargs='+', type=int)
 
     # コマンドが実行された際に呼ばれるメソッド
     def handle(self, *args, **options):
@@ -105,4 +100,5 @@ class Command(BaseCommand):
                                 except:
                                     logger.error('user:' + user.email + 'pair:' + pair + ' pk:' + stop_market_order.pk + ' error: ' +  str(e.args))
                                     continue
+            sleep(1)
         logger.info('completed')    
