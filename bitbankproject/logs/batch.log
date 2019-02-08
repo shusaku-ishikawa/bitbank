@@ -797,3 +797,279 @@
 [INFO]	asctime:2019-02-08 21:51:35,332	module:monitor_ticker	message:completed
 [INFO]	asctime:2019-02-08 21:51:35,333	module:monitor_ticker	message:started
 [INFO]	asctime:2019-02-08 21:51:38,933	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:02,541	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:02,587	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:03,654	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:03,654	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:04,703	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:04,703	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:05,747	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:05,747	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:05,824	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:05,824	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:06,791	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:06,792	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:07,838	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:07,839	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:08,884	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:08,884	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:09,502	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:09,503	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:09,930	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:09,930	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:10,972	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:10,973	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:12,021	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:12,021	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:13,066	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:13,066	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:13,621	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:13,621	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:14,113	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:14,114	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:15,162	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:15,163	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:16,208	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:16,208	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:17,253	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:17,253	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:17,541	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:17,541	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:18,297	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:18,297	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:19,341	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:19,341	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:20,387	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:20,387	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:21,209	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:21,209	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:21,433	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:21,434	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:22,476	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:22,476	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:23,519	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:23,519	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:24,563	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:24,564	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:24,842	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:24,842	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:25,609	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:25,609	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:26,656	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:26,657	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:27,701	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:27,701	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:07:28,085	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:28,086	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:28,743	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:07:31,988	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:31,988	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:35,895	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:35,895	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:39,312	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:39,313	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:43,032	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:43,032	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:47,771	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:47,771	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:51,609	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:51,609	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:55,396	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:55,396	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:07:58,683	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:07:58,684	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:02,380	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:02,432	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:02,432	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:03,457	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:03,457	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:04,500	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:04,500	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:05,545	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:05,545	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:06,591	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:06,592	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:06,648	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:06,649	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:07,636	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:07,636	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:08,680	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:08,680	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:09,725	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:09,726	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:10,095	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:10,095	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:10,772	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:10,772	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:11,818	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:11,819	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:12,861	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:12,862	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:13,610	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:13,610	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:13,905	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:13,905	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:14,950	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:14,950	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:15,993	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:15,993	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:16,834	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:16,834	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:17,037	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:17,037	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:18,082	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:18,082	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:19,124	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:19,125	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:20,168	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:20,168	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:20,731	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:20,731	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:21,211	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:21,211	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:22,257	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:22,257	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:23,300	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:23,301	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:24,359	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:24,359	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:24,626	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:24,626	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:25,403	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:25,403	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:26,447	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:26,447	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:27,489	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:27,490	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:08:28,185	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:28,185	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:28,539	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:08:31,687	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:08:31,688	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:08:31,850	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:08:32,608	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:08:33,420	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:08:35,369	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:01,968	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:01,970	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:02,259	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:03,022	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:03,022	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:03,115	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:04,064	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:04,064	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:04,415	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:05,107	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:05,108	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:06,153	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:06,154	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:06,381	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:06,382	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:06,457	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:07,198	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:07,199	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:07,839	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:08,244	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:08,244	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:08,720	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:09,288	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:09,288	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:10,276	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:10,276	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:10,333	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:10,333	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:10,340	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:11,020	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:11,385	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:11,386	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:12,430	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:12,430	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:12,745	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:13,475	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:13,476	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:14,350	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:14,350	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:14,520	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:14,520	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:14,648	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:15,565	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:15,565	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:16,607	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:16,607	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:16,674	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:17,650	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:17,650	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:17,958	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:18,696	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:18,696	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:19,595	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:19,595	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:19,668	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:19,739	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:19,739	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:20,348	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:20,782	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:20,782	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:21,198	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:21,827	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:21,828	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:22,873	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:22,874	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:23,021	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:23,021	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:23,087	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:23,919	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:23,920	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:24,591	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:24,966	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:24,967	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:26,010	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:26,010	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:26,074	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:27,054	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:27,054	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 22:09:27,938	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:27,938	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:28,074	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:28,101	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:09:28,823	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:29,508	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:31,266	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:31,266	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:31,545	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:32,409	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:33,525	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:35,339	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:35,340	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:35,463	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:36,100	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:37,009	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:38,838	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:38,839	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:38,916	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:40,485	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:41,505	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:43,399	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:43,399	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:43,541	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:44,645	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:45,426	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:47,244	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:47,245	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:47,323	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:48,253	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:49,132	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:50,935	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:50,936	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:51,014	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372109
+[INFO]	asctime:2019-02-08 22:09:51,857	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372110 market buy:372071
+[INFO]	asctime:2019-02-08 22:09:52,929	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372106 market buy:372071
+[INFO]	asctime:2019-02-08 22:09:55,049	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:55,049	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:09:55,198	module:monitor_ticker	message:Stop market order found. side:sell stop price:372105.0 market sell:372105 market buy:372071
+[INFO]	asctime:2019-02-08 22:09:59,734	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:09:59,734	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:10:03,587	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:10:03,588	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:10:07,569	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:10:07,569	module:monitor_ticker	message:started
