@@ -830,7 +830,7 @@
                     
                     switch (special_order) {
                         case 'SINGLE':
-                            if (order_type == '指値' || order_type == 'ストップリミット') {
+                            if (STOP_ORDERS.indexOf(order_type) >= 0) {
                                 call_get_ticker_api(pair)
                                 .done(function(res) {
                                     if (res.error) {
@@ -862,12 +862,14 @@
                                                 }
                                             });
                                         }
+                                    } else if (order_type == 'ストップリミット') {
+                                        place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
                                     }
                                 })
                                 .fail(function() {
                                     set_error_message($('#id_ajax_message'));
                                 });
-                            } else if (order_type == '成行'|| order_type == '逆指値') {
+                            } else if (MARKET_ORDERS.indexOf(order_type) >= 0) {
                                 // そのまま注文
                                 place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
                             }
