@@ -3817,3 +3817,36 @@
 [INFO]	asctime:2019-02-08 22:50:33,656	module:monitor_order_status	message:started
 [INFO]	asctime:2019-02-08 22:50:33,973	module:monitor_ticker	message:completed
 [INFO]	asctime:2019-02-08 22:50:34,995	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 22:58:04,826	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:58:09,293	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:58:09,294	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:58:12,759	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:58:12,760	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:58:16,438	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:58:16,438	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:58:20,379	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:58:20,380	module:monitor_ticker	message:started
+[ERROR]	asctime:2019-02-08 22:58:20,640	module:monitor_ticker	message:user:hoge@gmail.com pair:btc_jpy alert:91 error:("name 'get_template' is not defined",)
+[INFO]	asctime:2019-02-08 22:58:23,963	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:58:23,963	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:58:28,078	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:58:28,078	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:58:32,099	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:58:32,099	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:58:56,281	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:58:59,941	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:58:59,941	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:59:03,488	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:59:03,488	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:59:51,755	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 22:59:56,013	module:monitor_ticker	message:rate notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-08 22:59:59,552	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 22:59:59,552	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 23:00:02,896	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 23:00:02,897	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 23:00:06,482	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 23:00:06,482	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 23:00:10,680	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 23:00:10,680	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 23:00:14,537	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 23:00:14,537	module:monitor_ticker	message:started

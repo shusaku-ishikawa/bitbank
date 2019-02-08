@@ -5,6 +5,7 @@ from time import sleep
 import python_bitbankcc
 from django.core.management.base import BaseCommand
 from django.utils import timezone
+from django.template.loader import get_template
 
 from ...models import Order, User, Alert
 
