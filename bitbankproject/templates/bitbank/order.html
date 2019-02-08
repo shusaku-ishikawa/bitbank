@@ -739,10 +739,26 @@
                 });
 
 
-                $('#id_price').on('change', function() { 
+                $('#id_price')
+                .on('keydown', function(e) {
+                    if(!((e.keyCode > 95 && e.keyCode < 106)
+                    || (e.keyCode > 47 && e.keyCode < 58) 
+                    || e.keyCode == 8 || e.keyCode == 190)) {
+                        return false;
+                    }
+                })
+                .on('change', function() { 
                     update_slider_by_amount();
                 });
                 
+                $('#id_price_for_stop')
+                .on('keydown', function(e) {
+                    if(!((e.keyCode > 95 && e.keyCode < 106)
+                    || (e.keyCode > 47 && e.keyCode < 58) 
+                    || e.keyCode == 8 || e.keyCode == 190)) {
+                        return false;
+                    }
+                })
                 
                 $('#id_pair').on('change', function() {
                     $.cookie("order_pair", $(this).val(), { expires: 7 });
