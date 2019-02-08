@@ -571,7 +571,11 @@
             var order_type = $('#id_order_type').val();
             var currency = (side == 'sell') ? pair.split('_')[0] : pair.split('_')[1];
             var free_amount = free_amount_json[currency];
-            var floored = Math.floor((free_amount * newVal / 100) * 10000) / 10000;
+            var price = (MARKET_ORDERS.indexOf(order_type) >= 0) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+            
+
+            var floored = (side == 'sell') ? Math.floor((free_amount * newVal / 100) * 10000) / 10000 : (price != 0) ? Math.floor((free_amount * newVal / (price * 100)) * 10000) / 10000 : 0;
+            
             $('#id_start_amount').val(floored).trigger('calculate');
         }
         function update_slider_by_amount() {
