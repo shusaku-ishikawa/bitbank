@@ -221,26 +221,21 @@ def ajax_create_order(request):
         status = 'READY_TO_ORDER'
         ordered_at = None
         
-        if order_type in {'指値', 'ストップリミット'} and price == None:
+        if order_type in {Order.TYPE_LIMIT, Order.TYPE_STOP_LIMIT} and price == None:
             return JsonResponse({'error': '価格は必須です'})
         
-        if order_type in {'逆指値', 'ストップリミット'} and price_for_stop == None:
+        if order_type in {Order.TYPE_STOP_MARKET, Order.TYPE_STOP_LIMIT} and price_for_stop == None:
             return JsonResponse({'error': '発動価格は必須です'})
 
-        if order_type in {'成行', '指値'}:
-        
-            if order_type == '成行':
-                order_type_rome = 'market'
-            elif order_type == '指値':
-                order_type_rome = 'limit'
-        
+        if order_type in {Order.TYPE_MARKET, Order.TYPE_LIMIT}:
+                
             try:
                 res_dict = python_bitbankcc.private(request.user.api_key, request.user.api_secret_key).order(
                     pair,
                     price,
                     start_amount,
                     side,
-                    order_type_rome
+                    order_type
                 )
                 status = res_dict.get('status')
                 order_id = res_dict.get('order_id')

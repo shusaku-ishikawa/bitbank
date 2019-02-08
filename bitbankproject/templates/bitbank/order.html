@@ -311,7 +311,8 @@
             'FULLY_FILLED': '約定済',
             'CANCELED_UNFILLED': 'キャンセル済',
             'CANCELED_PARTIALLY_FILLED': '一部キャンセル済',
-            'READY_TO_ORDER': '未注文'
+            'READY_TO_ORDER': '未注文',
+            'FAILED_TO_ORDER': '注文失敗'
         }
         SPECIAL_ORDERS = [
             'SINGLE',
@@ -320,21 +321,12 @@
             'IFDOCO'  
         ];
 
-        ORDER_TYPES = [
-            '成行',
-            '指値',
-            '逆指値',
-            'ストップリミット'
-        ];
-
-        MARKET_ORDERS = [
-            '成行',
-            '逆指値'
-        ];
-        STOP_ORDERS = [
-            '指値',
-            'ストップリミット'
-        ];
+        ORDER_TYPES = {
+            'market': '成行',
+            'limit': '指値',
+            'stop_market': '逆指値',
+            'stop_limit': 'ストップリミット'
+        };
             
         SELL_BUY = {
             'sell': '売',
@@ -507,19 +499,19 @@
         }
         function display_price_div(order_type) {
             switch (order_type) {
-                case '成行':
+                case 'market':
                     $('.show_if_stop_order').hide();
                     $('.show_if_limit_order').hide();
                     break;
-                case '指値':
+                case 'limit':
                     $('.show_if_stop_order').hide();
                     $('.show_if_limit_order').show();
                     break;
-                case '逆指値':
+                case 'stop_market':
                     $('.show_if_stop_order').show();
                     $('.show_if_limit_order').hide();
                     break;
-                case 'ストップリミット':
+                case 'stop_limit':
                     $('.show_if_stop_order').show();
                     $('.show_if_limit_order').show();
                     break;
@@ -571,7 +563,7 @@
             var order_type = $('#id_order_type').val();
             var currency = (side == 'sell') ? pair.split('_')[0] : pair.split('_')[1];
             var free_amount = free_amount_json[currency];
-            var price = (MARKET_ORDERS.indexOf(order_type) >= 0) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+            var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
             
 
             var floored = (side == 'sell') ? Math.floor((free_amount * newVal / 100) * 10000) / 10000 : (price != 0) ? Math.floor((free_amount * newVal / (price * 100)) * 10000) / 10000 : 0;
@@ -590,12 +582,11 @@
             
             
             var order_type = $('#id_order_type').val();
-            var limit_orders = ['指値', 'ストップリミット'];
             
             var new_amount = $('#id_start_amount').val();
 
             // limit orderの場合
-            if (limit_orders.indexOf(order_type) >= 0) {
+            if (order_type.match(/limit/)) {
                 var new_price = $('#id_price').val();
             } else {
                 var new_price = market_price_json[pair][side];
@@ -628,7 +619,7 @@
             var side = $('#id_side').val();
             var order_type = $('#id_order_type').val();
    
-            var price = (MARKET_ORDERS.indexOf(order_type) >= 0) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+            var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
             var amount = $('#id_start_amount').val();
             
             if (pair.split('_')[1] == 'jpy') {
@@ -708,8 +699,8 @@
                     side_option_html += '<option value="' + side + '">' + side + '</option>';
                 });
 
-                ORDER_TYPES.forEach(order_type => {
-                    order_type_option_html += '<option value="' + order_type + '">' + order_type + '</option>';
+                Object.keys(ORDER_TYPES).forEach(order_type => {
+                    order_type_option_html += '<option value="' + order_type + '">' + ORDER_TYPES[order_type] + '</option>';
                 });
                 
 
@@ -777,11 +768,11 @@
                     set_slidevalue(0);
                     var new_order_type = $(this).val();
                     $.cookie("order_type", new_order_type, { expires: 7 });
-                    if (new_order_type == '指値') {
+                    if (new_order_type == 'limit') {
                         $('#id_price_placeholder').html('指値価格');
-                    } else if (new_order_type == '逆指値') {
+                    } else if (new_order_type == 'stop_market') {
                         $('#id_stop_price_placeholder').html('逆指値価格');
-                    } else if (new_order_type == 'ストップリミット') {
+                    } else if (new_order_type == 'stop_limit') {
                         $('#id_stop_price_placeholder').html('逆指値(発動価格)');
                         $('#id_price_placeholder').html('指値(約定希望価格)');
                     }
@@ -838,7 +829,7 @@
                                         return;
                                     }
                                         
-                                    if (order_type == '指値') {
+                                    if (order_type == 'limit') {
                                         if ((side == 'buy' && parseFloat(res.buy) < price) || (side == 'sell' && parseFloat(res.sell) > price)){
                                             $.confirm({
                                                 title: '<span style="color:black>確認</span>',
@@ -862,7 +853,7 @@
                                                 }
                                             });
                                         }
-                                    } else if (order_type == 'ストップリミット') {
+                                    } else if (order_type == 'stop_limit') {
                                         place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
                                     }
                                 })
@@ -918,16 +909,16 @@
                 $('#id_order_type').html(order_type_option_html);
                 if ($.cookie('order_type') != undefined) {
                     $('#id_order_type').val($.cookie('order_type'));
-                    if ($.cookie('order_type') == '指値') {
+                    if ($.cookie('order_type') == 'limit') {
                         $('#id_price_placeholder').html('指値価格');
-                    } else if ($.cookie('order_type') == '逆指値') {
+                    } else if ($.cookie('order_type') == 'stop_market') {
                         $('#id_stop_price_placeholder').html('逆指値価格');
-                    } else if ($.cookie('order_type') == 'ストップリミット') {
+                    } else if ($.cookie('order_type') == 'stop_limit') {
                         $('#id_stop_price_placeholder').html('逆指値(発動価格)');
                         $('#id_price_placeholder').html('指値(約定希望価格)');
                     }
                 } else {
-                    $('#id_order_type').val(ORDER_TYPES[0]);
+                    $('#id_order_type').val(Object.keys(ORDER_TYPES)[0]);
                 }
             }
         }

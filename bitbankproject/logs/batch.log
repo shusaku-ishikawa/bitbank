@@ -479,3 +479,171 @@
 [INFO]	asctime:2019-02-08 17:24:16,483	module:monitor_ticker	message:started
 [INFO]	asctime:2019-02-08 17:24:21,399	module:monitor_ticker	message:completed
 [INFO]	asctime:2019-02-08 17:24:21,399	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:50:38,999	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:50:39,429	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:51:35,905	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:51:36,194	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:36,466	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:36,466	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:36,722	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:36,722	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:51:40,070	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:51:40,071	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:51:40,340	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:40,577	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:40,577	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:40,921	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:40,922	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:51:44,891	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:51:44,891	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:51:45,244	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:45,532	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:45,533	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:45,808	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:45,808	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:51:49,033	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:51:49,033	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:51:49,317	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:49,600	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:49,601	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:49,888	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:49,888	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:51:53,779	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:51:53,780	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:51:54,278	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:54,564	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:54,564	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:54,830	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:54,831	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:51:58,511	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:51:58,512	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:51:59,089	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:59,380	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:59,380	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:51:59,653	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:51:59,653	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:52:03,833	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:52:03,833	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:52:04,119	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:04,387	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:04,388	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:04,671	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:04,671	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:52:07,854	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:52:07,855	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:52:08,409	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:08,751	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:08,752	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:09,000	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:09,000	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:52:12,651	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:52:12,652	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:52:12,959	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:13,202	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:13,202	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:13,481	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:13,482	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:52:17,213	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:52:17,214	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:52:17,511	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:17,774	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:17,774	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:18,031	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:18,032	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:52:21,186	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:52:21,187	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:52:21,481	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:21,772	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:21,772	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:22,094	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:22,094	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:52:25,301	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:52:25,305	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:52:25,816	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:26,060	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:26,061	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:26,340	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:26,341	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:52:29,537	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:52:29,538	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:52:29,824	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:30,085	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:30,086	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:30,342	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:30,342	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 20:52:33,744	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 20:52:33,745	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 20:52:34,221	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:34,478	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:34,478	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371646 market buy:371645
+[ERROR]	asctime:2019-02-08 20:52:34,736	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 20:52:34,737	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371646 market buy:371645
+[INFO]	asctime:2019-02-08 21:14:50,059	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:26:32,949	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:26:33,298	module:monitor_ticker	message:Stop market order found. side:buy stop price:0.0001 market sell:371820 market buy:371819
+[ERROR]	asctime:2019-02-08 21:26:33,756	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:16 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 21:26:33,756	module:monitor_ticker	message:Stop market order found. side:buy stop price:1.0 market sell:371820 market buy:371819
+[ERROR]	asctime:2019-02-08 21:26:34,013	module:monitor_ticker	message:user:hoge@gmail.compair:btc_jpy pk:17 error: ('エラーコード: 40001 内容: 注文数量が不正です',)
+[INFO]	asctime:2019-02-08 21:26:34,014	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:26:38,209	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:26:38,210	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:26:38,797	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:26:42,856	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:26:42,856	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:26:43,146	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:26:46,332	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:26:46,332	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:26:46,615	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:26:49,839	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:26:49,839	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:26:50,345	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:26:53,794	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:26:53,794	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:26:54,139	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:26:58,107	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:26:58,108	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:26:58,356	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:27:01,156	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:27:01,157	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:27:01,445	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:27:04,811	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:27:04,811	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:27:05,166	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:27:08,740	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:27:08,741	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:27:09,031	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:27:13,125	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:27:13,125	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:27:13,612	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:27:16,876	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:27:16,877	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:27:17,211	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:27:20,613	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:27:20,613	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:27:20,871	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:27:24,450	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:27:24,456	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:27:24,739	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:27:28,319	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:27:28,320	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:27:28,973	module:monitor_ticker	message:Stop market order found. side:sell stop price:350000.0 market sell:371820 market buy:371819
+[INFO]	asctime:2019-02-08 21:44:23,384	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:44:27,674	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:44:27,675	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:44:32,322	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 21:44:32,323	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 21:44:45,229	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 21:44:46,924	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 21:44:46,924	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 21:44:48,219	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 21:44:48,220	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 21:44:49,522	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 21:44:49,522	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 21:44:50,837	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 21:44:50,838	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 21:44:52,177	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 21:44:52,179	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 21:44:53,496	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 21:44:53,496	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-08 21:44:54,817	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-08 21:44:54,821	module:monitor_order_status	message:started

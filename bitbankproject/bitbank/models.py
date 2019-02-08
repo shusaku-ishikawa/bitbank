@@ -116,6 +116,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Order(models.Model):
+    TYPE_MARKET = 'market'
+    TYPE_LIMIT = 'limit'
+    TYPE_STOP_MARKET = 'stop_market'
+    TYPE_STOP_LIMIT = 'stop_limit'
+
+    STATUS_UNFILLED = 'UNFILLED'
+    STATUS_PARTIALLY_FILLED = 'PARTIALLY_FILLED'
+    STATUS_FULLY_FILLED = 'FULLY_FILLED'
+    STATUS_CANCELED_UNFILLED = 'CANCELED_UNFILLED'
+    STATUS_CANCELED_PARTIALLY_FILLED = 'CANCELED_PARTIALLY_FILLED'
+    STATUS_READY_TO_ORDER = 'READY_TO_ORDER'
+    STATUS_FAILED_TO_ORDER = 'FAILED_TO_ORDER'
+
     PAIR = [
         'btc_jpy',
         'xrp_jpy',
@@ -134,14 +147,6 @@ class Order(models.Model):
         # 'OCO',
         # 'IFDOCO'  
     ]
-
-    ORDER_TYPE = [
-        '成行',
-        '指値',
-        '逆指値',
-        'ストップリミット'
-    ]
-
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
