@@ -464,3 +464,18 @@
 [INFO]	asctime:2019-02-04 22:16:19,760	module:monitor_ticker	message:started
 [INFO]	asctime:2019-02-04 22:16:24,183	module:monitor_ticker	message:completed
 [INFO]	asctime:2019-02-04 22:16:24,183	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 17:19:45,843	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 17:20:21,549	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 17:21:39,097	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 17:21:39,423	module:monitor_ticker	message:Stop limit order found. side:sell stop price:2323323.0 market sell:368762 market buy:368761
+[INFO]	asctime:2019-02-08 17:23:55,622	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 17:23:55,823	module:monitor_ticker	message:Stop limit order found. side:sell stop price:2323323.0 market sell:368762 market buy:368761
+[INFO]	asctime:2019-02-08 17:24:01,405	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 17:24:01,405	module:monitor_ticker	message:started
+[ERROR]	asctime:2019-02-08 17:24:09,453	module:monitor_ticker	message:user:hoge2@gmail.com pair:bcc_btc error:(MaxRetryError("HTTPSConnectionPool(host='public.bitbank.cc', port=443): Max retries exceeded with url: /bcc_btc/ticker (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(10054, '既存の接続はリモート ホストに強制的に切断されました。', None, 10054, None)))",),)
+[INFO]	asctime:2019-02-08 17:24:10,458	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 17:24:10,458	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 17:24:16,449	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 17:24:16,483	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-08 17:24:21,399	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-08 17:24:21,399	module:monitor_ticker	message:started

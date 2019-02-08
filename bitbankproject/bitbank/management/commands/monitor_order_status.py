@@ -76,4 +76,4 @@ class Command(BaseCommand):
                                 except Exception as e:
                                     logger.error('user:' + user.email + ' pair:' + pair + ' order id: ' + str(orders_by_pair) + ' error: ' + str(e.args))
             sleep(1)
-        logger.info('completed')
+            logger.info('completed')

@@ -62,9 +62,9 @@ class Command(BaseCommand):
                     # 各注文を処理
                     for stop_market_order in stop_market_orders_by_pair:
                         # 売りの場合
-                        logger.info('Stop market order found. side:' + stop_market_order.side + ' stop price:' + stop_market_order.price_for_stop + ' market sell:' + ticker_dict.get('sell') + ' market buy:' + ticker_dict.get('buy'))
-                        if (stop_market_order.side == 'sell' and float(ticker_dict.get('sell')) <= stop_market_order.price_for_stop) or \
-                            (stop_market_order.side == 'buy' and float(ticker_dict.get('buy')) >= stop_market_order.price_for_stop):
+                        logger.info('Stop market order found. side:' + stop_market_order.side + ' stop price:' + str(stop_market_order.price_for_stop) + ' market sell:' + ticker_dict.get('sell') + ' market buy:' + ticker_dict.get('buy'))
+                        if (stop_market_order.side == 'sell' and (float(ticker_dict.get('sell')) <= stop_market_order.price_for_stop)) or \
+                            (stop_market_order.side == 'buy' and (float(ticker_dict.get('buy')) >= stop_market_order.price_for_stop)):
                             # 成行で売り注文
                             try:
                                 res_dict = prv.order(
@@ -87,10 +87,10 @@ class Command(BaseCommand):
                     
                     # 各注文を処理
                     for stop_limit_order in stop_limit_orders_by_pair:
-                        logger.info('Stop limit order found. side:' + stop_market_order.side + ' stop price:' + stop_market_order.price_for_stop + ' market sell:' + ticker_dict.get('sell') + ' market buy:' + ticker_dict.get('buy'))
+                        logger.info('Stop limit order found. side:' + stop_limit_order.side + ' stop price:' + str(stop_limit_order.price_for_stop) + ' market sell:' + ticker_dict.get('sell') + ' market buy:' + ticker_dict.get('buy'))
                         
-                        if (stop_limit_order.side == 'sell' and ticker_dict.get('sell') <= stop_limit_order.price_for_stop) or \
-                            (stop_limit_order.side == 'buy' and ticker_dict.get('buy') >= stop_limit_order.price_for_stop):
+                        if (stop_limit_order.side == 'sell' and (float(ticker_dict.get('sell')) <= stop_limit_order.price_for_stop)) or \
+                            (stop_limit_order.side == 'buy' and (float(ticker_dict.get('buy')) >= stop_limit_order.price_for_stop)):
                             try:
                                 res_dict = prv.order(
                                     pair, # ペア
