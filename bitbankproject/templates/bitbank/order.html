@@ -8,8 +8,8 @@
                 <button id="order_button" type="button" class="tablinks" onclick="openTab(event, 'order')">注文する</button>
                 <button id="active_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">発注一覧</button>
                 <button id="order_history_button" type="button" class="tablinks" onclick="openTab(event, 'order_history')">取引履歴</button>
-                <button id="alert_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">通知設定</button>
-                <button id="asset_button" type="button" class="tablinks" onclick="openTab(event, 'assets')">保有資産</button>
+                <button id="alerts_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">通知設定</button>
+                <button id="assets_button" type="button" class="tablinks" onclick="openTab(event, 'assets')">保有資産</button>
                 <button id="user_info_button" type="button" class="tablinks" onclick="openTab(event, 'user_info')">個人情報</button>
             </div>
         </div>
@@ -326,6 +326,15 @@
             '逆指値',
             'ストップリミット'
         ];
+
+        MARKET_ORDERS = [
+            '成行',
+            '逆指値'
+        ];
+        STOP_ORDERS = [
+            '指値',
+            'ストップリミット'
+        ];
             
         SELL_BUY = {
             'sell': '売',
@@ -550,46 +559,20 @@
         }
         function udpate_amount_by_slider() {
             var newVal = $('#myRange').val();
+            
             $('#amount_percentage').html(newVal + '%');
-
+            
             if($('#id_pair').val() == '') {
                 return;
             }
+            
             var pair = $('#id_pair').val();
             var side = $('#id_side').val();
-
-            if (side == 'buy') {
-                var currency = pair.split('_')[1];
-            } else {
-                var currency = pair.split('_')[0];
-            }
-
+            var order_type = $('#id_order_type').val();
+            var currency = (side == 'sell') ? pair.split('_')[0] : pair.split('_')[1];
             var free_amount = free_amount_json[currency];
-            
-            
-            if ($('#id_order_type').val() == '指値' || $('#id_order_type').val() == 'ストップリミット') {
-                if ($('#id_price').val() != '' && $('#id_price').val() != 0) {
-                    var floored = Math.floor((free_amount * newVal / ($('#id_price').val() * 100)) * 10000) / 10000;
-                    $('#id_start_amount').val(floored);
-                    $('#expect_price').val(Math.floor($('#id_price').val() * floored));                        
-                }
-            } else if ($('#id_order_type').val() == '成行' || $('#id_order_type').val() == '逆指値') {
-                
-                var market_price = parseFloat(market_price_json[pair][side]);
-                if (side == 'buy') {
-                    var floored = Math.floor((free_amount * newVal / (market_price * 100)) * 10000) / 10000;
-                } else {
-                    var floored = Math.floor((free_amount * newVal / 100) * 10000) / 10000;
-                }
-                
-                $('#id_start_amount').val(floored);
-                if (pair.split('_')[1] == 'jpy') {
-                    $('#expect_price').val(Math.floor(market_price * floored));    
-                } else {
-                    //console.log(currency);
-                    $('#expect_price').val(market_price * floored);    
-                }
-            }
+            var floored = Math.floor((free_amount * newVal / 100) * 10000) / 10000;
+            $('#id_start_amount').val(floored).trigger('calculate');
         }
         function update_slider_by_amount() {
             var pair = $('#id_pair').val();
@@ -616,7 +599,6 @@
 
             if (new_amount == '' || new_amount == 0 || new_price == '' || new_price == 0) {
                 set_slidevalue(0);
-                
             } else {
                 if (side == 'buy') {
                     var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
@@ -637,7 +619,21 @@
                 }
             }
         }
+        function calculate_expect_price() {
+            var pair = $('#id_pair').val();
+            var side = $('#id_side').val();
+            var order_type = $('#id_order_type').val();
+   
+            var price = (MARKET_ORDERS.indexOf(order_type) >= 0) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+            var amount = $('#id_start_amount').val();
+            
+            if (pair.split('_')[1] == 'jpy') {
+                $('#expect_price').val(Math.floor(price * amount));    
+            } else {
+                $('#expect_price').val(price * amount);    
+            }
 
+        }
         function place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount) {
             call_create_order(pair, special_order, side, order_type, price, price_for_stop, start_amount)
             .done(function(res) {
@@ -712,15 +708,7 @@
                     order_type_option_html += '<option value="' + order_type + '">' + order_type + '</option>';
                 });
                 
-                // 選択肢追加
-                $('#id_pair').html(pair_option_html);
-                // クッキーにあればデフォルトセット
-                if ($.cookie("order_pair") != undefined) {
-                    $('#id_pair').val($.cookie("order_pair"));
-                } else {
-                    // 無ければ先頭の選択肢をセット
-                    $('#id_pair').val(Object.keys(PAIRS)[0]);
-                }
+
 
                 var tar = $('#myRange')
                 set_slidevalue(0);
@@ -737,34 +725,7 @@
                 });
      
 
-                $('#id_special_order').html(special_order_option_html);
-                if ($.cookie("special_order") != undefined) {
-                    $('#id_special_order').val($.cookie("special_order"));
-                } else {
-                    $('#id_special_order').val(SPECIAL_ORDERS[0]);
-                }
-                
-                
-                $('#id_side').html(side_option_html);
-                if ($.cookie("order_side") != undefined) {
-                    $('#id_side').val($.cookie('order_side'));
-                } else {
-                    $('#id_side').val(Object.keys(SELL_BUY)[1]);
-                }
-
-                if ($('#id_side').val() == 'sell') {
-                    $('#id_order_button').removeClass('green_button').addClass('red_button');
-                } else {
-                    $('#id_order_button').addClass('green_button').removeClass('red_button');
-                }
-                
-
-                $('#id_order_type').html(order_type_option_html);
-                if ($.cookie('order_type') != undefined) {
-                    $('#id_order_type').val($.cookie('order_type'));
-                } else {
-                    $('#id_order_type').val(ORDER_TYPES[0]);
-                }
+               
 
                 $('#id_start_amount')
                 .on('keydown', function(e) {
@@ -776,6 +737,9 @@
                 })
                 .on('change', function() {
                     update_slider_by_amount();
+                })
+                .on('calculate', function() {
+                    calculate_expect_price();
                 });
 
 
@@ -913,6 +877,52 @@
                     }
                 });  
 
+                // 選択肢追加
+                $('#id_pair').html(pair_option_html);
+                // クッキーにあればデフォルトセット
+                if ($.cookie("order_pair") != undefined) {
+                    $('#id_pair').val($.cookie("order_pair")).trigger('change');
+                } else {
+                    // 無ければ先頭の選択肢をセット
+                    $('#id_pair').val(Object.keys(PAIRS)[0]);
+                }
+
+                $('#id_special_order').html(special_order_option_html);
+                if ($.cookie("special_order") != undefined) {
+                    $('#id_special_order').val($.cookie("special_order")).trigger('change');
+                } else {
+                    $('#id_special_order').val(SPECIAL_ORDERS[0]);
+                }
+                
+                
+                $('#id_side').html(side_option_html);
+                if ($.cookie("order_side") != undefined) {
+                    $('#id_side').val($.cookie('order_side'));
+                } else {
+                    $('#id_side').val(Object.keys(SELL_BUY)[1]);
+                }
+
+                if ($('#id_side').val() == 'sell') {
+                    $('#id_order_button').removeClass('green_button').addClass('red_button');
+                } else {
+                    $('#id_order_button').addClass('green_button').removeClass('red_button');
+                }
+                
+
+                $('#id_order_type').html(order_type_option_html);
+                if ($.cookie('order_type') != undefined) {
+                    $('#id_order_type').val($.cookie('order_type'));
+                    if ($.cookie('order_type') == '指値') {
+                        $('#id_price_placeholder').html('指値価格');
+                    } else if ($.cookie('order_type') == '逆指値') {
+                        $('#id_stop_price_placeholder').html('逆指値価格');
+                    } else if ($.cookie('order_type') == 'ストップリミット') {
+                        $('#id_stop_price_placeholder').html('逆指値(発動価格)');
+                        $('#id_price_placeholder').html('指値(約定希望価格)');
+                    }
+                } else {
+                    $('#id_order_type').val(ORDER_TYPES[0]);
+                }
             }
         }
         
@@ -1082,12 +1092,12 @@
                     call_deactivate_alert(pk)
                     .done(function(res) {
                         if (res.error) {
-                            alert(res.error);
+                            set_error_message($('#id_ajax_message'), res.error);
                             return;
                         }
                         set_success_message('#id_ajax_message', '通知設定を解除しました');
                         
-                        $('#alert_button').click();
+                        $('#alerts_button').click();
                         $('#id_ajax_message').show();
                     })
                     .fail(function() {
@@ -1104,12 +1114,7 @@
                 Object.keys(PAIRS).forEach(pair => {
                     option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
                 });
-                $('#id_pair_for_alert').html(option_html);
-                if ($.cookie('alert_pair') != undefined) {
-                    $('#id_pair_for_alert').val($.cookie('alert_pair'));
-                } else {
-                    $('#id_pair_for_alert').val(Object.keys(PAIRS)[0]);
-                }
+                
                 $('#id_notice_rate').on('keydown', function(e) {
                     if(!((e.keyCode > 95 && e.keyCode < 106)
                     || (e.keyCode > 47 && e.keyCode < 58) 
@@ -1165,7 +1170,7 @@
                     var over_or_under;
 
                     if (threshold == '' || threshold == 0) {
-                        alert('通知金額を入力して下さい');
+                        set_error_message($('#id_ajax_message'),'通知金額を入力して下さい');
                         return;
                     }
 
@@ -1189,7 +1194,7 @@
                             }
                             set_success_message($('#id_ajax_message'), 'アラートを追加しました');
 
-                            $('#alert_button').click();
+                            $('#alerts_button').click();
                             $('#id_ajax_message').show();
                         })
                         .fail(function() {
@@ -1197,6 +1202,13 @@
                         });
                     });
                 });
+                
+                $('#id_pair_for_alert').html(option_html);
+                if ($.cookie('alert_pair') != undefined) {
+                    $('#id_pair_for_alert').val($.cookie('alert_pair')).trigger('change');
+                } else {
+                    $('#id_pair_for_alert').val(Object.keys(PAIRS)[0]);
+                }
             }
         }
         function initialize_asset_tab(is_initial = false) {
@@ -1221,7 +1233,7 @@
                                     $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
                                 })
                                 .fail(function() {
-                                    alert('failed');
+                                    set_error_message($('#id_ajax_message'));
                                 });
                             })
                             .fail(function() {
@@ -1381,8 +1393,8 @@
             if ($.cookie('last_visit_tab') != undefined) {
                 // 最後に訪れたタブを表示
                 $('#' + $.cookie('last_visit_tab') + '_button').click();
+                console.log($.cookie('last_visit_tab'));
             } else {
-
                 $('#order_button').click();
             }
             
