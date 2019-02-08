@@ -941,7 +941,7 @@
                     table_html += '</div>';
                     table_html += '<div class="row">';
                     table_html += '<div class="col-3 card-table-header">タイプ</div>';
-                    table_html += '<div class="col-3 card-table-data">' + active_order.fields.order_type + '</div>';
+                    table_html += '<div class="col-3 card-table-data">' + ORDER_TYPES[active_order.fields.order_type] + '</div>';
                     table_html += '<div class="col-3 card-table-header">売/買</div>';
                     table_html += '<div class="col-3 card-table-data">' + SELL_BUY[active_order.fields.side] + '</div>';
                     table_html += '</div>';
@@ -1012,7 +1012,7 @@
                     table_html += '</div>';
                     table_html += '<div class="row">';
                     table_html += '<div class="col-3 card-table-header">タイプ</div>';
-                    table_html += '<div class="col-3 card-table-data">' + order.fields.order_type + '</div>';
+                    table_html += '<div class="col-3 card-table-data">' + ORDER_TYPES[order.fields.order_type] + '</div>';
                     table_html += '<div class="col-3 card-table-header">売/買</div>';
                     table_html += '<div class="col-3 card-table-data">' + SELL_BUY[order.fields.side] + '</div>';
                     table_html += '</div>';
