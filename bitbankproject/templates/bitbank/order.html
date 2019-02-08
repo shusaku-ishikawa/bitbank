@@ -766,6 +766,8 @@
                 });
                 
                 $('#id_order_type').on('change', function() {
+                    $('#id_price').val(0);
+                    $('#id_price_for_stop').val(0);
                     set_slidevalue(0);
                     var new_order_type = $(this).val();
                     $.cookie("order_type", new_order_type, { expires: 7 });
