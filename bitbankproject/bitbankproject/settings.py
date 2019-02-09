@@ -151,11 +151,11 @@ LOGGING = {
     },
     'loggers': {  # どんなloggerがあるかを設定する
         'transaction_logger': { 
-            'handlers': ['file_transaction', 'console', 'mail_admins'],  # 先述のfile, consoleの設定で出力
+            'handlers': ['file_transaction', 'console'],  # 先述のfile, consoleの設定で出力
             'level': 'DEBUG',
         },
         'batch_logger': { 
-            'handlers': ['file_batch', 'console', 'mail_admins'],  # 先述のfile, consoleの設定で出力
+            'handlers': ['file_batch', 'console'],  # 先述のfile, consoleの設定で出力
             'level': 'DEBUG',
         },
     },

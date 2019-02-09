@@ -6520,3 +6520,4 @@
 [INFO]	asctime:2019-02-09 12:30:40,500	module:monitor_ticker	message:Stop market order found. side:buy stop price:395332.0 market sell:394760 market buy:394759
 [INFO]	asctime:2019-02-09 12:30:41,654	module:monitor_ticker	message:Stop market order found. side:buy stop price:395332.0 market sell:394760 market buy:394759
 [INFO]	asctime:2019-02-09 12:30:42,622	module:monitor_ticker	message:Stop market order found. side:buy stop price:395332.0 market sell:394760 market buy:394759
+[INFO]	asctime:2019-02-09 12:30:44,536	module:monitor_ticker	message:completed
