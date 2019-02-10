@@ -218,5 +218,6 @@ EMAIL_USE_TLS = True
 CRONJOBS = [
     ('* * * * *', 'django.core.management.call_command', ['monitor_order_status']),
     ('* * * * *', 'django.core.management.call_command', ['monitor_ticker']),
+    ('* * 1 * *', 'django.core.management.call_command', ['clear_old_orders']),
 ]
 CRONTAB_LOCK_JOBS = True

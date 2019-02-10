@@ -7071,3 +7071,411 @@
 [INFO]	asctime:2019-02-09 17:17:05,716	module:monitor_ticker	message:started
 [INFO]	asctime:2019-02-09 17:17:10,123	module:monitor_ticker	message:completed
 [INFO]	asctime:2019-02-09 17:17:10,123	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-09 17:51:32,772	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 17:53:13,150	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 17:53:13,269	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 17:58:07,491	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 17:58:07,512	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 17:59:10,920	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 17:59:10,931	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 17:59:34,607	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 17:59:34,616	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 18:05:08,758	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 18:05:08,773	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 18:05:27,466	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 18:05:27,467	module:clear_old_orders	message:delete date:2019-01-30 09:05:27.467172+00:00
+[INFO]	asctime:2019-02-09 18:05:27,476	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 18:05:45,294	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 18:05:45,295	module:clear_old_orders	message:delete date:2019-02-06 09:05:45.295273+00:00
+[INFO]	asctime:2019-02-09 18:05:45,306	module:clear_old_orders	message:554681724
+[INFO]	asctime:2019-02-09 18:05:45,306	module:clear_old_orders	message:554710823
+[INFO]	asctime:2019-02-09 18:05:45,306	module:clear_old_orders	message:554894127
+[INFO]	asctime:2019-02-09 18:05:45,307	module:clear_old_orders	message:554939320
+[INFO]	asctime:2019-02-09 18:05:45,307	module:clear_old_orders	message:554939769
+[INFO]	asctime:2019-02-09 18:05:45,307	module:clear_old_orders	message:108780915
+[INFO]	asctime:2019-02-09 18:05:45,307	module:clear_old_orders	message:22768453
+[INFO]	asctime:2019-02-09 18:05:45,307	module:clear_old_orders	message:22768454
+[INFO]	asctime:2019-02-09 18:05:45,307	module:clear_old_orders	message:554964975
+[INFO]	asctime:2019-02-09 18:05:45,308	module:clear_old_orders	message:554965330
+[INFO]	asctime:2019-02-09 18:05:45,308	module:clear_old_orders	message:554966406
+[INFO]	asctime:2019-02-09 18:05:45,308	module:clear_old_orders	message:554984110
+[INFO]	asctime:2019-02-09 18:05:45,308	module:clear_old_orders	message:554985166
+[INFO]	asctime:2019-02-09 18:05:45,308	module:clear_old_orders	message:554989823
+[INFO]	asctime:2019-02-09 18:05:45,308	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 20:27:36,722	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 20:28:20,652	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 20:28:20,668	module:clear_old_orders	message:14 will be deleted.
+[INFO]	asctime:2019-02-09 20:28:20,673	module:clear_old_orders	message:554681724
+[INFO]	asctime:2019-02-09 20:28:20,674	module:clear_old_orders	message:554710823
+[INFO]	asctime:2019-02-09 20:28:20,674	module:clear_old_orders	message:554894127
+[INFO]	asctime:2019-02-09 20:28:20,674	module:clear_old_orders	message:554939320
+[INFO]	asctime:2019-02-09 20:28:20,674	module:clear_old_orders	message:554939769
+[INFO]	asctime:2019-02-09 20:28:20,674	module:clear_old_orders	message:108780915
+[INFO]	asctime:2019-02-09 20:28:20,675	module:clear_old_orders	message:22768453
+[INFO]	asctime:2019-02-09 20:28:20,675	module:clear_old_orders	message:22768454
+[INFO]	asctime:2019-02-09 20:28:20,675	module:clear_old_orders	message:554964975
+[INFO]	asctime:2019-02-09 20:28:20,675	module:clear_old_orders	message:554965330
+[INFO]	asctime:2019-02-09 20:28:20,675	module:clear_old_orders	message:554966406
+[INFO]	asctime:2019-02-09 20:28:20,676	module:clear_old_orders	message:554984110
+[INFO]	asctime:2019-02-09 20:28:20,676	module:clear_old_orders	message:554985166
+[INFO]	asctime:2019-02-09 20:28:20,676	module:clear_old_orders	message:554989823
+[INFO]	asctime:2019-02-09 20:28:20,676	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 20:29:40,487	module:clear_old_orders	message:started
+[INFO]	asctime:2019-02-09 20:29:40,512	module:clear_old_orders	message:14 will be deleted.
+[INFO]	asctime:2019-02-09 20:29:40,548	module:clear_old_orders	message:completed
+[INFO]	asctime:2019-02-09 20:39:27,839	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:39:29,106	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:39:29,110	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:39:30,472	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:39:30,472	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:39:31,793	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:39:31,794	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:39:33,168	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:39:33,169	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:39:34,514	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:39:34,514	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:39:35,915	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:39:35,916	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:40:19,596	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:40:24,485	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-09 20:40:27,981	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-09 20:40:32,023	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-09 20:40:33,056	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:40:33,056	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:40:34,333	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:40:34,334	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:40:36,031	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:40:36,032	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 20:40:37,625	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 20:40:37,626	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 22:10:36,784	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 22:10:41,570	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-09 22:10:45,135	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-09 22:10:48,739	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-09 22:10:49,785	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 22:10:49,785	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 22:10:51,137	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 22:10:51,138	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-09 22:10:52,536	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-09 22:10:52,537	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:09:49,240	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:09:54,750	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-10 00:09:55,789	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:09:55,789	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:09:57,271	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:09:57,272	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:00,220	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:00,221	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:02,080	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:02,080	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:03,915	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:03,915	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:06,029	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:06,030	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:08,120	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:08,120	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:10,038	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:10,038	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:12,269	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:12,270	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:14,086	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:14,086	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:15,950	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:15,950	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:18,039	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:18,039	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:19,843	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:19,844	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:21,767	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:21,768	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:23,666	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:23,666	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:25,748	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:25,749	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:27,594	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:27,595	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:29,763	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:29,764	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:31,906	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:31,907	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:33,522	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:33,523	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:35,702	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:35,703	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:37,532	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:37,533	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:39,200	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:39,201	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:40,721	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 00:10:40,721	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 00:10:42,505	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-10 10:35:34,005	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-10 10:35:34,006	module:monitor_order_status	message:1s time. 5.000000000032756e-06 has elapsed
+[INFO]	asctime:2019-02-10 10:35:34,511	module:monitor_order_status	message:2s time. 0.06760999999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:35:34,802	module:monitor_order_status	message:3s time. 0.12053800000000003 has elapsed
+[INFO]	asctime:2019-02-10 10:35:35,242	module:monitor_order_status	message:4s time. 0.17103500000000005 has elapsed
+[INFO]	asctime:2019-02-10 10:35:35,706	module:monitor_order_status	message:5s time. 0.21411000000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:36,015	module:monitor_order_status	message:6s time. 0.2671840000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:35:36,396	module:monitor_order_status	message:7s time. 0.3160449999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:35:36,746	module:monitor_order_status	message:8s time. 0.3590549999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:35:37,086	module:monitor_order_status	message:9s time. 0.40264999999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:35:37,411	module:monitor_order_status	message:10s time. 0.4446650000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:35:37,741	module:monitor_order_status	message:11s time. 0.4867999999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:35:38,433	module:monitor_order_status	message:12s time. 0.529453 has elapsed
+[INFO]	asctime:2019-02-10 10:35:38,950	module:monitor_order_status	message:13s time. 0.5762780000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:35:39,301	module:monitor_order_status	message:14s time. 0.618938 has elapsed
+[INFO]	asctime:2019-02-10 10:35:39,681	module:monitor_order_status	message:15s time. 0.664226 has elapsed
+[INFO]	asctime:2019-02-10 10:35:40,003	module:monitor_order_status	message:16s time. 0.716269 has elapsed
+[INFO]	asctime:2019-02-10 10:35:40,346	module:monitor_order_status	message:17s time. 0.7582040000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:35:40,707	module:monitor_order_status	message:18s time. 0.8014450000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:41,053	module:monitor_order_status	message:19s time. 0.8506680000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:41,382	module:monitor_order_status	message:20s time. 0.8942990000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:41,707	module:monitor_order_status	message:21s time. 0.9367169999999998 has elapsed
+[INFO]	asctime:2019-02-10 10:35:42,014	module:monitor_order_status	message:22s time. 0.979924 has elapsed
+[INFO]	asctime:2019-02-10 10:35:42,303	module:monitor_order_status	message:23s time. 1.025506 has elapsed
+[INFO]	asctime:2019-02-10 10:35:42,596	module:monitor_order_status	message:24s time. 1.069067 has elapsed
+[INFO]	asctime:2019-02-10 10:35:42,884	module:monitor_order_status	message:25s time. 1.112457 has elapsed
+[INFO]	asctime:2019-02-10 10:35:43,192	module:monitor_order_status	message:26s time. 1.159342 has elapsed
+[INFO]	asctime:2019-02-10 10:35:43,497	module:monitor_order_status	message:27s time. 1.2042920000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:35:43,858	module:monitor_order_status	message:28s time. 1.2527970000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:44,173	module:monitor_order_status	message:29s time. 1.2929560000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:44,471	module:monitor_order_status	message:30s time. 1.3306300000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:44,783	module:monitor_order_status	message:31s time. 1.3791250000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:45,145	module:monitor_order_status	message:32s time. 1.4230520000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:45,461	module:monitor_order_status	message:33s time. 1.4658000000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:46,177	module:monitor_order_status	message:34s time. 1.5090469999999998 has elapsed
+[INFO]	asctime:2019-02-10 10:35:46,498	module:monitor_order_status	message:35s time. 1.551311 has elapsed
+[INFO]	asctime:2019-02-10 10:35:46,857	module:monitor_order_status	message:36s time. 1.5943550000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:47,146	module:monitor_order_status	message:37s time. 1.633857 has elapsed
+[INFO]	asctime:2019-02-10 10:35:47,476	module:monitor_order_status	message:38s time. 1.676199 has elapsed
+[INFO]	asctime:2019-02-10 10:35:47,811	module:monitor_order_status	message:39s time. 1.7160549999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:35:48,279	module:monitor_order_status	message:40s time. 1.7595040000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:48,693	module:monitor_order_status	message:41s time. 1.802876 has elapsed
+[INFO]	asctime:2019-02-10 10:35:49,042	module:monitor_order_status	message:42s time. 1.8474490000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:35:49,746	module:monitor_order_status	message:43s time. 1.8978510000000002 has elapsed
+[INFO]	asctime:2019-02-10 10:35:50,060	module:monitor_order_status	message:44s time. 1.9456229999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:35:50,381	module:monitor_order_status	message:45s time. 1.988292 has elapsed
+[INFO]	asctime:2019-02-10 10:35:50,706	module:monitor_order_status	message:46s time. 2.035928 has elapsed
+[INFO]	asctime:2019-02-10 10:35:51,442	module:monitor_order_status	message:47s time. 2.081326 has elapsed
+[INFO]	asctime:2019-02-10 10:35:51,811	module:monitor_order_status	message:48s time. 2.131338 has elapsed
+[INFO]	asctime:2019-02-10 10:35:52,142	module:monitor_order_status	message:49s time. 2.179012 has elapsed
+[INFO]	asctime:2019-02-10 10:35:52,869	module:monitor_order_status	message:50s time. 2.226726 has elapsed
+[INFO]	asctime:2019-02-10 10:35:53,213	module:monitor_order_status	message:51s time. 2.279186 has elapsed
+[INFO]	asctime:2019-02-10 10:35:53,533	module:monitor_order_status	message:52s time. 2.322353 has elapsed
+[INFO]	asctime:2019-02-10 10:35:53,858	module:monitor_order_status	message:53s time. 2.364577 has elapsed
+[INFO]	asctime:2019-02-10 10:35:54,173	module:monitor_order_status	message:54s time. 2.407284 has elapsed
+[INFO]	asctime:2019-02-10 10:35:54,490	module:monitor_order_status	message:55s time. 2.451326 has elapsed
+[INFO]	asctime:2019-02-10 10:35:54,858	module:monitor_order_status	message:56s time. 2.500387 has elapsed
+[INFO]	asctime:2019-02-10 10:35:55,208	module:monitor_order_status	message:57s time. 2.5518 has elapsed
+[INFO]	asctime:2019-02-10 10:35:55,496	module:monitor_order_status	message:58s time. 2.597614 has elapsed
+[INFO]	asctime:2019-02-10 10:35:55,811	module:monitor_order_status	message:59s time. 2.651244 has elapsed
+[INFO]	asctime:2019-02-10 10:35:56,129	module:monitor_order_status	message:60s time. 2.7032149999999997 has elapsed
+[INFO]	asctime:2019-02-10 10:35:56,507	module:monitor_order_status	message:61s time. 2.745911 has elapsed
+[INFO]	asctime:2019-02-10 10:35:56,832	module:monitor_order_status	message:62s time. 2.7888750000000004 has elapsed
+[INFO]	asctime:2019-02-10 10:35:57,156	module:monitor_order_status	message:63s time. 2.831959 has elapsed
+[INFO]	asctime:2019-02-10 10:35:57,602	module:monitor_order_status	message:64s time. 2.8738870000000003 has elapsed
+[INFO]	asctime:2019-02-10 10:35:58,026	module:monitor_order_status	message:65s time. 2.9131240000000003 has elapsed
+[INFO]	asctime:2019-02-10 10:35:58,366	module:monitor_order_status	message:66s time. 2.9561680000000004 has elapsed
+[INFO]	asctime:2019-02-10 10:35:58,697	module:monitor_order_status	message:67s time. 3.003606 has elapsed
+[INFO]	asctime:2019-02-10 10:35:59,059	module:monitor_order_status	message:68s time. 3.051925 has elapsed
+[INFO]	asctime:2019-02-10 10:35:59,388	module:monitor_order_status	message:69s time. 3.097051 has elapsed
+[INFO]	asctime:2019-02-10 10:35:59,707	module:monitor_order_status	message:70s time. 3.1479820000000003 has elapsed
+[INFO]	asctime:2019-02-10 10:36:00,057	module:monitor_order_status	message:71s time. 3.191234 has elapsed
+[INFO]	asctime:2019-02-10 10:36:00,522	module:monitor_order_status	message:72s time. 3.234068 has elapsed
+[INFO]	asctime:2019-02-10 10:36:00,913	module:monitor_order_status	message:73s time. 3.27627 has elapsed
+[INFO]	asctime:2019-02-10 10:36:01,257	module:monitor_order_status	message:74s time. 3.3264720000000003 has elapsed
+[INFO]	asctime:2019-02-10 10:36:01,619	module:monitor_order_status	message:75s time. 3.380155 has elapsed
+[INFO]	asctime:2019-02-10 10:36:01,952	module:monitor_order_status	message:76s time. 3.427128 has elapsed
+[INFO]	asctime:2019-02-10 10:36:02,331	module:monitor_order_status	message:77s time. 3.47212 has elapsed
+[INFO]	asctime:2019-02-10 10:36:02,637	module:monitor_order_status	message:78s time. 3.5180900000000004 has elapsed
+[INFO]	asctime:2019-02-10 10:36:03,038	module:monitor_order_status	message:79s time. 3.5653539999999997 has elapsed
+[INFO]	asctime:2019-02-10 10:36:03,467	module:monitor_order_status	message:80s time. 3.608153 has elapsed
+[INFO]	asctime:2019-02-10 10:36:03,797	module:monitor_order_status	message:81s time. 3.6561350000000004 has elapsed
+[INFO]	asctime:2019-02-10 10:36:04,120	module:monitor_order_status	message:82s time. 3.7079020000000003 has elapsed
+[INFO]	asctime:2019-02-10 10:36:04,430	module:monitor_order_status	message:83s time. 3.758106 has elapsed
+[INFO]	asctime:2019-02-10 10:36:04,747	module:monitor_order_status	message:84s time. 3.801434 has elapsed
+[INFO]	asctime:2019-02-10 10:36:05,095	module:monitor_order_status	message:85s time. 3.8523150000000004 has elapsed
+[INFO]	asctime:2019-02-10 10:36:05,408	module:monitor_order_status	message:86s time. 3.9016179999999996 has elapsed
+[INFO]	asctime:2019-02-10 10:36:05,777	module:monitor_order_status	message:87s time. 3.948344 has elapsed
+[INFO]	asctime:2019-02-10 10:36:06,090	module:monitor_order_status	message:88s time. 3.994163 has elapsed
+[INFO]	asctime:2019-02-10 10:36:06,496	module:monitor_order_status	message:89s time. 4.037928000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:06,861	module:monitor_order_status	message:90s time. 4.082058999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:07,224	module:monitor_order_status	message:91s time. 4.131154 has elapsed
+[INFO]	asctime:2019-02-10 10:36:07,624	module:monitor_order_status	message:92s time. 4.177557 has elapsed
+[INFO]	asctime:2019-02-10 10:36:07,991	module:monitor_order_status	message:93s time. 4.216163 has elapsed
+[INFO]	asctime:2019-02-10 10:36:08,351	module:monitor_order_status	message:94s time. 4.2621009999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:36:08,692	module:monitor_order_status	message:95s time. 4.3116389999999996 has elapsed
+[INFO]	asctime:2019-02-10 10:36:09,178	module:monitor_order_status	message:96s time. 4.356279000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:09,962	module:monitor_order_status	message:97s time. 4.399464 has elapsed
+[INFO]	asctime:2019-02-10 10:36:10,396	module:monitor_order_status	message:98s time. 4.446166 has elapsed
+[INFO]	asctime:2019-02-10 10:36:11,082	module:monitor_order_status	message:99s time. 4.489307999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:11,472	module:monitor_order_status	message:100s time. 4.527214000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:11,793	module:monitor_order_status	message:101s time. 4.570539999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:12,143	module:monitor_order_status	message:102s time. 4.614236 has elapsed
+[INFO]	asctime:2019-02-10 10:36:12,500	module:monitor_order_status	message:103s time. 4.663418 has elapsed
+[INFO]	asctime:2019-02-10 10:36:12,837	module:monitor_order_status	message:104s time. 4.707397 has elapsed
+[INFO]	asctime:2019-02-10 10:36:13,254	module:monitor_order_status	message:105s time. 4.752772 has elapsed
+[INFO]	asctime:2019-02-10 10:36:13,718	module:monitor_order_status	message:106s time. 4.800616 has elapsed
+[INFO]	asctime:2019-02-10 10:36:14,051	module:monitor_order_status	message:107s time. 4.848299000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:14,365	module:monitor_order_status	message:108s time. 4.891684 has elapsed
+[INFO]	asctime:2019-02-10 10:36:14,677	module:monitor_order_status	message:109s time. 4.935466999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:14,972	module:monitor_order_status	message:110s time. 4.983499999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:15,319	module:monitor_order_status	message:111s time. 5.030327 has elapsed
+[INFO]	asctime:2019-02-10 10:36:15,632	module:monitor_order_status	message:112s time. 5.0785029999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:36:16,498	module:monitor_order_status	message:113s time. 5.126042999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:16,812	module:monitor_order_status	message:114s time. 5.166879 has elapsed
+[INFO]	asctime:2019-02-10 10:36:17,192	module:monitor_order_status	message:115s time. 5.2055869999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:36:17,882	module:monitor_order_status	message:116s time. 5.241744000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:18,207	module:monitor_order_status	message:117s time. 5.287008 has elapsed
+[INFO]	asctime:2019-02-10 10:36:18,556	module:monitor_order_status	message:118s time. 5.333748999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:18,890	module:monitor_order_status	message:119s time. 5.38646 has elapsed
+[INFO]	asctime:2019-02-10 10:36:19,207	module:monitor_order_status	message:120s time. 5.433983 has elapsed
+[INFO]	asctime:2019-02-10 10:36:19,512	module:monitor_order_status	message:121s time. 5.476539000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:19,831	module:monitor_order_status	message:122s time. 5.51887 has elapsed
+[INFO]	asctime:2019-02-10 10:36:20,125	module:monitor_order_status	message:123s time. 5.561605 has elapsed
+[INFO]	asctime:2019-02-10 10:36:20,614	module:monitor_order_status	message:124s time. 5.607594000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:20,921	module:monitor_order_status	message:125s time. 5.655937 has elapsed
+[INFO]	asctime:2019-02-10 10:36:21,292	module:monitor_order_status	message:126s time. 5.698553 has elapsed
+[INFO]	asctime:2019-02-10 10:36:21,715	module:monitor_order_status	message:127s time. 5.740368 has elapsed
+[INFO]	asctime:2019-02-10 10:36:22,044	module:monitor_order_status	message:128s time. 5.781812 has elapsed
+[INFO]	asctime:2019-02-10 10:36:22,402	module:monitor_order_status	message:129s time. 5.824382999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:22,793	module:monitor_order_status	message:130s time. 5.864406000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:23,121	module:monitor_order_status	message:131s time. 5.907916999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:23,884	module:monitor_order_status	message:132s time. 5.9526710000000005 has elapsed
+[INFO]	asctime:2019-02-10 10:36:24,192	module:monitor_order_status	message:133s time. 5.997082000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:24,591	module:monitor_order_status	message:134s time. 6.040573999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:24,941	module:monitor_order_status	message:135s time. 6.084333000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:25,706	module:monitor_order_status	message:136s time. 6.127694999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:26,015	module:monitor_order_status	message:137s time. 6.171298 has elapsed
+[INFO]	asctime:2019-02-10 10:36:26,460	module:monitor_order_status	message:138s time. 6.2145340000000004 has elapsed
+[INFO]	asctime:2019-02-10 10:36:26,803	module:monitor_order_status	message:139s time. 6.263488000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:27,227	module:monitor_order_status	message:140s time. 6.315149999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:27,524	module:monitor_order_status	message:141s time. 6.357079000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:27,859	module:monitor_order_status	message:142s time. 6.403200999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:28,191	module:monitor_order_status	message:143s time. 6.4480710000000006 has elapsed
+[INFO]	asctime:2019-02-10 10:36:28,606	module:monitor_order_status	message:144s time. 6.487888999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:29,040	module:monitor_order_status	message:145s time. 6.5373339999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:36:29,356	module:monitor_order_status	message:146s time. 6.580325 has elapsed
+[INFO]	asctime:2019-02-10 10:36:30,143	module:monitor_order_status	message:147s time. 6.623405 has elapsed
+[INFO]	asctime:2019-02-10 10:36:30,508	module:monitor_order_status	message:148s time. 6.672650000000001 has elapsed
+[INFO]	asctime:2019-02-10 10:36:30,810	module:monitor_order_status	message:149s time. 6.711658999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:31,218	module:monitor_order_status	message:150s time. 6.752392 has elapsed
+[INFO]	asctime:2019-02-10 10:36:31,632	module:monitor_order_status	message:151s time. 6.795461999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:31,927	module:monitor_order_status	message:152s time. 6.834567999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:32,227	module:monitor_order_status	message:153s time. 6.870493 has elapsed
+[INFO]	asctime:2019-02-10 10:36:32,567	module:monitor_order_status	message:154s time. 6.915668 has elapsed
+[INFO]	asctime:2019-02-10 10:36:32,869	module:monitor_order_status	message:155s time. 6.958164999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:33,256	module:monitor_order_status	message:156s time. 7.001351999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:33,637	module:monitor_order_status	message:157s time. 7.044509 has elapsed
+[INFO]	asctime:2019-02-10 10:36:34,023	module:monitor_order_status	message:158s time. 7.093138999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:34,390	module:monitor_order_status	message:159s time. 7.136768 has elapsed
+[INFO]	asctime:2019-02-10 10:36:34,808	module:monitor_order_status	message:160s time. 7.187581 has elapsed
+[INFO]	asctime:2019-02-10 10:36:35,141	module:monitor_order_status	message:161s time. 7.230041 has elapsed
+[INFO]	asctime:2019-02-10 10:36:35,866	module:monitor_order_status	message:162s time. 7.270761 has elapsed
+[INFO]	asctime:2019-02-10 10:36:36,251	module:monitor_order_status	message:163s time. 7.316944999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:36,643	module:monitor_order_status	message:164s time. 7.361946 has elapsed
+[INFO]	asctime:2019-02-10 10:36:37,225	module:monitor_order_status	message:165s time. 7.4008 has elapsed
+[INFO]	asctime:2019-02-10 10:36:37,579	module:monitor_order_status	message:166s time. 7.452314999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:37,915	module:monitor_order_status	message:167s time. 7.498134 has elapsed
+[INFO]	asctime:2019-02-10 10:36:38,375	module:monitor_order_status	message:168s time. 7.548292999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:38,708	module:monitor_order_status	message:169s time. 7.590570999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:39,021	module:monitor_order_status	message:170s time. 7.636087999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:39,362	module:monitor_order_status	message:171s time. 7.6830929999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:36:39,822	module:monitor_order_status	message:172s time. 7.726858 has elapsed
+[INFO]	asctime:2019-02-10 10:36:40,170	module:monitor_order_status	message:173s time. 7.769629 has elapsed
+[INFO]	asctime:2019-02-10 10:36:40,525	module:monitor_order_status	message:174s time. 7.812839 has elapsed
+[INFO]	asctime:2019-02-10 10:36:40,841	module:monitor_order_status	message:175s time. 7.855853999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:41,231	module:monitor_order_status	message:176s time. 7.899998999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:41,550	module:monitor_order_status	message:177s time. 7.944818 has elapsed
+[INFO]	asctime:2019-02-10 10:36:41,908	module:monitor_order_status	message:178s time. 7.9890609999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:36:42,298	module:monitor_order_status	message:179s time. 8.040445 has elapsed
+[INFO]	asctime:2019-02-10 10:36:42,709	module:monitor_order_status	message:180s time. 8.08589 has elapsed
+[INFO]	asctime:2019-02-10 10:36:43,040	module:monitor_order_status	message:181s time. 8.137195 has elapsed
+[INFO]	asctime:2019-02-10 10:36:43,405	module:monitor_order_status	message:182s time. 8.186645 has elapsed
+[INFO]	asctime:2019-02-10 10:36:43,810	module:monitor_order_status	message:183s time. 8.235311 has elapsed
+[INFO]	asctime:2019-02-10 10:36:44,141	module:monitor_order_status	message:184s time. 8.281964 has elapsed
+[INFO]	asctime:2019-02-10 10:36:44,803	module:monitor_order_status	message:185s time. 8.325225 has elapsed
+[INFO]	asctime:2019-02-10 10:36:45,257	module:monitor_order_status	message:186s time. 8.371438 has elapsed
+[INFO]	asctime:2019-02-10 10:36:45,645	module:monitor_order_status	message:187s time. 8.412849 has elapsed
+[INFO]	asctime:2019-02-10 10:36:45,947	module:monitor_order_status	message:188s time. 8.454927999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:46,252	module:monitor_order_status	message:189s time. 8.494994 has elapsed
+[INFO]	asctime:2019-02-10 10:36:46,558	module:monitor_order_status	message:190s time. 8.544004 has elapsed
+[INFO]	asctime:2019-02-10 10:36:46,873	module:monitor_order_status	message:191s time. 8.59058 has elapsed
+[INFO]	asctime:2019-02-10 10:36:47,200	module:monitor_order_status	message:192s time. 8.633246999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:47,587	module:monitor_order_status	message:193s time. 8.683444999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:47,925	module:monitor_order_status	message:194s time. 8.725966 has elapsed
+[INFO]	asctime:2019-02-10 10:36:48,225	module:monitor_order_status	message:195s time. 8.762775999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:48,661	module:monitor_order_status	message:196s time. 8.813303 has elapsed
+[INFO]	asctime:2019-02-10 10:36:49,060	module:monitor_order_status	message:197s time. 8.865480999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:49,409	module:monitor_order_status	message:198s time. 8.918139 has elapsed
+[INFO]	asctime:2019-02-10 10:36:49,744	module:monitor_order_status	message:199s time. 8.967127 has elapsed
+[INFO]	asctime:2019-02-10 10:36:50,060	module:monitor_order_status	message:200s time. 9.012483 has elapsed
+[INFO]	asctime:2019-02-10 10:36:50,783	module:monitor_order_status	message:201s time. 9.057160999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:51,090	module:monitor_order_status	message:202s time. 9.101652999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:51,410	module:monitor_order_status	message:203s time. 9.143994 has elapsed
+[INFO]	asctime:2019-02-10 10:36:51,761	module:monitor_order_status	message:204s time. 9.190737 has elapsed
+[INFO]	asctime:2019-02-10 10:36:52,090	module:monitor_order_status	message:205s time. 9.237262999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:52,448	module:monitor_order_status	message:206s time. 9.271699 has elapsed
+[INFO]	asctime:2019-02-10 10:36:52,741	module:monitor_order_status	message:207s time. 9.316089 has elapsed
+[INFO]	asctime:2019-02-10 10:36:53,081	module:monitor_order_status	message:208s time. 9.366145 has elapsed
+[INFO]	asctime:2019-02-10 10:36:53,484	module:monitor_order_status	message:209s time. 9.414947999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:53,832	module:monitor_order_status	message:210s time. 9.459814999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:54,210	module:monitor_order_status	message:211s time. 9.503867 has elapsed
+[INFO]	asctime:2019-02-10 10:36:54,563	module:monitor_order_status	message:212s time. 9.555373999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:54,894	module:monitor_order_status	message:213s time. 9.605075 has elapsed
+[INFO]	asctime:2019-02-10 10:36:55,207	module:monitor_order_status	message:214s time. 9.651862 has elapsed
+[INFO]	asctime:2019-02-10 10:36:55,510	module:monitor_order_status	message:215s time. 9.698584 has elapsed
+[INFO]	asctime:2019-02-10 10:36:55,936	module:monitor_order_status	message:216s time. 9.741209999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:56,692	module:monitor_order_status	message:217s time. 9.789477 has elapsed
+[INFO]	asctime:2019-02-10 10:36:57,136	module:monitor_order_status	message:218s time. 9.838270999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:57,479	module:monitor_order_status	message:219s time. 9.889374 has elapsed
+[INFO]	asctime:2019-02-10 10:36:57,772	module:monitor_order_status	message:220s time. 9.936257999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:58,092	module:monitor_order_status	message:221s time. 9.97899 has elapsed
+[INFO]	asctime:2019-02-10 10:36:58,392	module:monitor_order_status	message:222s time. 10.026335999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:36:58,727	module:monitor_order_status	message:223s time. 10.071232 has elapsed
+[INFO]	asctime:2019-02-10 10:36:59,025	module:monitor_order_status	message:224s time. 10.117364 has elapsed
+[INFO]	asctime:2019-02-10 10:36:59,509	module:monitor_order_status	message:225s time. 10.164335 has elapsed
+[INFO]	asctime:2019-02-10 10:36:59,842	module:monitor_order_status	message:226s time. 10.204576 has elapsed
+[INFO]	asctime:2019-02-10 10:37:00,150	module:monitor_order_status	message:227s time. 10.247207 has elapsed
+[INFO]	asctime:2019-02-10 10:37:00,472	module:monitor_order_status	message:228s time. 10.291274999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:37:00,781	module:monitor_order_status	message:229s time. 10.334944 has elapsed
+[INFO]	asctime:2019-02-10 10:37:01,075	module:monitor_order_status	message:230s time. 10.37852 has elapsed
+[INFO]	asctime:2019-02-10 10:37:01,377	module:monitor_order_status	message:231s time. 10.421633 has elapsed
+[INFO]	asctime:2019-02-10 10:37:01,677	module:monitor_order_status	message:232s time. 10.466118999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:37:02,001	module:monitor_order_status	message:233s time. 10.507373 has elapsed
+[INFO]	asctime:2019-02-10 10:37:02,295	module:monitor_order_status	message:234s time. 10.557568 has elapsed
+[INFO]	asctime:2019-02-10 10:37:02,611	module:monitor_order_status	message:235s time. 10.602506 has elapsed
+[INFO]	asctime:2019-02-10 10:37:03,070	module:monitor_order_status	message:236s time. 10.649002 has elapsed
+[INFO]	asctime:2019-02-10 10:37:03,399	module:monitor_order_status	message:237s time. 10.691593 has elapsed
+[INFO]	asctime:2019-02-10 10:37:03,762	module:monitor_order_status	message:238s time. 10.733395 has elapsed
+[INFO]	asctime:2019-02-10 10:37:04,062	module:monitor_order_status	message:239s time. 10.776149 has elapsed
+[INFO]	asctime:2019-02-10 10:37:04,362	module:monitor_order_status	message:240s time. 10.817724 has elapsed
+[INFO]	asctime:2019-02-10 10:37:04,768	module:monitor_order_status	message:241s time. 10.860612 has elapsed
+[INFO]	asctime:2019-02-10 10:37:05,062	module:monitor_order_status	message:242s time. 10.897827 has elapsed
+[INFO]	asctime:2019-02-10 10:37:05,409	module:monitor_order_status	message:243s time. 10.9457 has elapsed
+[INFO]	asctime:2019-02-10 10:37:05,720	module:monitor_order_status	message:244s time. 10.991814 has elapsed
+[INFO]	asctime:2019-02-10 10:37:06,028	module:monitor_order_status	message:245s time. 11.043432 has elapsed
+[INFO]	asctime:2019-02-10 10:37:06,329	module:monitor_order_status	message:246s time. 11.093843999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:37:06,642	module:monitor_order_status	message:247s time. 11.140281 has elapsed
+[INFO]	asctime:2019-02-10 10:37:07,045	module:monitor_order_status	message:248s time. 11.182336 has elapsed
+[INFO]	asctime:2019-02-10 10:37:07,388	module:monitor_order_status	message:249s time. 11.231315 has elapsed
+[INFO]	asctime:2019-02-10 10:37:15,118	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-10 10:37:15,119	module:monitor_ticker	message:1s time. 3.999999999892978e-06 has elapsed
+[INFO]	asctime:2019-02-10 10:37:19,713	module:monitor_ticker	message:rate notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-10 10:37:19,726	module:monitor_ticker	message:Stop market order found. side:sell stop price:396960.0 market sell:395173 market buy:395172
+[INFO]	asctime:2019-02-10 10:37:20,293	module:monitor_ticker	message:Stop limit order found. side:sell stop price:396860.0 market sell:395173 market buy:395172
+[INFO]	asctime:2019-02-10 10:37:23,848	module:monitor_ticker	message:2s time. 0.41959100000000005 has elapsed
+[INFO]	asctime:2019-02-10 10:37:27,203	module:monitor_ticker	message:3s time. 0.730926 has elapsed
+[INFO]	asctime:2019-02-10 10:37:30,803	module:monitor_ticker	message:4s time. 1.0333929999999998 has elapsed
+[INFO]	asctime:2019-02-10 10:37:34,873	module:monitor_ticker	message:5s time. 1.3566289999999999 has elapsed
+[INFO]	asctime:2019-02-10 10:37:37,600	module:monitor_ticker	message:6s time. 1.659519 has elapsed
+[INFO]	asctime:2019-02-10 10:37:40,998	module:monitor_ticker	message:7s time. 1.957453 has elapsed
+[INFO]	asctime:2019-02-10 10:37:44,290	module:monitor_ticker	message:8s time. 2.248859 has elapsed
+[INFO]	asctime:2019-02-10 10:37:47,491	module:monitor_ticker	message:9s time. 2.538948 has elapsed
+[INFO]	asctime:2019-02-10 10:37:50,061	module:monitor_ticker	message:10s time. 2.8255860000000004 has elapsed
+[INFO]	asctime:2019-02-10 10:37:53,406	module:monitor_ticker	message:11s time. 3.116696 has elapsed
+[INFO]	asctime:2019-02-10 10:37:56,452	module:monitor_ticker	message:12s time. 3.414103 has elapsed
+[INFO]	asctime:2019-02-10 10:37:59,504	module:monitor_ticker	message:13s time. 3.7140259999999996 has elapsed
+[INFO]	asctime:2019-02-10 10:38:02,295	module:monitor_ticker	message:14s time. 4.006779 has elapsed
+[INFO]	asctime:2019-02-10 10:38:06,349	module:monitor_ticker	message:15s time. 4.3147969999999995 has elapsed
+[INFO]	asctime:2019-02-10 10:38:09,070	module:monitor_ticker	message:16s time. 4.594407 has elapsed

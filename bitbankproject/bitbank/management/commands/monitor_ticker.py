@@ -1,7 +1,7 @@
 import json
 import logging
 import os
-from time import sleep
+import time 
 import python_bitbankcc
 from django.core.management.base import BaseCommand
 from django.utils import timezone
@@ -18,8 +18,15 @@ class Command(BaseCommand):
     # コマンドが実行された際に呼ばれるメソッド
     def handle(self, *args, **options):
         logger = logging.getLogger('batch_logger')
-        for i in range(25):
-            logger.info('started')
+        logger.info('started')
+        time_started = time.clock()
+        n = 0
+        while True:
+            n = n + 1
+            time_elapsed = time.clock() - time_started
+            logger.info(str(n) + 's time. ' + str(time_elapsed) + ' has elapsed')
+            if time_elapsed > 55.0:
+                break;
             pub = python_bitbankcc.public()
             for user in User.objects.all():
                 # API KEYが登録されているユーザのみ処理
@@ -117,6 +124,5 @@ class Command(BaseCommand):
                                 stop_limit_order.save()
                                 logger.error('user:' + user.email + 'pair:' + pair + ' pk:' + str(stop_market_order.pk) + ' error: ' +  str(e.args))
                                 continue
-            sleep(1)
-            logger.info('completed')  
+        logger.info('completed')  
           

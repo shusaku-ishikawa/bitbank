@@ -342,23 +342,28 @@ def ajax_get_assets(request):
 def ajax_get_active_orders(request):
     user = request.user
     
-    active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER'])
-    serialized_qs = serializers.serialize('json', active_orders)
+    active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER']).order_by('-pk')
     data = {
-        'active_orders': serialized_qs
+        'active_orders': serializers.serialize('json', active_orders)
     }
     return JsonResponse(data)
 
   
 def ajax_get_order_histroy(request):
     user = request.user
-    
-    order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED'])
-    serialized_qs = serializers.serialize('json', order_history)
-    data = {
-        'order_history': serialized_qs
-    }
-    return JsonResponse(data)
+
+    try:
+        offset = int(request.GET.get('offset'))
+        to = int(request.GET.get('limit')) + offset
+        
+        order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED']).order_by('-pk')
+        data = {
+            'total_count': order_history.count(),
+            'order_history': serializers.serialize('json', order_history[offset:to])
+        }
+        return JsonResponse(data)
+    except Exception as e:
+        return JsonResponse({'error': e.args})
 
 def ajax_cancel_order(request):
     user = request.user

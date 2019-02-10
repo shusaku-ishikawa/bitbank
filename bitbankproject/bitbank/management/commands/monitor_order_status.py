@@ -2,7 +2,7 @@ import json
 import logging
 import os
 from datetime import datetime
-from time import sleep
+import time
 import python_bitbankcc
 from django.core.management.base import BaseCommand
 from django.template.loader import get_template
@@ -14,12 +14,18 @@ from ...models import Order, User
 class Command(BaseCommand):
     # python manage.py help count_entryで表示されるメッセージ
     help = '注文のステータスを更新します'
-
     # コマンドが実行された際に呼ばれるメソッド
     def handle(self, *args, **options):
         logger = logging.getLogger('batch_logger')
-        for i in range(25):
-            logger.info("started")
+        logger.info('started')
+        time_started = time.clock()
+        n = 0
+        while True:
+            n = n + 1
+            time_elapsed = time.clock() - time_started
+            logger.info(str(n) + 's time. ' + str(time_elapsed) + ' has elapsed')
+            if time_elapsed > 55.0:
+                break;
             for user in User.objects.all():
                 # API KEYが登録されているユーザのみ処理
                 if user.api_key != "" or user.api_secret_key != "":
@@ -69,5 +75,4 @@ class Command(BaseCommand):
                                     subj_order.save()
                                 except Exception as e:
                                     logger.error('user:' + user.email + ' pair:' + pair + ' order id: ' + str(orders_by_pair) + ' error: ' + str(e.args))
-            sleep(1)
-            logger.info('completed')
+        logger.info('completed')
