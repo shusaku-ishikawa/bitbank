@@ -168,6 +168,16 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     display: none;
     border-top: none;
   }
+ 
+  div#page_selection > ul.pagination > li.page-item > a.page-link{
+    background: #333333 !important;
+    color: white !important;
+    border: 1px solid #222222 !important;
+  }
+  div#page_selection > ul.pagination > li.page-item.active > a.page-link{
+    background: #444444 !important;
+  }
+
 .form-control::-webkit-input-placeholder { color: #BBBBBB; font-weight: bold}  /* WebKit, Blink, Edge */
 .form-control:-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 4 to 18 */
 .form-control::-moz-placeholder { color: #BBBBBB; font-weight: bold}  /* Mozilla Firefox 19+ */
