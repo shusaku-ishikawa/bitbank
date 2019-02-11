@@ -29,9 +29,6 @@
                         <div class="input-group-text placeholder">取引通貨</div>
                     </div>
                     <select id="id_pair" class="form-control"></select>
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder invisible">XXX</div>
-                    </div>
                     <div id="id_pair_error" class="errorlist"></div>
                 </div>
             </div>
@@ -44,9 +41,6 @@
                             <div class="input-group-text placeholder">特殊注文</div>
                     </div>
                     <select id="id_special_order" class="form-control"></select>
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder invisible">XXX</div>
-                    </div>
                     <div id="id_special_order_error" class="errorlist"></div>
                 </div>  
             </div>
@@ -74,9 +68,6 @@
                     </div>
                     <select id="id_order_type" class="form-control"></select>
                     <div id="id_order_type_error" class="errorlist"></div>
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder invisible">XXX</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -158,12 +149,39 @@
         </div>
     </div>
     <div id="active_orders" class="tabcontent">
-
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">検索通貨</div>
+                    </div>
+                    <select id="id_active_orders_search_pair" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="active_orders_content"></div>
+        <div class="row">
+            <div id="page_selection_active_orders" class="col-md-6 offset-md-1 col-12">
+ 
+            </div>
+        </div>
     </div>  
     <div id="order_history" class="tabcontent">
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">検索通貨</div>
+                    </div>
+                    <select id="id_order_history_search_pair" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <hr>
        <div id="order_history_content"></div>
        <div class="row">
-           <div id="page_selection" class="col-md-6 offset-md-1 col-12">
+           <div id="page_selection_order_history" class="col-md-6 offset-md-1 col-12">
 
            </div>
        </div>
@@ -204,7 +222,7 @@
             <div class="col-md-6 offset-md-1">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <select class="form-control" id="id_pair_for_alert">
+                        <select class="form-control" id="id_pair_for_alert" style="padding-right: 1.5em !important;">
                         </select>
                     </div>
                     <input type="number" id="id_notice_rate" class="form-control" min="0">
@@ -278,7 +296,16 @@
 {% endblock %}
 {% block extra_js %}
     <script>
+        COOKIE_ORDER_PAIR = "ck_order_pair";
+        COOKIE_ORDER_TYPE = "ck_order_type";
+        COOKIE_ORDER_SIDE = "ck_order_side";
+        COOKIE_SPECIAL_ORDER = "ck_special_order";
+        
+        COOKIE_ALERT_PAIR = "ck_alert_pair";
+        COOKIE_SEARCH_PAIR_ACTIVE_ORDERS = "ck_search_pair_ao";
+        COOKIE_SEARCH_PAIR_ORDER_HISTORY = "ck_search_pair_oh";
 
+        COOKIE_LAST_VISITED_TAB = "ck_last_visited_tab";
         PAIRS = {
             'btc_jpy': 'BTC/JPY',
             'xrp_jpy': 'XRP/JPY',
@@ -312,7 +339,8 @@
             'stop_market': '逆指値',
             'stop_limit': 'ストップリミット'
         };
-            
+        var count_per_page = 10;
+        
         SELL_BUY = {
             'sell': '売',
             'buy' : '買'
@@ -394,14 +422,19 @@
                 }
             });
         }
-        function call_get_active_orders() {
+        function call_get_active_orders(offset, limit, search_pair) {
             return $.ajax({
                 'url': '{% url "bitbank:ajax_get_active_orders" %}',
                 'type': 'GET',
-                'dataType': 'json'
+                'dataType': 'json',
+                'data': {
+                    'offset': offset,
+                    'limit': limit,
+                    'search_pair': search_pair
+                }
             });
         }
-        function call_get_order_history(offset, limit) {
+        function call_get_order_history(offset, limit, search_pair) {
             return $.ajax({
                 'url': '{% url "bitbank:ajax_get_order_history" %}',
                 'type': 'GET',
@@ -409,6 +442,7 @@
                 'data': {
                     'offset': offset,
                     'limit': limit,
+                    'search_pair': search_pair
                 }
             });
             
@@ -551,13 +585,15 @@
             var side = $('#id_side').val();
             var order_type = $('#id_order_type').val();
             var currency = (side == 'sell') ? pair.split('_')[0] : pair.split('_')[1];
-            var free_amount = free_amount_json[currency];
-            var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+            if (parseInt(newVal) != 0) {
+                var free_amount = free_amount_json[currency];
+                var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+                var floored = (side == 'sell') ? Math.floor((free_amount * newVal / 100) * 10000) / 10000 : (price != 0) ? Math.floor((free_amount * newVal / (price * 100)) * 10000) / 10000 : 0;
+                $('#id_start_amount').val(floored).trigger('calculate');
+            } else {
+                $('#id_start_amount').val(0).trigger('calculate');
+            }
             
-
-            var floored = (side == 'sell') ? Math.floor((free_amount * newVal / 100) * 10000) / 10000 : (price != 0) ? Math.floor((free_amount * newVal / (price * 100)) * 10000) / 10000 : 0;
-            
-            $('#id_start_amount').val(floored).trigger('calculate');
         }
         function update_slider_by_amount() {
             var pair = $('#id_pair').val();
@@ -607,16 +643,18 @@
             var pair = $('#id_pair').val();
             var side = $('#id_side').val();
             var order_type = $('#id_order_type').val();
-   
-            var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
             var amount = $('#id_start_amount').val();
-            
-            if (pair.split('_')[1] == 'jpy') {
-                $('#expect_price').val(Math.floor(price * amount));    
-            } else {
-                $('#expect_price').val(price * amount);    
-            }
 
+            if (parseFloat(amount) == 0 || amount == '') {
+                $('#expect_price').val(0);
+            } else {
+                var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+                if (pair.split('_')[1] == 'jpy') {
+                    $('#expect_price').val(Math.floor(price * amount));    
+                } else {
+                    $('#expect_price').val(price * amount);    
+                }
+            }
         }
         function place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount) {
             call_create_order(pair, special_order, side, order_type, price, price_for_stop, start_amount)
@@ -662,8 +700,6 @@
                 $('#sell_button').removeClass('sell').addClass('btn-base');
             }
 
-            
-            display_price_div($('#id_order_type').val());
             //画面ロード時のみ
             if (is_initial) {
                 var pair_option_html = '';
@@ -693,11 +729,8 @@
                     order_type_option_html += '<option value="' + order_type + '">' + ORDER_TYPES[order_type] + '</option>';
                 });
                 
-
-
                 var tar = $('#myRange')
-                set_slidevalue(0);
-
+                
                 tar.on("input", function () {
                     udpate_amount_by_slider();
                     var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
@@ -709,9 +742,6 @@
                     );
                 });
      
-
-               
-
                 $('#id_start_amount')
                 .on('change', function() {
                     update_slider_by_amount();
@@ -736,7 +766,7 @@
                 });
                 
                 $('#id_pair').on('change', function() {
-                    $.cookie("order_pair", $(this).val(), { expires: 7 });
+                    $.cookie(COOKIE_ORDER_PAIR, $(this).val(), { expires: 7 });
 
                     $('#id_start_amount').val('');
                     $('#id_price').val('');
@@ -761,7 +791,7 @@
                     $('#id_price_for_stop').val(0);
                     set_slidevalue(0);
                     var new_order_type = $(this).val();
-                    $.cookie("order_type", new_order_type, { expires: 7 });
+                    $.cookie(COOKIE_ORDER_TYPE, new_order_type, { expires: 7 });
                     if (new_order_type == 'limit') {
                         $('#id_price_placeholder').html('指値価格');
                     } else if (new_order_type == 'stop_market') {
@@ -782,7 +812,7 @@
                 $('#sell_button').on('click', function() {
                     // 変更があった場合のみ処理
                     if ($('#id_side').val() == 'buy') {
-                        $.cookie('order_side', 'sell', {expire: 7});
+                        $.cookie(COOKIE_ORDER_SIDE, 'sell', {expire: 7});
                         $(this).addClass('sell').removeClass('btn-base');
                         $('#buy_button').removeClass('buy').addClass('btn-base');
                         $('#id_side').val('sell').trigger('value_change');
@@ -796,7 +826,7 @@
                 $('#buy_button').on('click', function() {
                     // 変更があった場合のみ処理
                     if ($('#id_side').val() == 'sell') {
-                        $.cookie('order_side', 'buy', {expire: 7});
+                        $.cookie(COOKIE_ORDER_SIDE, 'buy', {expire: 7});
                         $(this).addClass('buy').removeClass('btn-base');
                         $('#sell_button').removeClass('sell').addClass('btn-base');
                         $('#id_side').val('buy').trigger('value_change');
@@ -871,24 +901,27 @@
                 // 選択肢追加
                 $('#id_pair').html(pair_option_html);
                 // クッキーにあればデフォルトセット
-                if ($.cookie("order_pair") != undefined && Object.keys(PAIRS).indexOf($.cookie('order_pair')) >= 0) {
-                    $('#id_pair').val($.cookie("order_pair")).trigger('change');
+                var ck_pair = $.cookie(COOKIE_ORDER_PAIR);
+                if (ck_pair != undefined && Object.keys(PAIRS).indexOf(ck_pair) >= 0) {
+                    $('#id_pair').val(ck_pair).trigger('change');
                 } else {
                     // 無ければ先頭の選択肢をセット
                     $('#id_pair').val(Object.keys(PAIRS)[0]);
                 }
 
                 $('#id_special_order').html(special_order_option_html);
-                if ($.cookie("special_order") != undefined && SPECIAL_ORDERS.indexOf($.cookie('special_order')) >= 0) {
-                    $('#id_special_order').val($.cookie("special_order")).trigger('change');
+                var ck_special_order = $.cookie(COOKIE_SPECIAL_ORDER);
+                if (ck_special_order != undefined && SPECIAL_ORDERS.indexOf(ck_special_order) >= 0) {
+                    $('#id_special_order').val(ck_special_order);
                 } else {
                     $('#id_special_order').val(SPECIAL_ORDERS[0]);
                 }
                 
                 
                 $('#id_side').html(side_option_html);
-                if ($.cookie("order_side") != undefined && Object.keys(SELL_BUY).indexOf($.cookie('order_side')) >= 0) {
-                    $('#id_side').val($.cookie('order_side'));
+                var ck_order_side = $.cookie(COOKIE_ORDER_SIDE);
+                if (ck_order_side != undefined && Object.keys(SELL_BUY).indexOf(ck_order_side) >= 0) {
+                    $('#id_side').val(ck_order_side);
                 } else {
                     $('#id_side').val(Object.keys(SELL_BUY)[1]);
                 }
@@ -901,137 +934,188 @@
                 
 
                 $('#id_order_type').html(order_type_option_html);
-                if ($.cookie('order_type') != undefined && Object.keys(ORDER_TYPES).indexOf($.cookie('order_type')) >= 0) {
-                    $('#id_order_type').val($.cookie('order_type'));
-                    if ($.cookie('order_type') == 'limit') {
+                var ck_order_type = $.cookie(COOKIE_ORDER_TYPE);
+                if (ck_order_type != undefined && Object.keys(ORDER_TYPES).indexOf(ck_order_type) >= 0) {
+                    $('#id_order_type').val(ck_order_type);
+                    if (ck_order_type == 'limit') {
                         $('#id_price_placeholder').html('指値価格');
-                    } else if ($.cookie('order_type') == 'stop_market') {
+                    } else if (ck_order_type == 'stop_market') {
                         $('#id_stop_price_placeholder').html('逆指値価格');
-                    } else if ($.cookie('order_type') == 'stop_limit') {
+                    } else if (ck_order_type == 'stop_limit') {
                         $('#id_stop_price_placeholder').html('逆指値(発動価格)');
                         $('#id_price_placeholder').html('指値(約定希望価格)');
                     }
                 } else {
                     $('#id_order_type').val(Object.keys(ORDER_TYPES)[0]);
                 }
+                set_slidevalue(0);
+                display_price_div($('#id_order_type').val());
+            
             }
         }
         
-        function initialize_active_orders_tab(is_initial = false) {
-            call_get_active_orders()
-            .done(function(res) {
-                var table_html = "";
-                if (res.error) {
-                    set_error_message($('#id_ajax_message'), res.error);
+        function initialize_active_orders_content() {
+            var page_selection = $('#page_selection_active_orders');
+            var search_pair = $('#id_active_orders_search_pair').val();
+            call_get_active_orders(0, 1, search_pair)
+            .done(function(res_1) {
+                if (res_1.error) {
+                    set_error_message($('#id_ajax_message'), res_1.error);
                     return;
                 }
-                $.parseJSON(res.active_orders).forEach(active_order => {
-                    //table_html += '<div class="">'
-                    table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
-                    table_html += '<div class="col-3 card-table-header">注文ID</div>';
-                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.order_id) + '</div>';
-                    table_html += '<div class="col-3 card-table-header">取引通貨</div>';
-                    table_html += '<div class="col-3 card-table-data">' + PAIRS[active_order.fields.pair] + '</div>';
-                    table_html += '</div>';
-                    table_html += '<div class="row">';
-                    table_html += '<div class="col-3 card-table-header">タイプ</div>';
-                    table_html += '<div class="col-3 card-table-data">' + ORDER_TYPES[active_order.fields.order_type] + '</div>';
-                    table_html += '<div class="col-3 card-table-header">売/買</div>';
-                    table_html += '<div class="col-3 card-table-data">' + SELL_BUY[active_order.fields.side] + '</div>';
-                    table_html += '</div>';
-                    table_html += '<div class="row">';
-                    table_html += '<div class="col-3 card-table-header">数量</div>';
-                    table_html += '<div class="col-3 card-table-data">' + active_order.fields.start_amount + '</div>';
-                    table_html += '<div class="col-3 card-table-header">逆指値価格</div>';
-                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.price_for_stop) + '</div>';
-                    table_html += '</div>';
-                    table_html += '<div class="row">';
-                    table_html += '<div class="col-3 card-table-header">約定数量</div>';
-                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.executed_amount) + '</div>';
-                    table_html += '<div class="col-3 card-table-header">指値価格</div>';
-                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.price) + '</div>';
-                    table_html += '</div>';
-                    table_html += '<div class="row">';
-                    table_html += '<div class="col-3 card-table-header"></div>';
-                    table_html += '<div class="col-3 card-table-data"></div>';
-                    table_html += '<div class="col-3 card-table-header">平均価格</div>';
-                    table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.average_price) + '</div>';
-                    table_html += '</div>';
-                    table_html += '<div class="row">';
-                    table_html += '<div class="col-6 card-table-header">注文日時</div>';
-                    table_html += '<div class="col-6 card-table-data">' + return_formatted_datetime(active_order.fields.ordered_at) + '</div>';
-                    table_html += '</div>';
-                    table_html += '<div class="row">';
-                    table_html += '<div class="col-6 card-table-header">ステータス</div>';
-                    table_html += '<div class="col-6 card-table-data">' + STATUS[active_order.fields.status] + '</div></div><hr>';
-                    table_html += '<div class="row">';
-                    table_html += '<button pk="' + active_order.pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button">CANCEL</button>';
-                    table_html += '</div></div></div></div></div><hr>';
-                });
-                if (table_html == '') {
-                    table_html = '<div class="row"><div class="col-6 offset-1">取引はありません</div></div>';
+                if(page_selection.data("twbs-pagination")){
+                    page_selection.empty();
+                    page_selection.removeData("twbs-pagination");
+                    page_selection.unbind("page");
                 }
-                $('#active_orders').html(table_html);
-
-
-                //キャンセルボタンクリック時のイベント追加
-                $("button[name='cancel_order_button']").on('click', function() {
-                    
-                    var pk = $(this).attr('pk');
-                    call_cancel_order(pk)
-                    .done(function(res) {
-                        if (res.error) {
-                            set_error_message('#id_ajax_message', res.error);
-                            return;
-                        }
-                    
-                        set_success_message($('#id_ajax_message'), '注文をキャンセルしました');
-                        $('#active_orders_button').click();
-                        $('#id_ajax_message').show();
-                    })
-                    .fail(function() {
-                        set_error_message($('#id_ajax_message'));
-                    });
-                    
-                });
-            })
-            .fail(function() {
-                set_error_message($('#id_ajax_message'));
-            });
-        }
-        function initialize_order_history_tab(is_initial = false) {
-            var count_per_page = 10;
-            
-            //$('#page_selection').twbsPagination({totalPages:5, visiblePages:5});
-            
-            call_get_order_history(0, 1)
-            .done(function(res) {
-                if (res.error) {
-                    set_error_message($('#id_ajax_message'), res.error);
-                    return;
-                }
-                if($('#page_selection').data("twbs-pagination")){
-                    $('#page_selection').empty();
-                    $('#page_selection').removeData("twbs-pagination");
-                    $('#page_selection').unbind("page");
-                } 
-                $('#page_selection').twbsPagination({
-                    //startPage: 1,
-                    totalPages: (res.total_count == 0) ? 1 : Math.ceil(res.total_count / count_per_page),
+                page_selection.twbsPagination({
+                    totalPages: (res_1.total_count == 0) ? 1 : Math.ceil(res_1.total_count / count_per_page),
                     next: '次',
                     prev: '前',
                     first: '先頭',
                     last: '最後',
                     onPageClick: function (event, page) {
                         var table_html = '';
-                        call_get_order_history(count_per_page * (page - 1), count_per_page)
-                        .done(function(res) {
-                            if (res.error) {
-                                set_error_message($('#id_ajax_message'), res.error);
+                        call_get_active_orders(count_per_page * (page - 1), count_per_page, search_pair)
+                        .done(function(res_2) {
+                            if (res_2.error) {
+                                set_error_message($('#id_ajax_message'), res_2.error);
                                 return;
                             }
+                            console.log(res_2);
+                            var table_html = "";
+                            $.parseJSON(res_2.active_orders).forEach(active_order => {
+                                //table_html += '<div class="">'
+                                table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
+                                table_html += '<div class="col-3 card-table-header">注文ID</div>';
+                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.order_id) + '</div>';
+                                table_html += '<div class="col-3 card-table-header">取引通貨</div>';
+                                table_html += '<div class="col-3 card-table-data">' + PAIRS[active_order.fields.pair] + '</div>';
+                                table_html += '</div>';
+                                table_html += '<div class="row">';
+                                table_html += '<div class="col-3 card-table-header">タイプ</div>';
+                                table_html += '<div class="col-3 card-table-data">' + ORDER_TYPES[active_order.fields.order_type] + '</div>';
+                                table_html += '<div class="col-3 card-table-header">売/買</div>';
+                                table_html += '<div class="col-3 card-table-data">' + SELL_BUY[active_order.fields.side] + '</div>';
+                                table_html += '</div>';
+                                table_html += '<div class="row">';
+                                table_html += '<div class="col-3 card-table-header">数量</div>';
+                                table_html += '<div class="col-3 card-table-data">' + active_order.fields.start_amount + '</div>';
+                                table_html += '<div class="col-3 card-table-header">逆指値価格</div>';
+                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.price_for_stop) + '</div>';
+                                table_html += '</div>';
+                                table_html += '<div class="row">';
+                                table_html += '<div class="col-3 card-table-header">約定数量</div>';
+                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.executed_amount) + '</div>';
+                                table_html += '<div class="col-3 card-table-header">指値価格</div>';
+                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.price) + '</div>';
+                                table_html += '</div>';
+                                table_html += '<div class="row">';
+                                table_html += '<div class="col-3 card-table-header"></div>';
+                                table_html += '<div class="col-3 card-table-data"></div>';
+                                table_html += '<div class="col-3 card-table-header">平均価格</div>';
+                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.average_price) + '</div>';
+                                table_html += '</div>';
+                                table_html += '<div class="row">';
+                                table_html += '<div class="col-6 card-table-header">注文日時</div>';
+                                table_html += '<div class="col-6 card-table-data">' + return_formatted_datetime(active_order.fields.ordered_at) + '</div>';
+                                table_html += '</div>';
+                                table_html += '<div class="row">';
+                                table_html += '<div class="col-6 card-table-header">ステータス</div>';
+                                table_html += '<div class="col-6 card-table-data">' + STATUS[active_order.fields.status] + '</div></div><hr>';
+                                table_html += '<div class="row">';
+                                table_html += '<button pk="' + active_order.pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button">CANCEL</button>';
+                                table_html += '</div></div></div></div></div><hr>';
+                            });
+                            if (table_html == '') {
+                                table_html = '<div class="row"><div class="col-6 offset-1">取引はありません</div></div>';
+                            }
+                            $('#active_orders_content').html(table_html);
 
-                            $.parseJSON(res.order_history).forEach(order => {
+
+                            //キャンセルボタンクリック時のイベント追加
+                            $("button[name='cancel_order_button']").on('click', function() {
+                                var pk = $(this).attr('pk');
+                                call_cancel_order(pk)
+                                .done(function(res) {
+                                    if (res.error) {
+                                        set_error_message('#id_ajax_message', res.error);
+                                        return;
+                                    }
+                                
+                                    set_success_message($('#id_ajax_message'), '注文をキャンセルしました');
+                                    $('#active_orders_button').click();
+                                    $('#id_ajax_message').show();
+                                })
+                                .fail(function() {
+                                    set_error_message($('#id_ajax_message'));
+                                });
+                                
+                            });
+                        })
+                        .fail(function() {
+                            set_error_message($('#id_ajax_message'));
+                        });
+                    }
+                });
+            })
+            .fail(function() {
+                set_error_message($('#id_ajax_message'));
+            });
+        }
+        function initialize_active_orders_tab(is_initial = false) {
+            
+            var search_pair = $('#id_active_orders_search_pair');
+            
+            if (is_initial) {
+                var search_pair_option_html = '';
+                search_pair_option_html += '<option value="all">全て</option>'; 
+                Object.keys(PAIRS).forEach(pair => {
+                    search_pair_option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
+                });
+                search_pair.html(search_pair_option_html);
+
+                search_pair.on('change', function() {
+                    initialize_active_orders_content();
+                });
+            }
+            var ck_search_pair_ao = $.cookie(COOKIE_SEARCH_PAIR_ACTIVE_ORDERS);
+            if (ck_search_pair_ao != undefined) {
+                search_pair.val(ck_search_pair_ao).trigger('change');
+            } else {
+                search_pair.val('all').trigger('change');
+            }
+        }
+        function initialize_order_history_content() {
+            var page_selection = $('#page_selection_order_history');
+            var search_pair = $('#id_order_history_search_pair').val();
+            //alert(search_pair);
+            call_get_order_history(0, 1, search_pair)
+            .done(function(res_1) {
+                if (res_1.error) {
+                    set_error_message($('#id_ajax_message'), res_1.error);
+                    return;
+                }
+                if(page_selection.data("twbs-pagination")){
+                    page_selection.empty();
+                    page_selection.removeData("twbs-pagination");
+                    page_selection.unbind("page");
+                } 
+                page_selection.twbsPagination({
+                    totalPages: (res_1.total_count == 0) ? 1 : Math.ceil(res_1.total_count / count_per_page),
+                    next: '次',
+                    prev: '前',
+                    first: '先頭',
+                    last: '最後',
+                    onPageClick: function (event, page) {
+                        var table_html = '';
+                        call_get_order_history(count_per_page * (page - 1), count_per_page, search_pair)
+                        .done(function(res_2) {
+                            if (res_2.error) {
+                                set_error_message($('#id_ajax_message'), res_2.error);
+                                return;
+                            }
+                            $.parseJSON(res_2.order_history).forEach(order => {
                                 table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
                                 table_html += '<div class="col-3 card-table-header">注文ID</div>';
                                 table_html += '<div class="col-3 card-table-data">' + order.fields.order_id + '</div>';
@@ -1039,8 +1123,8 @@
                                 table_html += '<div class="col-3 card-table-data">' + PAIRS[order.fields.pair] + '</div>';
                                 table_html += '</div>';
                                 table_html += '<div class="row">';
-                                table_html += '<div class="col-3 card-table-header">タイプ</div>';
-                                table_html += '<div class="col-3 card-table-data">' + ORDER_TYPES[order.fields.order_type] + '</div>';
+                                table_html += '<div class="col-2 card-table-header">タイプ</div>';
+                                table_html += '<div class="col-4 card-table-data">' + ORDER_TYPES[order.fields.order_type] + '</div>';
                                 table_html += '<div class="col-3 card-table-header">売/買</div>';
                                 table_html += '<div class="col-3 card-table-data">' + SELL_BUY[order.fields.side] + '</div>';
                                 table_html += '</div>';
@@ -1052,9 +1136,9 @@
                                 table_html += '</div>';
                                 table_html += '<div class="row">';
                                 table_html += '<div class="col-3 card-table-header">約定数量</div>';
-                                table_html += '<div class="col-3 card-table-data">' + order.fields.executed_amount + '</div>';
+                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(order.fields.executed_amount) + '</div>';
                                 table_html += '<div class="col-3 card-table-header">平均価格</div>';
-                                table_html += '<div class="col-3 card-table-data">' + order.fields.average_price + '</div>';
+                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(order.fields.average_price) + '</div>';
                                 table_html += '</div>';
                                 table_html += '<div class="row">';
                                 table_html += '<div class="col-6 card-table-header">注文日時</div>';
@@ -1081,6 +1165,29 @@
             .fail(function() {
                 set_error_message($('#id_ajax_message'));
             });
+        }
+        function initialize_order_history_tab(is_initial = false) {
+            var search_pair = $('#id_order_history_search_pair');
+            
+            if (is_initial) {
+                var search_pair_option_html = '';
+                search_pair_option_html += '<option value="all">全て</option>'; 
+                Object.keys(PAIRS).forEach(pair => {
+                    search_pair_option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
+                });
+                search_pair.html(search_pair_option_html);
+
+                search_pair.on('change', function() {
+                    initialize_order_history_content();
+                });
+            }
+            
+            var ck_search_pair_oh = $.cookie(COOKIE_SEARCH_PAIR_ORDER_HISTORY);
+            if (ck_search_pair_oh != undefined) {
+                search_pair.val(ck_search_pair_oh).trigger('change');
+            } else {
+                search_pair.val('all').trigger('change');
+            }
         }
       
         function initialize_alerts_tab(is_initial = false) {
@@ -1148,7 +1255,7 @@
                 });
                 
                 $('#id_pair_for_alert').on('change', function() {
-                    $.cookie('alert_pair', $(this).val(), {expire: 7});
+                    $.cookie(COOKIE_ALERT_PAIR, $(this).val(), {expire: 7});
                     var currency = $(this).val().split('_')[1].toUpperCase();
                     $('#id_notice_rate').val('');
                     $('.pair_for_alert').html(currency);
@@ -1229,8 +1336,9 @@
                 });
                 
                 $('#id_pair_for_alert').html(option_html);
-                if ($.cookie('alert_pair') != undefined) {
-                    $('#id_pair_for_alert').val($.cookie('alert_pair')).trigger('change');
+                var ck_alert_pair = $.cookie(COOKIE_ALERT_PAIR);
+                if (ck_alert_pair != undefined && Object.keys(PAIRS).indexOf(ck_alert_pair) >= 0) {
+                    $('#id_pair_for_alert').val(ck_alert_pair).trigger('change');
                 } else {
                     $('#id_pair_for_alert').val(Object.keys(PAIRS)[0]);
                 }
@@ -1366,7 +1474,7 @@
         function openTab(evt, tab_id) {
 
             $('#id_ajax_message').hide();
-            $.cookie('last_visit_tab', tab_id, {expire: 7});
+            $.cookie(COOKIE_LAST_VISITED_TAB, tab_id, {expire: 7});
             switch( tab_id ) {
                 case 'order':
                     initialize_order_tab(false);
@@ -1414,11 +1522,10 @@
             initialize_asset_tab(true);
             initialize_user_info_tab(true);
 
-   
-            if ($.cookie('last_visit_tab') != undefined) {
+            var ck_last_visited_tab = $.cookie(COOKIE_LAST_VISITED_TAB);
+            if (ck_last_visited_tab != undefined) {
                 // 最後に訪れたタブを表示
-                $('#' + $.cookie('last_visit_tab') + '_button').click();
-                console.log($.cookie('last_visit_tab'));
+                $('#' + ck_last_visited_tab + '_button').click();
             } else {
                 $('#order_button').click();
             }

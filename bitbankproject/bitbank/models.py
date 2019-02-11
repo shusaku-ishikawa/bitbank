@@ -52,12 +52,10 @@ class User(AbstractBaseUser, PermissionsMixin):
             ('OFF', 'OFF')
     )
     email = models.EmailField(_('登録メールアドレス'), unique=True)
-    email_for_notice = models.EmailField(_('通知用メールアドレス'), default="")
-    # first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    # last_name = models.CharField(_('last name'), max_length=150, blank=True)
+    email_for_notice = models.EmailField(_('通知用メールアドレス'), blank=True)
     full_name = models.CharField(_('名前'), max_length=150, blank=True)
-    api_key = models.CharField(_('API KEY'), max_length=255, default="")
-    api_secret_key = models.CharField(_('API SECRET KEY'), max_length=255, default="")
+    api_key = models.CharField(_('API KEY'), max_length=255, blank=True)
+    api_secret_key = models.CharField(_('API SECRET KEY'), max_length=255, blank=True)
     notify_if_filled = models.CharField(
         verbose_name = _('約定通知'),
         max_length = 10,
@@ -162,6 +160,7 @@ class Order(models.Model):
 
     price = models.FloatField(
         verbose_name = _('注文価格'),
+        blank = True,
         null = True,
         validators = [
             MinValueValidator(0),
@@ -169,6 +168,7 @@ class Order(models.Model):
     )
     price_for_stop = models.FloatField(
         verbose_name = _('ストップ価格'),
+        blank = True,
         null = True,
         validators = [
             MinValueValidator(0),
@@ -185,6 +185,7 @@ class Order(models.Model):
 
     remaining_amount = models.FloatField(
         verbose_name = _('未約定数量'),
+        blank = True,
         null = True,
         validators = [
             MinValueValidator(0.0)
@@ -193,6 +194,7 @@ class Order(models.Model):
 
     executed_amount = models.FloatField(
         verbose_name = _('約定済数量'),
+        blank = True,
         null = True,
         validators = [
             MinValueValidator(0.0)
@@ -202,6 +204,7 @@ class Order(models.Model):
     average_price = models.FloatField(
         verbose_name = _('約定平均価格'),
         null = True,
+        blank = True
     )
 
     status = models.CharField(
@@ -214,17 +217,20 @@ class Order(models.Model):
         verbose_name = _('取引ID'),
         max_length = 50,
         null = True,
+        blank = True
     )
 
     order_if_done = models.ForeignKey(
         'self',
         null = True,
+        blank=True,
         on_delete = models.CASCADE
     )
 
     cancel_if_done = models.ForeignKey(
         'self',
         null = True,
+        blank = True,
         on_delete = models.CASCADE,
         related_name = '+'
     )
@@ -235,6 +241,7 @@ class Order(models.Model):
         null = True,
         auto_now_add = False,
         auto_now = False,
+        blank = True
     )
 
     updated_at = models.DateTimeField(

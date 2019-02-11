@@ -342,11 +342,23 @@ def ajax_get_assets(request):
 def ajax_get_active_orders(request):
     user = request.user
     
-    active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER']).order_by('-pk')
-    data = {
-        'active_orders': serializers.serialize('json', active_orders)
-    }
-    return JsonResponse(data)
+    try:
+        offset = int(request.GET.get('offset'))
+        to = int(request.GET.get('limit')) + offset
+        search_pair = request.GET.get('search_pair')
+
+        if search_pair == "all":
+            active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER']).order_by('-pk')
+        else:
+            active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER']).filter(pair=search_pair).order_by('-pk')
+
+        data = {
+            'total_count': active_orders.count(),
+            'active_orders': serializers.serialize('json', active_orders[offset:to])
+        }
+        return JsonResponse(data)
+    except Exception as e:
+        return JsonResponse({'error': e.args})
 
   
 def ajax_get_order_histroy(request):
@@ -355,8 +367,12 @@ def ajax_get_order_histroy(request):
     try:
         offset = int(request.GET.get('offset'))
         to = int(request.GET.get('limit')) + offset
+        search_pair = request.GET.get('search_pair')
+        if search_pair == 'all':
+            order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED']).order_by('-pk')
+        else:
+            order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED']).filter(pair=search_pair).order_by('-pk')
         
-        order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED']).order_by('-pk')
         data = {
             'total_count': order_history.count(),
             'order_history': serializers.serialize('json', order_history[offset:to])

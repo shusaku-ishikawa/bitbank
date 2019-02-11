@@ -6,4 +6,4 @@
 本登録用URL
 {{ protocol}}://{{ domain }}{% url 'bitbank:user_create_complete' token %}
 
-ほにゃらら
+管理者

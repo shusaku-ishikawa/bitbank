@@ -3,7 +3,6 @@
 通知レートに到達しました。
 
 通貨 : {{ pair }}
-レート(買) : {{ ticker_dict.buy }}
-レート(売) : {{ ticker_dict.sell }}
+レート : {{ ticker_dict.last }}
 
 管理者
