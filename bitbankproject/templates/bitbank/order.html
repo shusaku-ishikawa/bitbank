@@ -38,7 +38,7 @@
             <div class="col-md-6 offset-md-1 co-12">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                            <div class="input-group-text placeholder">特殊注文</div>
+                        <div class="input-group-text placeholder">特殊注文</div>
                     </div>
                     <select id="id_special_order" class="form-control"></select>
                     <div id="id_special_order_error" class="errorlist"></div>
@@ -190,8 +190,6 @@
     <div id="assets" class="tabcontent">
         <div class="row">
             <div class="col-md-6 offset-md-1 col-xs12">
-                <div id="id_asset_message" class="alert">
-                </div>
                 <div class="table-responsive">
                     <table id="asset_table" class="table table-sm table-dark">
                         <tr><th>合計評価額</th><td align="right" id="total_in_jpy"></td></tr>
@@ -236,9 +234,25 @@
             </div>
         </div>
         <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">検索通貨</div>
+                    </div>
+                    <select id="id_alerts_search_pair" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <hr>
         <div id="alert_container">
             
         </div> 
+        <div class="row">
+            <div id="page_selection_alerts" class="col-md-6 offset-md-1 col-12">
+    
+            </div>
+        </div>
     </div>
     <div id="user_info" class="tabcontent">
         <div class="row">
@@ -302,6 +316,7 @@
         COOKIE_SPECIAL_ORDER = "ck_special_order";
         
         COOKIE_ALERT_PAIR = "ck_alert_pair";
+        COOKIE_SEARCH_PAIR_ALERTS = "ck_search_pair_alerts";
         COOKIE_SEARCH_PAIR_ACTIVE_ORDERS = "ck_search_pair_ao";
         COOKIE_SEARCH_PAIR_ORDER_HISTORY = "ck_search_pair_oh";
 
@@ -489,11 +504,16 @@
             });
         }
 
-        function call_get_active_alerts() {
+        function call_get_active_alerts(offset, limit, search_pair) {
             return $.ajax({
                 'url': '{% url "bitbank:ajax_get_active_alerts" %}',
                 'type': 'GET',
-                'dataType': 'json'
+                'dataType': 'json',
+                'data': {
+                    'offset': offset,
+                    'limit': limit,
+                    'search_pair': search_pair
+                }
             });
         }
         function call_get_notify_if_filled() {
@@ -1076,6 +1096,7 @@
                 search_pair.html(search_pair_option_html);
 
                 search_pair.on('change', function() {
+                    $.cookie(COOKIE_SEARCH_PAIR_ACTIVE_ORDERS, $(this).val(), {expire: 7});
                     initialize_active_orders_content();
                 });
             }
@@ -1178,6 +1199,7 @@
                 search_pair.html(search_pair_option_html);
 
                 search_pair.on('change', function() {
+                    $.cookie(COOKIE_SEARCH_PAIR_ORDER_HISTORY, $(this).val(), {expire: 7});
                     initialize_order_history_content();
                 });
             }
@@ -1189,8 +1211,8 @@
                 search_pair.val('all').trigger('change');
             }
         }
-      
-        function initialize_alerts_tab(is_initial = false) {
+        
+        function initialize_alerts_content() {
             call_get_notify_if_filled()
             .done(function(res) {
                 if (res.error) {
@@ -1207,46 +1229,77 @@
                 set_error_message($('#id_ajax_message'));
             });
 
-            call_get_active_alerts()
-            .done(function(res) {
-                var table_html = '';
-                $.parseJSON(res.active_alerts).forEach(active_alert => {
-                    table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
-                    table_html += '<div class="col-6 card-table-header">取引通貨</div>';
-                    table_html += '<div class="col-6 card-table-data">' + PAIRS[active_alert.fields.pair] + '</div>';
-                    table_html += '</div>';
-                    table_html += '<div class="row">';
-                    table_html += '<div class="col-6 card-table-header">通知レート</div>';
-                    table_html += '<div class="col-6 card-table-data">' + active_alert.fields.threshold + '</div>';
-                    table_html += '</div>';
-                    table_html += '<div class="row">';
-                    table_html += '<button pk="' + active_alert.pk + '" type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button>';
-                    table_html += '</div>'
-                    table_html += '</div></div></div></div><hr>';
-                });
-                $('#alert_container').html(table_html);
-               
-                $("button[name='deactivate_alert_button']").on('click', function() {
-                    var pk = $(this).attr('pk');
-                    call_deactivate_alert(pk)
-                    .done(function(res) {
-                        if (res.error) {
-                            set_error_message($('#id_ajax_message'), res.error);
-                            return;
-                        }
-                        set_success_message('#id_ajax_message', '通知設定を解除しました');
+            var page_selection = $('#page_selection_alerts');
+            var search_pair = $('#id_alerts_search_pair').val();
+            call_get_active_alerts(0, 1, search_pair)
+            .done(function(res_1) {
+                if (res_1.error) {
+                    set_error_message($('#id_ajax_message'), res_1.error);
+                    return;
+                }
+                if(page_selection.data("twbs-pagination")){
+                    page_selection.empty();
+                    page_selection.removeData("twbs-pagination");
+                    page_selection.unbind("page");
+                }
+                page_selection.twbsPagination({
+                    totalPages: (res_1.total_count == 0) ? 1 : Math.ceil(res_1.total_count / count_per_page),
+                    next: '次',
+                    prev: '前',
+                    first: '先頭',
+                    last: '最後',
+                    onPageClick: function (event, page) {
+                        var table_html = '';
+                        call_get_active_alerts(count_per_page * (page - 1), count_per_page, search_pair)
+                        .done(function(res_2) {
+                            var table_html = '';
+                            $.parseJSON(res_2.active_alerts).forEach(active_alert => {
+                                table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
+                                table_html += '<div class="col-6 card-table-header">取引通貨</div>';
+                                table_html += '<div class="col-6 card-table-data">' + PAIRS[active_alert.fields.pair] + '</div>';
+                                table_html += '</div>';
+                                table_html += '<div class="row">';
+                                table_html += '<div class="col-6 card-table-header">通知レート</div>';
+                                table_html += '<div class="col-6 card-table-data">' + active_alert.fields.threshold + '</div>';
+                                table_html += '</div>';
+                                table_html += '<div class="row">';
+                                table_html += '<button pk="' + active_alert.pk + '" type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button>';
+                                table_html += '</div>'
+                                table_html += '</div></div></div></div><hr>';
+                            });
+                            $('#alert_container').html(table_html);
                         
-                        $('#alerts_button').click();
-                        $('#id_ajax_message').show();
-                    })
-                    .fail(function() {
-                       set_error_message($('#id_ajax_message'));
-                    });
+                            $("button[name='deactivate_alert_button']").on('click', function() {
+                                var pk = $(this).attr('pk');
+                                call_deactivate_alert(pk)
+                                .done(function(res_3) {
+                                    if (res_3.error) {
+                                        set_error_message($('#id_ajax_message'), res_3.error);
+                                        return;
+                                    }
+                                    set_success_message('#id_ajax_message', '通知設定を解除しました');
+                                    
+                                    $('#alerts_button').click();
+                                    $('#id_ajax_message').show();
+                                })
+                                .fail(function() {
+                                    set_error_message($('#id_ajax_message'));
+                                });
+                            });
+                        })
+                        .fail(function() {
+                            set_error_message($('#id_ajax_message'));
+                        });
+                    }
                 });
+        
             })
             .fail(function() {
                 set_error_message($('#id_ajax_message'));
             });
+        }
+        function initialize_alerts_tab(is_initial = false) {
+
             // 初回時のみの処理
             if (is_initial) {
                 var option_html = '';
@@ -1336,12 +1389,30 @@
                 });
                 
                 $('#id_pair_for_alert').html(option_html);
-                var ck_alert_pair = $.cookie(COOKIE_ALERT_PAIR);
-                if (ck_alert_pair != undefined && Object.keys(PAIRS).indexOf(ck_alert_pair) >= 0) {
-                    $('#id_pair_for_alert').val(ck_alert_pair).trigger('change');
-                } else {
-                    $('#id_pair_for_alert').val(Object.keys(PAIRS)[0]);
-                }
+
+                var search_pair_option_html = '';
+                var search_pair = $('#id_alerts_search_pair')
+                search_pair_option_html += '<option value="all">全て</option>'; 
+                Object.keys(PAIRS).forEach(pair => {
+                    search_pair_option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
+                });
+                search_pair.html(search_pair_option_html);
+                search_pair.on('change', function() {
+                    $.cookie(COOKIE_SEARCH_PAIR_ALERTS, $(this).val(), {expire: 7});
+                    initialize_alerts_content();
+                });
+            }
+            var ck_alert_pair = $.cookie(COOKIE_ALERT_PAIR);
+            if (ck_alert_pair != undefined && Object.keys(PAIRS).indexOf(ck_alert_pair) >= 0) {
+                $('#id_pair_for_alert').val(ck_alert_pair).trigger('change');
+            } else {
+                $('#id_pair_for_alert').val(Object.keys(PAIRS)[0]).trigger('change');
+            }
+            var ck_search_pair_alerts = $.cookie(COOKIE_SEARCH_PAIR_ALERTS);
+            if (ck_search_pair_alerts != undefined) {
+                $('#id_alerts_search_pair').val(ck_search_pair_alerts).trigger('change');
+            } else {
+                $('#id_alerts_search_pair').val('all').trigger('change');
             }
         }
         function initialize_asset_tab(is_initial = false) {
@@ -1370,7 +1441,7 @@
                                 });
                             })
                             .fail(function() {
-                                $('#id_asset_message')
+                                set_error_message($('#id_ajax_message'));
                             });
                         } else if (asset.asset != 'jpy') {
                             call_get_ticker_api(asset.asset + '_jpy')

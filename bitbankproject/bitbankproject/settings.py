@@ -25,7 +25,7 @@ SECRET_KEY = 'k9yiss_wm7w!bj*h6u7pt77*&emv0ek)=ey4_xw3ht4e8byn2a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['133.167.78.193', 'localhost']
+ALLOWED_HOSTS = ['133.167.78.193', '160.16.143.235','localhost']
 
 SESSION_COOKIE_AGE = 60 * 30
 

@@ -288,14 +288,21 @@ def ajax_deactivate_alert(request):
         return JsonResponse({'error': e.args})
 
 def ajax_get_active_alerts(request):
-    user = request.user
     
     try:
-        alerts = Alert.objects.filter(user=user).filter(is_active=True)
-        serialized_qs = serializers.serialize('json', alerts)
+        user = request.user
+        offset = int(request.GET.get('offset'))
+        to = int(request.GET.get('limit')) + offset
+        search_pair = request.GET.get('search_pair')
+        if search_pair == 'all':
+            alerts = Alert.objects.filter(user=user).filter(is_active=True)
+        else:
+            alerts = Alert.objects.filter(user=user).filter(is_active=True).filter(pair=search_pair)
+            
         
         data = {
-            'active_alerts': serialized_qs
+            'total_count': alerts.count(),
+            'active_alerts': serializers.serialize('json', alerts[offset:to])
         }
     except Exception as e:
         data = {
