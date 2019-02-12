@@ -894,7 +894,10 @@
                                                     }
                                                 }
                                             });
+                                        } else {
+                                            place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
                                         }
+                                        
                                     } else if (order_type == 'stop_limit') {
                                         place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
                                     }
