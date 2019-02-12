@@ -24,7 +24,7 @@ class Command(BaseCommand):
             time.sleep(1)
             n = n + 1
             time_elapsed = time.clock() - time_started
-            if time_elapsed > 57.0:
+            if time_elapsed > 55.0:
                 break;
             for user in User.objects.all():
                 # API KEYが登録されているユーザのみ処理
