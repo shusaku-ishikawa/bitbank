@@ -21,10 +21,10 @@ class Command(BaseCommand):
         time_started = time.clock()
         n = 0
         while True:
+            time.sleep(1)
             n = n + 1
             time_elapsed = time.clock() - time_started
-            logger.info(str(n) + 's time. ' + str(time_elapsed) + ' has elapsed')
-            if time_elapsed > 55.0:
+            if time_elapsed > 57.0:
                 break;
             for user in User.objects.all():
                 # API KEYが登録されているユーザのみ処理

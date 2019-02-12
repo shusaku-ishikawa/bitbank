@@ -22,16 +22,15 @@ class Command(BaseCommand):
         time_started = time.clock()
         n = 0
         while True:
+            time.sleep(1)
             n = n + 1
             time_elapsed = time.clock() - time_started
-            logger.info(str(n) + 's time. ' + str(time_elapsed) + ' has elapsed')
-            if time_elapsed > 55.0:
+            if time_elapsed > 57.0:
                 break;
             pub = python_bitbankcc.public()
             for user in User.objects.all():
                 # API KEYが登録されているユーザのみ処理
                 if user.api_key == "" or user.api_secret_key == "":
-                    logger.info('user:' + user.email + ' message: ' + ' keys not registered')
                     continue
 
                 # キー情報セット
