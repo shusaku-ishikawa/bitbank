@@ -212,7 +212,7 @@ EMAIL_HOST = 'smtp.muumuu-mail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'kenkenpar55@kenkenpar.com'
 EMAIL_HOST_PASSWORD = '1q1q1q1q'
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 
 # JOBs
 CRONJOBS = [

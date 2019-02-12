@@ -1066,3 +1066,59 @@
 [INFO]	asctime:2019-02-12 21:47:12,764	module:monitor_order_status	message:completed
 [INFO]	asctime:2019-02-12 21:48:02,663	module:monitor_order_status	message:started
 [INFO]	asctime:2019-02-12 21:51:37,306	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-12 22:00:00,874	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-12 22:00:00,875	module:monitor_ticker	message:started
+[ERROR]	asctime:2019-02-12 22:00:04,012	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:04,200	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:05,063	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:08,638	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:08,819	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:09,638	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:12,941	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:13,138	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:13,997	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:17,421	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:17,618	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:18,458	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:21,940	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:22,126	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:23,013	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:26,540	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:26,717	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:27,578	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:30,956	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:31,158	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:31,967	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:37,397	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:37,575	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:38,436	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:42,016	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:42,182	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:43,058	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:46,491	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:46,669	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:47,513	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:51,117	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:51,301	module:monitor_order_status	message:user:hoge@gmail.com pair:xrp_jpy order id: <QuerySet ['109964837', '109965011']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:52,147	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[ERROR]	asctime:2019-02-12 22:00:56,578	module:monitor_order_status	message:user:hoge@gmail.com pair:mona_jpy order id: <QuerySet ['22967598']> error: ('STARTTLS extension not supported by server.',)
+[INFO]	asctime:2019-02-12 22:00:58,392	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-12 22:01:01,175	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-12 22:01:01,182	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-12 22:01:04,314	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-12 22:01:04,315	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-12 22:01:05,018	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-12 22:01:06,528	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-12 22:02:00,235	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-12 22:02:00,841	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-12 22:02:01,005	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-12 22:02:01,006	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-12 22:02:58,035	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-12 22:03:01,092	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-12 22:03:01,100	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-12 22:03:01,652	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-12 22:03:32,773	module:monitor_order_status	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-12 22:03:59,252	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-12 22:04:01,224	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-12 22:04:01,226	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-12 22:04:02,426	module:monitor_ticker	message:completed
