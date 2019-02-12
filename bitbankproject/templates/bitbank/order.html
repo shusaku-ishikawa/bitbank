@@ -1,312 +1,310 @@
 {% extends "bitbank/base.html" %}
 {% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
+{% csrf_token %}
+<div class="row">
+    <div class="col-md-6 offset-md-1 col-12">
+        <div class="tab btn-group">
+            <button id="order_button" type="button" class="tablinks" onclick="openTab(event, 'order')">注文する</button>
+            <button id="active_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">発注一覧</button>
+            <button id="order_history_button" type="button" class="tablinks" onclick="openTab(event, 'order_history')">取引履歴</button>
+            <button id="alerts_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">通知設定</button>
+            <button id="assets_button" type="button" class="tablinks" onclick="openTab(event, 'assets')">保有資産</button>
+            <button id="user_info_button" type="button" class="tablinks" onclick="openTab(event, 'user_info')">個人情報</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-md-1 col-12">
+        <div id="id_ajax_message" class="alert">
+        </div>
+    </div>
+</div>      
+        
+<div id="order" class="tabcontent">
     <div class="row">
-        <div class="col-md-11 offset-md-1 col-12">
-            <div class="tab btn-group">
-                <button id="order_button" type="button" class="tablinks" onclick="openTab(event, 'order')">注文する</button>
-                <button id="active_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">発注一覧</button>
-                <button id="order_history_button" type="button" class="tablinks" onclick="openTab(event, 'order_history')">取引履歴</button>
-                <button id="alerts_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">通知設定</button>
-                <button id="assets_button" type="button" class="tablinks" onclick="openTab(event, 'assets')">保有資産</button>
-                <button id="user_info_button" type="button" class="tablinks" onclick="openTab(event, 'user_info')">個人情報</button>
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text placeholder">取引通貨</div>
+                </div>
+                <select id="id_pair" class="form-control"></select>
+                <div id="id_pair_error" class="errorlist"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 co-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text placeholder">特殊注文</div>
+                </div>
+                <select id="id_special_order" class="form-control"></select>
+                <div id="id_special_order_error" class="errorlist"></div>
+            </div>  
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="btn-group d-flex" role="group">
+                <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
+                <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
+            </div>
+        </div>
+    </div>
+                
+    <div class="input-group" style="display: none">
+        <select id="id_side" class="form-control"></select>
+        <div id="id_side_error" class="errorlist"></div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text placeholder">注文方法</div>
+                </div>
+                <select id="id_order_type" class="form-control"></select>
+                <div id="id_order_type_error" class="errorlist"></div>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="show_if_stop_order">
+    <div class="row show_if_stop_order">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div id="id_stop_price_placeholder" class="input-group-text placeholder">逆指値価格</div>
+                </div>
+                <input id="id_price_for_stop" type="number" class="form-control">              
+                <div class="input-group-append">
+                    <div class="input-group-text placeholder pair">JPY</div>
+                </div>
+                <div id="id_price_for_stop_error" class="errorlist"></div> 
+            </div>
+        </div>
+    </div>
+    <hr class="show_if_limit_order">
+    <div class="row show_if_limit_order">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div id="id_price_placeholder" class="input-group-text placeholder">指値価格</div>
+                </div>
+                <input id="id_price" type="number" class="form-control">
+                <div class="input-group-append">
+                    <div class="input-group-text placeholder pair">JPY</div>
+                </div>
+                <div id="id_price_error" class="errorlist"></div>     
+            </div>
+        </div>
+    </div>
+
+    <hr>            
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">数量</div>
+                </div>
+                <input id="id_start_amount" type="number" class="form-control" min="0"">  
+                <div class="input-group-append">
+                    <div class="input-group-text placeholder unit">BTC</div>
+                </div>
+                <div id="id_start_amount_error" class="errorlist"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+            <div><span style="float:right;" id="amount_percentage">0%</span></div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text placeholder">予想</div>
+                </div>
+                <input type="number" id="expect_price" class="form-control">
+                <div class="input-group-append">
+                    <div class="input-group-text placeholder pair">JPY</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <button id="id_order_button" type="button" class="btn btn-lg btn-block green_button">注文</button>
+            </div>  
+        </div>
+    </div>
+</div>
+<div id="active_orders" class="tabcontent">
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text placeholder">検索通貨</div>
+                </div>
+                <select id="id_active_orders_search_pair" class="form-control"></select>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div id="active_orders_content"></div>
+    <div class="row">
+        <div id="page_selection_active_orders" class="col-md-6 offset-md-1 col-12">
+
+        </div>
+    </div>
+</div>  
+<div id="order_history" class="tabcontent">
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text placeholder">検索通貨</div>
+                </div>
+                <select id="id_order_history_search_pair" class="form-control"></select>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div id="order_history_content"></div>
+    <div class="row">
+        <div id="page_selection_order_history" class="col-md-6 offset-md-1 col-12">
+
+        </div>
+    </div>
+
+</div>
+<div id="assets" class="tabcontent">
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-xs12">
+            <div class="table-responsive">
+                <table id="asset_table" class="table table-sm table-dark">
+                    <tr><th>合計評価額</th><td align="right" id="total_in_jpy"></td></tr>
+                    <tr><th>日本円</th><td align="right" id="jpy"></td></tr>
+                    <tr><th>ビットコイン</th><td align="right" id="btc"></td></tr>
+                    <tr><th>リップル</th><td align="right" id="xrp"></td></tr>
+                    <tr><th>ライトコイン</th><td align="right" id="ltc"></td></tr>
+                    <tr><th>イーサリアム</th><td align="right" id="eth"></td></tr>
+                    <tr><th>モナーコイン</th><td align="right" id="mona"></td></tr>
+                    <tr><th>ビットコインキャッシュ</th><td align="right" id="bcc"></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="alerts" class="tabcontent">
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-xs-8">
+            <label class="control-label">約定通知</label>
+            <div class="btn-group d-flex" role="group">
+                <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>      
+            </div>
+        </div>  
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <select class="form-control" id="id_pair_for_alert" style="padding-right: 1.5em !important;">
+                    </select>
+                </div>
+                <input type="number" id="id_notice_rate" class="form-control" min="0">
+                <div class="input-group-append">
+                    <div class="input-group-text placeholder pair_for_alert">JPY</div>
+                </div>
+                <div class="input-group-append">
+                    <button id="add_alert_button" class="btn green_button" type="button">追加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text placeholder">検索通貨</div>
+                </div>
+                <select id="id_alerts_search_pair" class="form-control"></select>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div id="alert_container">
+        
+    </div> 
+    <div class="row">
+        <div id="page_selection_alerts" class="col-md-6 offset-md-1 col-12">
+
+        </div>
+    </div>
+</div>
+<div id="user_info" class="tabcontent">
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <tbody>
+                        <tr>
+                            <th>登録日</th>
+                            <td id="id_date_joined"></td>
+                        </tr>
+                        <tr>
+                            <th>名前</th>
+                            <td><input id="id_full_name" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>登録メールアドレス</th>
+                            <td id="id_email" ></td>
+                        </tr>
+
+                        <tr>
+                            <th>API KEY</th>
+                            <td><input id="id_api_key" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>API SECRET KEY</th>
+                            <td><input id="id_api_secret_key" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>通知用メールアドレス</th>
+                            <td><input id="id_email_for_notice" type="email" class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table> 
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 offset-md-1 col-12">
-            <div id="id_ajax_message" class="alert">
-            </div>
+            パスワード変更は<a href="{% url 'bitbank:password_change' %}">こちら</a>
         </div>
-    </div>      
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-2 offset-md-1 col-6">
+            <button id="id_update_user_info_button" type="button" class="btn btn-block green_button">更新</button>
             
-    <div id="order" class="tabcontent">
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">取引通貨</div>
-                    </div>
-                    <select id="id_pair" class="form-control"></select>
-                    <div id="id_pair_error" class="errorlist"></div>
-                </div>
-            </div>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 co-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">特殊注文</div>
-                    </div>
-                    <select id="id_special_order" class="form-control"></select>
-                    <div id="id_special_order_error" class="errorlist"></div>
-                </div>  
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="btn-group d-flex" role="group">
-                    <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
-                    <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
-                </div>
-            </div>
-        </div>
-                    
-        <div class="input-group" style="display: none">
-            <select id="id_side" class="form-control"></select>
-            <div id="id_side_error" class="errorlist"></div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">注文方法</div>
-                    </div>
-                    <select id="id_order_type" class="form-control"></select>
-                    <div id="id_order_type_error" class="errorlist"></div>
-                </div>
-            </div>
-        </div>
-        
-        <hr class="show_if_stop_order">
-        <div class="row show_if_stop_order">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div id="id_stop_price_placeholder" class="input-group-text placeholder">逆指値価格</div>
-                    </div>
-                    <input id="id_price_for_stop" type="number" class="form-control">              
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>
-                    <div id="id_price_for_stop_error" class="errorlist"></div> 
-                </div>
-            </div>
-        </div>
-        <hr class="show_if_limit_order">
-        <div class="row show_if_limit_order">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div id="id_price_placeholder" class="input-group-text placeholder">指値価格</div>
-                    </div>
-                    <input id="id_price" type="number" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>
-                    <div id="id_price_error" class="errorlist"></div>     
-                </div>
-            </div>
-        </div>
-
-        <hr>            
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                            <div class="input-group-text placeholder">数量</div>
-                    </div>
-                    <input id="id_start_amount" type="number" class="form-control" min="0"">  
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder unit">BTC</div>
-                    </div>
-                    <div id="id_start_amount_error" class="errorlist"></div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
-                <div><span style="float:right;" id="amount_percentage">0%</span></div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">予想</div>
-                    </div>
-                    <input type="number" id="expect_price" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <button id="id_order_button" type="button" class="btn btn-lg btn-block green_button">注文</button>
-                </div>  
-            </div>
+        <div class="col-md-2 col-6">
+            <a href="{% url 'bitbank:logout'%}" class="btn btn-block red_button">ログアウト</a>
         </div>
     </div>
-    <div id="active_orders" class="tabcontent">
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">検索通貨</div>
-                    </div>
-                    <select id="id_active_orders_search_pair" class="form-control"></select>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div id="active_orders_content"></div>
-        <div class="row">
-            <div id="page_selection_active_orders" class="col-md-6 offset-md-1 col-12">
- 
-            </div>
-        </div>
-    </div>  
-    <div id="order_history" class="tabcontent">
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">検索通貨</div>
-                    </div>
-                    <select id="id_order_history_search_pair" class="form-control"></select>
-                </div>
-            </div>
-        </div>
-        <hr>
-       <div id="order_history_content"></div>
-       <div class="row">
-           <div id="page_selection_order_history" class="col-md-6 offset-md-1 col-12">
-
-           </div>
-       </div>
-    
-    </div>
-    <div id="assets" class="tabcontent">
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs12">
-                <div class="table-responsive">
-                    <table id="asset_table" class="table table-sm table-dark">
-                        <tr><th>合計評価額</th><td align="right" id="total_in_jpy"></td></tr>
-                        <tr><th>日本円</th><td align="right" id="jpy"></td></tr>
-                        <tr><th>ビットコイン</th><td align="right" id="btc"></td></tr>
-                        <tr><th>リップル</th><td align="right" id="xrp"></td></tr>
-                        <tr><th>ライトコイン</th><td align="right" id="ltc"></td></tr>
-                        <tr><th>イーサリアム</th><td align="right" id="eth"></td></tr>
-                        <tr><th>モナーコイン</th><td align="right" id="mona"></td></tr>
-                        <tr><th>ビットコインキャッシュ</th><td align="right" id="bcc"></td></tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="alerts" class="tabcontent">
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-xs-8">
-                <label class="control-label">約定通知</label>
-                <div class="btn-group d-flex" role="group">
-                    <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
-                    <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>      
-                </div>
-            </div>  
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <select class="form-control" id="id_pair_for_alert" style="padding-right: 1.5em !important;">
-                        </select>
-                    </div>
-                    <input type="number" id="id_notice_rate" class="form-control" min="0">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair_for_alert">JPY</div>
-                    </div>
-                    <div class="input-group-append">
-                        <button id="add_alert_button" class="btn green_button" type="button">追加</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">検索通貨</div>
-                    </div>
-                    <select id="id_alerts_search_pair" class="form-control"></select>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div id="alert_container">
-            
-        </div> 
-        <div class="row">
-            <div id="page_selection_alerts" class="col-md-6 offset-md-1 col-12">
-    
-            </div>
-        </div>
-    </div>
-    <div id="user_info" class="tabcontent">
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="table-responsive">
-                    <table class="table table-dark">
-                        <tbody>
-                            <tr>
-                                <th>登録日</th>
-                                <td id="id_date_joined"></td>
-                            </tr>
-                            <tr>
-                                <th>名前</th>
-                                <td><input id="id_full_name" type="text" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <th>登録メールアドレス</th>
-                                <td id="id_email" ></td>
-                            </tr>
- 
-                            <tr>
-                                <th>API KEY</th>
-                                <td><input id="id_api_key" type="text" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <th>API SECRET KEY</th>
-                                <td><input id="id_api_secret_key" type="text" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <th>通知用メールアドレス</th>
-                                <td><input id="id_email_for_notice" type="email" class="form-control"></td>
-                            </tr>
-                        </tbody>
-                    </table> 
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                パスワード変更は<a href="{% url 'bitbank:password_change' %}">こちら</a>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-2 offset-md-1 col-6">
-                <button id="id_update_user_info_button" type="button" class="btn btn-block green_button">更新</button>
-               
-            </div>
-            <div class="col-md-2 col-6">
-                <a href="{% url 'bitbank:logout'%}" class="btn btn-block red_button">ログアウト</a>
-            </div>
-        </div>
-    </div>      
-</form>
+</div>      
 {% endblock %}
 {% block extra_js %}
     <script>

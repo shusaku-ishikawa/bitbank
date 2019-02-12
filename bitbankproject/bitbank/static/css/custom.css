@@ -8,6 +8,9 @@
 /*code for mobile here*/
 }
 
+html {
+    overflow-y: scroll;
+}
 
 table.table {
     /* font-size: 3vmin; */
