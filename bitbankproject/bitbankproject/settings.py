@@ -205,13 +205,13 @@ STATICFILES_DIRS = [
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEFAULT_FROM_EMAIL = 'ishikawasyuusaku@gmail.com'
+DEFAULT_FROM_EMAIL = 'kenkenpar55@kenkenpar.com'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_CHARSET = 'utf-8'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.muumuu-mail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ishikawasyuusaku@gmail.com'
-EMAIL_HOST_PASSWORD = '332191-Aa2'
+EMAIL_HOST_USER = 'kenkenpar55@kenkenpar.com'
+EMAIL_HOST_PASSWORD = '1q1q1q1q'
 EMAIL_USE_TLS = True
 
 # JOBs
@@ -220,4 +220,4 @@ CRONJOBS = [
     ('* * * * *', 'django.core.management.call_command', ['monitor_ticker']),
     ('* * 1 * *', 'django.core.management.call_command', ['clear_old_orders']),
 ]
-CRONTAB_LOCK_JOBS = True
+CRONTAB_LOCK_JOBS = False

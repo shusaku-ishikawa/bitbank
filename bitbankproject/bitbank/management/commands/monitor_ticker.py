@@ -19,13 +19,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         logger = logging.getLogger('batch_logger')
         logger.info('started')
-        time_started = time.clock()
+        time_started = time.time()
         n = 0
         while True:
             time.sleep(1)
             n = n + 1
-            time_elapsed = time.clock() - time_started
-            if time_elapsed > 55.0:
+            time_elapsed = time.time() - time_started
+            if time_elapsed > 57.0:
                 break;
             pub = python_bitbankcc.public()
             for user in User.objects.all():
