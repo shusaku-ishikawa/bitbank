@@ -8202,3 +8202,5 @@
 [INFO]	asctime:2019-02-13 10:52:01,798	module:monitor_ticker	message:completed
 [INFO]	asctime:2019-02-13 10:52:02,079	module:monitor_order_status	message:started
 [INFO]	asctime:2019-02-13 10:52:02,126	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-13 10:52:59,534	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-13 10:53:01,377	module:monitor_ticker	message:completed
