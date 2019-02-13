@@ -121,3 +121,6 @@
 [INFO]	asctime:2019-02-13 08:02:10,700	module:views	message:transaction start
 [INFO]	asctime:2019-02-13 08:02:23,747	module:views	message:transaction start
 [INFO]	asctime:2019-02-13 08:23:20,968	module:views	message:transaction start
+[INFO]	asctime:2019-02-13 11:01:56,872	module:views	message:transaction start
+[INFO]	asctime:2019-02-13 11:12:07,250	module:views	message:transaction start
+[ERROR]	asctime:2019-02-13 11:12:07,535	module:views	message:('エラーコード: 60005 内容: 指定した価格が上限を上回っています',)

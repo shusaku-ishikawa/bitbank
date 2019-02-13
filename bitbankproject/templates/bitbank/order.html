@@ -141,6 +141,13 @@
     <hr>
     <div class="row">
         <div class="col-md-6 offset-md-1 col-12">
+            <div id="id_order_result_message" class="alert">
+            </div>
+        </div>
+    </div> 
+
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
             <div class="input-group">
                 <button id="id_order_button" type="button" class="btn btn-lg btn-block green_button">注文</button>
             </div>  
@@ -678,14 +685,13 @@
             call_create_order(pair, special_order, side, order_type, price, price_for_stop, start_amount)
             .done(function(res) {
                 if (res.error) {
-                    set_error_message($('#id_ajax_message'), res.error);
+                    set_error_message($('#id_order_result_message'), res.error);
                     return;
                 }
-                set_success_message($('#id_ajax_message'), '注文が完了しました');
-                $('#id_ajax_message').show();
+                set_success_message($('#id_order_result_message'), '注文が完了しました');
             })
             .fail(function() {
-                set_error_message($('#id_ajax_message'));
+                set_error_message($('#id_order_result_message'));
             });
         }
         function set_slidevalue(new_val, trigger_input_event=true) {
@@ -875,20 +881,20 @@
                                         if ((side == 'buy' && parseFloat(res.buy) < price) || (side == 'sell' && parseFloat(res.sell) > price)){
                                             $.confirm({
                                                 title: '<span style="color:black>確認</span>',
-                                                content: '<span style="color:black">注文後即約定されますがこの価格でよろしいですか</span>',
+                                                content: '<span style="color:black">注文確定後すぐに約定しますがこの価格でよろしいですか？</span>',
                                                 type: 'red',
                                                 buttons: {
                                                     confirm: {
-                                                        text: '続行',
-                                                        btnClass: 'btn-success',
+                                                        text: 'はい',
+                                                        btnClass: 'green_button',
                                                         
                                                         action: function () {
                                                             place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
                                                         }
                                                     },
                                                     cancel:{
-                                                        text: 'キャンセル',
-                                                        btnClass: 'btn-red',
+                                                        text: 'いいえ',
+                                                        btnClass: 'red_button',
                                                         action: function () {
                                                         },
                                                     }
@@ -1546,6 +1552,7 @@
         function openTab(evt, tab_id) {
 
             $('#id_ajax_message').hide();
+            $('#id_order_result_message').hide();
             $.cookie(COOKIE_LAST_VISITED_TAB, tab_id, {expire: 7});
             switch( tab_id ) {
                 case 'order':
