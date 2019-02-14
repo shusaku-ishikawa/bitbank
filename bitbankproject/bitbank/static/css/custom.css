@@ -154,10 +154,6 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     /* font-size: 2vmin; */
 }
 
-    
-.errorlist {
-    color: red;
-}
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -175,6 +171,16 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     padding: 2em 0.5em;
     transition: 0.3s;
   }
+  .tab button.tablinks-child {
+    background-color: inherit;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 1.0em 0.5em;
+    transition: 0.3s;
+  }
   
   /* Change background color of buttons on hover */
   .tab button:hover {
@@ -185,6 +191,10 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
 
   /* Style the tab content */
   .tabcontent {
+    display: none;
+    border-top: none;
+  }
+  .tabcontent-child {
     display: none;
     border-top: none;
   }

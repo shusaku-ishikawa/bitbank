@@ -64,18 +64,27 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     is_staff = models.BooleanField(
-        _('staff status'),
+        _('管理者'),
         default=False,
         help_text=_(
             'Designates whether the user can log into this admin site.'),
     )
     is_active = models.BooleanField(
-        _('active'),
+        _('有効'),
         default=True,
         help_text=_(
             'Designates whether this user should be treated as active. '
             'Unselect this instead of deleting accounts.'
         ),
+    )
+
+    remaining_days = models.IntegerField(
+        _('残日数'),
+        blank = True,
+        default = 0,
+        validators = [
+                MinValueValidator(0),
+        ]
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
@@ -86,8 +95,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+        verbose_name = _('ユーザ')
+        verbose_name_plural = _('ユーザ')
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
@@ -104,6 +113,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Order(models.Model):
+    class Meta:
+        verbose_name = "注文"
+        verbose_name_plural = "注文"
+        
     TYPE_MARKET = 'market'
     TYPE_LIMIT = 'limit'
     TYPE_STOP_MARKET = 'stop_market'
@@ -251,6 +264,9 @@ class Order(models.Model):
    
 
 class Alert(models.Model):
+    class Meta:
+        verbose_name = "通知"
+        verbose_name_plural = "通知"
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     pair = models.CharField(

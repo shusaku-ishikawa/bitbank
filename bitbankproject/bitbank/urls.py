@@ -1,7 +1,11 @@
 from django.urls import path
 from . import views
+from django.contrib import admin
 
 app_name = 'bitbank'
+admin.site.site_title = 'bitbank' 
+admin.site.site_header = 'bitbank' 
+admin.site.index_title = 'メニュー'
 
 urlpatterns = [
     path('', views.Login.as_view(), name=''),

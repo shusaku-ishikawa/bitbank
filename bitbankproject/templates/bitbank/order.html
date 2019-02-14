@@ -2,7 +2,7 @@
 {% block content %}
 {% csrf_token %}
 <div class="row">
-    <div class="col-md-6 offset-md-1 col-12">
+    <div class="col-md-7 offset-md-1 col-12">
         <div class="tab btn-group">
             <button id="order_button" type="button" class="tablinks" onclick="openTab(event, 'order')">注文する</button>
             <button id="active_orders_button" type="button" class="tablinks" onclick="openTab(event, 'active_orders')">発注一覧</button>
@@ -10,6 +10,7 @@
             <button id="alerts_button" type="button" class="tablinks" onclick="openTab(event, 'alerts')">通知設定</button>
             <button id="assets_button" type="button" class="tablinks" onclick="openTab(event, 'assets')">保有資産</button>
             <button id="user_info_button" type="button" class="tablinks" onclick="openTab(event, 'user_info')">個人情報</button>
+            <button id="contact_button" type="button" class="tablinks" onclick="openTab(event, 'contact')">問い合せ</button>
         </div>
     </div>
 </div>
@@ -28,116 +29,309 @@
                     <div class="input-group-text placeholder">取引通貨</div>
                 </div>
                 <select id="id_pair" class="form-control"></select>
-                <div id="id_pair_error" class="errorlist"></div>
             </div>
         </div>
     </div>
     <hr>
     <div class="row">
-        <div class="col-md-6 offset-md-1 co-12">
+        <div class="col-md-6 offset-md-1 col-12">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text placeholder">特殊注文</div>
                 </div>
                 <select id="id_special_order" class="form-control"></select>
-                <div id="id_special_order_error" class="errorlist"></div>
             </div>  
         </div>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-6 offset-md-1 col-12">
-            <div class="btn-group d-flex" role="group">
-                <button id="buy_button" type="button" class="btn w-100 btn-base">買い</button>
-                <button id="sell_button" type="button" class="btn w-100 btn-base">売り</button>
-            </div>
-        </div>
-    </div>
-                
-    <div class="input-group" style="display: none">
-        <select id="id_side" class="form-control"></select>
-        <div id="id_side_error" class="errorlist"></div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-6 offset-md-1 col-12">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text placeholder">注文方法</div>
-                </div>
-                <select id="id_order_type" class="form-control"></select>
-                <div id="id_order_type_error" class="errorlist"></div>
+    <div clas="row">
+        <div class="col-md-7 offset-md-1 col-12">
+            <div class="tab btn-group">
+                <button id="1st_order_button" type="button" class="tablinks-child" onclick="openChildTab(event, '1st_order')">①</button>
+                <button id="2nd_order_button" type="button" class="tablinks-child" onclick="openChildTab(event, '2nd_order')">②</button>
+                <button id="3rd_order_button" type="button" class="tablinks-child" onclick="openChildTab(event, '3rd_order')">③</button>
             </div>
         </div>
     </div>
     
-    <hr class="show_if_stop_order">
-    <div class="row show_if_stop_order">
-        <div class="col-md-6 offset-md-1 col-12">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div id="id_stop_price_placeholder" class="input-group-text placeholder">逆指値価格</div>
+    <!-- 1ページ目 -->
+    <div id="1st_order" class="tabcontent-child">
+        
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="btn-group d-flex" role="group">
+                    <button id="buy_button_1" type="button" class="btn w-100 btn-base">買い</button>
+                    <button id="sell_button_1" type="button" class="btn w-100 btn-base">売り</button>
                 </div>
-                <input id="id_price_for_stop" type="number" class="form-control">              
-                <div class="input-group-append">
-                    <div class="input-group-text placeholder pair">JPY</div>
-                </div>
-                <div id="id_price_for_stop_error" class="errorlist"></div> 
             </div>
         </div>
-    </div>
-    <hr class="show_if_limit_order">
-    <div class="row show_if_limit_order">
-        <div class="col-md-6 offset-md-1 col-12">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div id="id_price_placeholder" class="input-group-text placeholder">指値価格</div>
+                    
+        <div class="input-group" style="display: none">
+            <select id="id_side_1" class="form-control"></select>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">注文方法</div>
+                    </div>
+                    <select id="id_order_type_1" class="form-control"></select>
                 </div>
-                <input id="id_price" type="number" class="form-control">
-                <div class="input-group-append">
-                    <div class="input-group-text placeholder pair">JPY</div>
-                </div>
-                <div id="id_price_error" class="errorlist"></div>     
             </div>
         </div>
-    </div>
+        
+        <hr class="show_if_stop_order_1">
+        <div class="row show_if_stop_order_1">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div id="id_stop_price_placeholder_1" class="input-group-text placeholder">逆指値価格</div>
+                    </div>
+                    <input id="id_price_for_stop_1" type="number" class="form-control">              
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="show_if_limit_order_1">
+        <div class="row show_if_limit_order_1">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div id="id_price_placeholder_1" class="input-group-text placeholder">指値価格</div>
+                    </div>
+                    <input id="id_price_1" type="number" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>     
+                </div>
+            </div>
+        </div>
+    
+        <hr>            
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                            <div class="input-group-text placeholder">数量</div>
+                    </div>
+                    <input id="id_start_amount_1" type="number" class="form-control" min="0"">  
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder unit">BTC</div>
+                    </div>
 
-    <hr>            
-    <div class="row">
-        <div class="col-md-6 offset-md-1 col-12">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">数量</div>
                 </div>
-                <input id="id_start_amount" type="number" class="form-control" min="0"">  
-                <div class="input-group-append">
-                    <div class="input-group-text placeholder unit">BTC</div>
-                </div>
-                <div id="id_start_amount_error" class="errorlist"></div>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-6 offset-md-1 col-12">
-            <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
-            <div><span style="float:right;" id="amount_percentage">0%</span></div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <input type="range" min="0" max="100" value="0" class="slider" id="myRange_1">
+                <div><span style="float:right;" id="amount_percentage_1">0%</span></div>
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-6 offset-md-1 col-12">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text placeholder">予想</div>
-                </div>
-                <input type="number" id="expect_price" class="form-control">
-                <div class="input-group-append">
-                    <div class="input-group-text placeholder pair">JPY</div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">予想</div>
+                    </div>
+                    <input type="number" id="expect_price_1" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="2nd_order" class="tabcontent-child">
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="btn-group d-flex" role="group">
+                    <button id="buy_button_2" type="button" class="btn w-100 btn-base">買い</button>
+                    <button id="sell_button_2" type="button" class="btn w-100 btn-base">売り</button>
+                </div>
+            </div>
+        </div>
+                    
+        <div class="input-group" style="display: none">
+            <select id="id_side_2" class="form-control"></select>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">注文方法</div>
+                    </div>
+                    <select id="id_order_type_2" class="form-control"></select>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <hr class="show_if_stop_order_2">
+        <div class="row show_if_stop_order_2">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div id="id_stop_price_placeholder_2" class="input-group-text placeholder">逆指値価格</div>
+                    </div>
+                    <input id="id_price_for_stop_2" type="number" class="form-control">              
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <hr class="show_if_limit_order_2">
+        <div class="row show_if_limit_order_2">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div id="id_price_placeholder_2" class="input-group-text placeholder">指値価格</div>
+                    </div>
+                    <input id="id_price_2" type="number" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
+                         
+                </div>
+            </div>
+        </div>
+    
+        <hr>            
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                            <div class="input-group-text placeholder">数量</div>
+                    </div>
+                    <input id="id_start_amount_2" type="number" class="form-control" min="0"">  
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder unit">BTC</div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <input type="range" min="0" max="100" value="0" class="slider" id="myRange_2">
+                <div><span style="float:right;" id="amount_percentage_2">0%</span></div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">予想</div>
+                    </div>
+                    <input type="number" id="expect_price_2" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="3rd_order" class="tabcontent-child">
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="btn-group d-flex" role="group">
+                    <button id="buy_button_3" type="button" class="btn w-100 btn-base">買い</button>
+                    <button id="sell_button_3" type="button" class="btn w-100 btn-base">売り</button>
+                </div>
+            </div>
+        </div>
+                    
+        <div class="input-group" style="display: none">
+            <select id="id_side_3" class="form-control"></select>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">注文方法</div>
+                    </div>
+                    <select id="id_order_type_3" class="form-control"></select>
+                 
+                </div>
+            </div>
+        </div>
+        
+        <hr class="show_if_stop_order_3">
+        <div class="row show_if_stop_order_3">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div id="id_stop_price_placeholder_3" class="input-group-text placeholder">逆指値価格</div>
+                    </div>
+                    <input id="id_price_for_stop_3" type="number" class="form-control">              
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="show_if_limit_order_3">
+        <div class="row show_if_limit_order_3">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div id="id_price_placeholder_3" class="input-group-text placeholder">指値価格</div>
+                    </div>
+                    <input id="id_price_3" type="number" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    
+        <hr>            
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                            <div class="input-group-text placeholder">数量</div>
+                    </div>
+                    <input id="id_start_amount_3" type="number" class="form-control" min="0"">  
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder unit">BTC</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <input type="range" min="0" max="100" value="0" class="slider" id="myRange_3">
+                <div><span style="float:right;" id="amount_percentage_3">0%</span></div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-1 col-12">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text placeholder">予想</div>
+                    </div>
+                    <input type="number" id="expect_price_3" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text placeholder pair">JPY</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
     <hr>
     <div class="row">
         <div class="col-md-6 offset-md-1 col-12">
@@ -545,23 +739,23 @@
                 return subj;
             }
         }
-        function display_price_div(order_type) {
+        function display_price_div(tab_num, order_type) {
             switch (order_type) {
                 case 'market':
-                    $('.show_if_stop_order').hide();
-                    $('.show_if_limit_order').hide();
+                    $('.show_if_stop_order_' + tab_num).hide();
+                    $('.show_if_limit_order_' + tab_num).hide();
                     break;
                 case 'limit':
-                    $('.show_if_stop_order').hide();
-                    $('.show_if_limit_order').show();
+                    $('.show_if_stop_order_' + tab_num).hide();
+                    $('.show_if_limit_order_' + tab_num).show();
                     break;
                 case 'stop_market':
-                    $('.show_if_stop_order').show();
-                    $('.show_if_limit_order').hide();
+                    $('.show_if_stop_order_' + tab_num).show();
+                    $('.show_if_limit_order_' + tab_num).hide();
                     break;
                 case 'stop_limit':
-                    $('.show_if_stop_order').show();
-                    $('.show_if_limit_order').show();
+                    $('.show_if_stop_order_' + tab_num).show();
+                    $('.show_if_limit_order_' + tab_num).show();
                     break;
             }
         }
@@ -597,32 +791,32 @@
                 set_error_message($('#id_ajax_message'));
             });
         }
-        function udpate_amount_by_slider() {
-            var newVal = $('#myRange').val();
+        function update_amount_by_slider(tab_num) {
+            var newVal = $('#myRange_' + tab_num).val();
             
-            $('#amount_percentage').html(newVal + '%');
+            $('#amount_percentage_' + tab_num).html(newVal + '%');
             
             if($('#id_pair').val() == '') {
                 return;
             }
             
             var pair = $('#id_pair').val();
-            var side = $('#id_side').val();
-            var order_type = $('#id_order_type').val();
+            var side = $('#id_side_' + tab_num).val();
+            var order_type = $('#id_order_type_' + tab_num).val();
             var currency = (side == 'sell') ? pair.split('_')[0] : pair.split('_')[1];
             if (parseInt(newVal) != 0) {
                 var free_amount = free_amount_json[currency];
                 var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
                 var floored = (side == 'sell') ? Math.floor((free_amount * newVal / 100) * 10000) / 10000 : (price != 0) ? Math.floor((free_amount * newVal / (price * 100)) * 10000) / 10000 : 0;
-                $('#id_start_amount').val(floored).trigger('calculate');
+                $('#id_start_amount_' + tab_num).val(floored).trigger('calculate');
             } else {
-                $('#id_start_amount').val(0).trigger('calculate');
+                $('#id_start_amount_' + tab_num).val(0).trigger('calculate');
             }
             
         }
-        function update_slider_by_amount() {
+        function update_slider_by_amount(tab_num) {
             var pair = $('#id_pair').val();
-            var side = $('#id_side').val(); 
+            var side = $('#id_side_' + tab_num).val(); 
 
             if (side == 'buy') {
                 var currency = pair.split('_')[1];
@@ -631,19 +825,19 @@
             }
             
             
-            var order_type = $('#id_order_type').val();
+            var order_type = $('#id_order_type_' + tab_num).val();
             
-            var new_amount = $('#id_start_amount').val();
+            var new_amount = $('#id_start_amount_' + tab_num).val();
 
             // limit orderの場合
             if (order_type.match(/limit/)) {
-                var new_price = $('#id_price').val();
+                var new_price = $('#id_price_' + tab_num).val();
             } else {
                 var new_price = market_price_json[pair][side];
             }
 
             if (new_amount == '' || new_amount == 0 || new_price == '' || new_price == 0) {
-                set_slidevalue(0);
+                set_slidevalue(tab_num, 0);
             } else {
                 if (side == 'buy') {
                     var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
@@ -652,32 +846,32 @@
                 }
                 
                 if (perc > 100.0) {
-                    $('#amount_percentage').html('資金不足');
+                    $('#amount_percentage_' + tab_num).html('資金不足');
                 } else {
                     var rounded = Math.round(perc * 10) / 10;
-                    set_slidevalue(rounded, false);
+                    set_slidevalue(tab_num, rounded, false);
                     if (currency == 'jpy') {
-                        $('#expect_price').val(Math.round(new_price * new_amount));
+                        $('#expect_price_' + tab_num).val(Math.round(new_price * new_amount));
                     } else {
-                        $('#expect_price').val(Math.round(new_price * new_amount * 10000) / 10000);
+                        $('#expect_price_' + tab_num).val(Math.round(new_price * new_amount * 10000) / 10000);
                     } 
                 }
             }
         }
-        function calculate_expect_price() {
+        function calculate_expect_price(tab_num) {
             var pair = $('#id_pair').val();
-            var side = $('#id_side').val();
-            var order_type = $('#id_order_type').val();
-            var amount = $('#id_start_amount').val();
+            var side = $('#id_side_' + tab_num).val();
+            var order_type = $('#id_order_type_' + tab_num).val();
+            var amount = $('#id_start_amount_' + tab_num).val();
 
             if (parseFloat(amount) == 0 || amount == '') {
-                $('#expect_price').val(0);
+                $('#expect_price_' + tab_num).val(0);
             } else {
-                var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+                var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price_' + tab_num).val() != '') ? parseFloat($('#id_price_' + tab_num).val()) : 0;
                 if (pair.split('_')[1] == 'jpy') {
-                    $('#expect_price').val(Math.floor(price * amount));    
+                    $('#expect_price_' + tab_num).val(Math.floor(price * amount));    
                 } else {
-                    $('#expect_price').val(price * amount);    
+                    $('#expect_price_' + tab_num).val(price * amount);    
                 }
             }
         }
@@ -694,8 +888,8 @@
                 set_error_message($('#id_order_result_message'));
             });
         }
-        function set_slidevalue(new_val, trigger_input_event=true) {
-            var tar = $('#myRange');
+        function set_slidevalue(tab_num, new_val, trigger_input_event=true) {
+            var tar = $('#myRange_' + tab_num);
             if (trigger_input_event) {
                 tar.val(new_val).trigger('input');
             } else {
@@ -709,20 +903,23 @@
                     + 'color-stop(' + ini + ', #333333)'
                     + ')'
             );
-            $('#amount_percentage').html(new_val + '%');
+            $('#amount_percentage_' + tab_num).html(new_val + '%');
         }
 
         function initialize_order_tab(is_initial = false) {
             initialize_ticker_json();
             initialize_free_amount_json();
-
-            if ($('#id_side').val() == 'sell') {
-                $('#sell_button').addClass('sell').removeClass('btn-base');
-                $('#buy_button').removeClass('buy').addClass('btn-base');
-            } else {
-                $('#buy_button').addClass('buy').removeClass('btn-base');
-                $('#sell_button').removeClass('sell').addClass('btn-base');
+            
+            for (let i = 1; i < 4; i ++) {
+                if ($('#id_side_' + i).val() == 'sell') {
+                    $('#sell_button_' + i).addClass('sell').removeClass('btn-base');
+                    $('#buy_button_' + i).removeClass('buy').addClass('btn-base');
+                } else {
+                    $('#buy_button_' + i).addClass('buy').removeClass('btn-base');
+                    $('#sell_button_' + i).removeClass('sell').addClass('btn-base');
+                }
             }
+            
 
             //画面ロード時のみ
             if (is_initial) {
@@ -753,50 +950,22 @@
                     order_type_option_html += '<option value="' + order_type + '">' + ORDER_TYPES[order_type] + '</option>';
                 });
                 
-                var tar = $('#myRange')
-                
-                tar.on("input", function () {
-                    udpate_amount_by_slider();
-                    var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
-                    $(this).css('background-image',
-                        '-webkit-gradient(linear, left top, right top, '
-                        + 'color-stop(' + val + ', teal), '
-                        + 'color-stop(' + val + ', #333333)'
-                        + ')'
-                    );
-                });
-     
-                $('#id_start_amount')
-                .on('change', function() {
-                    update_slider_by_amount();
-                })
-                .on('calculate', function() {
-                    calculate_expect_price();
-                });
-
-
-                $('#id_price')
-                .on('change', function() { 
-                    update_slider_by_amount();
-                });
-                
                 $('input[type="number"]')
-                .on('keydown', function(e) {
-                    if(!((e.keyCode > 95 && e.keyCode < 106)
-                    || (e.keyCode > 47 && e.keyCode < 58) 
-                    || e.keyCode == 8 || e.keyCode == 190)) {
-                        return false;
+                    .on('keydown', function(e) {
+                        if(!((e.keyCode > 95 && e.keyCode < 106)
+                        || (e.keyCode > 47 && e.keyCode < 58) 
+                        || e.keyCode == 8 || e.keyCode == 190)) {
+                            return false;
                     }
                 });
-                
+
                 $('#id_pair').on('change', function() {
                     $.cookie(COOKIE_ORDER_PAIR, $(this).val(), { expires: 7 });
 
-                    $('#id_start_amount').val('');
-                    $('#id_price').val('');
-                    $('#id_price_for_stop').val('');
-                    set_slidevalue(0);
-                    $('#expect_price').val('');
+                    $('input[type="number"]').val('');
+                    for (let i = 1; i< 4; i++) {
+                        set_slidevalue(i, 0);
+                    }
 
                     // 数量、金額の通貨部分を更新
                     var unit = $(this).val().split('_')[0].toUpperCase();
@@ -810,65 +979,144 @@
                     $('.tablinks.active').click();
                 });
                 
-                $('#id_order_type').on('change', function() {
-                    $('#id_price').val(0);
-                    $('#id_price_for_stop').val(0);
-                    set_slidevalue(0);
-                    var new_order_type = $(this).val();
-                    $.cookie(COOKIE_ORDER_TYPE, new_order_type, { expires: 7 });
-                    if (new_order_type == 'limit') {
-                        $('#id_price_placeholder').html('指値価格');
-                    } else if (new_order_type == 'stop_market') {
-                        $('#id_stop_price_placeholder').html('逆指値価格');
-                    } else if (new_order_type == 'stop_limit') {
-                        $('#id_stop_price_placeholder').html('逆指値(発動価格)');
-                        $('#id_price_placeholder').html('指値(約定希望価格)');
-                    }
-            
-                   display_price_div(new_order_type);
-                });
+                // 選択肢追加
+                $('#id_pair').html(pair_option_html);
+                // クッキーにあればデフォルトセット
+                var ck_pair = $.cookie(COOKIE_ORDER_PAIR);
+                if (ck_pair != undefined && Object.keys(PAIRS).indexOf(ck_pair) >= 0) {
+                    $('#id_pair').val(ck_pair).trigger('change');
+                } else {
+                    // 無ければ先頭の選択肢をセット
+                    $('#id_pair').val(Object.keys(PAIRS)[0]);
+                }
+
+                $('#id_special_order').html(special_order_option_html);
+                var ck_special_order = $.cookie(COOKIE_SPECIAL_ORDER);
+                if (ck_special_order != undefined && SPECIAL_ORDERS.indexOf(ck_special_order) >= 0) {
+                    $('#id_special_order').val(ck_special_order);
+                } else {
+                    $('#id_special_order').val(SPECIAL_ORDERS[0]);
+                }
+                    
+                for (let i = 1; i < 4; i++) {
+                    var tar = $('#myRange_' + i);
+                    tar.on("input", function () {
+                        update_amount_by_slider(i);
+                        var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
+                        $(this).css('background-image',
+                            '-webkit-gradient(linear, left top, right top, '
+                            + 'color-stop(' + val + ', teal), '
+                            + 'color-stop(' + val + ', #333333)'
+                            + ')'
+                        );
+                    });
+        
+                    $('#id_start_amount_' + i)
+                    .on('change', function() {
+                        update_slider_by_amount(i);
+                    })
+                    .on('calculate', function() {
+                        calculate_expect_price(i);
+                    });
+
+                    $('#id_price')
+                    .on('change', function() { 
+                        update_slider_by_amount(i);
+                    });
+ 
+                    $('#id_order_type_' + i).on('change', function() {
+                        $('#id_price_' + i).val(0);
+                        $('#id_price_for_stop_' + i).val(0);
+                        set_slidevalue(i, 0);
+                        var new_order_type = $(this).val();
+                        $.cookie(COOKIE_ORDER_TYPE, new_order_type, { expires: 7 });
+                        if (new_order_type == 'limit') {
+                            $('#id_price_placeholder_' + i).html('指値価格');
+                        } else if (new_order_type == 'stop_market') {
+                            $('#id_stop_price_placeholder_' + i).html('逆指値価格');
+                        } else if (new_order_type == 'stop_limit') {
+                            $('#id_stop_price_placeholder_' + i).html('逆指値(発動価格)');
+                            $('#id_price_placeholder_' + i).html('指値(約定希望価格)');
+                        }
                 
+                        display_price_div(i, new_order_type);
+                    });
+                    
 
-                $('#id_side').on('value_change', function() {
-                    set_slidevalue(0);
-                });
+                    $('#id_side_' + i).on('value_change', function() {
+                        set_slidevalue(i, 0);
+                    });
 
-                $('#sell_button').on('click', function() {
-                    // 変更があった場合のみ処理
-                    if ($('#id_side').val() == 'buy') {
-                        $.cookie(COOKIE_ORDER_SIDE, 'sell', {expire: 7});
-                        $(this).addClass('sell').removeClass('btn-base');
-                        $('#buy_button').removeClass('buy').addClass('btn-base');
-                        $('#id_side').val('sell').trigger('value_change');
-                        $('#id_order_button').removeClass('green_button').addClass('red_button'); 
+                    $('#sell_button_' + i).on('click', function() {
+                        // 変更があった場合のみ処理
+                        if ($('#id_side_' + i).val() == 'buy') {
+                            $.cookie(COOKIE_ORDER_SIDE, 'sell', {expire: 7});
+                            $(this).addClass('sell').removeClass('btn-base');
+                            $('#buy_button_' + i).removeClass('buy').addClass('btn-base');
+                            $('#id_side_' + i).val('sell').trigger('value_change');
+                            $('#id_order_button').removeClass('green_button').addClass('red_button'); 
+                        } else {
+                            // do nothing
+                        }
+                        
+                    });
+                    
+                    $('#buy_button_' + i).on('click', function() {
+                        // 変更があった場合のみ処理
+                        if ($('#id_side_' + i).val() == 'sell') {
+                            $.cookie(COOKIE_ORDER_SIDE, 'buy', {expire: 7});
+                            $(this).addClass('buy').removeClass('btn-base');
+                            $('#sell_button_' + i).removeClass('sell').addClass('btn-base');
+                            $('#id_side_' + i).val('buy').trigger('value_change');
+                            $('#id_order_button').removeClass('red_button').addClass('green_button');
+                        }
+                    });
+                    
+                    $('#id_side_' + i).html(side_option_html);
+                    var ck_order_side = $.cookie(COOKIE_ORDER_SIDE);
+                    if (ck_order_side != undefined && Object.keys(SELL_BUY).indexOf(ck_order_side) >= 0) {
+                        $('#id_side_' + i).val(ck_order_side);
                     } else {
-                        // do nothing
+                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]);
+                    }
+
+                    if ($('#id_side_' + i).val() == 'sell') {
+                        $('#id_order_button').removeClass('green_button').addClass('red_button');
+                    } else {
+                        $('#id_order_button').addClass('green_button').removeClass('red_button');
                     }
                     
-                });
-                
-                $('#buy_button').on('click', function() {
-                    // 変更があった場合のみ処理
-                    if ($('#id_side').val() == 'sell') {
-                        $.cookie(COOKIE_ORDER_SIDE, 'buy', {expire: 7});
-                        $(this).addClass('buy').removeClass('btn-base');
-                        $('#sell_button').removeClass('sell').addClass('btn-base');
-                        $('#id_side').val('buy').trigger('value_change');
-                        $('#id_order_button').removeClass('red_button').addClass('green_button');
+
+                    $('#id_order_type_' + i).html(order_type_option_html);
+                    var ck_order_type = $.cookie(COOKIE_ORDER_TYPE);
+                    if (ck_order_type != undefined && Object.keys(ORDER_TYPES).indexOf(ck_order_type) >= 0) {
+                        $('#id_order_type_' + i).val(ck_order_type);
+                        if (ck_order_type == 'limit') {
+                            $('#id_price_placeholder_' + i).html('指値価格');
+                        } else if (ck_order_type == 'stop_market') {
+                            $('#id_stop_price_placeholder_' + i).html('逆指値価格');
+                        } else if (ck_order_type == 'stop_limit') {
+                            $('#id_stop_price_placeholder_' + i).html('逆指値(発動価格)');
+                            $('#id_price_placeholder_' + i).html('指値(約定希望価格)');
+                        }
+                    } else {
+                        $('#id_order_type_' + i).val(Object.keys(ORDER_TYPES)[0]);
                     }
-                });
+                    set_slidevalue(i, 0);
+                    display_price_div(i, $('#id_order_type_' + i).val());
+                }
+                
                 $('#id_order_button').on('click', function(e) {
-                    e.preventDefault();
-                    var pair = $('#id_pair').val();
-                    var special_order = $('#id_special_order').val();
-                    var side = $('#id_side').val();
-                    var order_type = $('#id_order_type').val();
-                    var price = $('#id_price').val() == '' ? null : parseFloat($('#id_price').val());
-                    var price_for_stop = $('#id_price_for_stop').val() == '' ? null : parseFloat($('#id_price_for_stop').val());
-                    var start_amount = $('#id_start_amount').val();
                     
                     switch (special_order) {
                         case 'SINGLE':
+                            var pair = $('#id_pair').val();
+                            var special_order = $('#id_special_order').val();
+                            var side = $('#id_side').val();
+                            var order_type = $('#id_order_type').val();
+                            var price = $('#id_price').val() == '' ? null : parseFloat($('#id_price').val());
+                            var price_for_stop = $('#id_price_for_stop').val() == '' ? null : parseFloat($('#id_price_for_stop').val());
+                            var start_amount = $('#id_start_amount').val();
                             if (order_type.match(/limit/)) {
                                 call_get_ticker_api(pair)
                                 .done(function(res) {
@@ -925,59 +1173,6 @@
                     }
                 });  
 
-                // 選択肢追加
-                $('#id_pair').html(pair_option_html);
-                // クッキーにあればデフォルトセット
-                var ck_pair = $.cookie(COOKIE_ORDER_PAIR);
-                if (ck_pair != undefined && Object.keys(PAIRS).indexOf(ck_pair) >= 0) {
-                    $('#id_pair').val(ck_pair).trigger('change');
-                } else {
-                    // 無ければ先頭の選択肢をセット
-                    $('#id_pair').val(Object.keys(PAIRS)[0]);
-                }
-
-                $('#id_special_order').html(special_order_option_html);
-                var ck_special_order = $.cookie(COOKIE_SPECIAL_ORDER);
-                if (ck_special_order != undefined && SPECIAL_ORDERS.indexOf(ck_special_order) >= 0) {
-                    $('#id_special_order').val(ck_special_order);
-                } else {
-                    $('#id_special_order').val(SPECIAL_ORDERS[0]);
-                }
-                
-                
-                $('#id_side').html(side_option_html);
-                var ck_order_side = $.cookie(COOKIE_ORDER_SIDE);
-                if (ck_order_side != undefined && Object.keys(SELL_BUY).indexOf(ck_order_side) >= 0) {
-                    $('#id_side').val(ck_order_side);
-                } else {
-                    $('#id_side').val(Object.keys(SELL_BUY)[1]);
-                }
-
-                if ($('#id_side').val() == 'sell') {
-                    $('#id_order_button').removeClass('green_button').addClass('red_button');
-                } else {
-                    $('#id_order_button').addClass('green_button').removeClass('red_button');
-                }
-                
-
-                $('#id_order_type').html(order_type_option_html);
-                var ck_order_type = $.cookie(COOKIE_ORDER_TYPE);
-                if (ck_order_type != undefined && Object.keys(ORDER_TYPES).indexOf(ck_order_type) >= 0) {
-                    $('#id_order_type').val(ck_order_type);
-                    if (ck_order_type == 'limit') {
-                        $('#id_price_placeholder').html('指値価格');
-                    } else if (ck_order_type == 'stop_market') {
-                        $('#id_stop_price_placeholder').html('逆指値価格');
-                    } else if (ck_order_type == 'stop_limit') {
-                        $('#id_stop_price_placeholder').html('逆指値(発動価格)');
-                        $('#id_price_placeholder').html('指値(約定希望価格)');
-                    }
-                } else {
-                    $('#id_order_type').val(Object.keys(ORDER_TYPES)[0]);
-                }
-                set_slidevalue(0);
-                display_price_div($('#id_order_type').val());
-            
             }
         }
         
@@ -1583,6 +1778,20 @@
 
             // Get all elements with class="tablinks" and remove the class "active"
             $('.tablinks').each((i, tablink) => {
+                $(tablink).removeClass('active');
+            });
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            $('#' + tab_id).show();
+            evt.target.className += " active";
+        }
+        function openChildTab(evt, tab_id) {
+            // Get all elements with class="tabcontent" and hide them
+            $('.tabcontent-child').each((i, tabcontent) => {
+                $(tabcontent).hide();
+            });
+            // Get all elements with class="tablinks" and remove the class "active"
+            $('.tablinks-child').each((i, tablink) => {
                 $(tablink).removeClass('active');
             });
 
