@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from django.contrib import admin
+from rest_framework.authtoken.views import obtain_auth_token  # <-- Here
+
 
 app_name = 'bitbank'
 admin.site.site_title = 'bitbank' 
@@ -20,6 +22,7 @@ urlpatterns = [
     path('password_reset/done/', views.PasswordResetDone.as_view(), name='password_reset_done'),
     path('password_reset/confirm/<uidb64>/<token>/', views.PasswordResetConfirm.as_view(), name='password_reset_confirm'),
     path('password_reset/complete/', views.PasswordResetComplete.as_view(), name='password_reset_complete'),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),  # <-- And here
     path('ajax_get_user/', views.ajax_get_user, name="ajax_get_user"),
     path('ajax_update_user/', views.ajax_update_user, name="ajax_update_user"),
     path('ajax_get_ticker/', views.ajax_get_ticker, name="ajax_get_ticker"),
@@ -33,5 +36,7 @@ urlpatterns = [
     path('ajax_get_notify_if_filled/', views.ajax_get_notify_if_filled, name="ajax_get_notify_if_filled"),
     path('ajax_change_notify_if_filled/', views.ajax_change_notify_if_filled, name="ajax_change_notify_if_filled"),
     path('ajax_create_order/', views.ajax_create_order, name="ajax_create_order"),
+    #path('ajax_upload_files/', views.ajax_upload_files, name="ajax_upload_files"),
+    path('ajax_post_inquiry/', views.ajax_post_inquiry, name="ajax_post_inquiry"),
     path('order/', views.MainPage.as_view(), name='order'),
 ]

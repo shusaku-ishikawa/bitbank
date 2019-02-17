@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.utils.translation import ugettext_lazy as _
-from .models import User, Order, Alert
+from .models import User, Order, Alert, Inquiry
 # from django.contrib.auth import get_user_model
 
 # User = get_user_model()
@@ -46,6 +46,9 @@ class MyOrderAdmin(admin.ModelAdmin):
 class MyAlertAdmin(admin.ModelAdmin):
     list_display = ('user', 'pair', 'threshold', 'is_active')
 
+class MyInquiryAdmin(admin.ModelAdmin):
+    list_display = ('user', 'date_initiated', 'subject', 'body', 'email_for_reply')
 admin.site.register(User, MyUserAdmin)
 admin.site.register(Order, MyOrderAdmin)
 admin.site.register(Alert, MyAlertAdmin)
+admin.site.register(Inquiry, MyInquiryAdmin)

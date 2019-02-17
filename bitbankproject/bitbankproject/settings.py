@@ -25,7 +25,7 @@ SECRET_KEY = 'k9yiss_wm7w!bj*h6u7pt77*&emv0ek)=ey4_xw3ht4e8byn2a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['133.167.78.193', '160.16.143.235','localhost']
+ALLOWED_HOSTS = ['*']
 
 SESSION_COOKIE_AGE = 60 * 30
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_crontab',
     'bitbank',
 ]
+
 
 AUTH_USER_MODEL = 'bitbank.User'
 LOGIN_URL = 'bitbank:login'
@@ -97,6 +98,7 @@ DATABASES = {
 
 # Logging
 ADMINS = [('shusaku ishikawa', 'ishikawasyuusaku@gmail.com')]
+
 
 LOGGING = {
     'version': 1,   # これを設定しないと怒られる
@@ -205,14 +207,23 @@ STATICFILES_DIRS = [
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEFAULT_FROM_EMAIL = 'kenkenpar55@kenkenpar.com'
+DEFAULT_FROM_EMAIL = 'ishikawasyuusaku@gmail.com'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_CHARSET = 'utf-8'
-EMAIL_HOST = 'smtp.muumuu-mail.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'kenkenpar55@kenkenpar.com'
-EMAIL_HOST_PASSWORD = '1q1q1q1q'
-EMAIL_USE_TLS = False
+EMAIL_HOST_USER = 'ishikawasyuusaku@gmail.com'
+EMAIL_HOST_PASSWORD = '332191-Aa2'
+EMAIL_USE_TLS = True
+
+# DEFAULT_FROM_EMAIL = 'kenkenpar55@kenkenpar.com'
+# # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# DEFAULT_CHARSET = 'utf-8'
+# EMAIL_HOST = 'smtp.muumuu-mail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'kenkenpar55@kenkenpar.com'
+# EMAIL_HOST_PASSWORD = '1q1q1q1q'
+# EMAIL_USE_TLS = False
 
 # JOBs
 CRONJOBS = [

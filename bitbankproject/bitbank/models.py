@@ -296,3 +296,53 @@ class Alert(models.Model):
         verbose_name = _('有効'),
         null = True,
     )
+
+class Inquiry(models.Model):
+    class Meta:
+        verbose_name = "問い合わせ"
+        verbose_name_plural = "問い合わせ"
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.CharField(
+        verbose_name = _('件名'),
+        max_length = 255,
+    )
+    body = models.CharField(
+        verbose_name = _('内容'),
+        max_length = 255,
+    )
+    email_for_reply = models.EmailField(
+        verbose_name = _('通知用メールアドレス'),
+    )
+    attachment_1 = models.FileField(
+        '添付ファイル1',
+        null = True,
+        blank = True,
+    )
+    attachment_2 = models.FileField(
+        '添付ファイル2',
+        null = True,
+        blank = True,
+    )
+    attachment_3 = models.FileField(
+        '添付ファイル3',
+        null = True,
+        blank = True,
+    )
+
+    closed = models.BooleanField(
+        _('解決済'),
+        default=False,
+    )
+    date_initiated = models.DateTimeField(
+        verbose_name = '問い合わせ日',
+        auto_now_add = True,
+
+    )
+# class Attachment(models.Model):
+#     class Meta:
+#         verbose_name = '添付ファイル'
+#         verbose_name_plural = '添付ファイル'
+
+#     file = models.FileField(
+#         upload_to = 'attachments/',
+#     )

@@ -76,6 +76,7 @@ select#id_pair_for_alert {
     border-radius: 0;
 }
 
+
 button.btn-base {
     background: #333333;
     color: gray;
@@ -153,10 +154,6 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     /* font-size: 2vmin; */
 }
 
-    
-.errorlist {
-    color: red;
-}
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -174,6 +171,16 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     padding: 2em 0.5em;
     transition: 0.3s;
   }
+  .tab button.tablinks-child {
+    background-color: inherit;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5em 0.5em;
+    transition: 1.0s;
+  }
   
   /* Change background color of buttons on hover */
   .tab button:hover {
@@ -186,6 +193,15 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
   .tabcontent {
     display: none;
     border-top: none;
+  }
+  .tabcontent-child {
+    display: none;
+  }
+ 
+  img.attachment_preview {
+      height : 10em;
+      width: 10em;
+      padding: 0.5em 0.1em;
   }
  
   div > ul.pagination > li.page-item > a.page-link{
@@ -208,7 +224,7 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
 }
 
 /* The slider itself */
-.slider {
+input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
     height: 5px;
@@ -221,12 +237,12 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
 }
 
 /* Mouse-over effects */
-.slider:hover {
+input[type="range"]:hover {
   opacity: 1; /* Fully shown on mouse-over */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
-.slider::-webkit-slider-thumb {
+.slider_for_buy::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 20px;
@@ -236,10 +252,30 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
+.slider_for_buy::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    cursor: pointer;
     background: teal;
+}
+.slider_for_sell::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background: orangered;
     cursor: pointer;
 }
+
+.slider_for_sell::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: orangered;
+}
+
+
+

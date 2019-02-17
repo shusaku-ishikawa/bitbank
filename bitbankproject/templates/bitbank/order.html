@@ -43,295 +43,303 @@
             </div>  
         </div>
     </div>
-    <div clas="row">
-        <div class="col-md-7 offset-md-1 col-12">
-            <div class="tab btn-group">
-                <button id="1st_order_button" type="button" class="tablinks-child" onclick="openChildTab(event, '1st_order')">①</button>
-                <button id="2nd_order_button" type="button" class="tablinks-child" onclick="openChildTab(event, '2nd_order')">②</button>
-                <button id="3rd_order_button" type="button" class="tablinks-child" onclick="openChildTab(event, '3rd_order')">③</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 1ページ目 -->
-    <div id="1st_order" class="tabcontent-child">
-        
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="btn-group d-flex" role="group">
-                    <button id="buy_button_1" type="button" class="btn w-100 btn-base">買い</button>
-                    <button id="sell_button_1" type="button" class="btn w-100 btn-base">売り</button>
-                </div>
-            </div>
-        </div>
-                    
-        <div class="input-group" style="display: none">
-            <select id="id_side_1" class="form-control"></select>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">注文方法</div>
-                    </div>
-                    <select id="id_order_type_1" class="form-control"></select>
-                </div>
-            </div>
-        </div>
-        
-        <hr class="show_if_stop_order_1">
-        <div class="row show_if_stop_order_1">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div id="id_stop_price_placeholder_1" class="input-group-text placeholder">逆指値価格</div>
-                    </div>
-                    <input id="id_price_for_stop_1" type="number" class="form-control">              
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="show_if_limit_order_1">
-        <div class="row show_if_limit_order_1">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div id="id_price_placeholder_1" class="input-group-text placeholder">指値価格</div>
-                    </div>
-                    <input id="id_price_1" type="number" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>     
-                </div>
-            </div>
-        </div>
-    
-        <hr>            
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                            <div class="input-group-text placeholder">数量</div>
-                    </div>
-                    <input id="id_start_amount_1" type="number" class="form-control" min="0"">  
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder unit">BTC</div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <input type="range" min="0" max="100" value="0" class="slider" id="myRange_1">
-                <div><span style="float:right;" id="amount_percentage_1">0%</span></div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">予想</div>
+    <hr>
+    <!-- 1ページ目 -->
+        <div id="slider_contents">
+            <div class="tabcontent-child">
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <span class="badge badge-info">新規注文</span>
                     </div>
-                    <input type="number" id="expect_price_1" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="btn-group d-flex" role="group">
+                            <button id="buy_button_1" type="button" class="btn w-100 btn-base">買い</button>
+                            <button id="sell_button_1" type="button" class="btn w-100 btn-base">売り</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div id="2nd_order" class="tabcontent-child">
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="btn-group d-flex" role="group">
-                    <button id="buy_button_2" type="button" class="btn w-100 btn-base">買い</button>
-                    <button id="sell_button_2" type="button" class="btn w-100 btn-base">売り</button>
+                            
+                <div class="input-group" style="display: none">
+                    <select id="id_side_1" class="form-control"></select>
                 </div>
-            </div>
-        </div>
-                    
-        <div class="input-group" style="display: none">
-            <select id="id_side_2" class="form-control"></select>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">注文方法</div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text placeholder">注文方法</div>
+                            </div>
+                            <select id="id_order_type_1" class="form-control"></select>
+                        </div>
                     </div>
-                    <select id="id_order_type_2" class="form-control"></select>
-                    
                 </div>
-            </div>
-        </div>
-        
-        <hr class="show_if_stop_order_2">
-        <div class="row show_if_stop_order_2">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div id="id_stop_price_placeholder_2" class="input-group-text placeholder">逆指値価格</div>
-                    </div>
-                    <input id="id_price_for_stop_2" type="number" class="form-control">              
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div> 
-                </div>
-            </div>
-        </div>
-        <hr class="show_if_limit_order_2">
-        <div class="row show_if_limit_order_2">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div id="id_price_placeholder_2" class="input-group-text placeholder">指値価格</div>
-                    </div>
-                    <input id="id_price_2" type="number" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>
-                         
-                </div>
-            </div>
-        </div>
-    
-        <hr>            
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                            <div class="input-group-text placeholder">数量</div>
-                    </div>
-                    <input id="id_start_amount_2" type="number" class="form-control" min="0"">  
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder unit">BTC</div>
-                    </div>
                 
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <input type="range" min="0" max="100" value="0" class="slider" id="myRange_2">
-                <div><span style="float:right;" id="amount_percentage_2">0%</span></div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">予想</div>
-                    </div>
-                    <input type="number" id="expect_price_2" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
+                <hr class="show_if_stop_order_1">
+                <div class="row show_if_stop_order_1">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div id="id_stop_price_placeholder_1" class="input-group-text placeholder">逆指値価格</div>
+                            </div>
+                            <input id="id_price_for_stop_1" type="number" class="form-control">              
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div id="3rd_order" class="tabcontent-child">
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="btn-group d-flex" role="group">
-                    <button id="buy_button_3" type="button" class="btn w-100 btn-base">買い</button>
-                    <button id="sell_button_3" type="button" class="btn w-100 btn-base">売り</button>
-                </div>
-            </div>
-        </div>
-                    
-        <div class="input-group" style="display: none">
-            <select id="id_side_3" class="form-control"></select>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">注文方法</div>
-                    </div>
-                    <select id="id_order_type_3" class="form-control"></select>
-                 
-                </div>
-            </div>
-        </div>
-        
-        <hr class="show_if_stop_order_3">
-        <div class="row show_if_stop_order_3">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div id="id_stop_price_placeholder_3" class="input-group-text placeholder">逆指値価格</div>
-                    </div>
-                    <input id="id_price_for_stop_3" type="number" class="form-control">              
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
+                <hr class="show_if_limit_order_1">
+                <div class="row show_if_limit_order_1">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div id="id_price_placeholder_1" class="input-group-text placeholder">指値価格</div>
+                            </div>
+                            <input id="id_price_1" type="number" class="form-control">
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div>     
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <hr class="show_if_limit_order_3">
-        <div class="row show_if_limit_order_3">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div id="id_price_placeholder_3" class="input-group-text placeholder">指値価格</div>
+            
+                <hr>            
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text placeholder">数量</div>
+                            </div>
+                            <input id="id_start_amount_1" type="number" class="form-control" min="0"">  
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder unit">BTC</div>
+                            </div>
+    
+                        </div>
                     </div>
-                    <input id="id_price_3" type="number" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>    
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <input type="range" min="0" max="100" value="0" class=" " id="myRange_1">
+                        <div><span style="float:right;" id="amount_percentage_1">0%</span></div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text placeholder">予想</div>
+                            </div>
+                            <input type="number" id="expect_price_1" class="form-control">
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tabcontent-child">
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <span class="badge badge-success"">決済注文❶</span>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="btn-group d-flex" role="group">
+                            <button id="buy_button_2" type="button" class="btn w-100 btn-base">買い</button>
+                            <button id="sell_button_2" type="button" class="btn w-100 btn-base">売り</button>
+                        </div>
+                    </div>
+                </div>
+                            
+                <div class="input-group" style="display: none">
+                    <select id="id_side_2" class="form-control"></select>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text placeholder">注文方法</div>
+                            </div>
+                            <select id="id_order_type_2" class="form-control"></select>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="show_if_stop_order_2">
+                <div class="row show_if_stop_order_2">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div id="id_stop_price_placeholder_2" class="input-group-text placeholder">逆指値価格</div>
+                            </div>
+                            <input id="id_price_for_stop_2" type="number" class="form-control">              
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <hr class="show_if_limit_order_2">
+                <div class="row show_if_limit_order_2">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div id="id_price_placeholder_2" class="input-group-text placeholder">指値価格</div>
+                            </div>
+                            <input id="id_price_2" type="number" class="form-control">
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div>
+                                
+                        </div>
+                    </div>
+                </div>
+            
+                <hr>            
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text placeholder">数量</div>
+                            </div>
+                            <input id="id_start_amount_2" type="number" class="form-control" min="0"">  
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder unit">BTC</div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <input type="range" min="0" max="100" value="0" class=" " id="myRange_2">
+                        <div><span style="float:right;" id="amount_percentage_2">0%</span></div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text placeholder">予想</div>
+                            </div>
+                            <input type="number" id="expect_price_2" class="form-control">
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tabcontent-child">
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <span class="badge badge-primary">決済注文❷</span>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="btn-group d-flex" role="group">
+                            <button id="buy_button_3" type="button" class="btn w-100 btn-base">買い</button>
+                            <button id="sell_button_3" type="button" class="btn w-100 btn-base">売り</button>
+                        </div>
+                    </div>
+                </div>
+                            
+                <div class="input-group" style="display: none">
+                    <select id="id_side_3" class="form-control"></select>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text placeholder">注文方法</div>
+                            </div>
+                            <select id="id_order_type_3" class="form-control"></select>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="show_if_stop_order_3">
+                <div class="row show_if_stop_order_3">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div id="id_stop_price_placeholder_3" class="input-group-text placeholder">逆指値価格</div>
+                            </div>
+                            <input id="id_price_for_stop_3" type="number" class="form-control">              
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="show_if_limit_order_3">
+                <div class="row show_if_limit_order_3">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div id="id_price_placeholder_3" class="input-group-text placeholder">指値価格</div>
+                            </div>
+                            <input id="id_price_3" type="number" class="form-control">
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            
+                <hr>            
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                    <div class="input-group-text placeholder">数量</div>
+                            </div>
+                            <input id="id_start_amount_3" type="number" class="form-control" min="0"">  
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder unit">BTC</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <input type="range" min="0" max="100" value="0" class=" " id="myRange_3">
+                        <div><span style="float:right;" id="amount_percentage_3">0%</span></div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1 col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text placeholder">予想</div>
+                            </div>
+                            <input type="number" id="expect_price_3" class="form-control">
+                            <div class="input-group-append">
+                                <div class="input-group-text placeholder pair">JPY</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     
-        <hr>            
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                            <div class="input-group-text placeholder">数量</div>
-                    </div>
-                    <input id="id_start_amount_3" type="number" class="form-control" min="0"">  
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder unit">BTC</div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <input type="range" min="0" max="100" value="0" class="slider" id="myRange_3">
-                <div><span style="float:right;" id="amount_percentage_3">0%</span></div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6 offset-md-1 col-12">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text placeholder">予想</div>
-                    </div>
-                    <input type="number" id="expect_price_3" class="form-control">
-                    <div class="input-group-append">
-                        <div class="input-group-text placeholder pair">JPY</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
     <hr>
     <div class="row">
         <div class="col-md-6 offset-md-1 col-12">
@@ -505,7 +513,61 @@
             <a href="{% url 'bitbank:logout'%}" class="btn btn-block red_button">ログアウト</a>
         </div>
     </div>
-</div>      
+</div>  
+<div id="contact" class="tabcontent">
+  <div class="row">
+    <div class="col-md-6 offset-md-1 col-12">
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <tbody>
+                    <tr>
+                        <th>問い合わせ日</th>
+                        <td><input id="id_contact_date" type="text" class="form-control" value="2019/02/11"></td>
+                    </tr>
+                    <tr>
+                        <th>名前</th>
+                        <td><input id="id_contact_name" type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th>通知用メールアドレス</th>
+                        <td><input id="id_contact_email" type="text" class="form-control"></td>
+                    </tr>
+
+                    <tr>
+                        <th>件名</th>
+                        <td><input id="id_contact_subject" type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <th>内容</th>
+                        <td><textarea id="id_contact_body" class="form-control"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>添付ファイル</th>
+                        <td>
+                    
+                        <button type="button" class="btn btn-primary js-upload-file">
+                            <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
+                        </button>
+                        
+                         <!-- {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #} -->
+                        <input id="fileupload" type="file" name="attachments[]" multiple style="display: none"
+                                data-url="{% url 'bitbank:ajax_post_inquiry' %}"
+                                data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+                        <div id="id_attachment_preview"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+    </div>
+</div>    
+<div class="row">
+        <div class="col-md-2 offset-md-1 col-6">
+            <button id="id_contact_send_inquiry_button" type="button" class="btn btn-block green_button">送信</button>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 {% block extra_js %}
     <script>
@@ -575,11 +637,11 @@
             }
             var date = new Date(unixtime);
             var year = date.getFullYear();
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var seconds = date.getSeconds();
+            var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1):date.getMonth() + 1 ;
+            var day = date.getDate() < 10 ? '0' + date.getDate():date.getDate();
+            var hours = date.getHours() < 10 ? '0' + date.getHours():date.getHours();
+            var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes():date.getMinutes();
+            var seconds = date.getSeconds() < 10 ? '0' + date.getSeconds():date.getSeconds();
             if (date_only) {
                 return(year + "/" + month + "/" + day);
             }
@@ -732,6 +794,19 @@
                 }
             });
         }
+        function call_post_inquiry_without_files(subject, body, email_for_reply) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_post_inquiry" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    subject: subject,
+                    body: body,
+                    email_for_reply: email_for_reply,
+                }
+            })
+        }
+
         function hyphen_if_null(subj) {
             if (subj == null || subj == undefined || subj == '0') {
                 return '-';
@@ -765,15 +840,18 @@
                 call_get_ticker_api(pair)
                 .done(function (res) {
                     if (res.error) {
-                        set_error_message($('#id_ajax_message'), res.error);
+                        set_error_message($('#id_ajax_message'),200 , res.error);
                         return;
                     }
                     //console.log(res);
                     market_price_json[pair] = res;              
                 })
-                .fail(function() {
-                    set_error_message($('#id_ajax_message'));
-                })
+                .fail(function(data, textStatus, xhr) {
+                    if (data.status == 401) {
+                        window.location.href = "{% url 'bitbank:login' %}";
+                    }
+                    set_error_message($('#id_ajax_message'), xhr);
+                });
             });
         }
         function initialize_free_amount_json() {
@@ -787,8 +865,11 @@
                     free_amount_json[asset.asset] = asset.free_amount;
                 });
             })
-            .fail(function() {
-                set_error_message($('#id_ajax_message'));
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_ajax_message'), xhr);
             });
         }
         function update_amount_by_slider(tab_num) {
@@ -884,8 +965,11 @@
                 }
                 set_success_message($('#id_order_result_message'), '注文が完了しました');
             })
-            .fail(function() {
-                set_error_message($('#id_order_result_message'));
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_order_result_message'), xhr);
             });
         }
         function set_slidevalue(tab_num, new_val, trigger_input_event=true) {
@@ -899,7 +983,7 @@
             var ini = (tar.val() - tar.attr('min')) / (tar.attr('max') - tar.attr('min'));
             tar.css('background-image',
                     '-webkit-gradient(linear, left top, right top, '
-                    + 'color-stop(' + ini + ', teal), '
+                    + 'color-stop(' + ini + ', ' + ($('#id_side_' + tab_num).val() == 'buy' ? 'teal' : 'orangered') + '), '
                     + 'color-stop(' + ini + ', #333333)'
                     + ')'
             );
@@ -910,6 +994,7 @@
             initialize_ticker_json();
             initialize_free_amount_json();
             
+
             for (let i = 1; i < 4; i ++) {
                 if ($('#id_side_' + i).val() == 'sell') {
                     $('#sell_button_' + i).addClass('sell').removeClass('btn-base');
@@ -927,17 +1012,22 @@
                 var special_order_option_html = '';
                 var side_option_html = '';
                 var order_type_option_html = '';
-
-
+                $('#slider_contents')
+                .slick({
+                    prevArrow: false,
+                    nextArrow: false,
+                    dots: true,
+                });
+                
                 Object.keys(PAIRS).forEach(pair => {
                     pair_option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
                 });
 
                 SPECIAL_ORDERS.forEach(special_order => {
                     if (special_order == 'SINGLE') {
-                        special_order_option_html += '<option selected value="' + special_order + '">' + special_order + '</option>';
+                        special_order_option_html += '<option value="' + special_order + '">' + special_order + '</option>';
                     } else {
-                        special_order_option_html += '<option disabled value="' + special_order + '">' + special_order + '</option>';
+                        special_order_option_html += '<option value="' + special_order + '">' + special_order + '</option>';
                     }
                     
                 });
@@ -950,12 +1040,41 @@
                     order_type_option_html += '<option value="' + order_type + '">' + ORDER_TYPES[order_type] + '</option>';
                 });
                 
+                $('#id_special_order')
+                .on('change', function() {
+                    //  alert($(this).val());
+                    $('#slider_contents')
+                    .slick('slickUnfilter')
+                    .slick('slickFilter', function(index){
+                        switch ($('#id_special_order').val()) {
+                            case 'SINGLE':
+                                if (index == 0){
+                                    return $(this).eq(index);  
+                                }
+                                break;
+                            case 'IFD':
+                                if (index < 2){
+                                    return $(this).eq(index);  // スライド番号が2より小さいものだけ表示
+                                }
+                                break;
+                            case 'OCO':
+                                if (index > 0){
+                                    return $(this).eq(index);  // スライド番号が2より小さいものだけ表示
+                                }
+                                break;
+                            case 'IFDOCO':
+                                return $(this).eq(index);  // スライド番号が2より小さいものだけ表示
+                                break;
+                        }   
+                    });
+                });
+
                 $('input[type="number"]')
-                    .on('keydown', function(e) {
-                        if(!((e.keyCode > 95 && e.keyCode < 106)
-                        || (e.keyCode > 47 && e.keyCode < 58) 
-                        || e.keyCode == 8 || e.keyCode == 190)) {
-                            return false;
+                .on('keydown', function(e) {
+                    if(!((e.keyCode > 95 && e.keyCode < 106)
+                    || (e.keyCode > 47 && e.keyCode < 58) 
+                    || e.keyCode == 8 || e.keyCode == 190)) {
+                        return false;
                     }
                 });
 
@@ -991,21 +1110,17 @@
                 }
 
                 $('#id_special_order').html(special_order_option_html);
-                var ck_special_order = $.cookie(COOKIE_SPECIAL_ORDER);
-                if (ck_special_order != undefined && SPECIAL_ORDERS.indexOf(ck_special_order) >= 0) {
-                    $('#id_special_order').val(ck_special_order);
-                } else {
-                    $('#id_special_order').val(SPECIAL_ORDERS[0]);
-                }
+  
                     
                 for (let i = 1; i < 4; i++) {
                     var tar = $('#myRange_' + i);
                     tar.on("input", function () {
                         update_amount_by_slider(i);
                         var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
+                        //alert($('#id_side_' + i).val() == 'buy' ? 'teal' : 'orangered');
                         $(this).css('background-image',
                             '-webkit-gradient(linear, left top, right top, '
-                            + 'color-stop(' + val + ', teal), '
+                            + 'color-stop(' + val + ', ' + ($('#id_side_' + i).val() == 'buy' ? 'teal' : 'orangered') + '),'
                             + 'color-stop(' + val + ', #333333)'
                             + ')'
                         );
@@ -1038,13 +1153,34 @@
                             $('#id_stop_price_placeholder_' + i).html('逆指値(発動価格)');
                             $('#id_price_placeholder_' + i).html('指値(約定希望価格)');
                         }
-                
+
+                        if (new_order_type.match(/limit/)) {
+                            call_get_ticker_api($('#id_pair').val())
+                            .done(function(res) {
+                                if (res.error) {
+                                    set_error_message($('#id_ajax_message'), res.error);
+                                }
+                                $('#id_price').val(res.last);
+                            })
+                            .fail(function(data, textStatus, xhr) {
+                                if (data.status == 401) {
+                                    window.location.href = "{% url 'bitbank:login' %}";
+                                }
+                                set_error_message($('#id_ajax_message'), xhr);
+                            });
+                        }
+                        
                         display_price_div(i, new_order_type);
                     });
                     
 
                     $('#id_side_' + i).on('value_change', function() {
                         set_slidevalue(i, 0);
+                        if ($(this).val() == 'buy') {
+                            $('#myRange_' + i).addClass('slider_for_buy').removeClass('slider_for_sell');
+                        } else {
+                            $('#myRange_' + i).addClass('slider_for_sell').removeClass('slider_for_buy');
+                        }
                     });
 
                     $('#sell_button_' + i).on('click', function() {
@@ -1075,9 +1211,9 @@
                     $('#id_side_' + i).html(side_option_html);
                     var ck_order_side = $.cookie(COOKIE_ORDER_SIDE);
                     if (ck_order_side != undefined && Object.keys(SELL_BUY).indexOf(ck_order_side) >= 0) {
-                        $('#id_side_' + i).val(ck_order_side);
+                        $('#id_side_' + i).val(ck_order_side).trigger('value_change');
                     } else {
-                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]);
+                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
                     }
 
                     if ($('#id_side_' + i).val() == 'sell') {
@@ -1106,6 +1242,13 @@
                     display_price_div(i, $('#id_order_type_' + i).val());
                 }
                 
+                var ck_special_order = $.cookie(COOKIE_SPECIAL_ORDER);
+                if (ck_special_order != undefined && SPECIAL_ORDERS.indexOf(ck_special_order) >= 0) {
+                    $('#id_special_order').val(ck_special_order).trigger('change');
+                } else {
+                    $('#id_special_order').val(SPECIAL_ORDERS[0]).trigger('change');
+                }
+
                 $('#id_order_button').on('click', function(e) {
                     
                     switch (special_order) {
@@ -1156,8 +1299,11 @@
                                         place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
                                     }
                                 })
-                                .fail(function() {
-                                    set_error_message($('#id_ajax_message'));
+                                .fail(function(data, textStatus, xhr) {
+                                    if (data.status == 401) {
+                                        window.location.href = "{% url 'bitbank:login' %}";
+                                    }
+                                    set_error_message($('#id_ajax_message'), xhr);
                                 });
                             } else if (order_type.match(/market/)) {
                                 // そのまま注文
@@ -1172,7 +1318,6 @@
                             break;
                     }
                 });  
-
             }
         }
         
@@ -1269,20 +1414,29 @@
                                     $('#active_orders_button').click();
                                     $('#id_ajax_message').show();
                                 })
-                                .fail(function() {
-                                    set_error_message($('#id_ajax_message'));
+                                .fail(function(data, textStatus, xhr) {
+                                    if (data.status == 401) {
+                                        window.location.href = "{% url 'bitbank:login' %}";
+                                    }
+                                    set_error_message($('#id_ajax_message'), xhr);
                                 });
                                 
                             });
                         })
-                        .fail(function() {
-                            set_error_message($('#id_ajax_message'));
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message($('#id_ajax_message'), xhr);
                         });
                     }
                 });
             })
-            .fail(function() {
-                set_error_message($('#id_ajax_message'));
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_ajax_message'), xhr);
             });
         }
         function initialize_active_orders_tab(is_initial = false) {
@@ -1378,15 +1532,20 @@
                             }
                             $('#order_history_content').html(table_html);
                         })
-                        .fail(function() {
-                            set_error_message($('#id_ajax_message'));
-                            return;
-                        }); 
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message($('#id_ajax_message'), xhr);
+                        });
                     }
                 });
             })
-            .fail(function() {
-                set_error_message($('#id_ajax_message'));
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_ajax_message'), xhr);
             });
         }
         function initialize_order_history_tab(is_initial = false) {
@@ -1427,8 +1586,11 @@
                     $('#notify_if_filled_off_button').click();
                 }
             })
-            .fail(function() {
-                set_error_message($('#id_ajax_message'));
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_ajax_message'), xhr);
             });
 
             var page_selection = $('#page_selection_alerts');
@@ -1484,20 +1646,29 @@
                                     $('#alerts_button').click();
                                     $('#id_ajax_message').show();
                                 })
-                                .fail(function() {
-                                    set_error_message($('#id_ajax_message'));
+                                .fail(function(data, textStatus, xhr) {
+                                    if (data.status == 401) {
+                                        window.location.href = "{% url 'bitbank:login' %}";
+                                    }
+                                    set_error_message($('#id_ajax_message'), xhr);
                                 });
                             });
                         })
-                        .fail(function() {
-                            set_error_message($('#id_ajax_message'));
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message($('#id_ajax_message'), xhr);
                         });
                     }
                 });
         
             })
-            .fail(function() {
-                set_error_message($('#id_ajax_message'));
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_ajax_message'), xhr);
             });
         }
         function initialize_alerts_tab(is_initial = false) {
@@ -1528,8 +1699,11 @@
                             $('#notify_if_filled_on_button').addClass('on').removeClass('btn-base');
                             $('#notify_if_filled_off_button').removeClass('off').addClass('btn-base');
                         })
-                        .fail(function() {
-                            set_error_message($('#id_ajax_message'));
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message($('#id_ajax_message'), xhr);
                         });
                     }
                 });
@@ -1546,8 +1720,11 @@
                             $('#notify_if_filled_on_button').removeClass('on').addClass('btn-base');
                             $('#notify_if_filled_off_button').addClass('off').removeClass('btn-base');
                         })
-                        .fail(function() {
-                            set_error_message($('#id_ajax_message'));
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message($('#id_ajax_message'), xhr);
                         });
                     }
                 });
@@ -1584,8 +1761,11 @@
                             $('#alerts_button').click();
                             $('#id_ajax_message').show();
                         })
-                        .fail(function() {
-                            set_error_message($('#id_ajax_message'));
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message($('#id_ajax_message'), xhr);
                         });
                     });
                 });
@@ -1638,12 +1818,18 @@
                                     total_asset_in_jpy += parseInt(res.buy) * parseInt(res2.buy) * asset.onhand_amount;
                                     $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
                                 })
-                                .fail(function() {
-                                    set_error_message($('#id_ajax_message'));
+                                .fail(function(data, textStatus, xhr) {
+                                    if (data.status == 401) {
+                                        window.location.href = "{% url 'bitbank:login' %}";
+                                    }
+                                    set_error_message($('#id_ajax_message'), xhr);
                                 });
                             })
-                            .fail(function() {
-                                set_error_message($('#id_ajax_message'));
+                            .fail(function(data, textStatus, xhr) {
+                                if (data.status == 401) {
+                                    window.location.href = "{% url 'bitbank:login' %}";
+                                }
+                                set_error_message($('#id_ajax_message'), xhr);
                             });
                         } else if (asset.asset != 'jpy') {
                             call_get_ticker_api(asset.asset + '_jpy')
@@ -1655,8 +1841,11 @@
                                 total_asset_in_jpy += parseInt(res.buy * asset.onhand_amount);
                                 $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
                             })
-                            .fail(function() {
-                                set_error_message($('#id_ajax_message'));
+                            .fail(function(data, textStatus, xhr) {
+                                if (data.status == 401) {
+                                    window.location.href = "{% url 'bitbank:login' %}";
+                                }
+                                set_error_message($('#id_ajax_message'), xhr);
                             });
                         } else {
                             total_asset_in_jpy += parseInt(asset.onhand_amount);
@@ -1670,12 +1859,14 @@
                     }
                 }
             })
-            .fail(function() {
-                sset_error_message($('#id_ajax_message'));
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_ajax_message'), xhr);
             });
         }
         function initialize_user_info_tab(is_initial = false) {
-
             call_get_user()
             .done(function(res) {
                 if (res.error) {
@@ -1690,8 +1881,11 @@
                 $('#id_api_secret_key').val(user_json.fields.api_secret_key);
                 $('#id_email_for_notice').val(user_json.fields.email_for_notice);
             })
-            .fail(function() {
-                set_error_message($('#id_ajax_message'));
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_ajax_message'), xhr);
             });
             // 初期ロード時のみ
             if (is_initial) {
@@ -1717,14 +1911,154 @@
                         set_success_message($('#id_ajax_message'), '登録情報を更新しました');
                         return;
                     })
-                    .fail(function() {
-                        set_error_message($('#id_ajax_message'));
-                        return;
+                    .fail(function(data, textStatus, xhr) {
+                        if (data.status == 401) {
+                            window.location.href = "{% url 'bitbank:login' %}";
+                        }
+                        set_error_message($('#id_ajax_message'), xhr);
                     });
                 });
             }
         }
+        
+        function validate_contact_info() {
+            //validations....
+            var name = $('#id_contact_name');
+            var email = $('#id_contact_email');
+            var subject = $('#id_contact_subject');
+            var body = $('#id_contact_body');
+            
+            if (name.val() == '') {
+                set_error_message($('#id_ajax_message'), '名前を入力してください');
+                name.focus();
+                return false;
+            }
+            if (email.val() == '') {
+                set_error_message($('#id_ajax_message'), '通知用メールアドレスを入力してください');
+                email.focus();
+                return false;
+            }
+            if (subject.val() == '') {
+                set_error_message($('#id_ajax_message'), '件名を入力してください');
+                subject.focus();
+                return false;
+            }
+            if (body.val() == '') {
+                set_error_message($('#id_ajax_message'), '名前を入力してください');
+                body.focus();
+                return false;
+            }
+            return true;
+        }
+        function initialize_contact_tab(is_initial = false) {
+            call_get_user()
+            .done(function(res) {
+                if (res.error) {
+                    set_error_message($('#id_ajax_message'), res.error);
+                    return;
+                }
+                var user_json = $.parseJSON(res.user)[0];
+                $('#id_contact_date').val(return_formatted_datetime((new Date()).getTime(), false));
+                $('#id_contact_email').val(user_json.fields.email_for_notice);
+                $('#id_contact_name').val(user_json.fields.full_name);
+            })
+            .fail(function(data, textStatus, xhr) {
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message($('#id_ajax_message'), xhr);
+            });
+            // 初期ロード時のみ
+            if (is_initial) {
+      
+                $('#id_contact_send_inquiry_button')
+                .on('click', function() {
+                    if (validate_contact_info()) {
+                        call_post_inquiry_without_files($('#id_contact_subject').val(), $('#id_contact_body').val(), $('#id_contact_email').val())
+                        .done(function(res) {
+                            if (res.error) {
+                                set_error_message($('#id_ajax_message'), res.error);
+                                return;
+                            }
+                            set_success_message($('#id_ajax_message'), res.success);
+                            return;
+                        })
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message($('#id_ajax_message'), xhr);
+                        });
+                    }
+                });
+                $(".js-upload-file").click(function () {
+                    $("#fileupload").click();
+                });
+
+                $('#fileupload')
+                .on('fileuploadsubmit', function (e, data) {
+                    // The example input, doesn't have to be part of the upload form:
+                    if (validate_contact_info()) {
+                        data.formData = {subject: $('#id_contact_subject').val(), body: $('#id_contact_body').val(), email_for_reply: $('#id_contact_email').val()};
+                    } else {
+                        return false    ;
+                    }
+                })
+                .on('change', function() {
+                    
+                    for(let i = 0; i < this.files.length; i++) {
+                        var prev = document.createElement('img');
+                        $(prev).addClass('attachment_preview');
+                        readURL(this.files[i], prev);       
+                        $('#id_attachment_preview').append(prev);
+                    }
+                });
+
+                /* 2. INITIALIZE THE FILE UPLOAD COMPONENT */
+                $("#fileupload").fileupload({
+                    dataType: 'json',
+                    maxNumberOfFiles: 3,
+                    singleFileUploads: false,
+                    add: function (e, data) {
+                        $('#id_contact_send_inquiry_button')
+                        .on('click', function() {
+                            data.submit();
+                        });
+                    },
+                    change: function(e, data) {
+                        if(data.files.length>=4){
+                            alert("Max 5 files are allowed")
+                            return false;
+                        }
+                    },
+                    done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
+                       if (data.result.error) {
+                           set_error_message($('#id_ajax_message'), data.result.error);
+                           return;
+                       }
+                       set_success_message($('#id_ajax_message'), data.result.success);
+                       return;
+                    },
+                    fail: function (e, data) {
+                        set_error_message($('#id_ajax_message'), '失敗しました');
+                        return;
+                    }
+                });
+            }
+        }
+        function readURL(file, target_img) {
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $(target_img).attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
         function set_error_message(target, message="ログインし直してください") {
+
             $(target).addClass('alert-danger');
             $(target).removeClass('alert-success');
             $(target).html(message);
@@ -1768,6 +2102,9 @@
                 case 'user_info':
                     initialize_user_info_tab(false);
                     break;
+                case 'contact':
+                    initialize_contact_tab(false);
+                    break;
             }
 
             // Get all elements with class="tabcontent" and hide them
@@ -1785,38 +2122,21 @@
             $('#' + tab_id).show();
             evt.target.className += " active";
         }
-        function openChildTab(evt, tab_id) {
-            // Get all elements with class="tabcontent" and hide them
-            $('.tabcontent-child').each((i, tabcontent) => {
-                $(tabcontent).hide();
-            });
-            // Get all elements with class="tablinks" and remove the class "active"
-            $('.tablinks-child').each((i, tablink) => {
-                $(tablink).removeClass('active');
-            });
-
-            // Show the current tab, and add an "active" class to the button that opened the tab
-            $('#' + tab_id).show();
-            evt.target.className += " active";
-        }
+       
 
 
 
         $(function() {
+
             initialize_order_tab(true);
             initialize_active_orders_tab(true);
             initialize_order_history_tab(true);
             initialize_alerts_tab(true);
             initialize_asset_tab(true);
             initialize_user_info_tab(true);
+            initialize_contact_tab(true);
 
-            var ck_last_visited_tab = $.cookie(COOKIE_LAST_VISITED_TAB);
-            if (ck_last_visited_tab != undefined) {
-                // 最後に訪れたタブを表示
-                $('#' + ck_last_visited_tab + '_button').click();
-            } else {
-                $('#order_button').click();
-            }
+            $('#order_button').click();
             
         });
         

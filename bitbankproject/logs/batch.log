@@ -8204,3 +8204,88 @@
 [INFO]	asctime:2019-02-13 10:52:02,126	module:monitor_ticker	message:started
 [INFO]	asctime:2019-02-13 10:52:59,534	module:monitor_order_status	message:completed
 [INFO]	asctime:2019-02-13 10:53:01,377	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-17 09:53:58,807	module:monitor_order_status	message:started
+[ERROR]	asctime:2019-02-17 09:54:01,064	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:03,252	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:05,271	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:07,318	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:09,378	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:11,388	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:13,411	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:15,439	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:17,498	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:19,187	module:monitor_order_status	message:user:hoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:19,479	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:21,873	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:23,912	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:25,935	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:28,051	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:30,101	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:32,338	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:34,393	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:36,436	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:38,528	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:40,629	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:42,753	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:44,843	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:46,872	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:49,003	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:51,052	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:53,106	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[ERROR]	asctime:2019-02-17 09:54:55,149	module:monitor_order_status	message:user:hogehoge@gmail.com pair: btc_jpy order id: <QuerySet ['555528670', '556954576']> error: ('エラーコード: 20001 内容: API認証に失敗しました',)
+[INFO]	asctime:2019-02-17 09:54:56,175	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-17 09:55:16,179	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-17 09:56:13,577	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-17 10:05:40,124	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-17 10:05:42,026	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:43,731	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:45,620	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:47,328	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:49,035	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:50,785	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:52,526	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:54,243	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:56,073	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:57,777	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:05:59,521	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:06:41,376	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-17 10:06:43,198	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:06:44,966	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:06:46,762	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:06:48,487	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:06:50,232	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:06:51,974	module:monitor_order_status	message:<QuerySet ['556954576']>
+[INFO]	asctime:2019-02-17 10:07:19,986	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-17 10:07:22,553	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:24,251	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:26,024	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:27,779	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:29,525	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:31,207	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:32,904	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:34,617	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:36,398	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:38,131	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:39,867	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:41,775	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:43,465	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:45,238	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:47,032	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:48,808	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:50,553	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:52,288	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:54,007	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:55,891	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:57,644	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:07:59,366	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:01,130	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:02,912	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:04,596	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:06,435	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:08,160	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:10,009	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:11,719	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:13,426	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:15,118	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:16,855	module:monitor_order_status	message:{'orders': []}
+[INFO]	asctime:2019-02-17 10:08:17,876	module:monitor_order_status	message:completed

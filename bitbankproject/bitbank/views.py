@@ -26,10 +26,11 @@ from django.template.loader import get_template
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import generic
-
+from django.contrib.auth import authenticate
+from django.core.mail import send_mail, mail_admins
 from .forms import (LoginForm, MyPasswordChangeForm, MyPasswordResetForm,
                     MySetPasswordForm, UserCreateForm, UserUpdateForm)
-from .models import User, Alert, Order
+from .models import User, Alert, Order, Inquiry
 
 # User = get_user_model()
 
@@ -168,7 +169,11 @@ class MainPage(LoginRequiredMixin, generic.TemplateView):
         context['notify_if_filled'] = User.objects.filter(pk=self.request.user.pk).get().notify_if_filled
         return context
 
+
 def ajax_get_user(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     pk = request.user.pk
     user_qs = User.objects.filter(pk=pk)
     serialized_qs = serializers.serialize('json', user_qs)
@@ -178,6 +183,9 @@ def ajax_get_user(request):
     return JsonResponse(data)
 
 def ajax_update_user(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     pk = request.user.pk
     new_full_name = request.POST.get("full_name")
     new_api_key = request.POST.get("api_key")
@@ -201,6 +209,9 @@ def ajax_update_user(request):
 
 
 def ajax_create_order(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     logger = logging.getLogger('transaction_logger')
     logger.info('transaction start')
     user = request.user
@@ -264,6 +275,9 @@ def ajax_create_order(request):
         return JsonResponse({'error': '特殊注文は未対応です'})
 
 def ajax_create_alert(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     user = request.user
     pair = request.POST.get('pair')
     threshold = request.POST.get('threshold')
@@ -277,6 +291,9 @@ def ajax_create_alert(request):
         return JsonResponse({'error': e.args})
 
 def ajax_deactivate_alert(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     user = request.user
     pk = request.POST.get('pk')
     
@@ -288,7 +305,9 @@ def ajax_deactivate_alert(request):
         return JsonResponse({'error': e.args})
 
 def ajax_get_active_alerts(request):
-    
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     try:
         user = request.user
         offset = int(request.GET.get('offset'))
@@ -314,6 +333,9 @@ def ajax_get_active_alerts(request):
 
 
 def ajax_get_ticker(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     user = request.user
     pair = request.GET.get('pair')
     try:
@@ -329,6 +351,9 @@ def ajax_get_ticker(request):
     return JsonResponse(res_dict)
 
 def ajax_get_assets(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     user = request.user
 
     if user.api_key == "" or user.api_secret_key == "":
@@ -347,6 +372,9 @@ def ajax_get_assets(request):
     return JsonResponse(res_dict)
 
 def ajax_get_active_orders(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     user = request.user
     
     try:
@@ -369,6 +397,9 @@ def ajax_get_active_orders(request):
 
   
 def ajax_get_order_histroy(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     user = request.user
 
     try:
@@ -389,6 +420,9 @@ def ajax_get_order_histroy(request):
         return JsonResponse({'error': e.args})
 
 def ajax_cancel_order(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     user = request.user
     if user.api_key == "" or user.api_secret_key == "":
         res = {
@@ -420,6 +454,9 @@ def ajax_cancel_order(request):
         return JsonResponse({'error': 'SINGLE以外の注文は現在サポートしていません'})
 
 def ajax_get_notify_if_filled(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     user = request.user
     res = {
         'notify_if_filled': request.user.notify_if_filled
@@ -427,6 +464,9 @@ def ajax_get_notify_if_filled(request):
     return JsonResponse(res)
 
 def ajax_change_notify_if_filled(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     try:
         pk = request.user.pk
         new_val = request.POST.get('notify_if_filled')
@@ -441,3 +481,29 @@ def ajax_change_notify_if_filled(request):
             'error': e.args
         }
     return JsonResponse(res)
+
+def ajax_post_inquiry(request):
+    if request.user.is_anonymous:
+        return JsonResponse({'error': 'authentication failed'}, status=401)
+
+    if request.method == 'POST':
+        try:
+            new_inquiry = Inquiry()
+            attachments = request.FILES.getlist('attachments[]')
+            if (len(attachments) >= 1):
+                print('here')
+                new_inquiry.attachment_1 = attachments[0]
+            if (len(attachments) >= 2):
+                new_inquiry.attachment_2 = attachments[1]
+            if (len(attachments) >= 3):
+                new_inquiry.attachment_3 = attachments[2]
+            
+            new_inquiry.user = request.user
+            new_inquiry.subject = request.POST.get('subject')
+            new_inquiry.body = request.POST.get('body')
+            new_inquiry.email_for_reply = request.POST.get('email_for_reply')
+            new_inquiry.save()
+            return JsonResponse({'success': '問い合わせが完了しました'})
+        except Exception as e:
+            return JsonResponse({'error': e.args})
+    

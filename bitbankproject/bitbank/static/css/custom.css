@@ -178,8 +178,8 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 1.0em 0.5em;
-    transition: 0.3s;
+    padding: 0.5em 0.5em;
+    transition: 1.0s;
   }
   
   /* Change background color of buttons on hover */
@@ -196,7 +196,12 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
   }
   .tabcontent-child {
     display: none;
-    border-top: none;
+  }
+ 
+  img.attachment_preview {
+      height : 10em;
+      width: 10em;
+      padding: 0.5em 0.1em;
   }
  
   div > ul.pagination > li.page-item > a.page-link{
@@ -219,7 +224,7 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
 }
 
 /* The slider itself */
-.slider {
+input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
     height: 5px;
@@ -232,12 +237,12 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
 }
 
 /* Mouse-over effects */
-.slider:hover {
+input[type="range"]:hover {
   opacity: 1; /* Fully shown on mouse-over */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
-.slider::-webkit-slider-thumb {
+.slider_for_buy::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 20px;
@@ -247,11 +252,30 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
+.slider_for_buy::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    cursor: pointer;
     background: teal;
+}
+.slider_for_sell::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background: orangered;
     cursor: pointer;
 }
+
+.slider_for_sell::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: orangered;
+}
+
+
 
