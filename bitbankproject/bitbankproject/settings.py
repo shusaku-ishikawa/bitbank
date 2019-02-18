@@ -181,6 +181,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DEFAULT_FILE_STORAGE = 'bitbank.models.ASCIIFileSystemStorage'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

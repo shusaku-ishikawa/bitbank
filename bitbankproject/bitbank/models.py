@@ -7,7 +7,17 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from unixtimestampfield.fields import UnixTimeStampField
+from django.core.files.storage import FileSystemStorage
+import unicodedata
 
+
+class ASCIIFileSystemStorage(FileSystemStorage):
+    """
+    Convert unicode characters in name to ASCII characters.
+    """
+    def get_valid_name(self, name):
+        name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore')
+        return super(ASCIIFileSystemStorage, self).get_valid_name(name)
 
 class UserManager(BaseUserManager):
     """ユーザーマネージャー."""
