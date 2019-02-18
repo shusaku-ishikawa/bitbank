@@ -542,11 +542,11 @@
                         <td><textarea id="id_contact_body" class="form-control"></textarea></td>
                     </tr>
                     <tr>
-                        <th>添付ファイル</th>
+                        <th>添付ファイル(3つまで)</th>
                         <td>
                     
                         <button type="button" class="btn btn-primary js-upload-file">
-                            <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
+                            <span class="glyphicon glyphicon-cloud-upload"></span>ファイルを選択
                         </button>
                         
                          <!-- {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #} -->
@@ -1262,7 +1262,7 @@
                 }
 
                 button_order.on('click', function(e) {
-                    switch (special_order) {
+                    switch (input_special_order.val()) {
                         case 'SINGLE':
                             var pair = input_pair.val();
                             var special_order = input_special_order.val();
@@ -1311,6 +1311,7 @@
                                     }
                                 })
                                 .fail(function(data, textStatus, xhr) {
+                                    alert('errro');
                                     if (data.status == 401) {
                                         window.location.href = "{% url 'bitbank:login' %}";
                                     }
@@ -1318,7 +1319,7 @@
                                 });
                             } else if (order_type.match(/market/)) {
                                 // そのまま注文
-                                place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
+                                place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount, order_result_message_target);
                             }
                             break;
                         case 'IFD':

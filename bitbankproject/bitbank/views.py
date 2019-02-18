@@ -488,8 +488,8 @@ def ajax_post_inquiry(request):
         return JsonResponse({'error': 'authentication failed'}, status=401)
 
     if request.method == 'POST':
+        
         try:
-
             new_inquiry = Inquiry()
             new_inquiry.user = request.user
             new_inquiry.subject = request.POST.get('subject')
@@ -517,10 +517,10 @@ def ajax_post_inquiry(request):
             
             message_template = get_template('bitbank/mail_template/inquiry/message.txt')
             message = message_template.render(context)
-
+            
             kwargs = dict(
-                to = settings.ADMINS,
-                from_email = settings.ADMINS,
+                to = [settings.DEFAULT_FROM_EMAIL],
+                from_email = [settings.DEFAULT_FROM_EMAIL],
                 subject = subject,
                 body = message,
             )
