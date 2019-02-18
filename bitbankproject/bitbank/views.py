@@ -27,10 +27,11 @@ from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import generic
 from django.contrib.auth import authenticate
-from django.core.mail import send_mail, mail_admins
+from django.core.mail import send_mail, EmailMultiAlternatives
 from .forms import (LoginForm, MyPasswordChangeForm, MyPasswordResetForm,
                     MySetPasswordForm, UserCreateForm, UserUpdateForm)
 from .models import User, Alert, Order, Inquiry
+from django.conf import settings
 
 # User = get_user_model()
 
@@ -488,8 +489,15 @@ def ajax_post_inquiry(request):
 
     if request.method == 'POST':
         try:
+
             new_inquiry = Inquiry()
+            new_inquiry.user = request.user
+            new_inquiry.subject = request.POST.get('subject')
+            new_inquiry.body = request.POST.get('body')
+            new_inquiry.email_for_reply = request.POST.get('email_for_reply')
+            
             attachments = request.FILES.getlist('attachments[]')
+            
             if (len(attachments) >= 1):
                 print('here')
                 new_inquiry.attachment_1 = attachments[0]
@@ -497,27 +505,35 @@ def ajax_post_inquiry(request):
                 new_inquiry.attachment_2 = attachments[1]
             if (len(attachments) >= 3):
                 new_inquiry.attachment_3 = attachments[2]
-            
-            new_inquiry.user = request.user
-            new_inquiry.subject = request.POST.get('subject')
-            new_inquiry.body = request.POST.get('body')
-            new_inquiry.email_for_reply = request.POST.get('email_for_reply')
+        
             new_inquiry.save()
-
+        
             context = {
                 'new_inquiry': new_inquiry,
             }
 
             subject_template = get_template('bitbank/mail_template/inquiry/subject.txt')
             subject = subject_template.render(context)
-
+            
             message_template = get_template('bitbank/mail_template/inquiry/message.txt')
             message = message_template.render(context)
 
-            mail_admins(
-                subject,
-                message,
+            kwargs = dict(
+                to = settings.ADMINS,
+                from_email = settings.ADMINS,
+                subject = subject,
+                body = message,
             )
+            msg = EmailMultiAlternatives(**kwargs)
+            if (len(attachments) >= 1):
+                msg.attach_file(new_inquiry.attachment_1.path)
+            if (len(attachments) >= 2):
+                msg.attach_file(new_inquiry.attachment_2.path)
+            if (len(attachments) >= 3):
+                msg.attach_file(new_inquiry.attachment_3.path)
+
+            msg.send()
+            
             return JsonResponse({'success': '問い合わせが完了しました'})
         except Exception as e:
             return JsonResponse({'error': e.args})

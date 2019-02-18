@@ -2,7 +2,7 @@
 
 
 //////////
-名前: {{ new_inquiry.name }}
+名前: {{ new_inquiry.user.full_name }}
 通知用メールアドレス: {{ new_inquiry.email_for_reply }}
 件名: {{ new_inquiry.subject }}
 内容: {{ new_inquiry.body }}
