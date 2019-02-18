@@ -1,0 +1,11 @@
+下記問い合わせがありました。
+
+
+//////////
+名前: {{ new_inquiry.name }}
+通知用メールアドレス: {{ new_inquiry.email_for_reply }}
+件名: {{ new_inquiry.subject }}
+内容: {{ new_inquiry.body }}
+//////////
+
+このメールはシステムより自動送信されています

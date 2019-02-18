@@ -198,10 +198,14 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     display: none;
   }
  
-  img.attachment_preview {
+  div.attachment_preview {
       height : 10em;
-      width: 10em;
+      width: 8em;
       padding: 0.5em 0.1em;
+  }
+  div.attachment_preview > img {
+      width: 100%;
+      height: 80%;
   }
  
   div > ul.pagination > li.page-item > a.page-link{

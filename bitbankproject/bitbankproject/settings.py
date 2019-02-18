@@ -204,6 +204,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'bitbank/static'),
 ]
+MEDIA_ROOT = os.path.join(BASE_DIR,'uploaded_files')
+MEDIA_URL = '/attachments/'
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

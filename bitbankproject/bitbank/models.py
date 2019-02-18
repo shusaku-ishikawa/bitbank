@@ -315,16 +315,19 @@ class Inquiry(models.Model):
     )
     attachment_1 = models.FileField(
         '添付ファイル1',
+        upload_to = 'attachments',
         null = True,
         blank = True,
     )
     attachment_2 = models.FileField(
         '添付ファイル2',
+        upload_to = 'attachments',
         null = True,
         blank = True,
     )
     attachment_3 = models.FileField(
         '添付ファイル3',
+        upload_to = 'attachments',
         null = True,
         blank = True,
     )
@@ -338,11 +341,3 @@ class Inquiry(models.Model):
         auto_now_add = True,
 
     )
-# class Attachment(models.Model):
-#     class Meta:
-#         verbose_name = '添付ファイル'
-#         verbose_name_plural = '添付ファイル'
-
-#     file = models.FileField(
-#         upload_to = 'attachments/',
-#     )

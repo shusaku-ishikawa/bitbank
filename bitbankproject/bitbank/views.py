@@ -503,6 +503,21 @@ def ajax_post_inquiry(request):
             new_inquiry.body = request.POST.get('body')
             new_inquiry.email_for_reply = request.POST.get('email_for_reply')
             new_inquiry.save()
+
+            context = {
+                'new_inquiry': new_inquiry,
+            }
+
+            subject_template = get_template('bitbank/mail_template/inquiry/subject.txt')
+            subject = subject_template.render(context)
+
+            message_template = get_template('bitbank/mail_template/inquiry/message.txt')
+            message = message_template.render(context)
+
+            mail_admins(
+                subject,
+                message,
+            )
             return JsonResponse({'success': '問い合わせが完了しました'})
         except Exception as e:
             return JsonResponse({'error': e.args})
