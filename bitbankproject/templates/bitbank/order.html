@@ -521,15 +521,15 @@
             <table class="table table-dark">
                 <tbody>
                     <tr>
-                        <th>問い合わせ日</th>
-                        <td><input id="id_contact_date" type="text" class="form-control" value="2019/02/11"></td>
+                        <th>問い合わせ日時</th>
+                        <td><input id="id_contact_date" disabled type="text" class="form-control" value="2019/02/11"></td>
                     </tr>
                     <tr>
                         <th>名前</th>
                         <td><input id="id_contact_name" type="text" class="form-control"></td>
                     </tr>
                     <tr>
-                        <th>通知用メールアドレス</th>
+                        <th>メールアドレス</th>
                         <td><input id="id_contact_email" type="text" class="form-control"></td>
                     </tr>
 
@@ -542,7 +542,7 @@
                         <td><textarea id="id_contact_body" class="form-control"></textarea></td>
                     </tr>
                     <tr>
-                        <th>添付ファイル(3つまで)</th>
+                        <th>添付ファイル<br>(3つまで)</th>
                         <td>
                     
                         <button type="button" class="btn btn-primary js-upload-file">
@@ -1083,6 +1083,7 @@
 
                 input_number
                 .on('keydown', function(e) {
+                
                     if(!((e.keyCode > 95 && e.keyCode < 106)
                     || (e.keyCode > 47 && e.keyCode < 58) 
                     || e.keyCode == 8 || e.keyCode == 190)) {
@@ -1125,14 +1126,25 @@
   
                     
                 for (let i = 1; i < 4; i++) {
-                    var tar = $('#myRange_' + i);
-                    tar.on("input", function () {
+                    var range_i = $('#myRange_' + i);
+                    var start_amount_i = $('#id_start_amount_' + i);
+                    var price_i = $('#id_price_' + i);
+                    var stop_price_i = $('#id_price_for_stop_' + i);
+                    var order_type_i = $('#id_order_type_' + i);
+                    var side_i = $('#id_side_' + i);
+                    var sell_button_i = $('#sell_button_' + i);
+                    var buy_button_i = $('#buy_button_' + i);
+                    var expect_price_i = $('#expect_price_' + i);
+                    var price_placeholder_i = $('#id_price_placeholder_' + i);
+                    var stop_price_placeholder_i = $('#id_stop_price_placeholder_' + i);
+
+                    $('#myRange_' + i).on("input", function () {
                         update_amount_by_slider(i);
                         var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
                         //alert($('#id_side_' + i).val() == 'buy' ? 'teal' : 'orangered');
                         $(this).css('background-image',
                             '-webkit-gradient(linear, left top, right top, '
-                            + 'color-stop(' + val + ', ' + ($('#id_side_' + i).val() == 'buy' ? 'teal' : 'orangered') + '),'
+                            + 'color-stop(' + val + ', ' + (side_i.val() == 'buy' ? 'teal' : 'orangered') + '),'
                             + 'color-stop(' + val + ', #333333)'
                             + ')'
                         );
@@ -1147,7 +1159,8 @@
                     });
 
                     $('#id_price_' + i)
-                    .on('change', function() { 
+                    .on('change', function() {
+                 
                         update_slider_by_amount(i);
                     });
  
@@ -1156,7 +1169,7 @@
                         $('#id_price_for_stop_' + i).val(0);
                         set_slidevalue(i, 0);
                         var new_order_type = $(this).val();
-                        $.cookie(COOKIE_ORDER_TYPE, new_order_type, { expires: 7 });
+                        $.cookie(COOKIE_ORDER_TYPE + '_' + i, new_order_type, { expires: 7 });
                         if (new_order_type == 'limit') {
                             $('#id_price_placeholder_' + i).html('指値価格');
                         } else if (new_order_type == 'stop_market') {
@@ -1167,12 +1180,15 @@
                         }
 
                         if (new_order_type.match(/limit/)) {
+                        
                             call_get_ticker_api(input_pair.val())
                             .done(function(res) {
                                 if (res.error) {
                                     set_error_message(ajax_message_target, res.error);
+                                    return;
                                 }
-                                $('#id_price').val(res.last);
+                                $('#id_price_' + i).val(res.last);
+                                $('#id_price_for_stop_' + i).val(res.last);
                             })
                             .fail(function(data, textStatus, xhr) {
                                 if (data.status == 401) {
@@ -1184,59 +1200,66 @@
                         
                         display_price_div(i, new_order_type);
                     });
-                    
-
                     $('#id_side_' + i).on('value_change', function() {
+                        
                         set_slidevalue(i, 0);
                         if ($(this).val() == 'buy') {
+                            
+                            $('#sell_button_' + i).removeClass('sell').addClass('btn-base');
+                            $('#buy_button_' + i).addClass('buy').removeClass('btn-base');
                             $('#myRange_' + i).addClass('slider_for_buy').removeClass('slider_for_sell');
+                            button_order.addClass('green_button').removeClass('red_button');
                         } else {
+                           
+                            $('#sell_button_' + i).addClass('sell').removeClass('btn-base');
+                            $('#buy_button_' + i).removeClass('buy').addClass('btn-base');
                             $('#myRange_' + i).addClass('slider_for_sell').removeClass('slider_for_buy');
+                            button_order.removeClass('green_button').addClass('red_button');
                         }
                     });
-
                     $('#sell_button_' + i).on('click', function() {
                         // 変更があった場合のみ処理
                         if ($('#id_side_' + i).val() == 'buy') {
-                            $.cookie(COOKIE_ORDER_SIDE, 'sell', {expire: 7});
+                            $.cookie(COOKIE_ORDER_SIDE + '_' + i, 'sell', {expire: 7});
                             $(this).addClass('sell').removeClass('btn-base');
                             $('#buy_button_' + i).removeClass('buy').addClass('btn-base');
                             $('#id_side_' + i).val('sell').trigger('value_change');
                             button_order.removeClass('green_button').addClass('red_button'); 
                         } else {
                             // do nothing
+                           
                         }
                         
                     });
-                    
                     $('#buy_button_' + i).on('click', function() {
                         // 変更があった場合のみ処理
                         if ($('#id_side_' + i).val() == 'sell') {
-                            $.cookie(COOKIE_ORDER_SIDE, 'buy', {expire: 7});
+                            $.cookie(COOKIE_ORDER_SIDE + '_' + i, 'buy', {expire: 7});
                             $(this).addClass('buy').removeClass('btn-base');
                             $('#sell_button_' + i).removeClass('sell').addClass('btn-base');
+                           
+
                             $('#id_side_' + i).val('buy').trigger('value_change');
                             button_order.removeClass('red_button').addClass('green_button');
+                        } else {
+                           
                         }
                     });
                     
+
+
+  
                     $('#id_side_' + i).html(side_option_html);
-                    var ck_order_side = $.cookie(COOKIE_ORDER_SIDE);
+                    var ck_order_side = $.cookie(COOKIE_ORDER_SIDE + '_' + i);
                     if (ck_order_side != undefined && Object.keys(SELL_BUY).indexOf(ck_order_side) >= 0) {
                         $('#id_side_' + i).val(ck_order_side).trigger('value_change');
+                    
                     } else {
                         $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
                     }
 
-                    if ($('#id_side_' + i).val() == 'sell') {
-                        button_order.removeClass('green_button').addClass('red_button');
-                    } else {
-                        button_order.addClass('green_button').removeClass('red_button');
-                    }
-                    
-
                     $('#id_order_type_' + i).html(order_type_option_html);
-                    var ck_order_type = $.cookie(COOKIE_ORDER_TYPE);
+                    var ck_order_type = $.cookie(COOKIE_ORDER_TYPE + '_' + i);
                     if (ck_order_type != undefined && Object.keys(ORDER_TYPES).indexOf(ck_order_type) >= 0) {
                         $('#id_order_type_' + i).val(ck_order_type);
                         if (ck_order_type == 'limit') {
@@ -1311,7 +1334,7 @@
                                     }
                                 })
                                 .fail(function(data, textStatus, xhr) {
-                                    alert('errro');
+                             
                                     if (data.status == 401) {
                                         window.location.href = "{% url 'bitbank:login' %}";
                                     }
@@ -1478,7 +1501,7 @@
         function initialize_order_history_content(message_target) {
             var page_selection = $('#page_selection_order_history');
             var search_pair = $('#id_order_history_search_pair').val();
-            //alert(search_pair);
+
             call_get_order_history(0, 1, search_pair)
             .done(function(res_1) {
                 if (res_1.error) {
