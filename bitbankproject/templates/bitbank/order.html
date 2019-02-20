@@ -521,8 +521,8 @@
             <table class="table table-dark">
                 <tbody>
                     <tr>
-                        <th>問い合わせ日時</th>
-                        <td><input id="id_contact_date" disabled type="text" class="form-control" value="2019/02/11"></td>
+                        <th>問い合せ日時</th>
+                        <td id="id_contact_date"></td>
                     </tr>
                     <tr>
                         <th>名前</th>
@@ -548,7 +548,9 @@
                         <button type="button" class="btn btn-primary js-upload-file">
                             <span class="glyphicon glyphicon-cloud-upload"></span>ファイルを選択
                         </button>
-                        
+                        <button id="id_detach_file" style="display: none" type="button" class="btn btn-danger">
+                            添付を解除
+                        </button>
                          <!-- {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #} -->
                         <input id="fileupload" type="file" name="attachments[]" multiple style="display: none"
                                 data-url="{% url 'bitbank:ajax_post_inquiry' %}"
@@ -879,9 +881,7 @@
         }
         function update_amount_by_slider(tab_num) {
             var newVal = $('#myRange_' + tab_num).val();
-            
             $('#amount_percentage_' + tab_num).html(newVal + '%');
-            
             if($('#id_pair').val() == '') {
                 return;
             }
@@ -892,7 +892,7 @@
             var currency = (side == 'sell') ? pair.split('_')[0] : pair.split('_')[1];
             if (parseInt(newVal) != 0) {
                 var free_amount = free_amount_json[currency];
-                var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price').val() != '') ? parseFloat($('#id_price').val()) : 0;
+                var price = (order_type.match(/market/)) ? parseFloat(market_price_json[pair][side]) : ($('#id_price_' + tab_num).val() != '') ? parseFloat($('#id_price_' + tab_num).val()) : 0;
                 var floored = (side == 'sell') ? Math.floor((free_amount * newVal / 100) * 10000) / 10000 : (price != 0) ? Math.floor((free_amount * newVal / (price * 100)) * 10000) / 10000 : 0;
                 $('#id_start_amount_' + tab_num).val(floored).trigger('calculate');
             } else {
@@ -1149,7 +1149,6 @@
 
                     $('#id_price_' + i)
                     .on('change', function() {
-                 
                         update_slider_by_amount(i);
                     });
  
@@ -1168,8 +1167,7 @@
                             $('#id_price_placeholder_' + i).html('指値(約定希望価格)');
                         }
 
-                        if (new_order_type.match(/limit/)) {
-                        
+                        if (new_order_type != 'market') {
                             call_get_ticker_api(input_pair.val())
                             .done(function(res) {
                                 if (res.error) {
@@ -1250,7 +1248,7 @@
                     $('#id_order_type_' + i).html(order_type_option_html);
                     var ck_order_type = $.cookie(COOKIE_ORDER_TYPE + '_' + i);
                     if (ck_order_type != undefined && Object.keys(ORDER_TYPES).indexOf(ck_order_type) >= 0) {
-                        $('#id_order_type_' + i).val(ck_order_type);
+                        $('#id_order_type_' + i).val(ck_order_type).trigger('change');
                         if (ck_order_type == 'limit') {
                             $('#id_price_placeholder_' + i).html('指値価格');
                         } else if (ck_order_type == 'stop_market') {
@@ -1260,7 +1258,7 @@
                             $('#id_price_placeholder_' + i).html('指値(約定希望価格)');
                         }
                     } else {
-                        $('#id_order_type_' + i).val(Object.keys(ORDER_TYPES)[0]);
+                        $('#id_order_type_' + i).val(Object.keys(ORDER_TYPES)[0]).trigger('change');
                     }
                     set_slidevalue(i, 0);
                     display_price_div(i, $('#id_order_type_' + i).val());
@@ -1986,7 +1984,7 @@
                     return;
                 }
                 var user_json = $.parseJSON(res.user)[0];
-                $('#id_contact_date').val(return_formatted_datetime((new Date()).getTime(), false));
+                $('#id_contact_date').html(return_formatted_datetime((new Date()).getTime(), false));
                 $('#id_contact_email').val(user_json.fields.email_for_notice);
                 $('#id_contact_name').val(user_json.fields.full_name);
             })
@@ -1998,10 +1996,19 @@
             });
             // 初期ロード時のみ
             if (is_initial) {
-                $('#id_contact_send_inquiry_button')
+                var detach_button = $('#id_detach_file');
+                var file_uploader = $('#fileupload');
+                var attach_button = $('.js-upload-file');
+                var inquiry_button = $('#id_contact_send_inquiry_button');
+                var input_subject = $('#id_contact_subject');
+                var input_body = $('#id_contact_body');
+                var input_email = $('#id_contact_email');
+                var preview_zone = $('#id_attachment_preview');
+
+                inquiry_button
                 .on('click', function() {
                     if (validate_contact_info(message_target)) {
-                        call_post_inquiry_without_files($('#id_contact_subject').val(), $('#id_contact_body').val(), $('#id_contact_email').val())
+                        call_post_inquiry_without_files(input_subject.val(), input_body.val(), input_email.val())
                         .done(function(res) {
                             if (res.error) {
                                 set_error_message(message_target, res.error);
@@ -2018,21 +2025,28 @@
                         });
                     }
                 });
-                $(".js-upload-file").click(function () {
-                    $("#fileupload").click();
+                attach_button.click(function () {
+                    
+                    file_uploader.click();
                 });
-
+                
+                detach_button
+                .on('click', () => {
+                    alert('d');
+                    file_uploader.find('ul').remove();
+                    console.log($(this));
+                });
                 /* 2. INITIALIZE THE FILE UPLOAD COMPONENT */
-                $("#fileupload").fileupload({
+                file_uploader.fileupload({
                     dataType: 'json',
                     // limitMultiFileUploads: 3,
                     singleFileUploads: false,
-                    add: function (e, data) { 
-                        $('#id_contact_send_inquiry_button')
+                    add: function (e, data) {
+                        inquiry_button
                         .unbind('click')
                         .on('click', function() {
                             if (validate_contact_info(message_target)) {
-                                data.formData = {subject: $('#id_contact_subject').val(), body: $('#id_contact_body').val(), email_for_reply: $('#id_contact_email').val()};
+                                data.formData = {subject: input_subject.val(), body: input_body.val(), email_for_reply: input_email.val()};
                                 data.submit();
                             } else {
                                 return false;
@@ -2043,8 +2057,11 @@
                             set_error_message(message_target, "添付ファイルは3つまでです");
                             return false;
                         }
-                        var target = $('#id_attachment_preview');
-                        target.html('');
+                        if (data.files.length > 0) {
+                            detach_button.show();
+                        }
+
+                        preview_zone.html('');
                         for(let i = 0; i < data.files.length; i++) {
                             var prev_wrapper = document.createElement('div');
                             var prev = document.createElement('img');
@@ -2056,7 +2073,7 @@
                             readURL(data.files[i], prev);
                             prev_wrapper.append(prev);
                             prev_wrapper.append(prev_caption);
-                            target.append(prev_wrapper);
+                            preview_zone.append(prev_wrapper);
                         }
 
                     },
