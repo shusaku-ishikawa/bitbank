@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                
+                <!-- <br class="show_if_stop_order_1"> -->
                 <hr class="show_if_stop_order_1">
                 <div class="row show_if_stop_order_1">
                     <div class="col-md-6 offset-md-1 col-12">
@@ -84,13 +84,14 @@
                             <div class="input-group-prepend">
                                 <div id="id_stop_price_placeholder_1" class="input-group-text placeholder">逆指値価格</div>
                             </div>
-                            <input id="id_price_for_stop_1" type="number" class="form-control">              
+                            <input id="id_price_for_stop_1" type="number" class="form-control" min="0" step="1">              
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder pair">JPY</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- <br class="show_if_limit_order_1"> -->
                 <hr class="show_if_limit_order_1">
                 <div class="row show_if_limit_order_1">
                     <div class="col-md-6 offset-md-1 col-12">
@@ -98,14 +99,13 @@
                             <div class="input-group-prepend">
                                 <div id="id_price_placeholder_1" class="input-group-text placeholder">指値価格</div>
                             </div>
-                            <input id="id_price_1" type="number" class="form-control">
+                            <input id="id_price_1" type="number" class="form-control" min="0" step="1">
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder pair">JPY</div>
                             </div>     
                         </div>
                     </div>
                 </div>
-            
                 <hr>            
                 <div class="row">
                     <div class="col-md-6 offset-md-1 col-12">
@@ -113,7 +113,7 @@
                             <div class="input-group-prepend">
                                     <div class="input-group-text placeholder">数量</div>
                             </div>
-                            <input id="id_start_amount_1" type="number" class="form-control" min="0"">  
+                            <input id="id_start_amount_1" type="number" class="form-control" min="0" min="0" step="0.0001">  
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder unit">BTC</div>
                             </div>
@@ -124,11 +124,11 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-6 offset-md-1 col-12">
-                        <input type="range" min="0" max="100" value="0" class=" " id="myRange_1">
+                        <input type="range" min="0" max="100" value="0" class="" id="myRange_1">
                         <div><span style="float:right;" id="amount_percentage_1">0%</span></div>
                     </div>
                 </div>
-                <hr>
+                <br>
                 <div class="row">
                     <div class="col-md-6 offset-md-1 col-12">
                         <div class="input-group">
@@ -181,7 +181,7 @@
                             <div class="input-group-prepend">
                                 <div id="id_stop_price_placeholder_2" class="input-group-text placeholder">逆指値価格</div>
                             </div>
-                            <input id="id_price_for_stop_2" type="number" class="form-control">              
+                            <input id="id_price_for_stop_2" type="number" class="form-control" min="0" step="1">              
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder pair">JPY</div>
                             </div> 
@@ -195,7 +195,7 @@
                             <div class="input-group-prepend">
                                 <div id="id_price_placeholder_2" class="input-group-text placeholder">指値価格</div>
                             </div>
-                            <input id="id_price_2" type="number" class="form-control">
+                            <input id="id_price_2" type="number" class="form-control" min="0" step="1">
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder pair">JPY</div>
                             </div>
@@ -211,7 +211,7 @@
                             <div class="input-group-prepend">
                                     <div class="input-group-text placeholder">数量</div>
                             </div>
-                            <input id="id_start_amount_2" type="number" class="form-control" min="0"">  
+                            <input id="id_start_amount_2" type="number" class="form-control" min="0" step="0.0001">  
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder unit">BTC</div>
                             </div>
@@ -222,7 +222,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-6 offset-md-1 col-12">
-                        <input type="range" min="0" max="100" value="0" class=" " id="myRange_2">
+                        <input type="range" min="0" max="100" value="0" class="" id="myRange_2">
                         <div><span style="float:right;" id="amount_percentage_2">0%</span></div>
                     </div>
                 </div>
@@ -233,7 +233,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text placeholder">予想</div>
                             </div>
-                            <input type="number" id="expect_price_2" class="form-control">
+                            <input type="number" id="expect_price_2" class="form-control" min="0" step="0.0001">
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder pair">JPY</div>
                             </div>
@@ -279,7 +279,7 @@
                             <div class="input-group-prepend">
                                 <div id="id_stop_price_placeholder_3" class="input-group-text placeholder">逆指値価格</div>
                             </div>
-                            <input id="id_price_for_stop_3" type="number" class="form-control">              
+                            <input id="id_price_for_stop_3" type="number" class="form-control" min="0" step="1">              
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder pair">JPY</div>
                             </div>
@@ -293,7 +293,7 @@
                             <div class="input-group-prepend">
                                 <div id="id_price_placeholder_3" class="input-group-text placeholder">指値価格</div>
                             </div>
-                            <input id="id_price_3" type="number" class="form-control">
+                            <input id="id_price_3" type="number" class="form-control" min="0" step="1">
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder pair">JPY</div>
                             </div>    
@@ -308,7 +308,7 @@
                             <div class="input-group-prepend">
                                     <div class="input-group-text placeholder">数量</div>
                             </div>
-                            <input id="id_start_amount_3" type="number" class="form-control" min="0"">  
+                            <input id="id_start_amount_3" type="number" class="form-control" min="0" step="0.0001">  
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder unit">BTC</div>
                             </div>
@@ -319,7 +319,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-6 offset-md-1 col-12">
-                        <input type="range" min="0" max="100" value="0" class=" " id="myRange_3">
+                        <input type="range" min="0" max="100" value="0" class="" id="myRange_3">
                         <div><span style="float:right;" id="amount_percentage_3">0%</span></div>
                     </div>
                 </div>
@@ -330,7 +330,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text placeholder">予想</div>
                             </div>
-                            <input type="number" id="expect_price_3" class="form-control">
+                            <input type="number" id="expect_price_3" class="form-control" min="0" step="0.0001">
                             <div class="input-group-append">
                                 <div class="input-group-text placeholder pair">JPY</div>
                             </div>
@@ -1126,17 +1126,6 @@
   
                     
                 for (let i = 1; i < 4; i++) {
-                    var range_i = $('#myRange_' + i);
-                    var start_amount_i = $('#id_start_amount_' + i);
-                    var price_i = $('#id_price_' + i);
-                    var stop_price_i = $('#id_price_for_stop_' + i);
-                    var order_type_i = $('#id_order_type_' + i);
-                    var side_i = $('#id_side_' + i);
-                    var sell_button_i = $('#sell_button_' + i);
-                    var buy_button_i = $('#buy_button_' + i);
-                    var expect_price_i = $('#expect_price_' + i);
-                    var price_placeholder_i = $('#id_price_placeholder_' + i);
-                    var stop_price_placeholder_i = $('#id_stop_price_placeholder_' + i);
 
                     $('#myRange_' + i).on("input", function () {
                         update_amount_by_slider(i);
@@ -1144,7 +1133,7 @@
                         //alert($('#id_side_' + i).val() == 'buy' ? 'teal' : 'orangered');
                         $(this).css('background-image',
                             '-webkit-gradient(linear, left top, right top, '
-                            + 'color-stop(' + val + ', ' + (side_i.val() == 'buy' ? 'teal' : 'orangered') + '),'
+                            + 'color-stop(' + val + ', ' + ($('#id_side_' + i).val() == 'buy' ? 'teal' : 'orangered') + '),'
                             + 'color-stop(' + val + ', #333333)'
                             + ')'
                         );

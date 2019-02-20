@@ -158,6 +158,9 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     /* font-size: 2vmin; */
 }
 
+hr {
+    background: transparent;
+}
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -191,6 +194,7 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
   }
   .tabcontent-child {
     display: none;
+    border-top: none;
   }
  
   div.attachment_preview {
@@ -233,6 +237,7 @@ input[type="range"] {
     opacity: 0.7;
     -webkit-transition: .8s;
     transition: opacity .8s;
+    border: none;
 }
 
 /* Mouse-over effects */
