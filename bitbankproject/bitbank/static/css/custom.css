@@ -36,7 +36,7 @@ body {
     display: inline;
 }
 input[type="text"][disabled]{
-    background:#333333;
+    background:#333333 !important;
     cursor:not-allowed; /* 禁止カーソル */
 }
 

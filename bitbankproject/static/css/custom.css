@@ -35,6 +35,10 @@ body {
     border-radius : 0;
     display: inline;
 }
+input[type="text"][disabled]{
+    background:#333333 !important;
+    cursor:not-allowed; /* 禁止カーソル */
+}
 
 div.input-group-prepend, div.input-group-append {
     color: white;
@@ -154,6 +158,9 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     /* font-size: 2vmin; */
 }
 
+hr {
+    background: transparent;
+}
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -168,20 +175,11 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 2em 0.5em;
+    padding: 1.5em 0.2em;
     transition: 0.3s;
+
   }
-  .tab button.tablinks-child {
-    background-color: inherit;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 0.5em 0.5em;
-    transition: 1.0s;
-  }
-  
+
   /* Change background color of buttons on hover */
   .tab button:hover {
     background-color: #333333;
@@ -196,6 +194,7 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
   }
   .tabcontent-child {
     display: none;
+    border-top: none;
   }
  
   div.attachment_preview {
@@ -238,6 +237,7 @@ input[type="range"] {
     opacity: 0.7;
     -webkit-transition: .8s;
     transition: opacity .8s;
+    border: none;
 }
 
 /* Mouse-over effects */
@@ -280,6 +280,4 @@ input[type="range"]:hover {
     cursor: pointer;
     background: orangered;
 }
-
-
 
