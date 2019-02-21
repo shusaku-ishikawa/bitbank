@@ -546,16 +546,17 @@
                         <th>添付ファイル<br>(3つまで)</th>
                         <td>
                             <form name="file_upload">
-                                <button type="button" class="btn btn-primary js-upload-file">
-                                    <span class="glyphicon glyphicon-cloud-upload"></span>ファイルを選択
-                                </button>
-                                <button id="id_detach_file" type="button" class="btn btn-danger">
+                                <label for="fileupload">
+                                    <span class="btn btn-primary">ファイルを選択</span>
+                                    <input id="fileupload" type="file" name="attachments[]" multiple style="display: none"
+                                            data-url="{% url 'bitbank:ajax_post_inquiry' %}"
+                                            data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+                                </label>
+                                <button id="id_detach_file" style="display: none" type="button" class="btn btn-danger">
                                     添付を解除
                                 </button>
                                 <!-- {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #} -->
-                                <input id="fileupload" type="file" name="attachments[]" multiple style="display: none"
-                                        data-url="{% url 'bitbank:ajax_post_inquiry' %}"
-                                        data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+                                
                                 <div id="id_attachment_preview"></div>
                             </form>    
                         </td>
@@ -1990,61 +1991,7 @@
                 }
             });
         }
-        function initialize_file_upload(uploader, input_subject, input_body, input_email, inquiry_button, message_target, preview_zone, detach_button) {
-            uploader.fileupload({
-                dataType: 'json',
-                // limitMultiFileUploads: 3,
-                singleFileUploads: false,
-                add: function (e, data) {
-                    inquiry_button
-                    .unbind('click')
-                    .on('click', function() {
-                        if (validate_contact_info(message_target)) {
-                            data.formData = {subject: input_subject.val(), body: input_body.val(), email_for_reply: input_email.val()};
-                            data.submit();
-                        } else {
-                            return false;
-                        }
-                    });
-                    if(data.files.length >= 4){
-                        $(data).val('');
-                        set_error_message(message_target, "添付ファイルは3つまでです");
-                        return false;
-                    }
-                    if (data.files.length > 0) {
-                        detach_button.show();
-                    }
 
-                    preview_zone.html('');
-                    for(let i = 0; i < data.files.length; i++) {
-                        var prev_wrapper = document.createElement('div');
-                        var prev = document.createElement('img');
-                        var prev_caption = document.createElement('label');
-                        $(prev_wrapper).addClass('attachment_preview');
-                        $(prev).attr('id', 'file_' + i);
-                        $(prev_caption).attr('for', 'file_' + i);
-                        $(prev_caption).html(data.files[i].name);
-                        readURL(data.files[i], prev);
-                        prev_wrapper.append(prev);
-                        prev_wrapper.append(prev_caption);
-                        preview_zone.append(prev_wrapper);
-                    }
-
-                },
-                done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
-                    if (data.result.error) {
-                        set_error_message(message_target, data.result.error);
-                        return;
-                    }
-                    set_success_message(message_target, data.result.success);
-                    return;
-                },
-                fail: function (e, data) {
-                    set_error_message(message_target, '失敗しました');
-                    return;
-                }
-            });
-        }
    
         function initialize_contact_tab(is_initial = false) {
             var message_target = $('#id_contact_message');
@@ -2098,14 +2045,12 @@
                         });
                     }
                 });
-                attach_button.click(function () {
-                    
-                    file_uploader.click();
-                });
+
                 
                 detach_button
                 .on('click', () => {
                     preview_zone.html('');
+                    detach_button.hide();
                     inquiry_button
                     .unbind('click')
                     .on('click', function() {
@@ -2139,7 +2084,62 @@
                     // console.log($('#fileupload'));
                 });
                 /* 2. INITIALIZE THE FILE UPLOAD COMPONENT */
-                initialize_file_upload(file_uploader, input_subject, input_body, input_email, inquiry_button, message_target, preview_zone, detach_button);
+                file_uploader.fileupload({
+                    dataType: 'json',
+                    // limitMultiFileUploads: 3,
+                    singleFileUploads: false,
+                    autoUpload: false,
+                    add: function (e, data) {
+                        inquiry_button
+                        .unbind('click')
+                        .on('click', function() {
+                            if (validate_contact_info(message_target)) {
+                                data.formData = {subject: input_subject.val(), body: input_body.val(), email_for_reply: input_email.val()};
+                                data.submit();
+                            } else {
+                                return false;
+                            }
+                        });
+                        if(data.files.length >= 4){
+                            $(data).val('');
+                            set_error_message(message_target, "添付ファイルは3つまでです");
+                            return false;
+                        }
+                        if (data.files.length > 0) {
+                            detach_button.show();
+                        }
+                        
+                        detach_button.show();
+
+                        preview_zone.html('');
+                        for(let i = 0; i < data.files.length; i++) {
+                            var prev_wrapper = document.createElement('div');
+                            var prev = document.createElement('img');
+                            var prev_caption = document.createElement('label');
+                            $(prev_wrapper).addClass('attachment_preview');
+                            $(prev).attr('id', 'file_' + i);
+                            $(prev_caption).attr('for', 'file_' + i);
+                            $(prev_caption).html(data.files[i].name);
+                            readURL(data.files[i], prev);
+                            prev_wrapper.append(prev);
+                            prev_wrapper.append(prev_caption);
+                            preview_zone.append(prev_wrapper);
+                        }
+
+                    },
+                    done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
+                        if (data.result.error) {
+                            set_error_message(message_target, data.result.error);
+                            return;
+                        }
+                        set_success_message(message_target, data.result.success);
+                        return;
+                    },
+                    fail: function (e, data) {
+                        set_error_message(message_target, '失敗しました');
+                        return;
+                    }
+                });
             }
         }
         function readURL(file, target_img) {

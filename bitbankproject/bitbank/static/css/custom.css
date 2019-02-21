@@ -281,3 +281,4 @@ input[type="range"]:hover {
     background: orangered;
 }
 
+@media screen { #fileupload { display: none; } }
