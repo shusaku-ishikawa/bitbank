@@ -208,7 +208,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR,'uploaded_files')
 MEDIA_URL = '/attachments/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # DEFAULT_FROM_EMAIL = 'ishikawasyuusaku@gmail.com'
 # DEFAULT_CHARSET = 'utf-8'
@@ -218,13 +218,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST_PASSWORD = '332191-Aa2'
 # EMAIL_USE_TLS = True
 
-# DEFAULT_FROM_EMAIL = 'kenkenpar55@kenkenpar.com'
-# DEFAULT_CHARSET = 'utf-8'
-# EMAIL_HOST = 'smtp.muumuu-mail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'kenkenpar55@kenkenpar.com'
-# EMAIL_HOST_PASSWORD = '1q1q1q1q'
-# EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'kenkenpar55@kenkenpar.com'
+DEFAULT_CHARSET = 'utf-8'
+EMAIL_HOST = 'smtp.muumuu-mail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kenkenpar55@kenkenpar.com'
+EMAIL_HOST_PASSWORD = '1q1q1q1q'
+EMAIL_USE_TLS = False
 
 # JOBs
 CRONJOBS = [
