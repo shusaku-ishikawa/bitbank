@@ -1,6 +1,7 @@
 {% extends "bitbank/base.html" %}
 {% block content %}
 {% csrf_token %}
+
 <div class="row">
     <div class="col-md-7 offset-md-1 col-12">
         <div class="tab btn-group">
@@ -548,10 +549,11 @@
                             <form name="file_upload">
                                 <label for="fileupload">
                                     <span class="btn btn-primary">ファイルを選択</span>
-                                    <input id="fileupload" type="file" name="attachments[]" multiple style="display: none"
-                                            data-url="{% url 'bitbank:ajax_post_inquiry' %}"
-                                            data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+                                    
                                 </label>
+                                <input id="fileupload" type="file" name="attachment" multiple style="display:none;"
+                                            data-url="{% url 'bitbank:ajax_attachment' %}"
+                                            data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
                                 <button id="id_detach_file" style="display: none" type="button" class="btn btn-danger">
                                     添付を解除
                                 </button>
@@ -659,48 +661,35 @@
         }
         
         
-        function call_get_assets_api(is_async = true) {
+        function call_assets(method, is_async = true) {
             return $.ajax({
-                'url': '{% url "bitbank:ajax_get_assets" %}',
-                'type': 'GET',
-                'dataType': 'json',
-                'async': is_async
+                url: '{% url "bitbank:ajax_assets" %}',
+                type: (method == 'GET') ? 'GET':'POST',
+                dataType: 'json',
+                method: method,
+                async: is_async
             });
         }
-        function call_get_ticker_api(pair, is_async = true) {
+        function call_ticker(method, pair, is_async = true) {
             return $.ajax({
-                'url': '{% url "bitbank:ajax_get_ticker" %}',
-                'type': 'GET',
-                'dataType': 'json',
-                'async': is_async,
-                'data': {
+                url: '{% url "bitbank:ajax_ticker" %}',
+                type: (method == 'GET') ? 'GET':'POST',
+                dataType: 'json',
+                method: method,
+                async: is_async,
+                data: {
                     'pair': pair
                 },
             });
         }
-        function call_cancel_order(pk) {
+
+        function call_user(method, full_name, api_key, api_secret_key, email_for_notice) {
             return $.ajax({
-                'url': '{% url "bitbank:ajax_cancel_order" %}',
-                'type': 'POST',
-                'dataType': 'json',
-                'data': {
-                    pk: pk
-                }
-            });
-        }
-        function call_get_user() {
-            return $.ajax({
-                'url': '{% url "bitbank:ajax_get_user" %}',
-                'type': 'GET',
-                'dataType': 'json'
-            });
-        }
-        function call_update_user(full_name, api_key, api_secret_key, email_for_notice) {
-            return $.ajax({
-                'url': '{% url "bitbank:ajax_update_user" %}',
-                'type': 'POST',
-                'dataType': 'json',
-                'data': {
+                url: '{% url "bitbank:ajax_user" %}',
+                type: (method == 'GET') ? 'GET':'POST' ,
+                method: method,
+                dataType: 'json',
+                data: {
                     full_name: full_name,
                     api_key: api_key,
                     api_secret_key: api_secret_key,
@@ -708,38 +697,19 @@
                 }
             });
         }
-        function call_get_active_orders(offset, limit, search_pair) {
-            return $.ajax({
-                'url': '{% url "bitbank:ajax_get_active_orders" %}',
-                'type': 'GET',
-                'dataType': 'json',
-                'data': {
-                    'offset': offset,
-                    'limit': limit,
-                    'search_pair': search_pair
-                }
-            });
-        }
-        function call_get_order_history(offset, limit, search_pair) {
-            return $.ajax({
-                'url': '{% url "bitbank:ajax_get_order_history" %}',
-                'type': 'GET',
-                'dataType': 'json',
-                'data': {
-                    'offset': offset,
-                    'limit': limit,
-                    'search_pair': search_pair
-                }
-            });
-            
-        }
       
-        function call_create_order(pair, special_order, side, order_type, price = null, price_for_stop = null, start_amount) {
+        function call_orders(method, pair, offset = null, limit = null, type = null, pk = null, special_order = null, side = null, order_type = null, price = null, price_for_stop = null, start_amount = null) {
+            
             return $.ajax({
-                'url': '{% url "bitbank:ajax_create_order" %}',
-                'type': 'POST',
-                'dataType': 'json',
-                'data': {
+                url: '{% url "bitbank:ajax_orders" %}',
+                type: (method == 'GET') ? 'GET' : 'POST',
+                dataType: 'json',
+                method: method,
+                data: {
+                    offset: offset,
+                    limit: limit,
+                    type: type,
+                    pk: pk,
                     pair: pair,
                     special_order: special_order,
                     side: side,
@@ -751,71 +721,37 @@
             });
         }
 
-        function call_create_alert(pair, threshold, over_or_under) {
+        function call_alerts(method, pk, pair, offset, limit, threshold, over_or_under) {
             return $.ajax({
-                'url': '{% url "bitbank:ajax_create_alert" %}',
-                'type': 'POST',
-                'dataType': 'json',
-                'data': {
+                url: '{% url "bitbank:ajax_alerts" %}',
+                type: (method == 'GET') ? 'GET' : 'POST',
+                dataType: 'json',
+                method:method,
+                data: {
+                    pk: pk,
                     pair: pair,
+                    offset: offset,
+                    limit: limit,
                     threshold: threshold,
                     over_or_under: over_or_under
                 }
             });
         }
 
-        function call_deactivate_alert(pk) {
-            return $.ajax({
-                'url': '{% url "bitbank:ajax_deactivate_alert" %}',
-                'type': 'POST',
-                'dataType': 'json',
-                'data': {
-                    pk: pk
-                }
-            });
-        }
 
-        function call_get_active_alerts(offset, limit, search_pair) {
+
+        function call_notify_if_filled(method, new_val) {
             return $.ajax({
-                'url': '{% url "bitbank:ajax_get_active_alerts" %}',
-                'type': 'GET',
-                'dataType': 'json',
-                'data': {
-                    'offset': offset,
-                    'limit': limit,
-                    'search_pair': search_pair
-                }
-            });
-        }
-        function call_get_notify_if_filled() {
-            return $.ajax({
-                'url': '{% url "bitbank:ajax_get_notify_if_filled" %}',
-                'type': 'GET',
-                'dataType': 'json'
-            });
-        }
-        function call_change_notify_if_filled(new_val) {
-            return $.ajax({
-                'url': '{% url "bitbank:ajax_change_notify_if_filled" %}',
-                'type': 'POST',
-                'dataType': 'json',
-                'data': {
+                url: '{% url "bitbank:ajax_notify_if_filled" %}',
+                type: method,
+                dataType: 'json',
+                data: {
                     notify_if_filled: new_val
                 }
             });
         }
-        function call_post_inquiry_without_files(subject, body, email_for_reply) {
-            return $.ajax({
-                'url': '{% url "bitbank:ajax_post_inquiry" %}',
-                'type': 'POST',
-                'dataType': 'json',
-                'data': {
-                    subject: subject,
-                    body: body,
-                    email_for_reply: email_for_reply,
-                }
-            })
-        }
+        
+        
 
         function hyphen_if_null(subj) {
             if (subj == null || subj == undefined || subj == '0') {
@@ -847,7 +783,7 @@
 
         function initialize_ticker_json() {
             Object.keys(PAIRS).forEach(pair => {
-                call_get_ticker_api(pair)
+                call_ticker('GET', pair)
                 .done(function (res) {
                     if (res.error) {
                         set_error_message($('#id_ajax_message'),200 , res.error);
@@ -865,7 +801,7 @@
             });
         }
         function initialize_free_amount_json() {
-            call_get_assets_api()
+            call_assets('GET')
             .done(function(res) {
                 if (res.error) {
                     set_error_message($('#id_ajax_message'), res.error);
@@ -965,7 +901,7 @@
             }
         }
         function place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount, message_target) {
-            call_create_order(pair, special_order, side, order_type, price, price_for_stop, start_amount)
+            call_orders('POST', pair, null, null, null, null, special_order, side, order_type, price, price_for_stop, start_amount)
             .done(function(res) {
                 if (res.error) {
                     set_error_message(message_target, res.error);
@@ -1171,7 +1107,7 @@
                         }
 
                         if (new_order_type != 'market') {
-                            call_get_ticker_api(input_pair.val())
+                            call_ticker('GET', input_pair.val())
                             .done(function(res) {
                                 if (res.error) {
                                     set_error_message(ajax_message_target, res.error);
@@ -1285,7 +1221,7 @@
                             var price_for_stop = $('#id_price_for_stop_1').val() == '' ? null : parseFloat($('#id_price_for_stop_1').val());
                             var start_amount = $('#id_start_amount_1').val();
                             if (order_type.match(/limit/)) {
-                                call_get_ticker_api(pair)
+                                call_ticker('GET', pair)
                                 .done(function(res) {
                                     if (res.error) {
                                         set_error_message(ajax_message_target, res.error);
@@ -1349,7 +1285,7 @@
         function initialize_active_orders_content(message_target) {
             var page_selection = $('#page_selection_active_orders');
             var search_pair = $('#id_active_orders_search_pair').val();
-            call_get_active_orders(0, 1, search_pair)
+            call_orders('GET', search_pair, 0, 1, 'active')
             .done(function(res_1) {
                 if (res_1.error) {
                     set_error_message(message_target, res_1.error);
@@ -1368,7 +1304,7 @@
                     last: '最後',
                     onPageClick: function (event, page) {
                         var table_html = '';
-                        call_get_active_orders(count_per_page * (page - 1), count_per_page, search_pair)
+                        call_orders('GET', search_pair, count_per_page * (page - 1), count_per_page, 'active')
                         .done(function(res_2) {
                             if (res_2.error) {
                                 set_error_message(message_target, res_2.error);
@@ -1428,7 +1364,7 @@
                             //キャンセルボタンクリック時のイベント追加
                             $("button[name='cancel_order_button']").on('click', function() {
                                 var pk = $(this).attr('pk');
-                                call_cancel_order(pk)
+                                call_orders('DELETE', null, null, null, null, pk)
                                 .done(function(res) {
                                     if (res.error) {
                                         set_error_message('#id_ajax_message', res.error);
@@ -1492,7 +1428,7 @@
             var page_selection = $('#page_selection_order_history');
             var search_pair = $('#id_order_history_search_pair').val();
 
-            call_get_order_history(0, 1, search_pair)
+            call_orders('GET', search_pair, 0, 1, 'history')
             .done(function(res_1) {
                 if (res_1.error) {
                     set_error_message(message_target, res_1.error);
@@ -1511,7 +1447,7 @@
                     last: '最後',
                     onPageClick: function (event, page) {
                         var table_html = '';
-                        call_get_order_history(count_per_page * (page - 1), count_per_page, search_pair)
+                        call_orders('GET', search_pair, count_per_page * (page - 1), count_per_page, 'history')
                         .done(function(res_2) {
                             if (res_2.error) {
                                 set_error_message(message_target, res_2.error);
@@ -1600,7 +1536,7 @@
         }
         
         function initialize_alerts_content(message_target) {
-            call_get_notify_if_filled()
+            call_notify_if_filled('GET')
             .done(function(res) {
                 if (res.error) {
                     set_error_message(message_target, res.error);
@@ -1621,7 +1557,7 @@
 
             var page_selection = $('#page_selection_alerts');
             var search_pair = $('#id_alerts_search_pair').val();
-            call_get_active_alerts(0, 1, search_pair)
+            call_alerts('GET', null, search_pair, 0, 1)
             .done(function(res_1) {
                 if (res_1.error) {
                     set_error_message(message_target, res_1.error);
@@ -1640,7 +1576,7 @@
                     last: '最後',
                     onPageClick: function (event, page) {
                         var table_html = '';
-                        call_get_active_alerts(count_per_page * (page - 1), count_per_page, search_pair)
+                        call_alerts('GET', null, search_pair, count_per_page * (page - 1), count_per_page)
                         .done(function(res_2) {
                             var table_html = '';
                             $.parseJSON(res_2.active_alerts).forEach(active_alert => {
@@ -1661,7 +1597,7 @@
                         
                             $("button[name='deactivate_alert_button']").on('click', function() {
                                 var pk = $(this).attr('pk');
-                                call_deactivate_alert(pk)
+                                call_alerts('DELETE', pk)
                                 .done(function(res_3) {
                                     if (res_3.error) {
                                         set_error_message(message_target, res_3.error);
@@ -1716,7 +1652,7 @@
                     if ($(this).hasClass('on')) {
                         // すでにONの場合は何もしない
                     } else {
-                        call_change_notify_if_filled('ON')
+                        call_notify_if_filled('POST', 'ON')
                         .done(function(res) {
                             if (res.error) {
                                 set_error_message(message_target, res.error);
@@ -1737,7 +1673,7 @@
                     if ($(this).hasClass('off')) {
                         // すでにOFFの場合は何もしない
                     } else {
-                        call_change_notify_if_filled('OFF')
+                        call_notify_if_filled('POST','OFF')
                         .done(function(res) {
                             if (res.error) {
                                 set_error_message(message_target, res.error);
@@ -1764,7 +1700,7 @@
                         return;
                     }
 
-                    call_get_ticker_api(pair)
+                    call_ticker('GET', pair)
                     .done(function(res) {
                         if (res.error) {
                             set_error_message($('#id_ajax_messsage'), res.error)
@@ -1775,7 +1711,7 @@
                         } else {
                             over_or_under = '以下';
                         }
-                        call_create_alert(pair, threshold, over_or_under)
+                        call_alerts('POST', null, pair, null, null, threshold, over_or_under)
                         .done(function(res) {
                             
                             if (res.error) {
@@ -1825,7 +1761,7 @@
         }
         function initialize_asset_tab(is_initial = false) {
             var message_target = $('#id_ajax_message');
-            call_get_assets_api()
+            call_assets('GET')
             .done(response => {
                 if (response.assets) {
                     var asset_html = "";
@@ -1834,13 +1770,13 @@
                         
                         $('#' + asset.asset).html(asset.onhand_amount);
                         if (asset.asset == 'ltc' || asset.asset == 'eth') {
-                            call_get_ticker_api(asset.asset + '_' + 'btc')
+                            call_ticker('GET', asset.asset + '_' + 'btc')
                             .done(function(res) {
                                 if (res.error) {
                                     set_error_message(message_target, res.error);
                                     return;
                                 }
-                                call_get_ticker_api('btc_jpy')
+                                call_ticker('GET', 'btc_jpy')
                                 .done(function(res2) {
                                     total_asset_in_jpy += parseInt(res.buy) * parseInt(res2.buy) * asset.onhand_amount;
                                     $('#total_in_jpy').html(parseInt(total_asset_in_jpy));
@@ -1859,7 +1795,7 @@
                                 set_error_message(message_target, xhr);
                             });
                         } else if (asset.asset != 'jpy') {
-                            call_get_ticker_api(asset.asset + '_jpy')
+                            call_ticker('GET', asset.asset + '_jpy')
                             .done(function(res) {
                                 if (res.error) {
                                     set_error_message(message_target, res.error);
@@ -1895,7 +1831,7 @@
         }
         function initialize_user_info_tab(is_initial = false) {
             var message_target = $('#id_ajax_message');
-            call_get_user()
+            call_user('GET')
             .done(function(res) {
                 if (res.error) {
                     set_error_message(message_target, res.error);
@@ -1930,7 +1866,7 @@
                         return;
                     }
 
-                    call_update_user(full_name, api_key, api_secret_key, email_for_notice)
+                    call_user('POST', full_name, api_key, api_secret_key, email_for_notice)
                     .done(function(res) {
                         if (res.error) {
                             set_error_message(message_target, res.error);
@@ -1979,23 +1915,39 @@
             return true;
         }
         
-        function call_post_inquiry_without_attachment(subject, body, email) {
+        function call_attachment(method, pk) {
             return $.ajax({
-                'url': '{% url "bitbank:ajax_post_inquiry" %}',
-                'type': 'POST',
-                'dataType': 'json',
-                'data': {
+                url: '{% url "bitbank:ajax_attachment" %}',
+                type: 'POST',
+                dataType: 'json',
+                data : {
+                    method: method,
+                    pk: pk
+                },
+                headers: { "X_METHODOVERRIDE": method },
+            });
+        }
+        function call_inquiry(method, subject, body, email, att_pk_1, att_pk_2, att_pk_3) {
+            return $.ajax({
+                url: '{% url "bitbank:ajax_inquiry" %}',
+                type: 'POST',
+                dataType: 'json',
+                data: {
                     subject: subject,
                     body: body,
-                    email_for_reply: email
-                }
+                    email_for_reply: email,
+                    att_pk_1: att_pk_1,
+                    att_pk_2: att_pk_2,
+                    att_pk_3: att_pk_3
+                },
+                headers: { "X-HTTP-Method-Override": method },
             });
         }
 
    
         function initialize_contact_tab(is_initial = false) {
             var message_target = $('#id_contact_message');
-            call_get_user()
+            call_user('GET')
             .done(function(res) {
                 if (res.error) {
                     set_error_message(message_target, res.error);
@@ -2022,13 +1974,11 @@
                 var input_body = $('#id_contact_body');
                 var input_email = $('#id_contact_email');
                 var preview_zone = $('#id_attachment_preview');
-                var csrf_token = "{{ csrf_token }}";
-                var data_url = "{% url 'bitbank:ajax_post_inquiry' %}";
-
+                
                 inquiry_button
                 .on('click', function() {
                     if (validate_contact_info(message_target)) {
-                        call_post_inquiry_without_files(input_subject.val(), input_body.val(), input_email.val())
+                        call_inquiry('POST', input_subject.val(), input_body.val(), input_email.val())
                         .done(function(res) {
                             if (res.error) {
                                 set_error_message(message_target, res.error);
@@ -2070,70 +2020,54 @@
                         });
                     });
 
-                    // var newElm = document.createElement('input');
-                    // newElm.type = "file";
-                    // newElm.id = 'fileupload';
-                    // newElm.name = 'attachments[]';
-                    // //newElm.style = 'display:none';
-                    // $(newElm).attr('data-url', data_url);
-                    // $(newElm).attr('data-form-data', csrf_token);
-
-                    // // Put code to copy other attributes as well
-                    // $('#fileupload').replaceWith(newElm);
-                    // initialize_file_upload($(newElm), inquiry_button, message_target, preview_zone, detach_button);
-                    // console.log($('#fileupload'));
                 });
                 /* 2. INITIALIZE THE FILE UPLOAD COMPONENT */
                 file_uploader.fileupload({
                     dataType: 'json',
-                    // limitMultiFileUploads: 3,
-                    singleFileUploads: false,
-                    autoUpload: false,
-                    add: function (e, data) {
-                        inquiry_button
-                        .unbind('click')
-                        .on('click', function() {
-                            if (validate_contact_info(message_target)) {
-                                data.formData = {subject: input_subject.val(), body: input_body.val(), email_for_reply: input_email.val()};
-                                data.submit();
-                            } else {
-                                return false;
-                            }
-                        });
-                        if(data.files.length >= 4){
-                            $(data).val('');
-                            set_error_message(message_target, "添付ファイルは3つまでです");
-                            return false;
-                        }
-                        if (data.files.length > 0) {
-                            detach_button.show();
-                        }
-                        
-                        detach_button.show();
-
-                        preview_zone.html('');
-                        for(let i = 0; i < data.files.length; i++) {
-                            var prev_wrapper = document.createElement('div');
-                            var prev = document.createElement('img');
-                            var prev_caption = document.createElement('label');
-                            $(prev_wrapper).addClass('attachment_preview');
-                            $(prev).attr('id', 'file_' + i);
-                            $(prev_caption).attr('for', 'file_' + i);
-                            $(prev_caption).html(data.files[i].name);
-                            readURL(data.files[i], prev);
-                            prev_wrapper.append(prev);
-                            prev_wrapper.append(prev_caption);
-                            preview_zone.append(prev_wrapper);
-                        }
-
-                    },
+                    singleFileUploads: true,
+                    autoUpload: true,
+                    replaceFileInput: false,
+                    
                     done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
                         if (data.result.error) {
+                            alert('error');
                             set_error_message(message_target, data.result.error);
                             return;
                         }
-                        set_success_message(message_target, data.result.success);
-                        return;
+                        var prev_wrapper = document.createElement('div');
+                        var prev = document.createElement('img');
+                        var prev_caption = document.createElement('label');
+                        var delete_icon = document.createElement('i')
+                        $(delete_icon)
+                        .addClass('fa fa-close')
+                        .on('click', function() {
+                            call_attachment('DELETE', $(this).parent().attr('pk'))
+                            .done((data) => {
+                                if (data.error) {
+                                    set_error_message(message_target, data.error);
+                                    return;
+                                }
+                                $(this).parent().remove();
+                            })
+                            .fail(function(data, textStatus, xhr) {
+                                if (data.status == 401) {
+                                    window.location.href = "{% url 'bitbank:login' %}";
+                                }
+                                set_error_message(message_target, xhr);
+                            });
+                        });
+
+                        $(prev_wrapper).addClass('attachment_preview').attr('pk', data.result.pk);
+                        $(prev).attr('id', 'file_' + data.result.pk);
+                        $(prev_caption).attr('for', 'file_' + data.result.pk);
+                        $(prev_caption).html(data.files[0].name);
+                        readURL(data.files[0], prev);
+                        prev_wrapper.append(prev);
+                        prev_wrapper.append(prev_caption);
+                        prev_wrapper.append(delete_icon);
+                        preview_zone.append(prev_wrapper);
+
+                        
                     },
                     fail: function (e, data) {
                         set_error_message(message_target, '失敗しました');

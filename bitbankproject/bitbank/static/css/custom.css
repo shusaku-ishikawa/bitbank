@@ -200,11 +200,11 @@ hr {
   div.attachment_preview {
       height : 10em;
       width: 8em;
-      padding: 0.5em 0.1em;
+      padding: 0.5em 0.5em;
   }
   div.attachment_preview > img {
       width: 100%;
-      height: 80%;
+      height: auto;
   }
  
   div > ul.pagination > li.page-item > a.page-link{
@@ -280,5 +280,3 @@ input[type="range"]:hover {
     cursor: pointer;
     background: orangered;
 }
-
-@media screen { #fileupload { display: none; } }

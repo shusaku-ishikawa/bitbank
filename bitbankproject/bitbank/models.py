@@ -307,11 +307,23 @@ class Alert(models.Model):
         null = True,
     )
 
+class Attachment(models.Model):
+    class Meta:
+        verbose_name = "添付ファイル"
+        verbose_name_plural = "添付ファイル"
+    file = models.FileField(
+        verbose_name = 'ファイル',
+        upload_to = 'attachments',
+        null = False,
+        blank = False,
+    )
 class Inquiry(models.Model):
     class Meta:
         verbose_name = "問い合わせ"
         verbose_name_plural = "問い合わせ"
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     subject = models.CharField(
         verbose_name = _('件名'),
         max_length = 255,
@@ -323,23 +335,29 @@ class Inquiry(models.Model):
     email_for_reply = models.EmailField(
         verbose_name = _('通知用メールアドレス'),
     )
-    attachment_1 = models.FileField(
-        '添付ファイル1',
-        upload_to = 'attachments',
+    attachment_1 = models.ForeignKey(
+        Attachment,
+        verbose_name = '添付ファイル1',
         null = True,
         blank = True,
+        on_delete = models.CASCADE,
+        related_name = 'att_1'
     )
-    attachment_2 = models.FileField(
-        '添付ファイル2',
-        upload_to = 'attachments',
+    attachment_2 = models.ForeignKey(
+        Attachment,
+        verbose_name = '添付ファイル2',
         null = True,
-        blank = True,
+        blank = True, 
+        on_delete = models.CASCADE,
+        related_name = 'att_2'
     )
-    attachment_3 = models.FileField(
-        '添付ファイル3',
-        upload_to = 'attachments',
+    attachment_3 = models.ForeignKey(
+        Attachment,
+        verbose_name = '添付ファイル3',
         null = True,
         blank = True,
+        on_delete = models.CASCADE,
+        related_name = 'att_3'
     )
 
     closed = models.BooleanField(
@@ -351,3 +369,4 @@ class Inquiry(models.Model):
         auto_now_add = True,
 
     )
+
