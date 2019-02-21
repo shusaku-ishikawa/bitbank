@@ -515,6 +515,7 @@
     </div>
 </div>  
 <div id="contact" class="tabcontent">
+
   <div class="row">
     <div class="col-md-6 offset-md-1 col-12">
         <div class="table-responsive">
@@ -544,25 +545,26 @@
                     <tr>
                         <th>添付ファイル<br>(3つまで)</th>
                         <td>
-                    
-                        <button type="button" class="btn btn-primary js-upload-file">
-                            <span class="glyphicon glyphicon-cloud-upload"></span>ファイルを選択
-                        </button>
-                        <button id="id_detach_file" style="display: none" type="button" class="btn btn-danger">
-                            添付を解除
-                        </button>
-                         <!-- {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #} -->
-                        <input id="fileupload" type="file" name="attachments[]" multiple style="display: none"
-                                data-url="{% url 'bitbank:ajax_post_inquiry' %}"
-                                data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
-                        <div id="id_attachment_preview"></div>
+                            <form name="file_upload">
+                                <button type="button" class="btn btn-primary js-upload-file">
+                                    <span class="glyphicon glyphicon-cloud-upload"></span>ファイルを選択
+                                </button>
+                                <button id="id_detach_file" type="button" class="btn btn-danger">
+                                    添付を解除
+                                </button>
+                                <!-- {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #} -->
+                                <input id="fileupload" type="file" name="attachments[]" multiple style="display: none"
+                                        data-url="{% url 'bitbank:ajax_post_inquiry' %}"
+                                        data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+                                <div id="id_attachment_preview"></div>
+                            </form>    
                         </td>
                     </tr>
                 </tbody>
             </table> 
         </div>
     </div>
-</div>   
+</div>
 <div class="row">
     <div class="col-md-6 offset-md-1 col-12">
         <div id="id_contact_message" class="alert"></div>
@@ -1975,6 +1977,75 @@
             }
             return true;
         }
+        
+        function call_post_inquiry_without_attachment(subject, body, email) {
+            return $.ajax({
+                'url': '{% url "bitbank:ajax_post_inquiry" %}',
+                'type': 'POST',
+                'dataType': 'json',
+                'data': {
+                    subject: subject,
+                    body: body,
+                    email_for_reply: email
+                }
+            });
+        }
+        function initialize_file_upload(uploader, input_subject, input_body, input_email, inquiry_button, message_target, preview_zone, detach_button) {
+            uploader.fileupload({
+                dataType: 'json',
+                // limitMultiFileUploads: 3,
+                singleFileUploads: false,
+                add: function (e, data) {
+                    inquiry_button
+                    .unbind('click')
+                    .on('click', function() {
+                        if (validate_contact_info(message_target)) {
+                            data.formData = {subject: input_subject.val(), body: input_body.val(), email_for_reply: input_email.val()};
+                            data.submit();
+                        } else {
+                            return false;
+                        }
+                    });
+                    if(data.files.length >= 4){
+                        $(data).val('');
+                        set_error_message(message_target, "添付ファイルは3つまでです");
+                        return false;
+                    }
+                    if (data.files.length > 0) {
+                        detach_button.show();
+                    }
+
+                    preview_zone.html('');
+                    for(let i = 0; i < data.files.length; i++) {
+                        var prev_wrapper = document.createElement('div');
+                        var prev = document.createElement('img');
+                        var prev_caption = document.createElement('label');
+                        $(prev_wrapper).addClass('attachment_preview');
+                        $(prev).attr('id', 'file_' + i);
+                        $(prev_caption).attr('for', 'file_' + i);
+                        $(prev_caption).html(data.files[i].name);
+                        readURL(data.files[i], prev);
+                        prev_wrapper.append(prev);
+                        prev_wrapper.append(prev_caption);
+                        preview_zone.append(prev_wrapper);
+                    }
+
+                },
+                done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
+                    if (data.result.error) {
+                        set_error_message(message_target, data.result.error);
+                        return;
+                    }
+                    set_success_message(message_target, data.result.success);
+                    return;
+                },
+                fail: function (e, data) {
+                    set_error_message(message_target, '失敗しました');
+                    return;
+                }
+            });
+        }
+   
         function initialize_contact_tab(is_initial = false) {
             var message_target = $('#id_contact_message');
             call_get_user()
@@ -2004,6 +2075,8 @@
                 var input_body = $('#id_contact_body');
                 var input_email = $('#id_contact_email');
                 var preview_zone = $('#id_attachment_preview');
+                var csrf_token = "{{ csrf_token }}";
+                var data_url = "{% url 'bitbank:ajax_post_inquiry' %}";
 
                 inquiry_button
                 .on('click', function() {
@@ -2032,64 +2105,41 @@
                 
                 detach_button
                 .on('click', () => {
-                    alert('d');
-                    file_uploader.find('ul').remove();
-                    console.log($(this));
+                    preview_zone.html('');
+                    inquiry_button
+                    .unbind('click')
+                    .on('click', function() {
+                        call_post_inquiry_without_attachment(input_subject.val(), input_body.val(), input_email.val())
+                        .done((data) => {
+                            if (data.error) {
+                                set_error_message(message_target, data.error);
+                                return;
+                            }
+                            set_success_message(message_target, '問い合わせが完了しました');
+                        })
+                        .fail((data, textStatus, xhr) => {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message(message_target, xhr);
+                        });
+                    });
+
+                    // var newElm = document.createElement('input');
+                    // newElm.type = "file";
+                    // newElm.id = 'fileupload';
+                    // newElm.name = 'attachments[]';
+                    // //newElm.style = 'display:none';
+                    // $(newElm).attr('data-url', data_url);
+                    // $(newElm).attr('data-form-data', csrf_token);
+
+                    // // Put code to copy other attributes as well
+                    // $('#fileupload').replaceWith(newElm);
+                    // initialize_file_upload($(newElm), inquiry_button, message_target, preview_zone, detach_button);
+                    // console.log($('#fileupload'));
                 });
                 /* 2. INITIALIZE THE FILE UPLOAD COMPONENT */
-                file_uploader.fileupload({
-                    dataType: 'json',
-                    // limitMultiFileUploads: 3,
-                    singleFileUploads: false,
-                    add: function (e, data) {
-                        inquiry_button
-                        .unbind('click')
-                        .on('click', function() {
-                            if (validate_contact_info(message_target)) {
-                                data.formData = {subject: input_subject.val(), body: input_body.val(), email_for_reply: input_email.val()};
-                                data.submit();
-                            } else {
-                                return false;
-                            }
-                        });
-                        if(data.files.length >= 4){
-                            $(data).val('');
-                            set_error_message(message_target, "添付ファイルは3つまでです");
-                            return false;
-                        }
-                        if (data.files.length > 0) {
-                            detach_button.show();
-                        }
-
-                        preview_zone.html('');
-                        for(let i = 0; i < data.files.length; i++) {
-                            var prev_wrapper = document.createElement('div');
-                            var prev = document.createElement('img');
-                            var prev_caption = document.createElement('label');
-                            $(prev_wrapper).addClass('attachment_preview');
-                            $(prev).attr('id', 'file_' + i);
-                            $(prev_caption).attr('for', 'file_' + i);
-                            $(prev_caption).html(data.files[i].name);
-                            readURL(data.files[i], prev);
-                            prev_wrapper.append(prev);
-                            prev_wrapper.append(prev_caption);
-                            preview_zone.append(prev_wrapper);
-                        }
-
-                    },
-                    done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
-                       if (data.result.error) {
-                           set_error_message(message_target, data.result.error);
-                           return;
-                       }
-                       set_success_message(message_target, data.result.success);
-                       return;
-                    },
-                    fail: function (e, data) {
-                        set_error_message(message_target, '失敗しました');
-                        return;
-                    }
-                });
+                initialize_file_upload(file_uploader, input_subject, input_body, input_email, inquiry_button, message_target, preview_zone, detach_button);
             }
         }
         function readURL(file, target_img) {

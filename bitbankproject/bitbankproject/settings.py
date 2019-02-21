@@ -208,16 +208,15 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR,'uploaded_files')
 MEDIA_URL = '/attachments/'
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEFAULT_FROM_EMAIL = 'ishikawasyuusaku@gmail.com'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_CHARSET = 'utf-8'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ishikawasyuusaku@gmail.com'
-EMAIL_HOST_PASSWORD = '332191-Aa2'
-EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'ishikawasyuusaku@gmail.com'
+# DEFAULT_CHARSET = 'utf-8'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'ishikawasyuusaku@gmail.com'
+# EMAIL_HOST_PASSWORD = '332191-Aa2'
+# EMAIL_USE_TLS = True
 
 # DEFAULT_FROM_EMAIL = 'kenkenpar55@kenkenpar.com'
 # DEFAULT_CHARSET = 'utf-8'
