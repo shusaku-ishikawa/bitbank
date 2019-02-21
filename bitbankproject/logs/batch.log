@@ -8289,3 +8289,10 @@
 [INFO]	asctime:2019-02-17 10:08:15,118	module:monitor_order_status	message:{'orders': []}
 [INFO]	asctime:2019-02-17 10:08:16,855	module:monitor_order_status	message:{'orders': []}
 [INFO]	asctime:2019-02-17 10:08:17,876	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-21 23:53:08,220	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-21 23:54:32,284	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-21 23:55:47,743	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-21 23:56:23,658	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-21 23:56:40,584	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-21 23:57:11,433	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-21 23:57:38,100	module:monitor_order_status	message:started

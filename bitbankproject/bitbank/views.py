@@ -300,12 +300,14 @@ def ajax_orders(request):
 
     user = request.user
     method = request.method
+    print(method)
     if method == 'GET': 
+        print(request.GET.get('type'))
         if request.GET.get('type') == 'active':
             try:
                 offset = int(request.GET.get('offset'))
                 to = int(request.GET.get('limit')) + offset
-                search_pair = request.GET.get('search_pair')
+                search_pair = request.GET.get('pair')
 
                 if search_pair == "all":
                     active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER']).order_by('-pk')
@@ -323,7 +325,7 @@ def ajax_orders(request):
             try:
                 offset = int(request.GET.get('offset'))
                 to = int(request.GET.get('limit')) + offset
-                search_pair = request.GET.get('search_pair')
+                search_pair = request.GET.get('pair')
                 if search_pair == 'all':
                     order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED']).order_by('-pk')
                 else:
@@ -339,7 +341,9 @@ def ajax_orders(request):
 
     elif method == 'POST':
         op = request.POST.get('method')
+        print(op)
         if op == 'POST':
+            print(op)
             if user.api_key == "" or user.api_secret_key == "":
                 res = {
                     'error': 'API KEYが登録されていません'
@@ -372,8 +376,7 @@ def ajax_orders(request):
                 if order_type in {Order.TYPE_STOP_MARKET, Order.TYPE_STOP_LIMIT} and price_for_stop == None:
                     return JsonResponse({'error': '発動価格は必須です'})
 
-                if order_type in {Order.TYPE_MARKET, Order.TYPE_LIMIT}:
-                        
+                if order_type in {Order.TYPE_MARKET, Order.TYPE_LIMIT}:       
                     try:
                         res_dict = python_bitbankcc.private(request.user.api_key, request.user.api_secret_key).order(
                             pair,

@@ -666,8 +666,10 @@
                 url: '{% url "bitbank:ajax_assets" %}',
                 type: (method == 'GET') ? 'GET':'POST',
                 dataType: 'json',
-                method: method,
-                async: is_async
+                async: is_async,
+                data: {
+                    method: method,
+                }
             });
         }
         function call_ticker(method, pair, is_async = true) {
@@ -675,9 +677,10 @@
                 url: '{% url "bitbank:ajax_ticker" %}',
                 type: (method == 'GET') ? 'GET':'POST',
                 dataType: 'json',
-                method: method,
+                
                 async: is_async,
                 data: {
+                    method: method,
                     'pair': pair
                 },
             });
@@ -687,9 +690,10 @@
             return $.ajax({
                 url: '{% url "bitbank:ajax_user" %}',
                 type: (method == 'GET') ? 'GET':'POST' ,
-                method: method,
+                
                 dataType: 'json',
                 data: {
+                    method: method,
                     full_name: full_name,
                     api_key: api_key,
                     api_secret_key: api_secret_key,
@@ -704,8 +708,8 @@
                 url: '{% url "bitbank:ajax_orders" %}',
                 type: (method == 'GET') ? 'GET' : 'POST',
                 dataType: 'json',
-                method: method,
                 data: {
+                    method: method,
                     offset: offset,
                     limit: limit,
                     type: type,
@@ -726,8 +730,8 @@
                 url: '{% url "bitbank:ajax_alerts" %}',
                 type: (method == 'GET') ? 'GET' : 'POST',
                 dataType: 'json',
-                method:method,
                 data: {
+                    method:method,
                     pk: pk,
                     pair: pair,
                     offset: offset,
@@ -2062,9 +2066,10 @@
                         $(prev_caption).attr('for', 'file_' + data.result.pk);
                         $(prev_caption).html(data.files[0].name);
                         readURL(data.files[0], prev);
+                        prev_wrapper.append(delete_icon);
                         prev_wrapper.append(prev);
                         prev_wrapper.append(prev_caption);
-                        prev_wrapper.append(delete_icon);
+                        
                         preview_zone.append(prev_wrapper);
 
                         
