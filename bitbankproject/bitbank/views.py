@@ -295,6 +295,18 @@ def ajax_assets(request):
 
         return JsonResponse(res_dict)
 
+def validate_input(obj):
+    
+    if not obj == None:
+        if obj.start_amount == '' or obj.start_amount == '0':
+            return {'error': '新規注文数量は必須です'}
+        if obj.order_type in {BitbankOrder.TYPE_LIMIT, BitbankOrder.TYPE_STOP_LIMIT} and obj.price == None:
+            return {'error': '新規注文の価格は必須です'}
+        if obj.order_type in {BitbankOrder.TYPE_STOP_MARKET, BitbankOrder.TYPE_STOP_LIMIT} and obj.price_for_stop == None:
+            return {'error': '新規注文の発動価格は必須です'}
+
+    return {'success': True}
+
 def process_order(user, order_obj, order_params, which_order, is_ready):
     pair = order_params.get('pair')
     side = order_params.get('side')
@@ -302,9 +314,6 @@ def process_order(user, order_obj, order_params, which_order, is_ready):
     price = None if order_params.get('price') == '' else order_params.get('price')
     price_for_stop = None if order_params.get('price_for_stop') == '' else order_params.get('price_for_stop')
     start_amount = order_params.get('start_amount')
-    
-    if start_amount == '' or start_amount == '0':
-        return {'error': '数量は必須です'}
 
     order_id = None
 
@@ -315,13 +324,6 @@ def process_order(user, order_obj, order_params, which_order, is_ready):
 
     ordered_at = None
     
-    if order_type in {BitbankOrder.TYPE_LIMIT, BitbankOrder.TYPE_STOP_LIMIT} and price == None:
-        return {'error': '価格は必須です'}
-    
-    if order_type in {BitbankOrder.TYPE_STOP_MARKET, BitbankOrder.TYPE_STOP_LIMIT} and price_for_stop == None:
-        return {'error': '発動価格は必須です'}
-
-    err_message = ''
     if order_type in {BitbankOrder.TYPE_MARKET, BitbankOrder.TYPE_LIMIT} and is_ready:       
         try:
             res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).order(
@@ -336,11 +338,8 @@ def process_order(user, order_obj, order_params, which_order, is_ready):
             ordered_at = res_dict.get('ordered_at')
 
         except Exception as e:
-            status = BitbankOrder.STATUS_FAILED_TO_ORDER
-            order_id = None
-            ordered_at = None
-            err_message = e.args
-    
+            return {'error': e.args}
+
     new_bitbank_order = BitbankOrder()
     new_bitbank_order.pair = pair
     new_bitbank_order.side = side
@@ -426,17 +425,46 @@ def ajax_orders(request):
             user = request.user
             pair = request.POST.get('pair')
             special_order = request.POST.get('special_order')
-
-            new_order = Order()
+            
             if special_order == 'SINGLE':
-                result = process_order(user, new_order, json.loads(request.POST.get()), 'order_1', True)
+                params_1 =  json.loads(request.POST.get('order_1'))
+                validate_1 = validate_input(params_1)
+                if 'error' in validate_1:
+                    return JsonResponse(validate_1)
+
+                new_order_1 = Order()
+                result = process_order(user, new_order_1, params_1, 'order_1', True)
+                if 'error' in result:
+                    return JsonResponse(result)
+                new_order_1.save()
                 return JsonResponse(result)
 
             elif special_order == 'IFD':
-                result = process_order_1(json.loads(request.POST.get('order_1')))
-                if 'success' in result:
+                params_1 =  json.loads(request.POST.get('order_1'))
+                params_2 =  json.loads(request.POST.get('order_2'))
+                validate_1 = validate_input(params_1)
+                if 'error' in validate_1:
+                    return JsonResponse(validate_1)
+                validate_2 = validate_input(params_2)
+                if 'error' in validate_2:
+                    return JsonResponse(validate_2)
+                
+                new_order_1 = Order()
+                result_1 = process_order(user, new_order_1, params_1, 'order_1', True)
+                if 'error' in result_1:
+                    return JsonResponse(result_1)
+                
+                new_order_2 = Order()
+                result_2 = process_order(user, new_order_2, params_2, 'order_2', False)
+                if 'error' in result_2:
+                    return JsonResponse(result_2)
 
-            else
+                new_order_1.save()
+                new_order_2.save()
+
+                return JsonResponse({'success': True})
+
+            else:
                 return JsonResponse({'error': '特殊注文は未対応です'})
         elif op == 'DELETE':
             pk = request.POST.get("pk")
