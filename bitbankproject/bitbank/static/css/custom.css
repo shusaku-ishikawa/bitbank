@@ -98,9 +98,24 @@ div.card {
 div.card.red-border {
     border: solid 3px #FF6600;
 }
-div.card.order-card {
+div.order_body {
+    background: #333333 !important;
+    
+    margin: 0.5em;
+    padding: 0.3em 1.5em   
+
+}
+div.row.order_header {
     background: #333333;
-    font-size: 0.8em;
+    
+    margin: 0.5em;
+    padding: 0.3em 0.3em   
+}
+div.order_container {
+    font-size: 0.5em;
+    padding: 0.2em;
+    background: gray;
+    margin: 0.2em;
 }
 
 div.card-table-header {

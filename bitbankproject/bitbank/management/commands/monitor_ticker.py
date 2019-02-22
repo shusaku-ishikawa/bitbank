@@ -7,7 +7,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.template.loader import get_template
 
-from ...models import Order, User, Alert
+from ...models import Order,BitbankOrder, User, Alert
 
 
 # BaseCommandを継承して作成
@@ -70,7 +70,7 @@ class Command(BaseCommand):
                             logger.error('user:' + user.email + ' pair:' + pair + ' alert:' + str(alert.pk) + ' error:' + str(e.args))
 
                     # 逆指値の注文取得
-                    stop_market_orders_by_pair = Order.objects.filter(pair=pair).filter(order_type=Order.TYPE_STOP_MARKET).filter(order_id__isnull=True).filter(status__in=[Order.STATUS_READY_TO_ORDER])
+                    stop_market_orders_by_pair = BitbankOrder.objects.filter(pair=pair).filter(order_type=BitbankOrder.TYPE_STOP_MARKET).filter(order_id__isnull=True).filter(status__in=[BitbankOrder.STATUS_READY_TO_ORDER])
                     
                     # 各注文を処理
                     for stop_market_order in stop_market_orders_by_pair:
@@ -92,13 +92,13 @@ class Command(BaseCommand):
                                 stop_market_order.status = res_dict.get('status')     
                                 stop_market_order.save() 
                             except Exception as e:
-                                stop_market_order.status = Order.STATUS_FAILED_TO_ORDER
+                                stop_market_order.status = BitbankOrder.STATUS_FAILED_TO_ORDER
                                 stop_market_order.save()
                                 logger.error('user:' + user.email + 'pair:' + pair + ' pk:' + str(stop_market_order.pk) + ' error: ' +  str(e.args))
                                 continue
 
                     # ストップリミットの注文取得
-                    stop_limit_orders_by_pair = Order.objects.filter(pair=pair).filter(order_type=Order.TYPE_STOP_LIMIT).filter(order_id__isnull=True).filter(status__in=[Order.STATUS_READY_TO_ORDER])
+                    stop_limit_orders_by_pair = BitbankOrder.objects.filter(pair=pair).filter(order_type=BitbankOrder.TYPE_STOP_LIMIT).filter(order_id__isnull=True).filter(status__in=[BitbankOrder.STATUS_READY_TO_ORDER])
                     
                     # 各注文を処理
                     for stop_limit_order in stop_limit_orders_by_pair:
@@ -119,7 +119,7 @@ class Command(BaseCommand):
                                 stop_limit_order.status = res_dict.get('status')
                                 stop_limit_order.save()
                             except:
-                                stop_limit_order.status = Order.STATUS_FAILED_TO_ORDER
+                                stop_limit_order.status = BitbankOrder.STATUS_FAILED_TO_ORDER
                                 stop_limit_order.save()
                                 logger.error('user:' + user.email + 'pair:' + pair + ' pk:' + str(stop_market_order.pk) + ' error: ' +  str(e.args))
                                 continue

@@ -122,10 +122,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-class Order(models.Model):
+
+class BitbankOrder(models.Model):
     class Meta:
-        verbose_name = "注文"
-        verbose_name_plural = "注文"
+        verbose_name = "bitbank注文"
+        verbose_name_plural = "bitbank注文"
         
     TYPE_MARKET = 'market'
     TYPE_LIMIT = 'limit'
@@ -138,36 +139,11 @@ class Order(models.Model):
     STATUS_CANCELED_UNFILLED = 'CANCELED_UNFILLED'
     STATUS_CANCELED_PARTIALLY_FILLED = 'CANCELED_PARTIALLY_FILLED'
     STATUS_READY_TO_ORDER = 'READY_TO_ORDER'
+    STATUS_WAIT_OTHER_ORDER_TO_FILL = "WAIT_OTHER_ORDER_TO_FILL"
     STATUS_FAILED_TO_ORDER = 'FAILED_TO_ORDER'
-
-    PAIR = [
-        'btc_jpy',
-        'xrp_jpy',
-        'ltc_btc',
-        'eth_btc',
-        'mona_jpy',
-        'mona_btc',
-        'bcc_jpy',
-        'bcc_btc',
-    ]
-
-
-    SPECIAL_ORDER = [
-        'SINGLE',
-        # 'IFD',
-        # 'OCO',
-        # 'IFDOCO'  
-    ]
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     pair = models.CharField(
         verbose_name = _('通貨'),
-        max_length = 50,
-    )
-
-    special_order = models.CharField(
-        verbose_name = _('特殊注文'), 
         max_length = 50,
     )
 
@@ -243,21 +219,6 @@ class Order(models.Model):
         blank = True
     )
 
-    order_if_done = models.ForeignKey(
-        'self',
-        null = True,
-        blank=True,
-        on_delete = models.CASCADE
-    )
-
-    cancel_if_done = models.ForeignKey(
-        'self',
-        null = True,
-        blank = True,
-        on_delete = models.CASCADE,
-        related_name = '+'
-    )
-
     ordered_at = UnixTimeStampField(
         verbose_name = _('注文時刻unixtime'),
         use_numeric = True,
@@ -271,7 +232,68 @@ class Order(models.Model):
         verbose_name = _('更新日時'),   
         auto_now = True,
     )
-   
+
+class Order(models.Model):
+    class Meta:
+        verbose_name = "注文"
+        verbose_name_plural = "注文"
+    
+    PAIR = [
+        'btc_jpy',
+        'xrp_jpy',
+        'ltc_btc',
+        'eth_btc',
+        'mona_jpy',
+        'mona_btc',
+        'bcc_jpy',
+        'bcc_btc',
+    ]
+    SPECIAL_ORDER = [
+        'SINGLE',
+        # 'IFD',
+        # 'OCO',
+        # 'IFDOCO'  
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    pair = models.CharField(
+        verbose_name = _('通貨'),
+        max_length = 50,
+    )
+    
+    special_order = models.CharField(
+        verbose_name = _('特殊注文'), 
+        max_length = 50,
+    )
+
+    order_1 = models.ForeignKey(
+        BitbankOrder,
+        verbose_name = '新規注文',
+        related_name = 'new_order',
+        null = True,
+        on_delete = models.CASCADE
+    )
+    order_2 = models.ForeignKey(
+        BitbankOrder,
+        verbose_name = '決済注文1',
+        related_name = 'settle_order_1',
+        null = True,
+        on_delete = models.CASCADE
+    )
+    order_3 = models.ForeignKey(
+        BitbankOrder,
+        verbose_name = '決済注文2',
+        related_name = 'settle_order_2',
+        null = True,
+        on_delete = models.CASCADE
+    )
+    placed_at = models.DateTimeField(
+        auto_now_add = True
+    )
+    is_active = models.BooleanField(
+        verbose_name = 'アクティブ',
+        default = True,
+    )
 
 class Alert(models.Model):
     class Meta:

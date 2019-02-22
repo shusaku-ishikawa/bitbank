@@ -702,7 +702,7 @@
             });
         }
       
-        function call_orders(method, pair, offset = null, limit = null, type = null, pk = null, special_order = null, side = null, order_type = null, price = null, price_for_stop = null, start_amount = null) {
+        function call_orders(method, pair, offset = null, limit = null, type = null, pk = null, special_order = null, order_1, order_2, order_3) {
             
             return $.ajax({
                 url: '{% url "bitbank:ajax_orders" %}',
@@ -716,11 +716,9 @@
                     pk: pk,
                     pair: pair,
                     special_order: special_order,
-                    side: side,
-                    order_type: order_type,
-                    price: price,
-                    price_for_stop: price_for_stop,
-                    start_amount: start_amount
+                    order_1: order_1,
+                    order_2: order_2,
+                    order_3: order_3
                 }
             });
         }
@@ -904,8 +902,18 @@
                 }
             }
         }
-        function place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount, message_target) {
-            call_orders('POST', pair, null, null, null, null, special_order, side, order_type, price, price_for_stop, start_amount)
+        function create_order_json(pair, side, order_type, price, price_for_stop, start_amount) {
+            var order_info = new Object();
+            order_info.pair = pair;
+            order_info.side = side;
+            order_info.order_type = order_type;
+            order_info.price = price;
+            order_info.price_for_stop = price_for_stop;
+            order_info.start_amount = start_amount;
+            return JSON.stringify(order_info);
+        }
+        function _order(pair, special_order, order_1, order_2, order_3,  message_target) {
+            call_orders('POST', pair, null, null, null, null, special_order, order_1, order_2, order_3)
             .done(function(res) {
                 if (res.error) {
                     set_error_message(message_target, res.error);
@@ -919,6 +927,71 @@
                 }
                 set_error_message(message_target, xhr);
             });
+        }
+        function get_confirmation(order_name) {
+            $.confirm({
+                title: '<span style="color:black>確認</span>',
+                content: '<span style="color:black">' + order_name + 'は確定後すぐに約定しますがこの価格でよろしいですか？</span>',
+                type: 'red',
+                buttons: {
+                    confirm: {
+                        text: 'はい',
+                        btnClass: 'green_button',
+                        
+                        action: function () {
+                            return true;
+                        }
+                    },
+                    cancel:{
+                        text: 'いいえ',
+                        btnClass: 'red_button',
+                        action: function () {
+                            return false;
+                        },
+                    }
+                }
+            });
+        }
+        function place_order(pair, special_order, order_1, order_2, order_3,  message_target) {
+            // if (order_1 != null) {
+            //     if (order_1.order_type.match(/limit/)) {
+            call_ticker('GET', pair)
+            .done(function(res) {
+                if (res.error) {
+                    set_error_message(message_target, res.error);
+                    return;
+                }
+                    
+                if (order_1 != null && order_1.order_type == 'limit') {
+                    if ((order_1.side == 'buy' && parseFloat(res.buy) < order_1.price) || (order_1.side  == 'sell' && parseFloat(res.sell) > order_1.price)){
+                        if (!get_confirmation('新規注文')) {
+                            return;
+                        }
+                    }
+                }
+                if (order_1 == null && order_2.order_type == 'limit') {
+                    if ((order_2.side == 'buy' && parseFloat(res.buy) < order_2.price) || (order_2.side  == 'sell' && parseFloat(res.sell) > order_2.price)){
+                        if (!get_confirmation('決済注文2')) {
+                            return;
+                        }
+                    }
+                } 
+                if (order_1 == null && order_3.order_type == 'limit') {
+                    if ((order_3.side == 'buy' && parseFloat(res.buy) < order_3.price) || (order_3.side  == 'sell' && parseFloat(res.sell) > order_3.price)){
+                        if (!get_confirmation('決済注文2')) {
+                            return;
+                        }
+                    }
+                } 
+                _order(pair, special_order, order_1, order_2, order_3,  message_target);
+            })
+            .fail(function(data, textStatus, xhr) {
+            
+                if (data.status == 401) {
+                    window.location.href = "{% url 'bitbank:login' %}";
+                }
+                set_error_message(ajax_message_target, xhr);
+            });            
         }
         function set_slidevalue(tab_num, new_val, trigger_input_event=true) {
             var tar = $('#myRange_' + tab_num);
@@ -1124,6 +1197,7 @@
                                 if (data.status == 401) {
                                     window.location.href = "{% url 'bitbank:login' %}";
                                 }
+                                alert('call ticker erorr');
                                 set_error_message(ajax_message_target, xhr);
                             });
                         }
@@ -1215,77 +1289,138 @@
                 }
 
                 button_order.on('click', function(e) {
+                    var pair = input_pair.val();
+                    var special_order = input_special_order.val();
+                    
+                    var side_1 = $('#id_side_1').val();
+                    var side_2 = $('#id_side_2').val();
+                    var side_3 = $('#id_side_3').val();
+                    
+                    var order_type_1 = $('#id_order_type_1').val();
+                    var order_type_2 = $('#id_order_type_2').val();
+                    var order_type_3 = $('#id_order_type_3').val();
+                    
+                    var price_1 = $('#id_price_1').val() == '' ? null : parseFloat($('#id_price_1').val());
+                    var price_2 = $('#id_price_2').val() == '' ? null : parseFloat($('#id_price_2').val());
+                    var price_3 = $('#id_price_3').val() == '' ? null : parseFloat($('#id_price_3').val());
+                    
+                    var price_for_sto_1 = $('#id_price_for_stop_1').val() == '' ? null : parseFloat($('#id_price_for_stop_1').val());
+                    var price_for_sto_2 = $('#id_price_for_stop_2').val() == '' ? null : parseFloat($('#id_price_for_stop_2').val());
+                    var price_for_sto_3 = $('#id_price_for_stop_3').val() == '' ? null : parseFloat($('#id_price_for_stop_3').val());
+
+                    var start_amount_1 = $('#id_start_amount_1').val();
+                    var start_amount_2 = $('#id_start_amount_2').val();
+                    var start_amount_3 = $('#id_start_amount_3').val();
+                    
+                    var order_1 = create_order_json(pair, side_1, order_type_1, price_1, price_for_stop_1, start_amount_1);
+                    var order_2 = create_order_json(pair, side_2, order_type_2, price_2, price_for_stop_2, start_amount_2);
+                    var order_3 = create_order_json(pair, side_3, order_type_3, price_3, price_for_stop_3, start_amount_3);
+                
                     switch (input_special_order.val()) {
                         case 'SINGLE':
-                            var pair = input_pair.val();
-                            var special_order = input_special_order.val();
-                            var side = $('#id_side_1').val();
-                            var order_type = $('#id_order_type_1').val();
-                            var price = $('#id_price_1').val() == '' ? null : parseFloat($('#id_price_1').val());
-                            var price_for_stop = $('#id_price_for_stop_1').val() == '' ? null : parseFloat($('#id_price_for_stop_1').val());
-                            var start_amount = $('#id_start_amount_1').val();
-                            if (order_type.match(/limit/)) {
-                                call_ticker('GET', pair)
-                                .done(function(res) {
-                                    if (res.error) {
-                                        set_error_message(ajax_message_target, res.error);
-                                        return;
-                                    }
-                                        
-                                    if (order_type == 'limit') {
-                                        if ((side == 'buy' && parseFloat(res.buy) < price) || (side == 'sell' && parseFloat(res.sell) > price)){
-                                            $.confirm({
-                                                title: '<span style="color:black>確認</span>',
-                                                content: '<span style="color:black">注文確定後すぐに約定しますがこの価格でよろしいですか？</span>',
-                                                type: 'red',
-                                                buttons: {
-                                                    confirm: {
-                                                        text: 'はい',
-                                                        btnClass: 'green_button',
-                                                        
-                                                        action: function () {
-                                                            place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount);
-                                                        }
-                                                    },
-                                                    cancel:{
-                                                        text: 'いいえ',
-                                                        btnClass: 'red_button',
-                                                        action: function () {
-                                                        },
-                                                    }
-                                                }
-                                            });
-                                        } else {
-                                            place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount, order_result_message_target);
-                                        }
-                                        
-                                    } else if (order_type == 'stop_limit') {
-                                        place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount, order_result_message_target);
-                                    }
-                                })
-                                .fail(function(data, textStatus, xhr) {
-                             
-                                    if (data.status == 401) {
-                                        window.location.href = "{% url 'bitbank:login' %}";
-                                    }
-                                    set_error_message(ajax_message_target, xhr);
-                                });
-                            } else if (order_type.match(/market/)) {
-                                // そのまま注文
-                                place_single_order(pair, special_order, side, order_type, price, price_for_stop, start_amount, order_result_message_target);
-                            }
+                            place_order(pair, special_order, order_1, null, null, order_result_message_target);
                             break;
                         case 'IFD':
+                            place_order(pair, special_order, order_1, order_2, null, order_result_message_target);
                             break;
                         case 'OCO':
+                            place_order(pair, special_order, null, order_2, order_3, order_result_message_target);
                             break;
                         case 'IFDOCO':
+                            place_order(pair, special_order, order_1, order_2, order_3, order_result_message_target);
                             break;
                     }
                 });  
             }
         }
         
+        function build_active_order_card(special_order, pk, order_id, pair, order_type, side, price, price_for_stop, start_amount, executed_amount,average_price, status, ordered_at) {
+            var table_html = '';
+            table_html += '<div class="order_container">';
+            table_html += '<div class="row order_header">';
+            table_html += '<div class="col-3 card-table-header">取引通貨</div>';
+            table_html += '<div class="col-3 card-table-data">' + pair + '</div>';
+            table_html += '<div class="col-3 card-table-header">特殊注文</div>';
+            table_html += '<div class="col-3 card-table-data">' + special_order + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="order_body">';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-3 card-table-header">注文ID</div>';
+            table_html += '<div class="col-3 card-table-data">' + order_id + '</div>';
+            table_html += '<div class="col-3 card-table-header">売/買</div>';
+            table_html += '<div class="col-3 card-table-data">' + side + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-3 card-table-header">タイプ</div>';
+            table_html += '<div class="col-3 card-table-data">' + order_type + '</div>';
+            table_html += '<div class="col-3 card-table-header">逆指値価格</div>';
+            table_html += '<div class="col-3 card-table-data">' + price_for_stop + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-3 card-table-header">数量</div>';
+            table_html += '<div class="col-3 card-table-data">' + start_amount + '</div>';
+            table_html += '<div class="col-3 card-table-header">指値価格</div>';
+            table_html += '<div class="col-3 card-table-data">' + price + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-3 card-table-header">約定数量</div>';
+            table_html += '<div class="col-3 card-table-data">' + executed_amount + '</div>';
+            table_html += '<div class="col-3 card-table-header">平均価格</div>';
+            table_html += '<div class="col-3 card-table-data">' + average_price + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-6 card-table-header">注文日時</div>';
+            table_html += '<div class="col-6 card-table-data">' + ordered_at + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-6 card-table-header">ステータス</div>';
+            table_html += '<div class="col-6 card-table-data">' + status + '</div>';
+            table_html += '</div><hr>';
+            table_html += '<div class="row">';
+            table_html += '<button pk="' + pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button">CANCEL</button>';
+            table_html += '</div></div></div><hr>';
+            return table_html;
+        }
+        function build_history_order_card(special_order, pk, order_id, pair, order_type, side, price, price_for_stop, start_amount, executed_amount,average_price, status, ordered_at) {
+            var table_html = '';
+            table_html += '<div class="order_container">';
+            table_html += '<div class="row order_header">';
+            table_html += '<div class="col-3 card-table-header">取引通貨</div>';
+            table_html += '<div class="col-3 card-table-data">' + pair + '</div>';
+            table_html += '<div class="col-3 card-table-header">特殊注文</div>';
+            table_html += '<div class="col-3 card-table-data">' + special_order + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="order_body">';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-3 card-table-header">注文ID</div>';
+            table_html += '<div class="col-3 card-table-data">' + order_id + '</div>';
+            table_html += '<div class="col-3 card-table-header">売/買</div>';
+            table_html += '<div class="col-3 card-table-data">' + side + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-3 card-table-header">タイプ</div>';
+            table_html += '<div class="col-3 card-table-data">' + order_type + '</div>';
+            table_html += '<div class="col-3 card-table-header">指値価格</div>';
+            table_html += '<div class="col-3 card-table-data">' + price + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-3 card-table-header">数量</div>';
+            table_html += '<div class="col-3 card-table-data">' + start_amount + '</div>';
+            table_html += '<div class="col-3 card-table-header">平均価格</div>';
+            table_html += '<div class="col-3 card-table-data">' + average_price + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-6 card-table-header">注文日時</div>';
+            table_html += '<div class="col-6 card-table-data">' + ordered_at + '</div>';
+            table_html += '</div>';
+            table_html += '<div class="row">';
+            table_html += '<div class="col-6 card-table-header">ステータス</div>';
+            table_html += '<div class="col-6 card-table-data">' + status + '</div>';
+            table_html += '</div></div></div><hr>';
+            return table_html;
+        }
+        
+
         function initialize_active_orders_content(message_target) {
             var page_selection = $('#page_selection_active_orders');
             var search_pair = $('#id_active_orders_search_pair').val();
@@ -1315,54 +1450,26 @@
                                 return;
                             }
                             console.log(res_2);
-                            var table_html = "";
-                            $.parseJSON(res_2.active_orders).forEach(active_order => {
-                                //table_html += '<div class="">'
-                                table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
-                                table_html += '<div class="col-3 card-table-header">注文ID</div>';
-                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.order_id) + '</div>';
-                                table_html += '<div class="col-3 card-table-header">取引通貨</div>';
-                                table_html += '<div class="col-3 card-table-data">' + PAIRS[active_order.fields.pair] + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-3 card-table-header">タイプ</div>';
-                                table_html += '<div class="col-3 card-table-data">' + ORDER_TYPES[active_order.fields.order_type] + '</div>';
-                                table_html += '<div class="col-3 card-table-header">売/買</div>';
-                                table_html += '<div class="col-3 card-table-data">' + SELL_BUY[active_order.fields.side] + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-3 card-table-header">数量</div>';
-                                table_html += '<div class="col-3 card-table-data">' + active_order.fields.start_amount + '</div>';
-                                table_html += '<div class="col-3 card-table-header">逆指値価格</div>';
-                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.price_for_stop) + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-3 card-table-header">約定数量</div>';
-                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.executed_amount) + '</div>';
-                                table_html += '<div class="col-3 card-table-header">指値価格</div>';
-                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.price) + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-3 card-table-header"></div>';
-                                table_html += '<div class="col-3 card-table-data"></div>';
-                                table_html += '<div class="col-3 card-table-header">平均価格</div>';
-                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(active_order.fields.average_price) + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-6 card-table-header">注文日時</div>';
-                                table_html += '<div class="col-6 card-table-data">' + return_formatted_datetime(active_order.fields.ordered_at) + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-6 card-table-header">ステータス</div>';
-                                table_html += '<div class="col-6 card-table-data">' + STATUS[active_order.fields.status] + '</div></div><hr>';
-                                table_html += '<div class="row">';
-                                table_html += '<button pk="' + active_order.pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button">CANCEL</button>';
-                                table_html += '</div></div></div></div></div><hr>';
+                            var html_header = '<div class="row"><div class="col-md-6 offset-md-1 col-12">';
+                            var html_footer = '</div></div><hr>';
+                            var content_html = '';
+                            console.log(res_2.data);
+
+                            res_2.data.forEach(active_order => {
+                                if (active_order.order_1) {
+                                    content_html += build_active_order_card(active_order.special_order, active_order.order_1.pk,hyphen_if_null(active_order.order_1.order_id),PAIRS[active_order.pair],ORDER_TYPES[active_order.order_1.order_type],SELL_BUY[active_order.order_1.side],hyphen_if_null(active_order.order_1.price),hyphen_if_null(active_order.order_1.price_for_stop),active_order.order_1.start_amount,hyphen_if_null(active_order.order_1.executed_amount),hyphen_if_null(active_order.order_1.average_price),STATUS[active_order.order_1.status],return_formatted_datetime(active_order.order_1.ordered_at));
+                                }
+                                if (active_order.order_2) {
+                                    content_html += build_active_order_card(active_order.special_order, active_order.order_2.pk,hyphen_if_null(active_order.order_2.order_id),PAIRS[active_order.pair],ORDER_TYPES[active_order.order_2.order_type],SELL_BUY[active_order.order_2.side],hyphen_if_null(active_order.order_2.price),hyphen_if_null(active_order.order_2.price_for_stop),active_order.order_2.start_amount,hyphen_if_null(active_order.order_2.executed_amount),hyphen_if_null(active_order.order_2.average_price),STATUS[active_order.order_2.status],return_formatted_datetime(active_order.order_2.ordered_at));
+                                }
+                                if (active_order.order_3) {
+                                    content_html += build_active_order_card(active_order.special_order, active_order.order_3.pk,hyphen_if_null(active_order.order_3.order_id),PAIRS[active_order.pair],ORDER_TYPES[active_order.order_3.order_type],SELL_BUY[active_order.order_3.side],hyphen_if_null(active_order.order_3.price),hyphen_if_null(active_order.order_3.price_for_stop),active_order.order_3.start_amount,hyphen_if_null(active_order.order_3.executed_amount),hyphen_if_null(active_order.order_3.average_price),STATUS[active_order.order_3.status],return_formatted_datetime(active_order.order_3.ordered_at));
+                                } 
                             });
-                            if (table_html == '') {
-                                table_html = '<div class="row"><div class="col-6 offset-1">取引はありません</div></div>';
+                            if (content_html == '') {
+                                content_html = '取引はありません';
                             }
-                            $('#active_orders_content').html(table_html);
+                            $('#active_orders_content').html(html_header + content_html + html_footer);
 
 
                             //キャンセルボタンクリック時のイベント追加
@@ -1450,52 +1557,31 @@
                     first: '先頭',
                     last: '最後',
                     onPageClick: function (event, page) {
-                        var table_html = '';
+                        var html_header = '<div class="row"><div class="col-md-6 offset-md-1 col-12">';
+                        var html_footer = '</div></div><hr>';
+                        var content_html = '';
                         call_orders('GET', search_pair, count_per_page * (page - 1), count_per_page, 'history')
                         .done(function(res_2) {
                             if (res_2.error) {
                                 set_error_message(message_target, res_2.error);
                                 return;
                             }
-                            $.parseJSON(res_2.order_history).forEach(order => {
-                                table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
-                                table_html += '<div class="col-3 card-table-header">注文ID</div>';
-                                table_html += '<div class="col-3 card-table-data">' + order.fields.order_id + '</div>';
-                                table_html += '<div class="col-3 card-table-header">取引通貨</div>';
-                                table_html += '<div class="col-3 card-table-data">' + PAIRS[order.fields.pair] + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-2 card-table-header">タイプ</div>';
-                                table_html += '<div class="col-4 card-table-data">' + ORDER_TYPES[order.fields.order_type] + '</div>';
-                                table_html += '<div class="col-3 card-table-header">売/買</div>';
-                                table_html += '<div class="col-3 card-table-data">' + SELL_BUY[order.fields.side] + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-3 card-table-header">数量</div>';
-                                table_html += '<div class="col-3 card-table-data">' + order.fields.start_amount + '</div>';
-                                table_html += '<div class="col-3 card-table-header">価格</div>';
-                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(order.fields.price) + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-3 card-table-header">約定数量</div>';
-                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(order.fields.executed_amount) + '</div>';
-                                table_html += '<div class="col-3 card-table-header">平均価格</div>';
-                                table_html += '<div class="col-3 card-table-data">' + hyphen_if_null(order.fields.average_price) + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-6 card-table-header">注文日時</div>';
-                                table_html += '<div class="col-6 card-table-data">' + return_formatted_datetime(order.fields.ordered_at) + '</div>';
-                                table_html += '</div>';
-                                table_html += '<div class="row">';
-                                table_html += '<div class="col-6 card-table-header">ステータス</div>';
-                                table_html += '<div class="col-6 card-table-data">' + STATUS[order.fields.status] + '</div>';
-                                table_html += '</div></div></div></div></div><hr>';
+                            res_2.data.forEach(order => {
+                                if (order.order_1) {
+                                    content_html += build_history_order_card(order.special_order, order.order_1.pk,hyphen_if_null(order.order_1.order_id),PAIRS[order.pair],ORDER_TYPES[order.order_1.order_type],SELL_BUY[order.order_1.side],hyphen_if_null(order.order_1.price),hyphen_if_null(order.order_1.price_for_stop),order.order_1.start_amount,hyphen_if_null(order.order_1.executed_amount),hyphen_if_null(order.order_1.average_price),STATUS[order.order_1.status],return_formatted_datetime(order.order_1.ordered_at));
+                                }
+                                if (order.order_2) {
+                                    content_html += build_history_order_card(order.special_order, order.order_2.pk,hyphen_if_null(order.order_2.order_id),PAIRS[order.pair],ORDER_TYPES[order.order_2.order_type],SELL_BUY[order.order_2.side],hyphen_if_null(order.order_2.price),hyphen_if_null(order.order_2.price_for_stop),order.order_2.start_amount,hyphen_if_null(order.order_2.executed_amount),hyphen_if_null(order.order_2.average_price),STATUS[order.order_2.status],return_formatted_datetime(order.order_2.ordered_at));
+                                }
+                                if (order.order_3) {
+                                    content_html += build_history_order_card(order.special_order, order.order_3.pk,hyphen_if_null(order.order_3.order_id),PAIRS[order.pair],ORDER_TYPES[order.order_3.order_type],SELL_BUY[order.order_3.side],hyphen_if_null(order.order_3.price),hyphen_if_null(order.order_3.price_for_stop),order.order_3.start_amount,hyphen_if_null(order.order_3.executed_amount),hyphen_if_null(order.order_3.average_price),STATUS[order.order_3.status],return_formatted_datetime(order.order_3.ordered_at));
+                                } 
                             });
                             // 1件もない場合
-                            if (table_html == '') {
-                                table_html = '<div class="row"><div class="col-6 offset-1">取引はありません</div></div>';
+                            if (content_html == '') {
+                                content_html = '取引はありません';
                             }
-                            $('#order_history_content').html(table_html);
+                            $('#order_history_content').html(html_header + content_html + html_footer);
                         })
                         .fail(function(data, textStatus, xhr) {
                             if (data.status == 401) {

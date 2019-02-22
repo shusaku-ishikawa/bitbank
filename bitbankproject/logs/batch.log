@@ -8296,3 +8296,45 @@
 [INFO]	asctime:2019-02-21 23:56:40,584	module:monitor_order_status	message:started
 [INFO]	asctime:2019-02-21 23:57:11,433	module:monitor_order_status	message:started
 [INFO]	asctime:2019-02-21 23:57:38,100	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-22 15:14:28,114	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-22 15:17:56,787	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-22 15:17:57,810	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:17:58,820	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:17:59,830	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:18:00,840	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:18:01,852	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:18:02,861	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:18:03,894	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:18:04,927	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:18:05,946	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:18:06,954	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:18:07,968	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:21:43,826	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-22 15:21:44,857	module:monitor_order_status	message:<QuerySet [<Order: Order object (2)>]>
+[INFO]	asctime:2019-02-22 15:21:44,986	module:monitor_order_status	message:o_1 found 41805615 status:FULLY_FILLED
+[INFO]	asctime:2019-02-22 15:21:46,011	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:21:47,030	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:21:48,048	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:21:49,068	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:21:50,085	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:21:51,101	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:21:52,113	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 15:21:53,129	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 16:02:57,598	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-22 16:04:56,101	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-22 16:08:14,016	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-22 16:08:15,151	module:monitor_ticker	message:Stop market order found. side:buy stop price:433099.0 market sell:433100 market buy:433099
+[INFO]	asctime:2019-02-22 16:09:04,845	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-22 16:09:05,905	module:monitor_order_status	message:<QuerySet [<Order: Order object (3)>, <Order: Order object (4)>, <Order: Order object (5)>]>
+[INFO]	asctime:2019-02-22 16:09:38,120	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-22 16:09:39,137	module:monitor_order_status	message:<QuerySet [<Order: Order object (3)>, <Order: Order object (4)>, <Order: Order object (5)>]>
+[INFO]	asctime:2019-02-22 16:09:39,297	module:monitor_order_status	message:o_1 found 41808400 status:FULLY_FILLED
+[INFO]	asctime:2019-02-22 16:09:39,414	module:monitor_order_status	message:o_1 found 41808412 status:FULLY_FILLED
+[INFO]	asctime:2019-02-22 16:09:39,524	module:monitor_order_status	message:o_1 found 560899410 status:FULLY_FILLED
+[INFO]	asctime:2019-02-22 16:09:40,533	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 16:09:41,541	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 16:09:42,549	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 16:09:43,558	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 16:09:44,565	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 16:09:45,586	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-22 16:09:46,602	module:monitor_order_status	message:<QuerySet []>

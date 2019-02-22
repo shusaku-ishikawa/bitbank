@@ -1,1 +1,1 @@
-約定通知: {{order_dict.order_id}}
+約定通知: {{order.order_id}}

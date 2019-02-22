@@ -2,12 +2,12 @@
 
 下記注文が約定されました。
 
-order_id : {{ order_dict.order_id }}
+order_id : {{ order.order_id }}
 注文日時 : {{ readable_datetime }}
-通貨 : {{ order_dict.pair }}
-売買 : {{ order_dict.side }}
-注文 : {{ order_dict.type }}
-数量 : {{ order_dict.start_amount }}
-平均価格 : {{ order_dict.average_price }}
+通貨 : {{ order.pair }}
+売買 : {{ order.side }}
+注文 : {{ order.type }}
+数量 : {{ order.start_amount }}
+平均価格 : {{ order.average_price }}
 
 管理者

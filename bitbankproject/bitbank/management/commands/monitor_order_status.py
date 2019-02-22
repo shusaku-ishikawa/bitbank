@@ -7,10 +7,66 @@ import python_bitbankcc
 from django.core.management.base import BaseCommand
 from django.template.loader import get_template
 
-from ...models import Order, User
+from ...models import Order, BitbankOrder, User
 
 
 # BaseCommandを継承して作成
+def notify_user(user, order_obj):
+    readable_datetime = datetime.fromtimestamp(int(int(order_obj.ordered_at) / 1000))
+    context = { "user": user, "order": order_obj, 'readable_datetime': readable_datetime }
+    subject = get_template('bitbank/mail_template/fill_notice/subject.txt').render(context)
+    message = get_template('bitbank/mail_template/fill_notice/message.txt').render(context)
+    user.email_user(subject, message)
+    logger.info('notice sent to:' + user.email_for_notice)
+
+def get_status(prv, order_obj):
+    ret = prv.get_order(
+        order_obj.pair, 
+        order_obj.order_id
+    )
+    order_obj.remaining_amount = ret.get('remaining_amount')
+    order_obj.executed_amount = ret.get('executed_amount')
+    order_obj.average_price = ret.get('average_price')
+    status = ret.get('status')
+    order_obj.status = status
+    order_obj.save()
+    return status
+
+def cancel_order(prv, order_obj):
+    try:
+        ret = prv.cancel_order(
+            order_obj.pair, # ペア
+            order_obj.order_id # 注文ID
+        )
+        order_obj.remaining_amount = ret.get('remaining_amount')
+        order_obj.executed_amount = ret.get('executed_amount')
+        order_obj.average_price = ret.get('average_price')
+        order_obj.status = status
+        order_obj.save()
+        return True
+    except Exception as e:
+        return False
+
+def place_order(prv, order_obj):
+    try:
+        ret = prv.order(
+            order_obj.pair, # ペア
+            order_obj.price, # 価格
+            order_obj.start_amount, # 注文枚数
+            order_obj.side, # 注文サイド
+            'market' if order_obj.order_type.find("market") > -1 else 'limit' # 注文タイプ
+        )
+        order_obj.remaining_amount = ret.get('remaining_amount')
+        order_obj.executed_amount = ret.get('executed_amount')
+        order_obj.average_price = ret.get('average_price')
+        order_obj.status = ret.get('status')
+        order_obj.ordered_at = ret.get('ordered_at')
+        order_obj.save()
+    except Exception as e:
+        order_obj.status = BitbankOrder.STATUS_FAILED_TO_ORDER
+        order_obj.save()
+
+
 class Command(BaseCommand):
     # python manage.py help count_entryで表示されるメッセージ
     help = '注文のステータスを更新します'
@@ -35,38 +91,56 @@ class Command(BaseCommand):
                     except Exception as e:
                         logger.error('user:' + user.email + ' message: ' +  str(e.args))
                         continue
+                active_orders = Order.objects.filter(is_active=True)
+                logger.info(str(active_orders))
+                for order in active_orders:
+                    o_1 = order.order_1
+                    o_2 = order.order_2
+                    o_3 = order.order_3
 
-                    # 通貨ペアをイテレーション
-                    for pair in Order.PAIR:
-                        orders_by_pair = Order.objects.filter(pair=pair).filter(status__in=[Order.STATUS_UNFILLED, Order.STATUS_PARTIALLY_FILLED]).exclude(order_id__isnull=True)
-                        # オーダが存在する通貨のみ処理
+                    # Order#1が存在し、未約定の場合
+                    if o_1 != None and o_1.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
+                        status = get_status(prv, o_1)
+                        logger.info('o_1 found ' + str(o_1.order_id) + ' status:' + status)
+
+                        if status == BitbankOrder.STATUS_FULLY_FILLED: 
+                            if o_2 != None:
+                                place_order(prv, order.pair, o_2)
+            
+                            if o_3 != None:
+                                place_order(prv, order.pair, o_3)
+
+                            if user.notify_if_filled == 'ON':
+                                # 約定通知メール
+                                notify_user(user, order.pair, o_1)
+
+                    if o_2 != None and o_2.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
+                        status = get_status(prv, o_2)
+                        if status  == BitbankOrder.STATUS_FULLY_FILLED:
+                            # order_3のキャンセル
+                            cancel_order(prv, o_3)
+                            if user.notify_if_filled == 'ON':
+                                # 約定通知メール
+                                notify_user(user, order.pair, o_2)
+                    if o_3 != None and o_3.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
+                        status = get_status(prv, o_3)
+                        if status  == BitbankOrder.STATUS_FULLY_FILLED:
+                            # order_2のキャンセル
+                            cancel_order(prv, o_2)
+                            if user.notify_if_filled == 'ON':
+                                # 約定通知メール
+                                notify_user(user, o_3)
+                    if (o_1 == None or o_1.status in {BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED, BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER}) \
+                        and (o_2 == None or o_2.status in {BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED, BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER}) \
+                        and (o_3 == None or o_3.status in {BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED, BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER}):
+                        order.is_active = False
+
+                    order.save()
+
+                             
                     
-                        for order in orders_by_pair:
-                            try:
-                                ret = prv.get_order(
-                                    pair, 
-                                    order.order_id
-                                )
-                            
-                                remaining_amount = ret.get('remaining_amount')
-                                executed_amount = ret.get('executed_amount')
-                                average_price = ret.get('average_price')
-                                status = ret.get('status')
-                                # 約定通知がONのユーザで約定があった場合
-                                if status == Order.STATUS_FULLY_FILLED and user.notify_if_filled == 'ON':
-                                    # 約定通知メール
-                                    readable_datetime = datetime.fromtimestamp(int(int(ret['ordered_at']) / 1000))
-                                    context = { "user": user, "order_dict": ret, 'readable_datetime': readable_datetime }
-                                    subject = get_template('bitbank/mail_template/fill_notice/subject.txt').render(context)
-                                    message = get_template('bitbank/mail_template/fill_notice/message.txt').render(context)
-                                    user.email_user(subject, message)
-                                    logger.info('notice sent to:' + user.email_for_notice)
-                                order.remaining_amount = remaining_amount
-                                order.executed_amount = executed_amount
-                                order.average_price = average_price
-                                order.status = status
-                                order.save()
-                            except Exception as e:
-                                logger.error('user:' + user.email + ' pair: ' + pair + ' order id: ' + order.order_id + ' error: ' + str(e.args))
-                                continue
+
+
+
+
         logger.info('completed')

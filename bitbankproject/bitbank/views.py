@@ -30,8 +30,9 @@ from django.contrib.auth import authenticate
 from django.core.mail import send_mail, EmailMultiAlternatives
 from .forms import (LoginForm, MyPasswordChangeForm, MyPasswordResetForm,
                     MySetPasswordForm, UserCreateForm, UserUpdateForm)
-from .models import User, Alert, Order, Inquiry, Attachment
+from .models import User, Alert, Order, BitbankOrder, Inquiry, Attachment
 from django.conf import settings
+from .serializer import BitbankOrderSerializer, OrderSerializer
 
 # User = get_user_model()
 
@@ -294,6 +295,78 @@ def ajax_assets(request):
 
         return JsonResponse(res_dict)
 
+def process_order(user, order_obj, order_params, which_order, is_ready):
+    pair = order_params.get('pair')
+    side = order_params.get('side')
+    order_type = order_params.get('order_type')
+    price = None if order_params.get('price') == '' else order_params.get('price')
+    price_for_stop = None if order_params.get('price_for_stop') == '' else order_params.get('price_for_stop')
+    start_amount = order_params.get('start_amount')
+    
+    if start_amount == '' or start_amount == '0':
+        return {'error': '数量は必須です'}
+
+    order_id = None
+
+    if is_ready:
+        status = BitbankOrder.STATUS_READY_TO_ORDER
+    else:
+        status = BitbankOrder.STATUS_WAIT_OTHER_ORDER_TO_FILL
+
+    ordered_at = None
+    
+    if order_type in {BitbankOrder.TYPE_LIMIT, BitbankOrder.TYPE_STOP_LIMIT} and price == None:
+        return {'error': '価格は必須です'}
+    
+    if order_type in {BitbankOrder.TYPE_STOP_MARKET, BitbankOrder.TYPE_STOP_LIMIT} and price_for_stop == None:
+        return {'error': '発動価格は必須です'}
+
+    err_message = ''
+    if order_type in {BitbankOrder.TYPE_MARKET, BitbankOrder.TYPE_LIMIT} and is_ready:       
+        try:
+            res_dict = python_bitbankcc.private(user.api_key, user.api_secret_key).order(
+                pair,
+                price,
+                start_amount,
+                side,
+                order_type
+            )
+            status = res_dict.get('status')
+            order_id = res_dict.get('order_id')
+            ordered_at = res_dict.get('ordered_at')
+
+        except Exception as e:
+            status = BitbankOrder.STATUS_FAILED_TO_ORDER
+            order_id = None
+            ordered_at = None
+            err_message = e.args
+    
+    new_bitbank_order = BitbankOrder()
+    new_bitbank_order.pair = pair
+    new_bitbank_order.side = side
+    new_bitbank_order.order_type = order_type
+    new_bitbank_order.price = price
+    new_bitbank_order.price_for_stop = price_for_stop
+    new_bitbank_order.start_amount = start_amount
+    new_bitbank_order.order_id = order_id
+    new_bitbank_order.status = status
+    new_bitbank_order.ordered_at = ordered_at
+    new_bitbank_order.save()
+
+    order_obj.user = user
+    order_obj.pair = pair
+    order_obj.special_order = special_order
+    
+    if which_order == 'order_1':
+        order_obj.order_1 = new_bitbank_order
+    elif which_order == 'order_2':
+        order_obj.order_2 = new_bitbank_order
+    elif which_order == 'order_3':
+        order_obj.order_3 = new_bitbank_order
+
+    order_obj.save()
+    return {'success': True}
+
 def ajax_orders(request):
     if request.user.is_anonymous:
         return JsonResponse({'error' : 'authentication failed'}, status=401)
@@ -304,36 +377,36 @@ def ajax_orders(request):
     if method == 'GET': 
         print(request.GET.get('type'))
         if request.GET.get('type') == 'active':
-            try:
-                offset = int(request.GET.get('offset'))
-                to = int(request.GET.get('limit')) + offset
-                search_pair = request.GET.get('pair')
+           
+            offset = int(request.GET.get('offset'))
+            to = int(request.GET.get('limit')) + offset
+            search_pair = request.GET.get('pair')
 
-                if search_pair == "all":
-                    active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER']).order_by('-pk')
-                else:
-                    active_orders = Order.objects.filter(user=user).filter(status__in=['UNFILLED', 'PARTIALLY_FILLED', 'READY_TO_ORDER']).filter(pair=search_pair).order_by('-pk')
+            if search_pair == "all":
+                active_orders = Order.objects.filter(user=user).filter(is_active = True).order_by('-pk')
+            
+            else:
+                active_orders = Order.objects.filter(user=user).filter(is_active = True).filter(pair=search_pair).order_by('-pk')
 
-                data = {
-                    'total_count': active_orders.count(),
-                    'active_orders': serializers.serialize('json', active_orders[offset:to])
-                }
-                return JsonResponse(data)
-            except Exception as e:
-                return JsonResponse({'error': e.args})
+            data = {
+                'total_count': active_orders.count(),
+                'data': OrderSerializer(active_orders[offset:to], many=True ).data
+            }
+            return JsonResponse(data)
+           
         elif request.GET.get('type') == 'history':
             try:
                 offset = int(request.GET.get('offset'))
                 to = int(request.GET.get('limit')) + offset
                 search_pair = request.GET.get('pair')
                 if search_pair == 'all':
-                    order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED']).order_by('-pk')
+                    order_history = Order.objects.filter(user=user).filter(is_active = False).order_by('-pk')
                 else:
-                    order_history = Order.objects.filter(user=user).filter(order_id__isnull=False).filter(status__in=['FULLY_FILLED', 'CANCELED_UNFILLED', 'PARTIALLY_CANCELED']).filter(pair=search_pair).order_by('-pk')
+                    order_history = Order.objects.filter(user=user).filter(is_active = False).filter(pair=search_pair).order_by('-pk')
                 
                 data = {
                     'total_count': order_history.count(),
-                    'order_history': serializers.serialize('json', order_history[offset:to])
+                    'data': OrderSerializer(order_history[offset:to], many=True).data
                 }
                 return JsonResponse(data)
             except Exception as e:
@@ -350,65 +423,20 @@ def ajax_orders(request):
                 }
                 return JsonResponse(res)
             
-            logger = logging.getLogger('transaction_logger')
-            logger.info('transaction start')
             user = request.user
             pair = request.POST.get('pair')
             special_order = request.POST.get('special_order')
 
+            new_order = Order()
             if special_order == 'SINGLE':
-                side = request.POST.get('side')
-                order_type = request.POST.get('order_type')
-                price = None if request.POST.get('price') == '' else request.POST.get('price')
-                price_for_stop = None if request.POST.get('price_for_stop') == '' else request.POST.get('price_for_stop')
-                start_amount = request.POST.get('start_amount')
-                
-                if start_amount == '' or start_amount == '0':
-                    return JsonResponse({'error': '数量は必須です'})
+                result = process_order(user, new_order, json.loads(request.POST.get()), 'order_1', True)
+                return JsonResponse(result)
 
-                order_id = None
-                status = 'READY_TO_ORDER'
-                ordered_at = None
-                
-                if order_type in {Order.TYPE_LIMIT, Order.TYPE_STOP_LIMIT} and price == None:
-                    return JsonResponse({'error': '価格は必須です'})
-                
-                if order_type in {Order.TYPE_STOP_MARKET, Order.TYPE_STOP_LIMIT} and price_for_stop == None:
-                    return JsonResponse({'error': '発動価格は必須です'})
+            elif special_order == 'IFD':
+                result = process_order_1(json.loads(request.POST.get('order_1')))
+                if 'success' in result:
 
-                if order_type in {Order.TYPE_MARKET, Order.TYPE_LIMIT}:       
-                    try:
-                        res_dict = python_bitbankcc.private(request.user.api_key, request.user.api_secret_key).order(
-                            pair,
-                            price,
-                            start_amount,
-                            side,
-                            order_type
-                        )
-                        status = res_dict.get('status')
-                        order_id = res_dict.get('order_id')
-                        ordered_at = res_dict.get('ordered_at')
-
-                    except Exception as e:
-                        traceback.print_exc()
-                        logger.error(e.args)
-                        return JsonResponse({'error': e.args})
-                
-                new_order = Order()
-                new_order.user = user
-                new_order.pair = pair
-                new_order.special_order = special_order
-                new_order.side = side
-                new_order.order_type = order_type
-                new_order.price = price
-                new_order.price_for_stop = price_for_stop
-                new_order.start_amount = start_amount
-                new_order.order_id = order_id
-                new_order.status = status
-                new_order.ordered_at = ordered_at
-                new_order.save()
-                return JsonResponse({'success': '注文が完了しました。'})
-            else:
+            else
                 return JsonResponse({'error': '特殊注文は未対応です'})
         elif op == 'DELETE':
             pk = request.POST.get("pk")
@@ -483,8 +511,7 @@ def ajax_inquiry(request):
     if request.user.is_anonymous:
         return JsonResponse({'error': 'authentication failed'}, status=401)
 
-    if request.method == 'POST':
-        
+    if request.method == 'POST':       
         try:
             new_inquiry = Attachment()
             new_inquiry.file = request.FILES['attachment']
