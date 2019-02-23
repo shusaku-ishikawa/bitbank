@@ -4,7 +4,7 @@ from django.contrib.auth.forms import (AuthenticationForm, PasswordChangeForm,
                                        PasswordResetForm, SetPasswordForm,
                                        UserCreationForm)
 
-from .models import Alert, Order, Inquiry
+from .models import Alert, OrderRelation, Inquiry
 
 User = get_user_model()
 

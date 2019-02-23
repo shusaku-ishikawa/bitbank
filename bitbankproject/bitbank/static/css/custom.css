@@ -173,9 +173,6 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     /* font-size: 2vmin; */
 }
 
-hr {
-    background: transparent;
-}
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -212,16 +209,19 @@ hr {
     border-top: none;
   }
  
-  div.attachment_preview {
+  figure.attachment_preview {
       height : 10em;
       width: 8em;
       padding: 0.5em 0.5em;
+      margin-bottom: 3em;
   }
-  div.attachment_preview > img {
+  figure.attachment_preview > img {
       width: 100%;
       height: auto;
   }
- 
+ figure > figcaption {
+     font-size: 0.5em;
+ }
   div > ul.pagination > li.page-item > a.page-link{
     background: #333333 !important;
     color: white !important;

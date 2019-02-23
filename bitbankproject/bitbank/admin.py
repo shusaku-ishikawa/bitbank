@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.utils.translation import ugettext_lazy as _
-from .models import User, Order, BitbankOrder, Alert, Inquiry
+from .models import User, OrderRelation, BitbankOrder, Alert, Inquiry
 # from django.contrib.auth import get_user_model
 
 # User = get_user_model()
@@ -40,7 +40,7 @@ class MyUserAdmin(UserAdmin):
 
     ordering = ('remaining_days',)
 
-class MyOrderAdmin(admin.ModelAdmin):
+class MyOrderRelationAdmin(admin.ModelAdmin):
     list_display = ('user', 'pair', 'special_order', 'order_1', 'order_2', 'order_3', 'placed_at', 'is_active')
 class MyBitbankOrderAdmin(admin.ModelAdmin):
     list_display = ('pair', 'side', 'order_type', 'price', 'start_amount', 'remaining_amount', 'executed_amount', 'status')
@@ -52,7 +52,7 @@ class MyInquiryAdmin(admin.ModelAdmin):
     list_display = ('user', 'date_initiated', 'subject', 'body', 'email_for_reply')
 
 admin.site.register(User, MyUserAdmin)
-admin.site.register(Order, MyOrderAdmin)
+admin.site.register(OrderRelation, MyOrderRelationAdmin)
 admin.site.register(BitbankOrder, MyBitbankOrderAdmin)
 
 admin.site.register(Alert, MyAlertAdmin)

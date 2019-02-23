@@ -142,6 +142,7 @@ class BitbankOrder(models.Model):
     STATUS_WAIT_OTHER_ORDER_TO_FILL = "WAIT_OTHER_ORDER_TO_FILL"
     STATUS_FAILED_TO_ORDER = 'FAILED_TO_ORDER'
 
+   
     pair = models.CharField(
         verbose_name = _('通貨'),
         max_length = 50,
@@ -211,7 +212,13 @@ class BitbankOrder(models.Model):
         null = True,
         max_length = 50,
     )
-
+    error_message = models.CharField(
+        verbose_name = 'エラー内容',
+        max_length = 50,
+        default = None,
+        null = True,
+        blank = True
+    )
     order_id = models.CharField(
         verbose_name = _('取引ID'),
         max_length = 50,
@@ -233,7 +240,7 @@ class BitbankOrder(models.Model):
         auto_now = True,
     )
 
-class Order(models.Model):
+class OrderRelation(models.Model):
     class Meta:
         verbose_name = "注文"
         verbose_name_plural = "注文"
@@ -271,6 +278,7 @@ class Order(models.Model):
         verbose_name = '新規注文',
         related_name = 'new_order',
         null = True,
+        blank = True,
         on_delete = models.CASCADE
     )
     order_2 = models.ForeignKey(
@@ -278,6 +286,7 @@ class Order(models.Model):
         verbose_name = '決済注文1',
         related_name = 'settle_order_1',
         null = True,
+        blank = True,
         on_delete = models.CASCADE
     )
     order_3 = models.ForeignKey(
@@ -285,6 +294,7 @@ class Order(models.Model):
         verbose_name = '決済注文2',
         related_name = 'settle_order_2',
         null = True,
+        blank = True,
         on_delete = models.CASCADE
     )
     placed_at = models.DateTimeField(
