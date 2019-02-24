@@ -8524,3 +8524,355 @@
 [INFO]	asctime:2019-02-23 23:04:23,551	module:monitor_order_status	message:<QuerySet []>
 [INFO]	asctime:2019-02-23 23:04:24,567	module:monitor_order_status	message:<QuerySet []>
 [INFO]	asctime:2019-02-23 23:04:25,577	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:38,421	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 12:19:39,444	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (10)>, <OrderRelation: OrderRelation object (11)>]>
+[INFO]	asctime:2019-02-24 12:19:39,806	module:monitor_order_status	message:o_1 found 561381611 status:CANCELED_UNFILLED
+[INFO]	asctime:2019-02-24 12:19:40,081	module:monitor_order_status	message:o_1 found 561392924 status:CANCELED_UNFILLED
+[INFO]	asctime:2019-02-24 12:19:41,098	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:42,113	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:43,122	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:44,136	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:45,151	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:46,162	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:47,178	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:48,188	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:49,199	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:50,212	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:51,224	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:52,239	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:53,259	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:54,271	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:55,283	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:56,296	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:57,334	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:58,344	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:19:59,355	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:00,370	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:01,383	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:02,397	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:03,413	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:04,426	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:05,441	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:06,456	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:07,471	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:08,486	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:09,499	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:10,513	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:11,528	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:12,543	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:13,558	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:14,569	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:15,581	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:16,596	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:17,611	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:18,621	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:19,632	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:20,647	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:21,663	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:22,677	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:23,692	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:24,707	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:25,717	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:26,729	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:27,743	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:28,758	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:29,772	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:30,784	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:31,795	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:32,806	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:33,814	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:34,825	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 12:20:35,831	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-24 12:32:10,843	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 12:32:35,812	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 12:33:35,532	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 19:52:01,380	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 19:52:01,380	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 19:52:02,473	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (13)>]>
+[INFO]	asctime:2019-02-24 19:52:02,842	module:monitor_order_status	message:o_1 found 561465497 status:FULLY_FILLED
+[INFO]	asctime:2019-02-24 19:52:03,875	module:_util	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-24 19:52:04,944	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:05,974	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:07,051	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:08,134	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:09,162	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:10,243	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:11,323	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:12,402	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:13,477	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:14,553	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:15,630	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:16,680	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:17,745	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:18,815	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:19,897	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:20,968	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:22,051	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:23,134	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (14)>]>
+[INFO]	asctime:2019-02-24 19:52:23,444	module:monitor_order_status	message:o_1 found 561474185 status:UNFILLED
+[INFO]	asctime:2019-02-24 19:52:24,517	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (14)>]>
+[INFO]	asctime:2019-02-24 19:52:24,845	module:monitor_order_status	message:o_1 found 561474185 status:FULLY_FILLED
+[INFO]	asctime:2019-02-24 19:52:26,247	module:_util	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-02-24 19:52:27,331	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:28,403	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:29,485	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:30,571	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:31,639	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:32,705	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:33,771	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:34,855	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:35,925	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:37,010	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:38,090	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:39,149	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:40,227	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:41,307	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:42,341	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:43,423	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:44,474	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:45,526	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:46,608	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:47,644	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:48,710	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:49,793	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:50,828	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:51,872	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:52,957	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:54,027	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:55,105	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:56,190	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:57,211	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:58,256	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:52:59,328	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-24 19:53:01,056	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 19:53:01,290	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 19:53:01,293	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 19:53:02,375	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:03,403	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:04,469	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:05,546	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:06,570	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:07,594	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:08,676	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:09,762	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:10,843	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:11,905	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:12,984	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:14,064	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:15,149	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:16,233	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:17,291	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:18,363	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:19,447	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:20,458	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:21,534	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:22,602	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:23,615	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:24,681	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:25,707	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:26,717	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:27,785	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:28,794	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:29,808	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:30,853	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:31,930	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:32,979	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:33,987	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 19:53:35,062	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:36,158	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:37,247	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:38,302	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:39,396	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:40,486	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:41,565	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:42,657	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:43,716	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:44,800	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:45,888	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:46,917	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:48,008	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:49,071	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:50,145	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:51,242	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:52,292	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:53,388	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:54,427	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:55,517	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:56,614	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:57,710	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:53:58,792	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-24 19:54:00,572	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 19:54:01,418	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 19:54:01,418	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 19:54:02,462	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:03,556	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:04,627	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:05,704	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:06,801	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:07,899	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:08,953	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:10,032	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:11,106	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:12,201	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:13,294	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:14,391	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:15,457	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:16,537	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:17,625	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:18,689	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:19,718	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:20,738	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:21,814	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:22,892	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:23,982	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:25,080	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:26,116	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:27,201	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:28,285	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:29,344	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:30,438	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:31,525	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:32,548	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:33,580	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:34,653	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:35,757	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:36,853	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:37,946	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:38,969	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:40,041	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:41,065	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:42,089	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:43,108	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:44,126	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:45,222	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:46,321	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:47,423	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:48,519	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:49,611	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:50,640	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:51,705	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:52,734	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:53,787	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:54,883	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:55,975	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:57,068	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:58,106	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 19:54:59,195	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-24 19:55:00,794	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:00:12,114	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:00:13,136	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:14,165	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:15,194	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:16,223	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:17,249	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:18,275	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:19,297	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:20,325	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:21,351	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:22,377	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:23,408	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:24,434	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (15)>]>
+[INFO]	asctime:2019-02-24 20:00:25,462	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:26,473	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:27,485	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:28,496	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:29,509	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:30,524	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:31,536	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:32,545	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:33,557	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:34,569	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:35,581	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:36,598	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:37,609	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:38,624	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:39,639	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:40,655	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:41,673	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:42,690	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:43,702	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:44,715	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:45,731	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:46,742	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:47,756	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:48,774	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:49,785	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:50,797	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:51,808	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:52,824	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:53,838	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:00:54,852	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (16)>]>
+[INFO]	asctime:2019-02-24 20:00:56,212	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (16)>]>
+[INFO]	asctime:2019-02-24 20:00:57,608	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (16)>]>
+[INFO]	asctime:2019-02-24 20:00:58,946	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (16)>]>
+[INFO]	asctime:2019-02-24 20:01:00,277	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (16)>]>
+[INFO]	asctime:2019-02-24 20:01:00,612	module:monitor_order_status	message:o_1 found 561475579 status:UNFILLED
+[INFO]	asctime:2019-02-24 20:01:01,625	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (16)>]>
+[INFO]	asctime:2019-02-24 20:01:02,064	module:monitor_order_status	message:o_1 found 561475579 status:UNFILLED
+[INFO]	asctime:2019-02-24 20:01:03,075	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (16)>]>
+[INFO]	asctime:2019-02-24 20:01:03,419	module:monitor_order_status	message:o_1 found 561475579 status:UNFILLED
+[INFO]	asctime:2019-02-24 20:01:04,438	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (16)>]>
+[INFO]	asctime:2019-02-24 20:01:04,711	module:monitor_order_status	message:o_1 found 561475579 status:CANCELED_UNFILLED
+[INFO]	asctime:2019-02-24 20:01:05,727	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:01:06,743	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:01:07,758	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:01:08,771	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:01:09,774	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-24 20:02:15,766	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:02:16,784	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (17)>]>
+[INFO]	asctime:2019-02-24 20:02:17,474	module:monitor_order_status	message:o_1 found 561475676 status:FULLY_FILLED
+[INFO]	asctime:2019-02-24 20:02:18,491	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:19,504	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:20,519	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:21,535	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:22,546	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:23,555	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:24,566	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:25,581	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:26,595	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:27,610	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:28,625	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:29,639	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:30,651	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:31,666	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:32,706	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:33,725	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:34,738	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:35,746	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:36,755	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:37,769	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:38,779	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:39,789	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:40,804	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:41,814	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:42,829	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:43,843	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:44,854	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:45,866	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:46,880	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:47,890	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:48,902	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:49,920	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:50,932	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:51,944	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:52,959	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:53,974	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:54,986	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:56,005	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:57,018	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:58,029	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:02:59,039	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:00,051	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:01,060	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:02,073	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:03,085	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:04,099	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:05,111	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:06,126	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:07,137	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:08,149	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:09,160	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:10,176	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:11,191	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:12,203	module:monitor_order_status	message:<QuerySet []>
+[INFO]	asctime:2019-02-24 20:03:13,211	module:monitor_order_status	message:completed

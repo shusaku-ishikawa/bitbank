@@ -7,8 +7,8 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.template.loader import get_template
 
-from ...models import Order,BitbankOrder, User, Alert
-
+from ...models import OrderRelation,BitbankOrder, User, Alert
+from ... import _util
 
 # BaseCommandを継承して作成
 class Command(BaseCommand):
@@ -41,7 +41,7 @@ class Command(BaseCommand):
                     continue
 
                 # 通貨ペアをイテレーション
-                for pair in Order.PAIR:
+                for pair in OrderRelation.PAIR:
                     # Tickerの取得
                     try:
                         ticker_dict = pub.get_ticker(pair)
@@ -70,7 +70,7 @@ class Command(BaseCommand):
                             logger.error('user:' + user.email + ' pair:' + pair + ' alert:' + str(alert.pk) + ' error:' + str(e.args))
 
                     # 逆指値の注文取得
-                    stop_market_orders_by_pair = BitbankOrder.objects.filter(pair=pair).filter(order_type=BitbankOrder.TYPE_STOP_MARKET).filter(order_id__isnull=True).filter(status__in=[BitbankOrder.STATUS_READY_TO_ORDER])
+                    stop_market_orders_by_pair = BitbankOrder.objects.filter(user=user).filter(pair=pair).filter(order_type=BitbankOrder.TYPE_STOP_MARKET).filter(order_id__isnull=True).filter(status__in=[BitbankOrder.STATUS_READY_TO_ORDER])
                     
                     # 各注文を処理
                     for stop_market_order in stop_market_orders_by_pair:
@@ -79,26 +79,10 @@ class Command(BaseCommand):
                         if (stop_market_order.side == 'sell' and (float(ticker_dict.get('sell')) <= stop_market_order.price_for_stop)) or \
                             (stop_market_order.side == 'buy' and (float(ticker_dict.get('buy')) >= stop_market_order.price_for_stop)):
                             # 成行で売り注文
-                            try:
-                                res_dict = prv.order(
-                                    pair, # ペア
-                                    stop_market_order.price, # 価格
-                                    stop_market_order.start_amount, # 注文枚数
-                                    stop_market_order.side, # 注文サイド
-                                    'market' # 注文タイプ
-                                )
-                                stop_market_order.order_id = res_dict.get('order_id')
-                                stop_market_order.ordered_at = res_dict.get('ordered_at')
-                                stop_market_order.status = res_dict.get('status')     
-                                stop_market_order.save() 
-                            except Exception as e:
-                                stop_market_order.status = BitbankOrder.STATUS_FAILED_TO_ORDER
-                                stop_market_order.save()
-                                logger.error('user:' + user.email + 'pair:' + pair + ' pk:' + str(stop_market_order.pk) + ' error: ' +  str(e.args))
-                                continue
+                            _util.place_order(prv, stop_market_order)
 
                     # ストップリミットの注文取得
-                    stop_limit_orders_by_pair = BitbankOrder.objects.filter(pair=pair).filter(order_type=BitbankOrder.TYPE_STOP_LIMIT).filter(order_id__isnull=True).filter(status__in=[BitbankOrder.STATUS_READY_TO_ORDER])
+                    stop_limit_orders_by_pair = BitbankOrder.objects.filter(user=user).filter(pair=pair).filter(order_type=BitbankOrder.TYPE_STOP_LIMIT).filter(order_id__isnull=True).filter(status__in=[BitbankOrder.STATUS_READY_TO_ORDER])
                     
                     # 各注文を処理
                     for stop_limit_order in stop_limit_orders_by_pair:
@@ -106,22 +90,6 @@ class Command(BaseCommand):
                         
                         if (stop_limit_order.side == 'sell' and (float(ticker_dict.get('sell')) <= stop_limit_order.price_for_stop)) or \
                             (stop_limit_order.side == 'buy' and (float(ticker_dict.get('buy')) >= stop_limit_order.price_for_stop)):
-                            try:
-                                res_dict = prv.order(
-                                    pair, # ペア
-                                    stop_limit_order.price, # 価格
-                                    stop_limit_order.start_amount, # 注文枚数
-                                    stop_limit_order.side, # 注文サイド
-                                    'limit' # 注文タイプ
-                                )
-                                stop_limit_order.order_id = res_dict.get('order_id')
-                                stop_limit_order.ordered_at = res_dict.get('ordered_at')
-                                stop_limit_order.status = res_dict.get('status')
-                                stop_limit_order.save()
-                            except:
-                                stop_limit_order.status = BitbankOrder.STATUS_FAILED_TO_ORDER
-                                stop_limit_order.save()
-                                logger.error('user:' + user.email + 'pair:' + pair + ' pk:' + str(stop_market_order.pk) + ' error: ' +  str(e.args))
-                                continue
+                            _util.place_order(prv, stop_limit_order)
         logger.info('completed')  
           

@@ -44,7 +44,7 @@ def cancel_order(prv, order_obj):
         order_obj.remaining_amount = ret.get('remaining_amount')
         order_obj.executed_amount = ret.get('executed_amount')
         order_obj.average_price = ret.get('average_price')
-        order_obj.status = status
+        order_obj.status = ret.get('status')
         order_obj.save()
         return True
     except:

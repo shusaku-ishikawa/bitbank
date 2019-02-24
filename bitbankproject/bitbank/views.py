@@ -261,7 +261,6 @@ def ajax_ticker(request):
     if request.user.is_anonymous:
         return JsonResponse({'error' : 'authentication failed'}, status=401)
     if request.method == 'GET':
-        user = request.user
         pair = request.GET.get('pair')
         try:
             pub = python_bitbankcc.public()
@@ -308,8 +307,10 @@ def validate_input(obj):
 
     return {'success': True}
 
-def process_order(prv, order_params, is_ready):
+def process_order(user, order_params, is_ready):
+    prv = python_bitbankcc.private(user.api_key, user.api_secret_key)
     new_bitbank_order = BitbankOrder()
+    new_bitbank_order.user = user
     new_bitbank_order.pair = order_params.get('pair')
     new_bitbank_order.side = order_params.get('side')
     new_bitbank_order.order_type = order_params.get('order_type')
@@ -334,8 +335,8 @@ def ajax_orders(request):
         return JsonResponse({'error' : 'authentication failed'}, status=401)
 
     user = request.user
+    prv = python_bitbankcc.private(user.api_key, user.api_secret_key)
     method = request.method
-    print(method)
     if method == 'GET': 
         print(request.GET.get('type'))
         if request.GET.get('type') == 'active':
@@ -362,9 +363,9 @@ def ajax_orders(request):
                 to = int(request.GET.get('limit')) + offset
                 search_pair = request.GET.get('pair')
                 if search_pair == 'all':
-                    order_history = BitbankOrder.objects.filter(new_order__user=user).filter(status__in=[BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER]).order_by('-pk')
+                    order_history = BitbankOrder.objects.filter(user=user).filter(status__in=[BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER]).order_by('-pk')
                 else:
-                    order_history = BitbankOrder.objects.filter(new_order__user=user).filter(status__in=[BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER]).filter(pair=search_pair).order_by('-pk')
+                    order_history = BitbankOrder.objects.filter(user=user).filter(status__in=[BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER]).filter(pair=search_pair).order_by('-pk')
                 
                 data = {
                     'total_count': order_history.count(),
@@ -382,8 +383,9 @@ def ajax_orders(request):
             return JsonResponse(res)
         op = request.POST.get('method')
         
-        prv = python_bitbankcc.private(user.api_key, user.api_secret_key)
+        
         if op == 'POST':
+
             pair = request.POST.get('pair')
             special_order = request.POST.get('special_order')
             
@@ -397,7 +399,7 @@ def ajax_orders(request):
                 new_order.user = user
                 new_order.pair = pair
                 new_order.special_order = special_order
-                o_1 = process_order(prv, params_1, True)
+                o_1 = process_order(user, params_1, True)
                 if o_1.status == BitbankOrder.STATUS_FAILED_TO_ORDER:
                     new_order = None
                     return JsonResponse({'error': o_1.error_message})
@@ -420,13 +422,13 @@ def ajax_orders(request):
                 new_order.user = user
                 new_order.pair = pair
                 new_order.special_order = special_order
-                o_1 = process_order(prv, params_1, True)
+                o_1 = process_order(user, params_1, True)
                 new_order.order_1 = o_1
                 if o_1.status == BitbankOrder.STATUS_FAILED_TO_ORDER:
                     return JsonResponse({'error': True})
                 
 
-                o_2 = process_order(prv, params_2, False)
+                o_2 = process_order(user, params_2, False)
                 new_order.order_2 = o_2
                 if o_2.status == BitbankOrder.STATUS_FAILED_TO_ORDER:
                     _util.cancel_order(prv, o_1)
@@ -451,12 +453,12 @@ def ajax_orders(request):
                 new_order.user = user
                 new_order.pair = pair
                 new_order.special_order = special_order
-                o_2 = process_order(prv, params_2, False)
+                o_2 = process_order(user, params_2, True)
                 new_order.order_2 = o_2
                 if o_2.status == BitbankOrder.STATUS_FAILED_TO_ORDER:
                     return JsonResponse({'error': o_2.error_message})
                 
-                o_3 = process_order(prv, params_3, False)
+                o_3 = process_order(user, params_3, True)
                 new_order.order_3 = o_3
                 if o_3.status == BitbankOrder.STATUS_FAILED_TO_ORDER:
                     _util.cancel_order(prv, o_2)
@@ -485,17 +487,17 @@ def ajax_orders(request):
                 new_order.pair = pair
                 new_order.special_order = special_order
 
-                o_1 = process_order(prv, params_1, True)
+                o_1 = process_order(user, params_1, True)
                 new_order.order_1 = o_1
                 if o_1.status == BitbankOrder.STATUS_FAILED_TO_ORDER:
                     return JsonResponse({'error': o_1.error_message})
                 
-                o_2 = process_order(prv, params_2, False)
+                o_2 = process_order(user, params_2, False)
                 new_order.order_2 = o_2
                 if o_2.status == BitbankOrder.STATUS_FAILED_TO_ORDER:
                     return JsonResponse({'error': o_2.error_message})
                 
-                o_3 = process_order(prv, params_3, False)
+                o_3 = process_order(user, params_3, False)
                 new_order.order_3 = o_3
                 if o_3.status == BitbankOrder.STATUS_FAILED_TO_ORDER:
                     _util.cancel_order(prv, o_2)
@@ -507,55 +509,56 @@ def ajax_orders(request):
         elif op == 'DELETE':
             pk = request.POST.get("pk")
             
-            try:
-                cancel_succeeded = True
-                subj_order = BitbankOrder.objects.filter(pk = pk).get()
-                if subj_order.order_id != None:
-                    cancel_succeeded = _util.cancel_order(prv, subj_order)
-                else:
-                    # 未発注の場合はステータスをキャンセル済みに変更
-                    subj_order.status = 'CANCELED_UNFILLED'
-                    subj_order.save()
-                if cancel_succeeded:
-                    if OrderRelation.objects.filter(order_1 = subj_order).count() > 0:
-                        relation = OrderRelation.objects.get(order_1 = subj_order)
-                        relation.is_active = False
+            cancel_succeeded = True
+            subj_order = BitbankOrder.objects.filter(pk = pk).get()
+            if subj_order.order_id != None:
+                cancel_succeeded = _util.cancel_order(prv, subj_order)
+            else:
+                # 未発注の場合はステータスをキャンセル済みに変更
+                subj_order.status = 'CANCELED_UNFILLED'
+                subj_order.save()
+            if cancel_succeeded:
+                
+                if OrderRelation.objects.filter(order_1 = subj_order).count() > 0:
+                    relation = OrderRelation.objects.get(order_1 = subj_order)
+                    relation.is_active = False
 
-                    elif OrderRelation.objects.filter(order_2 = subj_order).count() > 0:
-                        relation = OrderRelation.objects.get(order_2 = subj_order)
-                        # IFD
-                        if relation.order_3 == None:
-                            relation.order_2 = None
-                            relation.special_order = 'SINGLE'
-                        # OCO
-                        elif relation.order_1 == None:
-                            relation.order_1 = relation.order_2
-                            relation.order_2 = None
-                            relation.special_order = 'SINGLE'
-                        # IFDOCO
-                        else:
-                            relation.order_2 = relation.order_3
-                            relation.order_3 = None
-                            relation.special_order = 'IFD'
+                elif OrderRelation.objects.filter(order_2 = subj_order).count() > 0:
+                    relation = OrderRelation.objects.get(order_2 = subj_order)
+                    # IFD
+                    if relation.order_3 == None:
+                        relation.order_2 = None
+                        relation.special_order = 'SINGLE'
+                    # OCO
+                    elif relation.order_1 == None:
+                        relation.order_1 = relation.order_3
+                        relation.order_2 = None
+                        relation.order_3 = None
+                        relation.special_order = 'SINGLE'
+                    # IFDOCO
+                    else:
+                        relation.order_2 = relation.order_3
+                        relation.order_3 = None
+                        relation.special_order = 'IFD'
 
-                    elif OrderRelation.objects.filter(order_3 = subj_order).count() > 0:
-                        relation = OrderRelation.objects.get(order_3 = subj_order)
-                        # OCO
-                        if relation.order_1 == None:
-                            relation.order_1 = relation.order_3
-                            relation.order_3 = None
-                            relation.special_order = 'SINGLE'
-                        # IFDOCO
-                        else:
-                            relation.order_2 = relation.order_3
-                            relation.order_3 = None
-                            relation.special_order = 'IFD'
-                    relation.save()
-                    return JsonResponse({'success': True})
-                else:
-                    return JsonResponse({'error': 'この注文はキャンセルできません'})
-            except Exception as e:
-                return JsonResponse({'error': e.args})
+                elif OrderRelation.objects.filter(order_3 = subj_order).count() > 0:
+                    relation = OrderRelation.objects.get(order_3 = subj_order)
+                    # OCO
+                    if relation.order_1 == None:
+                        relation.order_1 = relation.order_2
+                        relation.order_2 = None
+                        relation.order_3 = None
+                        relation.special_order = 'SINGLE'
+                    # IFDOCO
+                    else:
+                        relation.order_3 = None
+                        relation.special_order = 'IFD'
+                relation.save()
+                return JsonResponse({'success': True})
+            else:
+                return JsonResponse({'error': 'この注文はキャンセルできません'})
+            # except Exception as e:
+            #     return JsonResponse({'error': e.args})
                 
 def ajax_notify_if_filled(request):
     if request.user.is_anonymous:

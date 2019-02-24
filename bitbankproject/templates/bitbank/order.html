@@ -1131,7 +1131,6 @@
 
                 input_number
                 .on('keydown', function(e) {
-                
                     if(!((e.keyCode > 95 && e.keyCode < 106)
                     || (e.keyCode > 47 && e.keyCode < 58) 
                     || e.keyCode == 8 || e.keyCode == 190)) {
@@ -1411,7 +1410,7 @@
 
             if (is_cancellable) {
                 table_html += '<hr><div class="row">';
-                table_html += '<button style="font-size:1.8em; padding:0.2em!important" pk="' + pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button">CANCEL</button>';
+                table_html += '<button style="font-size:1rem; padding:0.2em!important" pk="' + pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button">CANCEL</button>';
                 table_html += '</div>';
             }
            table_html += '</div>';

@@ -142,6 +142,11 @@ class BitbankOrder(models.Model):
     STATUS_WAIT_OTHER_ORDER_TO_FILL = "WAIT_OTHER_ORDER_TO_FILL"
     STATUS_FAILED_TO_ORDER = 'FAILED_TO_ORDER'
 
+    user = models.ForeignKey(
+        User,
+        verbose_name = 'ユーザ',
+        on_delete = models.CASCADE
+    )
    
     pair = models.CharField(
         verbose_name = _('通貨'),
@@ -273,7 +278,7 @@ class OrderRelation(models.Model):
         max_length = 50,
     )
 
-    order_1 = models.ForeignKey(
+    order_1 = models.OneToOneField(
         BitbankOrder,
         verbose_name = '新規注文',
         related_name = 'new_order',
@@ -281,7 +286,7 @@ class OrderRelation(models.Model):
         blank = True,
         on_delete = models.CASCADE
     )
-    order_2 = models.ForeignKey(
+    order_2 = models.OneToOneField(
         BitbankOrder,
         verbose_name = '決済注文1',
         related_name = 'settle_order_1',
@@ -289,7 +294,7 @@ class OrderRelation(models.Model):
         blank = True,
         on_delete = models.CASCADE
     )
-    order_3 = models.ForeignKey(
+    order_3 = models.OneToOneField(
         BitbankOrder,
         verbose_name = '決済注文2',
         related_name = 'settle_order_2',
