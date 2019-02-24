@@ -28,7 +28,7 @@ class Command(BaseCommand):
                 break;
             for user in User.objects.all():
                 # API KEYが登録されているユーザのみ処理
-                if user.api_key != "" or user.api_secret_key != "":
+                if user.api_key == "" or user.api_secret_key == "":
                     # キー情報セット
                     continue
                 try:
