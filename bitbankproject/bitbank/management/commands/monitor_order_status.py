@@ -30,11 +30,12 @@ class Command(BaseCommand):
                 # API KEYが登録されているユーザのみ処理
                 if user.api_key != "" or user.api_secret_key != "":
                     # キー情報セット
-                    try:
-                        prv = python_bitbankcc.private(user.api_key, user.api_secret_key)
-                    except Exception as e:
-                        logger.error('user:' + user.email + ' message: ' +  str(e.args))
-                        continue
+                    continue
+                try:
+                    prv = python_bitbankcc.private(user.api_key, user.api_secret_key)
+                except Exception as e:
+                    logger.error('user:' + user.email + ' message: ' +  str(e.args))
+                    continue
                 active_orders = OrderRelation.objects.filter(is_active=True)
                 for order in active_orders:
                     o_1 = order.order_1
