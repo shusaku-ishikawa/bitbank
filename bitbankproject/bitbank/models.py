@@ -56,6 +56,9 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    def __str__(self):
+        return self.full_name
+        
     """カスタムユーザーモデル."""
     NOTIFY_STR = (
             ('ON', 'ON'),
@@ -124,6 +127,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class BitbankOrder(models.Model):
+    def __str__(self):
+        return self.order_id
+        
     class Meta:
         verbose_name = "bitbank注文"
         verbose_name_plural = "bitbank注文"
@@ -246,6 +252,9 @@ class BitbankOrder(models.Model):
     )
 
 class OrderRelation(models.Model):
+    def __str__(self):
+        return self.special_order
+
     class Meta:
         verbose_name = "注文"
         verbose_name_plural = "注文"
@@ -311,6 +320,8 @@ class OrderRelation(models.Model):
     )
 
 class Alert(models.Model):
+    def __str__(self):
+        return self.pair
     class Meta:
         verbose_name = "通知"
         verbose_name_plural = "通知"
@@ -345,6 +356,8 @@ class Alert(models.Model):
     )
 
 class Attachment(models.Model):
+    def __str__(self):
+        return self.file.name
     class Meta:
         verbose_name = "添付ファイル"
         verbose_name_plural = "添付ファイル"
@@ -355,6 +368,8 @@ class Attachment(models.Model):
         blank = False,
     )
 class Inquiry(models.Model):
+    def __str__(self):
+        return self.subject
     class Meta:
         verbose_name = "問い合わせ"
         verbose_name_plural = "問い合わせ"

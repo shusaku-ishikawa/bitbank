@@ -45,7 +45,7 @@ class Command(BaseCommand):
                     # Order#1が存在し、未約定の場合
                     if o_1 != None and o_1.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
                         status = _util.get_status(prv, o_1)
-                        logger.info('o_1 found ' + str(o_1.order_id) + ' status:' + status)
+                        logger.info('o_1 found ' + str(o_1.order_id) + ' status:' + str(status))
 
                         if status == BitbankOrder.STATUS_FULLY_FILLED: 
                             if o_2 != None:
