@@ -8888,3 +8888,5 @@
 [INFO]	asctime:2019-02-24 20:19:01,906	module:monitor_ticker	message:started
 [INFO]	asctime:2019-02-24 20:19:02,814	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (2)>, <OrderRelation: OrderRelation object (5)>, <OrderRelation: OrderRelation object (6)>, <OrderRelation: OrderRelation object (7)>, <OrderRelation: OrderRelation object (8)>, <OrderRelation: OrderRelation object (12)>, <OrderRelation: OrderRelation object (13)>]>
 [INFO]	asctime:2019-02-24 20:19:59,617	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:25:01,090	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:25:02,554	module:monitor_order_status	message:o_1 found 561478598 status:FULLY_FILLED

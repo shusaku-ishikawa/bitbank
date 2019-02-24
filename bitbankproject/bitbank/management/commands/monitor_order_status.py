@@ -36,7 +36,6 @@ class Command(BaseCommand):
                         logger.error('user:' + user.email + ' message: ' +  str(e.args))
                         continue
                 active_orders = OrderRelation.objects.filter(is_active=True)
-                logger.info(str(active_orders))
                 for order in active_orders:
                     o_1 = order.order_1
                     o_2 = order.order_2
