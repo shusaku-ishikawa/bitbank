@@ -27,16 +27,18 @@ class Command(BaseCommand):
             if time_elapsed > 57.0:
                 break;
             for user in User.objects.all():
+                logger.info(user.full_name)
                 # API KEYが登録されているユーザのみ処理
-                if user.api_key == "" or user.api_secret_key == "":
+                if (user.api_key == "" or user.api_key == None) or (user.api_secret_key == "" or user.api_secret_key == None):
                     # キー情報セット
                     continue
+		    
                 try:
                     prv = python_bitbankcc.private(user.api_key, user.api_secret_key)
                 except Exception as e:
                     logger.error('user:' + user.email + ' message: ' +  str(e.args))
                     continue
-                active_orders = OrderRelation.objects.filter(is_active=True)
+                active_orders = OrderRelation.objects.filter(user=user).filter(is_active=True)
                 for order in active_orders:
                     o_1 = order.order_1
                     o_2 = order.order_2
