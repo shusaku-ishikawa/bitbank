@@ -101,31 +101,31 @@ div.card.red-border {
 div.order_body {
     background: #333333 !important;
     
-    margin: 0.5em;
-    padding: 0.3em 1.5em   
+    margin: 0.3rem;
+    padding: 0.3rem 1.5rem   
 
 }
 div.row.order_header {
     background: #333333;
     
-    margin: 0.5em;
-    padding: 0.3em 0.3em   
+    margin: 0.3rem;
+    padding: 0.1rem 0.4rem   
 }
 div.order_container {
-    font-size: 0.5em;
-    padding: 0.2em;
+    font-size: 0.8rem;
+    padding: 0.2rem;
     background: gray;
-    margin: 0.2em;
+    /* margin: 0.2rem; */
 }
 
 div.card-table-header {
     text-align: left;
-    padding: 0.3em 0.3em;
+    padding: 0.3rem 0.3rem;
     
 } 
 div.card-table-data {
     text-align: right;
-    padding: 0.3em 0.3em;
+    padding: 0.3rem 0.3rem;
 } 
 
 .form-control:focus{
@@ -190,6 +190,10 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     padding: 1.5em 0.2em;
     transition: 0.3s;
 
+  }
+
+  .tab button.tablinks.active {
+      background:  #333333;
   }
 
   /* Change background color of buttons on hover */

@@ -8876,3 +8876,15 @@
 [INFO]	asctime:2019-02-24 20:03:11,191	module:monitor_order_status	message:<QuerySet []>
 [INFO]	asctime:2019-02-24 20:03:12,203	module:monitor_order_status	message:<QuerySet []>
 [INFO]	asctime:2019-02-24 20:03:13,211	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-24 20:17:02,326	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:17:02,339	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:17:03,355	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (2)>, <OrderRelation: OrderRelation object (5)>, <OrderRelation: OrderRelation object (6)>, <OrderRelation: OrderRelation object (7)>, <OrderRelation: OrderRelation object (8)>, <OrderRelation: OrderRelation object (12)>, <OrderRelation: OrderRelation object (13)>]>
+[INFO]	asctime:2019-02-24 20:18:01,936	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:18:02,260	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:18:02,283	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:18:03,276	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (2)>, <OrderRelation: OrderRelation object (5)>, <OrderRelation: OrderRelation object (6)>, <OrderRelation: OrderRelation object (7)>, <OrderRelation: OrderRelation object (8)>, <OrderRelation: OrderRelation object (12)>, <OrderRelation: OrderRelation object (13)>]>
+[INFO]	asctime:2019-02-24 20:19:00,964	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:19:01,797	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:19:01,906	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:19:02,814	module:monitor_order_status	message:<QuerySet [<OrderRelation: OrderRelation object (2)>, <OrderRelation: OrderRelation object (5)>, <OrderRelation: OrderRelation object (6)>, <OrderRelation: OrderRelation object (7)>, <OrderRelation: OrderRelation object (8)>, <OrderRelation: OrderRelation object (12)>, <OrderRelation: OrderRelation object (13)>]>
+[INFO]	asctime:2019-02-24 20:19:59,617	module:monitor_ticker	message:completed
