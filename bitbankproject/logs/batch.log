@@ -8890,3 +8890,25 @@
 [INFO]	asctime:2019-02-24 20:19:59,617	module:monitor_ticker	message:completed
 [INFO]	asctime:2019-02-24 20:25:01,090	module:monitor_order_status	message:started
 [INFO]	asctime:2019-02-24 20:25:02,554	module:monitor_order_status	message:o_1 found 561478598 status:FULLY_FILLED
+[INFO]	asctime:2019-02-24 20:28:02,707	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:28:02,720	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:28:59,824	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:29:02,771	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:29:02,825	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:30:00,383	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:31:02,436	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:31:02,436	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:32:01,503	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:32:02,369	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:32:02,399	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:33:01,751	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:33:02,388	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:33:02,408	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:34:00,308	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:34:02,285	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:34:02,301	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:35:01,076	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-24 20:35:01,953	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-24 20:35:02,018	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:35:40,063	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-24 20:36:00,091	module:monitor_ticker	message:completed
