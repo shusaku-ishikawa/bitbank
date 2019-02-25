@@ -555,7 +555,6 @@
                                             data-url="{% url 'bitbank:ajax_attachment' %}"
                                             data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
     
-                                <div style="display: none" class="progress"></div>
                                 <div id="id_attachment_preview"></div>
                             </form>    
                         </td>
@@ -2138,13 +2137,7 @@
                     singleFileUploads: true,
                     autoUpload: true,
                     replaceFileInput: false,
-                    progress: function (e, data) {
-                        var progress = parseInt(data.loaded / data.total * 100, 10);
-                        progress_bar.css( 'width', progress + '%');
-                        progress_bar.show();
-                    },
                     done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
-                        progress_bar.hide();
                         if (data.result.error) {
                             alert('error');
                             set_error_message(message_target, data.result.error);
