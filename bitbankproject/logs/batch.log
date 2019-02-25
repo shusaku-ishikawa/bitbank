@@ -12561,3 +12561,1131 @@
 [INFO]	asctime:2019-02-25 21:44:59,161	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
 [INFO]	asctime:2019-02-25 21:45:00,168	module:monitor_order_status	message:completed
 [INFO]	asctime:2019-02-25 21:45:00,478	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:48:02,510	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:48:02,515	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:48:03,523	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:03,631	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:04,640	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:04,708	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:05,716	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:05,835	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:06,843	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:06,907	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:07,917	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:08,009	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:09,018	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:09,083	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:10,091	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:10,184	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:11,194	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:11,266	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:12,275	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:12,376	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:13,383	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:13,452	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:14,460	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:14,538	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:15,547	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:15,661	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:16,671	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:16,761	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:17,769	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:17,846	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:18,857	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:18,945	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:19,953	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:20,025	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:21,032	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:21,116	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:22,125	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:22,218	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:23,229	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:23,313	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:24,321	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:24,399	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:25,413	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:25,499	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:26,509	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:26,605	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:27,614	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:27,679	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:28,687	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:28,789	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:29,801	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:29,866	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:30,876	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:30,951	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:31,961	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:32,045	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:33,054	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:33,143	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:34,152	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:34,267	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:35,274	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:35,371	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:36,380	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:36,494	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:37,504	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:37,593	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:38,605	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:38,766	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:39,773	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:39,851	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:40,861	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:40,925	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:41,933	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:42,013	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:43,025	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:43,104	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:44,115	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:44,218	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:45,228	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:45,303	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:46,314	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:46,377	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:47,386	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:47,494	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:48,504	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:48,599	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:49,608	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:49,733	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:50,743	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:50,821	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:51,831	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:51,931	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:52,944	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:53,019	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:54,030	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:54,145	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:55,154	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:55,218	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:56,226	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:56,304	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:57,316	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:57,410	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:58,419	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:58,491	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:59,507	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:48:59,575	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:48:59,935	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:49:00,580	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:49:02,520	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:49:02,520	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:49:03,533	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:03,641	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:04,649	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:04,732	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:05,748	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:05,848	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:06,857	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:06,928	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:07,939	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:08,026	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:09,037	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:09,128	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:10,136	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:10,263	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:11,274	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:11,346	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:12,360	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:12,445	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:13,455	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:13,549	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:14,559	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:14,666	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:15,675	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:15,761	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:16,772	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:16,899	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:17,907	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:18,002	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:19,010	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:19,206	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:20,215	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:20,326	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:21,337	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:21,435	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:22,445	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:22,561	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:23,571	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:23,650	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:24,658	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:24,781	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:25,790	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:25,867	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:26,876	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:26,964	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:27,974	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:28,070	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:29,084	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:29,162	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:30,176	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:30,286	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:31,298	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:31,376	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:32,386	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:32,494	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:33,504	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:33,593	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:34,604	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:34,700	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:35,711	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:35,884	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:36,894	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:36,985	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:37,994	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:38,083	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:39,093	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:39,194	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:40,205	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:40,274	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:41,282	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:41,383	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:42,393	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:42,466	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:43,474	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:43,675	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:44,684	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:44,787	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:45,796	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:45,883	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:46,891	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:46,966	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:47,977	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:48,064	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:49,074	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:49,152	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:50,161	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:50,283	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:51,294	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:51,380	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:52,389	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:52,463	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:53,474	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:53,548	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:54,560	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:54,648	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:55,656	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:55,737	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:56,752	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:56,850	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:57,861	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:57,941	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:49:58,949	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:49:59,037	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:00,043	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:50:01,326	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:50:02,090	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:50:02,113	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:50:03,103	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:03,254	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:04,264	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:04,389	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:05,398	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:05,459	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:06,469	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:06,575	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:07,587	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:07,673	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:08,683	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:08,830	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:09,838	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:09,933	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:10,944	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:11,030	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:12,041	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:12,122	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:13,132	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:13,271	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:14,282	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:14,403	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:15,418	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:15,548	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:16,559	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:16,659	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:17,667	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:17,740	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:18,749	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:18,837	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:19,846	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:19,962	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:20,972	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:21,082	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:22,095	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:22,230	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:23,240	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:23,353	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:24,362	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:24,441	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:25,450	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:25,537	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:26,550	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:26,638	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:27,648	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:27,737	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:28,749	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:28,837	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:29,848	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:29,959	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:30,976	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:31,078	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:32,089	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:32,196	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:33,207	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:33,292	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:34,307	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:34,415	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:35,425	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:35,493	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:36,503	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:36,592	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:37,602	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:37,682	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:38,692	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:38,805	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:39,814	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:39,910	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:40,918	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:40,999	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:42,010	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:42,096	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:43,103	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:43,203	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:44,212	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:44,298	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:45,308	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:45,388	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:46,399	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:46,490	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:47,500	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:47,586	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:48,595	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:48,689	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:49,700	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:49,811	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:50,820	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:50,921	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:51,929	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:52,006	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:53,018	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:53,130	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:54,139	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:54,236	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:55,246	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:55,320	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:56,332	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:56,529	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:57,541	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:57,653	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:58,663	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:50:58,750	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:50:59,756	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:51:00,942	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:51:01,905	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:51:01,975	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:51:02,929	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:03,049	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:04,057	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:04,173	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:05,181	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:05,258	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:06,269	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:06,364	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:07,373	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:07,471	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:08,483	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:08,570	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:09,580	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:09,699	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:10,709	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:10,841	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:11,851	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:11,947	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:12,955	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:13,037	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:14,046	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:14,144	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:15,155	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:15,244	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:16,256	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:16,365	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:17,374	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:17,454	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:18,465	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:18,577	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:19,587	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:19,674	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:20,684	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:20,757	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:21,767	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:21,843	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:22,856	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:22,974	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:23,982	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:24,060	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:25,073	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:25,177	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:26,187	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:26,283	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:27,291	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:27,362	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:28,372	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:28,467	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:29,477	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:29,553	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:30,563	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:30,653	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:31,667	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:31,775	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:32,785	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:32,881	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:33,894	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:33,996	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:35,007	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:35,090	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:36,101	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:36,176	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:37,190	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:37,278	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:38,286	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:38,369	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:39,379	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:39,458	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:40,470	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:40,579	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:41,588	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:41,676	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:42,685	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:42,771	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:43,783	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:43,873	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:44,885	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:44,988	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:45,997	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:46,098	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:47,107	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:47,210	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:48,222	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:48,310	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:49,320	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:49,392	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:50,401	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:50,525	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:51,534	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:51,595	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:52,606	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:52,710	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:53,720	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:53,791	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:54,802	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:54,932	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:55,941	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:56,012	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:57,021	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:57,098	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:58,107	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:51:58,268	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:51:59,275	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:52:00,362	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:52:02,364	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:52:02,374	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:52:03,383	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:03,497	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:04,506	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:04,584	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:05,593	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:05,721	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:06,730	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:06,826	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:07,836	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:07,940	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:08,952	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:09,038	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:10,048	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:10,143	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:11,156	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:11,323	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:12,332	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:12,427	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:13,443	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:13,532	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:14,540	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:14,661	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:15,673	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:15,768	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:16,776	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:16,873	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:17,885	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:18,008	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:19,019	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:19,130	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:20,140	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:20,234	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:21,244	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:21,323	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:22,333	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:22,423	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:23,432	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:23,501	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:24,512	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:24,599	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:25,606	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:25,698	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:26,706	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:26,786	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:27,797	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:27,906	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:28,916	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:28,989	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:29,999	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:30,060	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:31,071	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:31,159	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:32,171	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:32,253	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:33,264	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:33,372	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:34,382	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:34,501	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:35,510	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:35,593	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:36,604	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:36,687	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:37,694	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:37,835	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:38,845	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:38,940	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:39,952	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:40,028	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:41,036	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:41,148	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:42,159	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:42,237	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:43,247	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:43,343	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:44,358	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:44,452	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:45,465	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:45,590	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:46,600	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:46,769	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:47,779	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:47,881	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:48,891	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:48,978	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:49,988	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:50,074	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:51,088	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:51,198	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:52,205	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:52,291	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:53,300	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:53,420	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:54,432	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:54,502	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:55,513	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:55,596	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:56,607	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:56,703	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:57,712	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:57,813	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:58,823	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:52:58,901	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:52:59,905	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:53:00,179	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:53:02,190	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:53:02,198	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:53:03,210	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:03,342	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:04,353	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:04,458	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:05,469	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:05,566	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:06,575	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:06,671	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:07,682	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:07,772	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:08,781	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:08,859	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:09,871	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:09,990	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:10,999	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:11,093	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:12,103	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:12,236	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:13,247	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:13,367	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:14,377	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:14,504	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:15,521	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:15,606	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:16,616	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:16,707	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:17,715	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:17,780	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:18,790	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:18,878	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:19,887	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:19,996	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:21,010	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:21,115	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:22,126	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:22,216	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:23,225	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:23,314	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:24,327	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:24,410	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:25,420	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:25,506	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:26,517	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:26,597	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:27,606	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:27,718	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:28,726	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:28,853	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:29,862	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:29,964	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:30,973	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:31,052	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:32,063	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:32,166	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:33,174	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:33,245	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:34,257	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:34,323	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:35,331	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:35,415	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:36,427	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:36,527	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:37,536	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:37,604	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:38,615	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:38,757	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:39,766	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:39,850	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:40,859	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:40,948	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:41,958	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:42,022	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:43,031	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:43,130	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:44,138	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:44,204	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:45,214	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:45,311	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:46,326	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:46,453	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:47,462	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:47,555	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:48,563	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:48,645	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:49,653	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:49,725	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:50,733	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:50,800	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:51,808	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:51,881	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:52,890	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:52,987	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:53,996	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:54,107	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:55,117	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:55,190	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:56,198	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:56,299	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:57,309	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:57,387	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:58,399	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:53:58,496	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:53:59,501	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:54:02,028	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:54:02,470	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:54:02,504	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:54:03,488	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:03,606	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:04,614	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:04,690	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:05,700	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:05,784	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:06,793	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:06,898	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:07,907	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:08,006	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:09,016	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:09,123	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:10,132	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:10,211	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:11,221	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:11,323	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:12,332	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:12,427	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:13,435	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:13,518	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:14,526	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:14,610	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:15,619	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:15,708	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:16,720	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:16,819	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:17,827	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:17,923	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:18,933	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:19,054	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:20,066	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:20,161	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:21,172	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:21,271	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:22,281	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:22,356	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:23,364	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:23,536	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:24,545	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:24,618	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:25,627	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:25,714	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:26,722	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:26,830	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:27,842	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:27,937	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:28,948	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:29,039	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:30,049	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:30,141	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:31,152	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:31,264	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:32,272	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:32,361	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:33,372	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:33,454	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:34,465	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:34,612	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:35,620	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:35,700	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:36,711	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:36,826	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:37,834	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:37,957	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:38,968	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:39,087	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:40,096	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:40,243	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:41,254	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:41,348	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:42,357	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:42,442	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:43,453	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:43,543	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:44,554	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:44,647	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:45,656	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:45,756	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:46,767	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:46,871	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:47,888	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:47,972	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:48,981	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:49,082	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:50,090	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:50,225	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:51,235	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:51,303	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:52,313	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:52,400	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:53,410	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:53,509	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:54,517	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:54,601	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:55,611	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:55,705	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:56,716	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:56,823	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:57,835	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:57,919	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:58,929	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:54:58,999	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:54:59,655	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:55:00,005	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:55:01,992	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:55:02,032	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:55:03,009	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:03,137	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:04,147	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:04,244	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:05,256	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:05,346	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:06,354	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:06,445	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:07,455	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:07,527	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:08,537	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:08,623	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:09,631	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:09,720	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:10,728	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:10,839	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:11,847	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:11,996	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:13,005	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:13,084	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:14,092	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:14,162	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:15,170	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:15,308	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:16,319	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:16,448	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:17,458	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:17,530	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:18,540	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:18,632	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:19,642	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:19,724	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:20,734	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:20,826	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:21,835	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:21,914	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:22,923	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:23,011	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:24,022	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:24,146	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:25,155	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:25,245	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:26,255	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:26,352	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:27,362	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:27,445	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:28,455	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:28,558	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:29,569	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:29,687	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:30,697	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:30,778	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:31,789	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:31,878	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:32,887	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:32,996	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:34,008	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:34,100	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:35,110	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:35,188	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:36,199	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:36,311	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:37,321	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:37,415	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:38,426	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:38,519	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:39,531	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:39,639	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:40,648	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:40,767	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:41,778	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:41,868	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:42,877	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:42,977	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:43,987	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:44,084	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:45,096	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:45,188	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:46,198	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:46,291	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:47,302	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:47,411	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:48,419	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:48,564	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:49,575	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:49,668	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:50,677	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:50,771	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:51,784	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:51,867	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:52,874	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:52,953	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:53,962	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:54,042	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:55,052	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:55,152	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:56,166	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:56,252	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:57,262	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:57,381	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:58,390	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:55:58,507	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:55:59,513	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:56:00,387	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:56:02,361	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:56:02,444	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:56:03,461	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:03,590	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:04,598	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:04,698	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:05,709	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:05,822	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:06,831	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:06,933	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:07,942	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:08,046	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:09,056	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:09,145	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:10,156	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:10,251	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:11,262	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:11,337	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:12,345	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:12,442	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:13,457	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:13,536	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:14,545	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:14,669	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:15,680	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:15,783	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:16,791	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:16,896	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:17,906	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:18,012	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:19,023	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:19,094	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:20,104	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:20,175	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:21,184	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:21,265	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:22,275	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:22,362	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:23,371	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:23,444	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:24,453	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:24,530	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:25,545	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:25,622	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:26,633	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:26,854	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:27,864	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:27,941	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:28,953	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:29,077	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:30,087	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:30,183	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:31,191	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:31,304	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:32,314	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:32,390	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:33,399	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:33,520	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:34,529	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:34,602	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:35,614	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:35,840	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:36,850	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:36,928	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:37,942	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:38,047	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:39,059	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:39,156	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:40,167	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:40,267	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:41,276	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:41,417	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:42,428	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:42,543	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:43,557	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:43,645	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:44,653	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:44,774	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:45,783	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:45,879	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:46,891	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:47,060	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:48,069	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:48,159	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:49,169	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:49,271	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:50,281	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:50,414	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:51,429	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:51,519	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:52,530	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:52,600	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:53,609	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:53,710	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:54,719	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:54,829	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:55,838	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:55,932	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:56,945	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:57,032	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:58,043	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:58,144	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:56:59,154	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:56:59,225	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:00,231	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:57:00,374	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:57:02,288	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:57:02,355	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:57:03,298	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:03,398	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:04,411	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:04,528	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:05,542	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:05,644	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:06,653	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:06,733	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:07,741	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:07,825	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:08,833	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:08,944	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:09,957	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:10,037	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:11,048	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:11,142	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:12,151	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:12,258	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:13,267	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:13,345	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:14,353	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:14,430	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:15,442	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:15,529	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:16,538	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:16,651	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:17,663	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:17,760	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:18,767	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:18,884	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:19,893	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:19,962	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:20,972	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:21,059	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:22,068	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:22,138	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:23,148	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:23,253	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:24,261	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:24,376	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:25,388	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:25,549	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:26,559	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:26,641	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:27,651	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:27,732	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:28,744	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:28,810	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:29,818	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:29,899	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:30,911	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:30,993	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:32,002	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:32,138	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:33,148	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:33,241	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:34,249	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:34,320	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:35,327	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:35,401	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:36,410	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:36,513	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:37,522	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:37,621	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:38,630	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:38,722	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:39,737	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:39,823	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:40,831	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:40,949	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:41,962	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:42,052	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:43,066	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:43,136	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:44,149	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:44,236	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:45,248	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:45,384	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:46,394	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:46,541	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:47,550	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:47,635	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:48,646	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:48,715	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:49,725	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:49,832	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:50,843	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:50,960	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:51,969	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:52,068	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:53,078	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:53,152	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:54,167	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:54,257	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:55,266	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:55,335	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:56,346	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:56,423	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:57,435	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:57,535	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:58,544	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:57:58,648	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:57:59,654	module:monitor_order_status	message:completed
+[INFO]	asctime:2019-02-25 21:58:00,245	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-02-25 21:58:02,316	module:monitor_order_status	message:started
+[INFO]	asctime:2019-02-25 21:58:02,350	module:monitor_ticker	message:started
+[INFO]	asctime:2019-02-25 21:58:03,330	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:03,457	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:04,466	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:04,543	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:05,552	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:05,628	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:06,637	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:06,718	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:07,728	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:07,802	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:08,810	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:08,879	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:09,887	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:09,975	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:10,983	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:11,047	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:12,055	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:12,125	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:13,134	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:13,210	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:14,219	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:14,293	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:15,301	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:15,417	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:16,426	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:16,586	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:17,593	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:17,685	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:18,694	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:18,768	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:19,775	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:19,865	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:20,873	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:20,962	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:21,969	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:22,052	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:23,060	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:23,118	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:24,127	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:24,203	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:25,210	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:25,288	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:26,297	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:26,387	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:27,394	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:27,505	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:28,515	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:28,591	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:29,599	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:29,664	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:30,674	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:30,744	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:31,753	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:31,875	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:32,884	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:33,041	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:34,050	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:34,166	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:35,173	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:35,254	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:36,262	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:36,360	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
+[INFO]	asctime:2019-02-25 21:58:37,370	module:monitor_order_status	message:
+[INFO]	asctime:2019-02-25 21:58:37,454	module:monitor_order_status	message:o_1 found 42151822 status:UNFILLED
