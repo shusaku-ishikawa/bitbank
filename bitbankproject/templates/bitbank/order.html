@@ -977,7 +977,7 @@
                 }
                 if (order_1 == null && order_2.order_type == 'limit') {
                     if ((order_2.side == 'buy' && parseFloat(res.buy) < order_2.price) || (order_2.side  == 'sell' && parseFloat(res.sell) > order_2.price)){
-                        if (!get_confirmation('決済注文2')) {
+                        if (!get_confirmation('決済注文1')) {
                             return;
                         }
                     }
