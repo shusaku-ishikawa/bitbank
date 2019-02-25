@@ -101,7 +101,7 @@ div.card.red-border {
 div.order_body {
     background: #333333 !important;
     
-    margin: 0.3rem 0.2rem 0.1rem 0.2rem;
+    margin: 0.2rem;
     padding: 0.3rem 1.5rem   
 
 }
@@ -113,7 +113,7 @@ div.row.order_header {
 }
 div.order_container {
     font-size: 0.8rem;
-    padding: 0.2rem;
+    padding: 0.1rem;
     background: gray;
     /* margin: 0.2rem; */
 }
