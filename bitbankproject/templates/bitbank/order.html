@@ -340,7 +340,11 @@
                 </div>
             </div>
         </div>
-    
+    <div class="row">
+        <div id="id_dots_area" class="col-md-6 offset-md-1 col-12">
+            
+        </div>
+    </div>
     <hr>
     <div class="row">
         <div class="col-md-6 offset-md-1 col-12">
@@ -1069,6 +1073,7 @@
                     prevArrow: false,
                     nextArrow: false,
                     dots: true,
+                    appendDots: $('#id_dots_area')
                 });
                 
                 Object.keys(PAIRS).forEach(pair => {
