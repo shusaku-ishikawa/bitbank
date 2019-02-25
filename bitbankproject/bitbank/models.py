@@ -72,7 +72,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     notify_if_filled = models.CharField(
         verbose_name = _('約定通知'),
         max_length = 10,
-        default = 'OFF',
+        default = 'ON',
+        choices = NOTIFY_STR,
+    )
+    use_alert = models.CharField(
+        verbose_name = _('アラートメール通知'),
+        max_length = 10,
+        default = 'ON',
         choices = NOTIFY_STR,
     )
 

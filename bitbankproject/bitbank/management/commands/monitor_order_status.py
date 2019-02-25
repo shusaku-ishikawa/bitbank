@@ -48,27 +48,42 @@ class Command(BaseCommand):
                     if o_1 != None and o_1.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
                         status = _util.get_status(prv, o_1)
                         logger.info('o_1 found ' + str(o_1.order_id) + ' status:' + str(status))
-
                         if status == BitbankOrder.STATUS_FULLY_FILLED: 
                             if o_2 != None:
                                 if not _util.place_order(prv, o_2):
                                     if o_3 != None:
-                                        _util.cancel_order(prv, o_3)
-            
+                                        if o_3.status in {BitbankOrder.STATUS_PARTIALLY_FILLED, BitbankOrder.STATUS_UNFILLED}:
+                                            _util.cancel_order(prv, o_3)
+                                        else:
+                                            o_3.status = BitbankOrder.STATUS_CANCELED_UNFILLED
+                                       
                             if o_3 != None:
                                 if not _util.place_order(prv, o_3):
                                     if o_2 != None:
-                                        _util.cancel_order(prv, o_2)
+                                        if o_2.status in {BitbankOrder.STATUS_PARTIALLY_FILLED, BitbankOrder.STATUS_UNFILLED}:
+                                            _util.cancel_order(prv, o_2)
+                                        else:
+                                            o_2.status = BitbankOrder.STATUS_CANCELED_UNFILLED
                                 
                             if user.notify_if_filled == 'ON':
                                 # 約定通知メール
                                 _util.notify_user(user, o_1)
-
+                        elif status in {BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED}:
+                            if o_2 != None:
+                                o_2.status = BitbankOrder.STATUS_CANCELED_UNFILLED
+                            if o_3 != None:
+                                o_3.status = BitbankOrder.STATUS_CANCELED_UNFILLED
+                                
                     if o_2 != None and o_2.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
                         status = _util.get_status(prv, o_2)
                         if status  == BitbankOrder.STATUS_FULLY_FILLED:
                             # order_3のキャンセル
-                            _util.cancel_order(prv, o_3)
+                            if o_3 != None:
+                                if o_3.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
+                                    _util.cancel_order(prv, o_3)
+                                else:
+                                    o_3.status = BitbankOrder.STATUS_CANCELED_UNFILLED
+
                             if user.notify_if_filled == 'ON':
                                 # 約定通知メール
                                 _util.notify_user(user, o_2)
@@ -76,7 +91,12 @@ class Command(BaseCommand):
                         status = _util.get_status(prv, o_3)
                         if status  == BitbankOrder.STATUS_FULLY_FILLED:
                             # order_2のキャンセル
-                            _util.cancel_order(prv, o_2)
+                            if o_2 != None:
+                                if o_2.status in {BitbankOrder.STATUS_PARTIALLY_FILLED, BitbankOrder.STATUS_UNFILLED}:
+                                    _util.cancel_order(prv, o_2)
+                                else:
+                                    o_2.status = BitbankOrder.STATUS_CANCELED_UNFILLED
+                                    
                             if user.notify_if_filled == 'ON':
                                 # 約定通知メール
                                 _util.notify_user(user, o_3)

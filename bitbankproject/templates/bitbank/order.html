@@ -1138,15 +1138,6 @@
                     
                 });
 
-                // input_number
-                // .on('keydown', function(e) {
-                //     if(!((e.keyCode > 95 && e.keyCode < 106)
-                //     || (e.keyCode > 47 && e.keyCode < 58) 
-                //     || e.keyCode == 8 || e.keyCode == 190)) {
-                //         return false;
-                //     }
-                // });
-
                 input_pair.on('change', function() {
                     $.cookie(COOKIE_ORDER_PAIR, $(this).val(), { expires: 7 });
 
@@ -1282,7 +1273,7 @@
                         $('#id_side_' + i).val(ck_order_side).trigger('value_change');
                     
                     } else {
-                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
+                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[0]).trigger('value_change');
                     }
 
                     $('#id_order_type_' + i).html(order_type_option_html);
