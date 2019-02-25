@@ -554,11 +554,8 @@
                                 <input id="fileupload" type="file" name="attachment" multiple style="display:none;"
                                             data-url="{% url 'bitbank:ajax_attachment' %}"
                                             data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
-                                <!-- <button id="id_detach_file" style="display: none" type="button" class="btn btn-danger">
-                                    添付を解除
-                                </button> -->
-                                <!-- {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #} -->
-                                
+    
+                                <div style="display: none" class="progress"></div>
                                 <div id="id_attachment_preview"></div>
                             </form>    
                         </td>
@@ -1098,6 +1095,14 @@
                 
                 input_special_order
                 .on('change', function() {
+                    $.cookie(COOKIE_SPECIAL_ORDER, $(this).val(), { expires: 7 });
+                    for (let i = 0; i < 4; i++) {
+                        $('#id_price_' + i).val(0);
+                        $('#id_price_for_stop' + i).val(0);
+                        $('#id_start_amount_' + i).val(0);
+                        set_slidevalue(i, 0);
+                    }
+
                     $('#slider_contents')
                     .slick('slickUnfilter')
                     .slick('slickFilter', function(index){
@@ -1129,14 +1134,14 @@
                     
                 });
 
-                input_number
-                .on('keydown', function(e) {
-                    if(!((e.keyCode > 95 && e.keyCode < 106)
-                    || (e.keyCode > 47 && e.keyCode < 58) 
-                    || e.keyCode == 8 || e.keyCode == 190)) {
-                        return false;
-                    }
-                });
+                // input_number
+                // .on('keydown', function(e) {
+                //     if(!((e.keyCode > 95 && e.keyCode < 106)
+                //     || (e.keyCode > 47 && e.keyCode < 58) 
+                //     || e.keyCode == 8 || e.keyCode == 190)) {
+                //         return false;
+                //     }
+                // });
 
                 input_pair.on('change', function() {
                     $.cookie(COOKIE_ORDER_PAIR, $(this).val(), { expires: 7 });
@@ -2103,7 +2108,8 @@
                 var input_body = $('#id_contact_body');
                 var input_email = $('#id_contact_email');
                 var preview_zone = $('#id_attachment_preview');
-                
+                var progress_bar = $('.progress');
+
                 inquiry_button
                 .on('click', function() {
                     if (validate_contact_info(message_target)) {
@@ -2132,11 +2138,20 @@
                     singleFileUploads: true,
                     autoUpload: true,
                     replaceFileInput: false,
-                    
+                    progress: function (e, data) {
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
+                        progress_bar.css( 'width', progress + '%');
+                        progress_bar.show();
+                    },
                     done: function (e, data) {  /* 3. PROCESS THE RESPONSE FROM THE SERVER */
+                        progress_bar.hide();
                         if (data.result.error) {
                             alert('error');
                             set_error_message(message_target, data.result.error);
+                            return;
+                        }
+                        if (attachment_pk_list.length >= 3) {
+                            set_error_message(message_target, '添付ファイルは3つまでです');
                             return;
                         }
                         attachment_pk_list.push(data.result.pk + '');
