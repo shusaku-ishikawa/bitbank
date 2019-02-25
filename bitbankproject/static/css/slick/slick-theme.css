@@ -179,7 +179,7 @@
 .slick-dots li button:before
 {
     font-family: 'slick';
-    font-size: 25px;
+    font-size: 2rem;
     line-height: 20px;
 
     /* display: block;
@@ -191,7 +191,7 @@
 
     width: 20px;
     height: 20px;
-    content: '●';
+    content: ' ● ';
     text-align: center;
     /* padding: 0.5em 3em; */
     opacity: .25;
