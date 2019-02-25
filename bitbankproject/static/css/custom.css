@@ -299,11 +299,3 @@ input[type="range"]:hover {
     cursor: pointer;
     background: orangered;
 }
-
-.progress { 
-    position: relative;
-    height: 10px; 
-    background: teal; 
-    width: 0%;
-    top: 50%;
-}
