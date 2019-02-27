@@ -1789,6 +1789,8 @@
             var $use_alert_off_button = $('#id_use_alert_off_button');
             var $add_button = $('#add_alert_button');
             var $search_pair = $('#id_alerts_search_pair');
+            var $noticy_rate = $('#id_notice_rate');
+            var $pair_for_alert_class = $('.pair_for_alert');
 
             // 初回時のみの処理
             if (is_initial) {
@@ -1800,8 +1802,21 @@
                 $pair_for_alert.on('change', function() {
                     $.cookie(COOKIE_ALERT_PAIR, $(this).val(), {expire: 7});
                     var currency = $(this).val().split('_')[1].toUpperCase();
-                    $('#id_notice_rate').val('');
-                    $('.pair_for_alert').html(currency);
+                    call_ticker('GET', $(this).val())
+                    .done((data) => {
+                        if (data.error) {
+                            set_error_message(message_target, data.error);
+                            return;
+                        }
+                        $noticy_rate.val(data.last);
+                    })
+                    .fail((data, textStatus, xhr) => {
+                        if (data.status == 401) {
+                            window.location.href = "{% url 'bitbank:login' %}";
+                        }
+                        set_error_message(message_target, xhr);
+                    });
+                    $pair_for_alert_class.html(currency);
                 });
                 $notify_if_filled_on_button.on('click', function() {
                     if ($(this).hasClass('on')) {
