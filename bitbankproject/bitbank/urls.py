@@ -24,8 +24,6 @@ urlpatterns = [
     path('password_reset/complete/', views.PasswordResetComplete.as_view(), name='password_reset_complete'),
     
     path('user/', views.ajax_user, name="ajax_user"),
-    path('notify_if_filled/', views.ajax_notify_if_filled, name="ajax_notify_if_filled"),
-    
 
     path('ticker/', views.ajax_ticker, name="ajax_ticker"),
     path('assets/', views.ajax_assets, name="ajax_assets"),

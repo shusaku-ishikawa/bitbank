@@ -32,7 +32,7 @@ from .forms import (LoginForm, MyPasswordChangeForm, MyPasswordResetForm,
                     MySetPasswordForm, UserCreateForm, UserUpdateForm)
 from .models import User, Alert, OrderRelation, BitbankOrder, Inquiry, Attachment
 from django.conf import settings
-from .serializer import BitbankOrderSerializer, OrderSerializer
+from .serializer import UserSerializer, BitbankOrderSerializer, OrderSerializer
 from . import _util
 
 # User = get_user_model()
@@ -178,33 +178,40 @@ def ajax_user(request):
         return JsonResponse({'error' : 'authentication failed'}, status=401)
 
     method = request.method
-    pk = request.user.pk
-
     if method == 'GET':
-        user_qs = User.objects.filter(pk=pk)
-        serialized_qs = serializers.serialize('json', user_qs)
-        data = {
-            'user': serialized_qs
-        }
-        return JsonResponse(data)
+        serizlized = UserSerializer(request.user, many=False).data
+        
+        return JsonResponse(serizlized)
+
     elif method == 'POST':
         new_full_name = request.POST.get("full_name")
         new_api_key = request.POST.get("api_key")
         new_api_secret_key = request.POST.get("api_secret_key")
         new_email_for_notice = request.POST.get("email_for_notice")
+        new_notify_if_filled = request.POST.get('notify_if_filled')
+        new_use_alert = request.POST.get('use_alert')
         
         try:
-            user_to_update = User.objects.get(pk=pk)
-            user_to_update.full_name = new_full_name
-            user_to_update.api_key = new_api_key
-            user_to_update.api_secret_key = new_api_secret_key
-            user_to_update.email_for_notice = new_email_for_notice
+            user_to_update = request.user
+            if new_full_name != None and new_full_name != "": 
+                user_to_update.full_name = new_full_name
+            if new_api_key != None and new_api_key != "":
+                user_to_update.api_key = new_api_key
+            if new_api_secret_key != None and new_api_secret_key != "":
+                user_to_update.api_secret_key = new_api_secret_key
+            if new_email_for_notice != None and new_email_for_notice != "":
+                user_to_update.email_for_notice = new_email_for_notice
+            if new_notify_if_filled != None and new_notify_if_filled != "":
+                user_to_update.notify_if_filled = new_notify_if_filled
+            if new_use_alert != None and new_use_alert != "":
+                user_to_update.use_alert = new_use_alert
+
             user_to_update.save()
         except Exception as e:
             return JsonResponse({'error': e.args})
 
         data = {
-            'success': 'success'
+            'success': True
         }
         return JsonResponse(data) 
 
@@ -560,32 +567,6 @@ def ajax_orders(request):
             # except Exception as e:
             #     return JsonResponse({'error': e.args})
                 
-def ajax_notify_if_filled(request):
-    if request.user.is_anonymous:
-        return JsonResponse({'error' : 'authentication failed'}, status=401)
-
-    if request.method == 'GET':
-        res = {
-            'notify_if_filled': request.user.notify_if_filled
-        }
-        return JsonResponse(res)
-
-    elif request.method == 'POST':
-        try:
-            pk = request.user.pk
-            new_val = request.POST.get('notify_if_filled')
-            user_to_update = User.objects.get(pk=pk)
-            user_to_update.notify_if_filled = new_val
-            user_to_update.save()
-            res = {
-                'success': 'success'
-            }
-        except Exception as e:
-            res = {
-                'error': e.args
-            }
-        finally:    
-            return JsonResponse(res)
 
 def ajax_attachment(request):
     if request.user.is_anonymous:

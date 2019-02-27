@@ -1,9 +1,12 @@
 from rest_framework import serializers
-from .models import OrderRelation, BitbankOrder
+from .models import User, OrderRelation, BitbankOrder
 
 
 
-
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('pk', 'full_name', 'email', 'email_for_notice', 'api_key', 'api_secret_key', 'notify_if_filled', 'use_alert', 'date_joined')
 class BitbankOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = BitbankOrder

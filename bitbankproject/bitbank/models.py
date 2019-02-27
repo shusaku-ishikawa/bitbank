@@ -72,7 +72,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     notify_if_filled = models.CharField(
         verbose_name = _('約定通知'),
         max_length = 10,
-        default = 'OFF',
+        default = 'ON',
+        choices = NOTIFY_STR,
+    )
+    use_alert = models.CharField(
+        verbose_name = _('アラートメール通知'),
+        max_length = 10,
+        default = 'ON',
         choices = NOTIFY_STR,
     )
 
@@ -246,8 +252,9 @@ class BitbankOrder(models.Model):
         blank = True
     )
 
-    updated_at = models.DateTimeField(
-        verbose_name = _('更新日時'),   
+    updated_at = UnixTimeStampField(
+        verbose_name = _('更新日時unixtimestamp'), 
+        use_numeric = True,  
         auto_now = True,
     )
 
@@ -421,4 +428,11 @@ class Inquiry(models.Model):
         auto_now_add = True,
 
     )
+    # def admin_og_image(self):
+    #     if self.attachment_1:
+    #         return '<img src="{}" style="width:100px;height:auto;">'.format(self.attachment_1.file)
+    #     else:
+    #         return 'no image'
+        
+    # admin_og_image.allow_tags = True
 

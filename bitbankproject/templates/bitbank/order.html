@@ -420,11 +420,21 @@
 </div>
 <div id="alerts" class="tabcontent">
     <div class="row">
-        <div class="col-md-6 offset-md-1 col-xs-8">
+        <div class="col-md-6 offset-md-1 col-12">
             <label class="control-label">約定通知</label>
             <div class="btn-group d-flex" role="group">
                 <button id="notify_if_filled_off_button" type="button" class="btn w-100 btn-base">OFF</button>
                 <button id="notify_if_filled_on_button" type="button" class="btn w-100 btn-base">ON</button>      
+            </div>
+        </div>  
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 offset-md-1 col-12">
+            <label class="control-label">アラートメール通知</label>
+            <div class="btn-group d-flex" role="group">
+                <button id="id_use_alert_off_button" type="button" class="btn w-100 btn-base">OFF</button>
+                <button id="id_use_alert_on_button" type="button" class="btn w-100 btn-base">ON</button>      
             </div>
         </div>  
     </div>
@@ -692,7 +702,7 @@
             });
         }
 
-        function call_user(method, full_name, api_key, api_secret_key, email_for_notice) {
+        function call_user(method, full_name, api_key, api_secret_key, email_for_notice, notify_if_filled, use_alert) {
             return $.ajax({
                 url: '{% url "bitbank:ajax_user" %}',
                 type: (method == 'GET') ? 'GET':'POST' ,
@@ -703,7 +713,9 @@
                     full_name: full_name,
                     api_key: api_key,
                     api_secret_key: api_secret_key,
-                    email_for_notice: email_for_notice
+                    email_for_notice: email_for_notice,
+                    notify_if_filled: notify_if_filled,
+                    use_alert: use_alert
                 }
             });
         }
@@ -747,19 +759,6 @@
         }
 
 
-
-        function call_notify_if_filled(method, new_val) {
-            return $.ajax({
-                url: '{% url "bitbank:ajax_notify_if_filled" %}',
-                type: method,
-                dataType: 'json',
-                data: {
-                    notify_if_filled: new_val
-                }
-            });
-        }
-        
-        
 
         function hyphen_if_null(subj) {
             if (subj == null || subj == undefined || subj == '0') {
@@ -977,7 +976,7 @@
                 }
                 if (order_1 == null && order_2.order_type == 'limit') {
                     if ((order_2.side == 'buy' && parseFloat(res.buy) < order_2.price) || (order_2.side  == 'sell' && parseFloat(res.sell) > order_2.price)){
-                        if (!get_confirmation('決済注文2')) {
+                        if (!get_confirmation('決済注文1')) {
                             return;
                         }
                     }
@@ -1138,15 +1137,6 @@
                     
                 });
 
-                // input_number
-                // .on('keydown', function(e) {
-                //     if(!((e.keyCode > 95 && e.keyCode < 106)
-                //     || (e.keyCode > 47 && e.keyCode < 58) 
-                //     || e.keyCode == 8 || e.keyCode == 190)) {
-                //         return false;
-                //     }
-                // });
-
                 input_pair.on('change', function() {
                     $.cookie(COOKIE_ORDER_PAIR, $(this).val(), { expires: 7 });
 
@@ -1277,13 +1267,7 @@
 
   
                     $('#id_side_' + i).html(side_option_html);
-                    var ck_order_side = $.cookie(COOKIE_ORDER_SIDE + '_' + i);
-                    if (ck_order_side != undefined && Object.keys(SELL_BUY).indexOf(ck_order_side) >= 0) {
-                        $('#id_side_' + i).val(ck_order_side).trigger('value_change');
-                    
-                    } else {
-                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
-                    }
+                    $('#id_side_' + i).val(Object.keys(SELL_BUY)[0]).trigger('value_change');
 
                     $('#id_order_type_' + i).html(order_type_option_html);
                     var ck_order_type = $.cookie(COOKIE_ORDER_TYPE + '_' + i);
@@ -1426,7 +1410,7 @@
 
             return table_html;
         }
-        function build_history_order_card(pk, order_id, pair, order_type, side, price, price_for_stop, start_amount, executed_amount,average_price, status, ordered_at) {
+        function build_history_order_card(pk, order_id, pair, order_type, side, price, price_for_stop, start_amount, executed_amount,average_price, status, ordered_at, error_message, failed_at) {
             var table_html = '';
             table_html += '<div class="order_body">';
             table_html += '<div class="row">';
@@ -1460,7 +1444,18 @@
             table_html += '<div class="row">';
             table_html += '<div class="col-6 card-table-header">ステータス</div>';
             table_html += '<div class="col-6 card-table-data">' + status + '</div>';
-            table_html += '</div></div>';
+            table_html += '</div>';
+            if (error_message != null && error_message != "") {
+                table_html += '<div class="row">';
+                table_html += '<div class="col-3 card-table-header">エラー</div>';
+                table_html += '<div class="col-8 card-table-data">' + error_message + '</div>';
+                table_html += '</div>';
+                table_html += '<div class="row">';
+                table_html += '<div class="col-3 card-table-header">エラー時刻</div>';
+                table_html += '<div class="col-8 card-table-data">' + failed_at + '</div>';
+                table_html += '</div>';
+            }
+            table_html += '</div>';
             return table_html;
         }
         
@@ -1622,7 +1617,7 @@
                             res_2.data.forEach(order => {
                                 is_empty = false;
                                 content_html += wrapper;
-                                content_html += build_history_order_card(order.pk,hyphen_if_null(order.order_id), PAIRS[order.pair], ORDER_TYPES[order.order_type],SELL_BUY[order.side],hyphen_if_null(order.price),hyphen_if_null(order.price_for_stop),order.start_amount,hyphen_if_null(order.executed_amount),hyphen_if_null(order.average_price),STATUS[order.status],return_formatted_datetime(order.ordered_at));
+                                content_html += build_history_order_card(order.pk,hyphen_if_null(order.order_id), PAIRS[order.pair], ORDER_TYPES[order.order_type],SELL_BUY[order.side],hyphen_if_null(order.price),hyphen_if_null(order.price_for_stop),order.start_amount,hyphen_if_null(order.executed_amount),hyphen_if_null(order.average_price),STATUS[order.status],return_formatted_datetime(order.ordered_at), order.error_message, return_formatted_datetime(order.updated_at));
                                 content_html += wrapper_end;
                                 
                             });
@@ -1675,16 +1670,30 @@
         }
         
         function initialize_alerts_content(message_target) {
-            call_notify_if_filled('GET')
+            var $notify_if_filled_on_button = $('#notify_if_filled_on_button');
+            var $notify_if_filled_off_button = $('#notify_if_filled_off_button');
+            var $use_alert_on_button = $('#id_use_alert_on_button');
+            var $use_alert_off_button = $('#id_use_alert_off_button');
+            var $page_selection = $('#page_selection_alerts');
+            var $search_pair = $('#id_alerts_search_pair');
+
+            call_user('GET')
             .done(function(res) {
                 if (res.error) {
                     set_error_message(message_target, res.error);
                     return;
                 }
+                console.log(res);
                 if (res.notify_if_filled == 'ON') {
-                    $('#notify_if_filled_on_button').click();
+                    $notify_if_filled_on_button.click();
                 } else {
-                    $('#notify_if_filled_off_button').click();
+                    $notify_if_filled_off_button.click();
+                    
+                }
+                if (res.use_alert == 'ON') {
+                    $use_alert_on_button.click();
+                } else {
+                    $use_alert_off_button.click();
                 }
             })
             .fail(function(data, textStatus, xhr) {
@@ -1694,20 +1703,19 @@
                 set_error_message(message_target, xhr);
             });
 
-            var page_selection = $('#page_selection_alerts');
-            var search_pair = $('#id_alerts_search_pair').val();
-            call_alerts('GET', null, search_pair, 0, 1)
+            
+            call_alerts('GET', null, $search_pair.val(), 0, 1)
             .done(function(res_1) {
                 if (res_1.error) {
                     set_error_message(message_target, res_1.error);
                     return;
                 }
-                if(page_selection.data("twbs-pagination")){
-                    page_selection.empty();
-                    page_selection.removeData("twbs-pagination");
-                    page_selection.unbind("page");
+                if($page_selection.data("twbs-pagination")){
+                    $page_selection.empty();
+                    $page_selection.removeData("twbs-pagination");
+                    $page_selection.unbind("page");
                 }
-                page_selection.twbsPagination({
+                $page_selection.twbsPagination({
                     totalPages: (res_1.total_count == 0) ? 1 : Math.ceil(res_1.total_count / count_per_page),
                     next: '次',
                     prev: '前',
@@ -1715,7 +1723,7 @@
                     last: '最後',
                     onPageClick: function (event, page) {
                         var table_html = '';
-                        call_alerts('GET', null, search_pair, count_per_page * (page - 1), count_per_page)
+                        call_alerts('GET', null, $search_pair.val(), count_per_page * (page - 1), count_per_page)
                         .done(function(res_2) {
                             var table_html = '';
                             $.parseJSON(res_2.active_alerts).forEach(active_alert => {
@@ -1774,6 +1782,14 @@
         }
         function initialize_alerts_tab(is_initial = false) {
             var message_target = $('#id_ajax_message');
+            var $pair_for_alert = $('#id_pair_for_alert');
+            var $notify_if_filled_on_button = $('#notify_if_filled_on_button');
+            var $notify_if_filled_off_button = $('#notify_if_filled_off_button');
+            var $use_alert_on_button = $('#id_use_alert_on_button');
+            var $use_alert_off_button = $('#id_use_alert_off_button');
+            var $add_button = $('#add_alert_button');
+            var $search_pair = $('#id_alerts_search_pair');
+
             // 初回時のみの処理
             if (is_initial) {
                 var option_html = '';
@@ -1781,24 +1797,24 @@
                     option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
                 });
                 
-                $('#id_pair_for_alert').on('change', function() {
+                $pair_for_alert.on('change', function() {
                     $.cookie(COOKIE_ALERT_PAIR, $(this).val(), {expire: 7});
                     var currency = $(this).val().split('_')[1].toUpperCase();
                     $('#id_notice_rate').val('');
                     $('.pair_for_alert').html(currency);
                 });
-                $('#notify_if_filled_on_button').on('click', function() {
+                $notify_if_filled_on_button.on('click', function() {
                     if ($(this).hasClass('on')) {
                         // すでにONの場合は何もしない
                     } else {
-                        call_notify_if_filled('POST', 'ON')
+                        call_user('POST', null, null, null, null, 'ON', null)
                         .done(function(res) {
                             if (res.error) {
                                 set_error_message(message_target, res.error);
                                 return;
                             }
-                            $('#notify_if_filled_on_button').addClass('on').removeClass('btn-base');
-                            $('#notify_if_filled_off_button').removeClass('off').addClass('btn-base');
+                            $notify_if_filled_on_button.addClass('on').removeClass('btn-base');
+                            $notify_if_filled_off_button.removeClass('off').addClass('btn-base');
                         })
                         .fail(function(data, textStatus, xhr) {
                             if (data.status == 401) {
@@ -1808,18 +1824,64 @@
                         });
                     }
                 });
-                $('#notify_if_filled_off_button').on('click', function() {
+                $notify_if_filled_off_button.on('click', function() {
+                    
+                    if ($(this).hasClass('off')) {
+                        // すでにOFFの場合は何もしない
+                       
+                    } else {
+                        call_user('POST',null, null, null, null, 'OFF', null)
+                        .done(function(res) {
+                            if (res.error) {
+                                set_error_message(message_target, res.error);
+                                return;
+                            }
+                            
+                            $notify_if_filled_on_button.removeClass('on').addClass('btn-base');
+                            $notify_if_filled_off_button.addClass('off').removeClass('btn-base');
+                        })
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message(message_target, xhr);
+                        });
+                    }
+                });
+
+                $use_alert_on_button.on('click', function() {
+                    if ($(this).hasClass('on')) {
+                        // すでにONの場合は何もしない
+                    } else {
+                        call_user('POST', null, null, null, null, null, 'ON')
+                        .done(function(res) {
+                            if (res.error) {
+                                set_error_message(message_target, res.error);
+                                return;
+                            }
+                            $use_alert_on_button.addClass('on').removeClass('btn-base');
+                            $use_alert_off_button.removeClass('off').addClass('btn-base');
+                        })
+                        .fail(function(data, textStatus, xhr) {
+                            if (data.status == 401) {
+                                window.location.href = "{% url 'bitbank:login' %}";
+                            }
+                            set_error_message(message_target, xhr);
+                        });
+                    }
+                });
+                $use_alert_off_button.on('click', function() {
                     if ($(this).hasClass('off')) {
                         // すでにOFFの場合は何もしない
                     } else {
-                        call_notify_if_filled('POST','OFF')
+                        call_user('POST',null, null, null, null, null, 'OFF')
                         .done(function(res) {
                             if (res.error) {
                                 set_error_message(message_target, res.error);
                                 return;
                             }
-                            $('#notify_if_filled_on_button').removeClass('on').addClass('btn-base');
-                            $('#notify_if_filled_off_button').addClass('off').removeClass('btn-base');
+                            $use_alert_on_button.removeClass('on').addClass('btn-base');
+                            $use_alert_off_button.addClass('off').removeClass('btn-base');
                         })
                         .fail(function(data, textStatus, xhr) {
                             if (data.status == 401) {
@@ -1829,7 +1891,9 @@
                         });
                     }
                 });
-                $('#add_alert_button').on('click', function() {
+
+
+                $add_button.on('click', function() {
                     var threshold = $('#id_notice_rate').val();
                     var pair = $('#id_pair_for_alert').val();
                     var over_or_under;
@@ -1871,31 +1935,32 @@
                     });
                 });
                 
-                $('#id_pair_for_alert').html(option_html);
+                $pair_for_alert.html(option_html);
 
                 var search_pair_option_html = '';
-                var search_pair = $('#id_alerts_search_pair')
+                
                 search_pair_option_html += '<option value="all">全て</option>'; 
                 Object.keys(PAIRS).forEach(pair => {
                     search_pair_option_html += '<option value="' + pair + '">' + PAIRS[pair] + '</option>';
                 });
-                search_pair.html(search_pair_option_html);
-                search_pair.on('change', function() {
+                $search_pair.html(search_pair_option_html);
+                $search_pair.on('change', function() {
                     $.cookie(COOKIE_SEARCH_PAIR_ALERTS, $(this).val(), {expire: 7});
                     initialize_alerts_content(message_target);
                 });
             }
+            console.log($pair_for_alert);
             var ck_alert_pair = $.cookie(COOKIE_ALERT_PAIR);
             if (ck_alert_pair != undefined && Object.keys(PAIRS).indexOf(ck_alert_pair) >= 0) {
-                $('#id_pair_for_alert').val(ck_alert_pair).trigger('change');
+                $pair_for_alert.val(ck_alert_pair).trigger('change');
             } else {
-                $('#id_pair_for_alert').val(Object.keys(PAIRS)[0]).trigger('change');
+                $pair_for_alert.val(Object.keys(PAIRS)[0]).trigger('change');
             }
             var ck_search_pair_alerts = $.cookie(COOKIE_SEARCH_PAIR_ALERTS);
             if (ck_search_pair_alerts != undefined) {
-                $('#id_alerts_search_pair').val(ck_search_pair_alerts).trigger('change');
+                $search_pair.val(ck_search_pair_alerts).trigger('change');
             } else {
-                $('#id_alerts_search_pair').val('all').trigger('change');
+                $search_pair.val('all').trigger('change');
             }
         }
         function initialize_asset_tab(is_initial = false) {
@@ -1971,18 +2036,18 @@
         function initialize_user_info_tab(is_initial = false) {
             var message_target = $('#id_ajax_message');
             call_user('GET')
-            .done(function(res) {
-                if (res.error) {
-                    set_error_message(message_target, res.error);
+            .done(function(data) {
+                if (data.error) {
+                    set_error_message(message_target, data.error);
                     return;
                 }
-                var user_json = $.parseJSON(res.user)[0];
-                $('#id_date_joined').html(return_formatted_datetime(Date.parse(user_json.fields.date_joined), true));
-                $('#id_email').html(user_json.fields.email);
-                $('#id_full_name').val(user_json.fields.full_name);
-                $('#id_api_key').val(user_json.fields.api_key);
-                $('#id_api_secret_key').val(user_json.fields.api_secret_key);
-                $('#id_email_for_notice').val(user_json.fields.email_for_notice);
+                console.log(data);
+                $('#id_date_joined').html(return_formatted_datetime(Date.parse(data.date_joined), false));
+                $('#id_email').html(data.email);
+                $('#id_full_name').val(data.full_name);
+                $('#id_api_key').val(data.api_key);
+                $('#id_api_secret_key').val(data.api_secret_key);
+                $('#id_email_for_notice').val(data.email_for_notice);
             })
             .fail(function(data, textStatus, xhr) {
                 if (data.status == 401) {
@@ -2086,15 +2151,14 @@
             var attachment_pk_list = [];
             var message_target = $('#id_contact_message');
             call_user('GET')
-            .done(function(res) {
-                if (res.error) {
-                    set_error_message(message_target, res.error);
+            .done(function(data) {
+                if (data.error) {
+                    set_error_message(message_target, data.error);
                     return;
                 }
-                var user_json = $.parseJSON(res.user)[0];
                 $('#id_contact_date').html(return_formatted_datetime((new Date()).getTime(), false));
-                $('#id_contact_email').val(user_json.fields.email_for_notice);
-                $('#id_contact_name').val(user_json.fields.full_name);
+                $('#id_contact_email').val(data.email_for_notice);
+                $('#id_contact_name').val(data.full_name);
             })
             .fail(function(data, textStatus, xhr) {
                 if (data.status == 401) {
