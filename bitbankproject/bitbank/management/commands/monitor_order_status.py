@@ -50,10 +50,13 @@ class Command(BaseCommand):
                         logger.info('o_1 found ' + str(o_1.order_id) + ' status:' + str(status))
             
                         if status == BitbankOrder.STATUS_FULLY_FILLED: 
-
+                            order.order_1 = None
                             if o_2 != None and o_2.status in {BitbankOrder.STATUS_WAIT_OTHER_ORDER_TO_FILL}:
+                                order.special_order = 'SINGLE'
+
                                 if 'stop' in o_2.order_type:
                                     o_2.status = BitbankOrder.STATUS_READY_TO_ORDER
+                                    print('stop order   ')
                                 else:
                                     if not _util.place_order(prv, o_2):
                                         if o_3 != None:
@@ -64,6 +67,7 @@ class Command(BaseCommand):
                     
                                        
                             if o_3 != None and o_3.status in {BitbankOrder.STATUS_WAIT_OTHER_ORDER_TO_FILL}:
+                                order.special_order = 'OCO'
                                 if 'stop' in o_3.order_type:
                                     o_3.status = BitbankOrder.STATUS_READY_TO_ORDER
                                 else:
@@ -73,7 +77,8 @@ class Command(BaseCommand):
                                                 _util.cancel_order(prv, o_2)
                                             else:
                                                 o_2.status = BitbankOrder.STATUS_CANCELED_UNFILLED
-                                
+                            
+
                             if user.notify_if_filled == 'ON':
                                 # 約定通知メール
                                 _util.notify_user(user, o_1)
@@ -97,6 +102,12 @@ class Command(BaseCommand):
                             if user.notify_if_filled == 'ON':
                                 # 約定通知メール
                                 _util.notify_user(user, o_2)
+                        elif status in {BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED}:
+                            if o_3 != None:
+                                order.order_2 = o_3
+                                order.order_3 = None
+                                order.special_order = 'SINGLE'
+
                     if o_3 != None and o_3.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
                         status = _util.get_status(prv, o_3)
                         if status  == BitbankOrder.STATUS_FULLY_FILLED:
@@ -110,11 +121,21 @@ class Command(BaseCommand):
                             if user.notify_if_filled == 'ON':
                                 # 約定通知メール
                                 _util.notify_user(user, o_3)
+                        elif status in {BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED}:
+                            if o_2 != None:
+                                order.order_3 = None
+                                order.special_order = 'SINGLE'
+
                     if (o_1 == None or o_1.status in {BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED, BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER}) \
                         and (o_2 == None or o_2.status in {BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED, BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER}) \
                         and (o_3 == None or o_3.status in {BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED, BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER}):
                         order.is_active = False
-
+                    if o_1 != None:
+                        o_1.save()
+                    if o_2 != None:
+                        o_2.save()
+                    if o_3 != None:
+                        o_3.save()
                     order.save()
 
         logger.info('completed')
