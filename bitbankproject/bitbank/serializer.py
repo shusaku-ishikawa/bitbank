@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class BitbankOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = BitbankOrder
-        fields = ('pk', 'pair', 'side', 'order_type', 'price', 'price_for_stop', 'start_amount', 'remaining_amount', 'executed_amount', 'average_price', 'status', 'order_id', 'ordered_at', 'error_message')
+        fields = ('pk', 'pair', 'side', 'order_type', 'price', 'price_for_stop', 'start_amount', 'remaining_amount', 'executed_amount', 'average_price', 'status', 'order_id', 'ordered_at', 'error_message', 'updated_at')
 
 class OrderSerializer(serializers.ModelSerializer):
     order_1 = BitbankOrderSerializer(many = False, read_only = True)

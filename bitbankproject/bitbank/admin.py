@@ -46,7 +46,7 @@ class MyOrderRelationAdmin(admin.ModelAdmin):
     list_display = ('pk', 'user', 'pair', 'special_order', 'order_1', 'order_2', 'order_3', 'placed_at', 'is_active')
     list_display_links = ('pk',)
 class MyBitbankOrderAdmin(admin.ModelAdmin):
-    list_display = ('order_id', 'user', 'pair', 'side', 'order_type', 'price', 'start_amount', 'remaining_amount', 'executed_amount', 'status')
+    list_display = ('order_id', 'user', 'pair', 'side', 'order_type', 'price', 'start_amount', 'remaining_amount', 'executed_amount', 'status', 'error_message')
     list_display_links = ('order_id',)
 class MyAlertAdmin(admin.ModelAdmin):
     list_display = ('user', 'pair', 'threshold', 'is_active')

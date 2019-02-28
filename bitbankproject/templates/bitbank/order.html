@@ -147,7 +147,7 @@
             <div class="tabcontent-child">
                 <div class="row">
                     <div class="col-md-6 offset-md-1 col-12">
-                            
+                        <span class="badge badge-primary">決済注文❶</span>
                     </div>
                 </div> 
                 <div class="row">
@@ -1060,12 +1060,13 @@
                 var input_special_order = $('#id_special_order');
                 var button_order = $('#id_order_button');
                 var input_number = $('input[type="number"]');
-
+                var $slick = $('#slider_contents');
                 var pair_option_html = '';
                 var special_order_option_html = '';
                 var side_option_html = '';
                 var order_type_option_html = '';
-                $('#slider_contents')
+                
+                $slick
                 .slick({
                     swipe: false,
                     touchMove: false,
@@ -1102,11 +1103,11 @@
                     for (let i = 0; i < 4; i++) {
                         $('#id_price_' + i).val(0);
                         $('#id_price_for_stop' + i).val(0);
-                        $('#id_start_amount_' + i).val(0);
+                        $('#id_start_amount_' + i).val('');
                         set_slidevalue(i, 0);
                     }
 
-                    $('#slider_contents')
+                    $slick
                     .slick('slickUnfilter')
                     .slick('slickFilter', function(index){
                         switch ($('#id_special_order').val()) {
@@ -1133,7 +1134,7 @@
                     for(let i = 0; i < 4; i++) {
                         set_default_price(i, input_pair.val(), ajax_message_target);
                     }
-                    
+                    $slick.slick('slickGoTo', 0);
                     
                 });
 
@@ -1447,11 +1448,10 @@
             table_html += '</div>';
             if (error_message != null && error_message != "") {
                 table_html += '<div class="row">';
-                table_html += '<div class="col-3 card-table-header">エラー</div>';
-                table_html += '<div class="col-8 card-table-data">' + error_message + '</div>';
+                table_html += '<div class="col-12 card-table-data alert-danger">' + error_message + '</div>';
                 table_html += '</div>';
                 table_html += '<div class="row">';
-                table_html += '<div class="col-3 card-table-header">エラー時刻</div>';
+                table_html += '<div class="col-4 card-table-header">エラー時刻</div>';
                 table_html += '<div class="col-8 card-table-data">' + failed_at + '</div>';
                 table_html += '</div>';
             }
@@ -1617,7 +1617,8 @@
                             res_2.data.forEach(order => {
                                 is_empty = false;
                                 content_html += wrapper;
-                                content_html += build_history_order_card(order.pk,hyphen_if_null(order.order_id), PAIRS[order.pair], ORDER_TYPES[order.order_type],SELL_BUY[order.side],hyphen_if_null(order.price),hyphen_if_null(order.price_for_stop),order.start_amount,hyphen_if_null(order.executed_amount),hyphen_if_null(order.average_price),STATUS[order.status],return_formatted_datetime(order.ordered_at), order.error_message, return_formatted_datetime(order.updated_at));
+                                
+                                content_html += build_history_order_card(order.pk,hyphen_if_null(order.order_id), PAIRS[order.pair], ORDER_TYPES[order.order_type],SELL_BUY[order.side],hyphen_if_null(order.price),hyphen_if_null(order.price_for_stop),order.start_amount,hyphen_if_null(order.executed_amount),hyphen_if_null(order.average_price),STATUS[order.status],return_formatted_datetime(order.ordered_at), order.error_message, return_formatted_datetime(order.updated_at * 1000));
                                 content_html += wrapper_end;
                                 
                             });
