@@ -1728,7 +1728,7 @@
                         .done(function(res_2) {
                             var table_html = '';
                             $.parseJSON(res_2.active_alerts).forEach(active_alert => {
-                                table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="card order-card"><div class="card-body"><div class="row">';
+                                table_html += '<div class="row"><div class="col-md-6 offset-md-1 col-12"><div class="order_container"><div class="order_body"><div class="row">';
                                 table_html += '<div class="col-6 card-table-header">取引通貨</div>';
                                 table_html += '<div class="col-6 card-table-data">' + PAIRS[active_alert.fields.pair] + '</div>';
                                 table_html += '</div>';
@@ -1737,7 +1737,7 @@
                                 table_html += '<div class="col-6 card-table-data">' + active_alert.fields.threshold + '</div>';
                                 table_html += '</div>';
                                 table_html += '<div class="row">';
-                                table_html += '<button pk="' + active_alert.pk + '" type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button>';
+                                table_html += '<button style="font-size:1rem; padding:0.2em!important" pk="' + active_alert.pk + '" type="button" class="btn btn-outline-secondary" name="deactivate_alert_button">CANCEL</button>';
                                 table_html += '</div>'
                                 table_html += '</div></div></div></div><hr>';
                             });
