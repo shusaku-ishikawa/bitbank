@@ -51,25 +51,27 @@ class Command(BaseCommand):
                         continue
                     
                     # 通知処理
-                    if user.use_alert == 'ON':
-                        alerts_by_pair = Alert.objects.filter(pair=pair).filter(is_active=True)
+                    alerts_by_pair = Alert.objects.filter(pair=pair).filter(is_active=True)
 
-                        for alert in alerts_by_pair:
-                            try:
-                                if (alert.over_or_under == '以上' and float(ticker_dict.get('last')) >= alert.threshold) or \
-                                    (alert.over_or_under == '以上' and float(ticker_dict.get('last')) >= alert.threshold):
+                    for alert in alerts_by_pair:
+                        try:
+                            if (alert.over_or_under == '以上' and float(ticker_dict.get('last')) >= alert.threshold) or \
+                                (alert.over_or_under == '以上' and float(ticker_dict.get('last')) >= alert.threshold):
+
+                                if user.use_alert == 'ON':
                                     context = { "user": user, "ticker_dict": ticker_dict, "pair": pair }
                                     subject = get_template('bitbank/mail_template/rate_notice/subject.txt').render(context)
                                     message = get_template('bitbank/mail_template/rate_notice/message.txt').render(context)
                                     user.email_user(subject, message)
                                     logger.info('rate notice sent to:' + user.email_for_notice)
-                                    alert.is_active = False
                                     alert.alerted_at = timezone.now()
-                                    alert.save()
-                            except Exception as e:
+                                    
                                 alert.is_active = False
                                 alert.save()
-                                logger.error('user:' + user.email + ' pair:' + pair + ' alert:' + str(alert.pk) + ' error:' + str(e.args))
+                        except Exception as e:
+                            alert.is_active = False
+                            alert.save()
+                            logger.error('user:' + user.email + ' pair:' + pair + ' alert:' + str(alert.pk) + ' error:' + str(e.args))
 
                     # 逆指値の注文取得
                     stop_market_orders_by_pair = BitbankOrder.objects.filter(user=user).filter(pair=pair).filter(order_type=BitbankOrder.TYPE_STOP_MARKET).filter(order_id__isnull=True).filter(status__in=[BitbankOrder.STATUS_READY_TO_ORDER])
