@@ -147,7 +147,7 @@
             <div class="tabcontent-child">
                 <div class="row">
                     <div class="col-md-6 offset-md-1 col-12">
-                        <span class="badge badge-primary">決済注文❶</span>
+                        <span class="badge badge-success">決済注文❶</span>
                     </div>
                 </div> 
                 <div class="row">
@@ -1104,9 +1104,9 @@
                         $('#id_price_' + i).val(0);
                         $('#id_price_for_stop' + i).val(0);
                         $('#id_start_amount_' + i).val('');
-                        set_slidevalue(i, 0);
+                        set_slidevalue(i, 0, false);
                     }
-
+                    input_number.val(null);
                     $slick
                     .slick('slickUnfilter')
                     .slick('slickFilter', function(index){
@@ -1141,9 +1141,9 @@
                 input_pair.on('change', function() {
                     $.cookie(COOKIE_ORDER_PAIR, $(this).val(), { expires: 7 });
 
-                    input_number.val('');
+                    input_number.val(null);
                     for (let i = 1; i< 4; i++) {
-                        set_slidevalue(i, 0);
+                        set_slidevalue(i, 0, false);
                     }
 
                     // 数量、金額の通貨部分を更新
@@ -1199,9 +1199,11 @@
                     });
  
                     $('#id_order_type_' + i).on('change', function() {
-                        $('#id_price_' + i).val(0);
-                        $('#id_price_for_stop_' + i).val(0);
-                        set_slidevalue(i, 0);
+                        $('#id_price_' + i).val(null);
+                        $('#id_price_for_stop_' + i).val(null);
+                        $('#id_start_amount_' + i).val(null);
+                        $('#expect_price_' + i).val(null);
+                        set_slidevalue(i, 0, false);
                         var new_order_type = $(this).val();
                         $.cookie(COOKIE_ORDER_TYPE + '_' + i, new_order_type, { expires: 7 });
                         if (new_order_type == 'limit') {
