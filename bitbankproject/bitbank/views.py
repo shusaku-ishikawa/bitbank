@@ -7,7 +7,7 @@ import python_bitbankcc
 from django import forms, http
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordChangeDoneView,
@@ -18,6 +18,7 @@ from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordResetView)
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import serializers
+from django.core.mail import EmailMultiAlternatives, send_mail
 from django.core.signing import BadSignature, SignatureExpired, dumps, loads
 from django.forms.utils import ErrorList
 from django.http import Http404, HttpResponseBadRequest, JsonResponse
@@ -26,14 +27,13 @@ from django.template.loader import get_template
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import generic
-from django.contrib.auth import authenticate
-from django.core.mail import send_mail, EmailMultiAlternatives
+
+from . import _util
 from .forms import (LoginForm, MyPasswordChangeForm, MyPasswordResetForm,
                     MySetPasswordForm, UserCreateForm, UserUpdateForm)
-from .models import User, Alert, OrderRelation, BitbankOrder, Inquiry, Attachment
-from django.conf import settings
-from .serializer import UserSerializer, BitbankOrderSerializer, OrderSerializer
-from . import _util
+from .models import (Alert, Attachment, BitbankOrder, Inquiry, OrderRelation,
+                     User)
+from .serializer import BitbankOrderSerializer, OrderSerializer, UserSerializer
 
 # User = get_user_model()
 
@@ -246,7 +246,7 @@ def ajax_alerts(request):
     elif method == 'POST':
         op = request.POST.get('method')
         if op == 'DELETE':
-            pk = request.DELETE.get('pk')
+            pk = request.POST.get('pk')
             try:
                 alert = Alert.objects.filter(pk=pk).update(is_active=False)
                 return JsonResponse({'success': 'success'})
@@ -639,4 +639,3 @@ def ajax_inquiry(request):
             return JsonResponse({'success': '問い合わせが完了しました'})
         except Exception as e:
             return JsonResponse({'error': e.args})
-    
