@@ -18,7 +18,7 @@ class Command(BaseCommand):
     # コマンドが実行された際に呼ばれるメソッド
     def handle(self, *args, **options):
         logger = logging.getLogger('batch_logger')
-        logger.info('started')
+        #logger.info('started')
         time_started = time.time()
         n = 0
         while True:
@@ -63,7 +63,7 @@ class Command(BaseCommand):
                                     subject = get_template('bitbank/mail_template/rate_notice/subject.txt').render(context)
                                     message = get_template('bitbank/mail_template/rate_notice/message.txt').render(context)
                                     user.email_user(subject, message)
-                                    logger.info('rate notice sent to:' + user.email_for_notice)
+                                    #logger.info('rate notice sent to:' + user.email_for_notice)
                                     alert.alerted_at = timezone.now()
                                     
                                 alert.is_active = False

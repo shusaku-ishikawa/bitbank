@@ -17,7 +17,7 @@ class Command(BaseCommand):
     # コマンドが実行された際に呼ばれるメソッド
     def handle(self, *args, **options):
         logger = logging.getLogger('batch_logger')
-        logger.info('started')
+        #logger.info('started')
         time_started = time.time()
         n = 0
         while True:
@@ -27,7 +27,7 @@ class Command(BaseCommand):
             if time_elapsed > 57.0:
                 break;
             for user in User.objects.all():
-                logger.info(user.full_name)
+                #logger.info(user.full_name)
                 # API KEYが登録されているユーザのみ処理
                 if (user.api_key == "" or user.api_key == None) or (user.api_secret_key == "" or user.api_secret_key == None):
                     # キー情報セット
@@ -47,7 +47,7 @@ class Command(BaseCommand):
                     # Order#1が存在し、未約定の場合
                     if o_1 != None and o_1.status in {BitbankOrder.STATUS_UNFILLED, BitbankOrder.STATUS_PARTIALLY_FILLED}:
                         status = _util.get_status(prv, o_1)
-                        logger.info('o_1 found ' + str(o_1.order_id) + ' status:' + str(status))
+                        #logger.info('o_1 found ' + str(o_1.order_id) + ' status:' + str(status))
             
                         if status == BitbankOrder.STATUS_FULLY_FILLED: 
                             order.order_1 = None
@@ -56,7 +56,6 @@ class Command(BaseCommand):
 
                                 if 'stop' in o_2.order_type:
                                     o_2.status = BitbankOrder.STATUS_READY_TO_ORDER
-                                    print('stop order   ')
                                 else:
                                     if not _util.place_order(prv, o_2):
                                         if o_3 != None:
@@ -138,4 +137,4 @@ class Command(BaseCommand):
                         o_3.save()
                     order.save()
 
-        logger.info('completed')
+        #logger.info('completed')
