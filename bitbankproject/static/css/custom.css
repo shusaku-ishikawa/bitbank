@@ -105,6 +105,13 @@ div.order_body {
     padding: 0.3rem 1.5rem   
 
 }
+div.order_history_body {
+    background: #333333 !important;
+    
+    margin: 0.2rem;
+    padding: 0.3rem 1.5rem   
+
+}
 
 div.order_container {
     font-size: 0.8rem;

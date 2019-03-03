@@ -136,8 +136,8 @@ LOGGING = {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'logs/batch.log'),
             'formatter': 'all',
-            'maxBytes': 100024 * 1024,
-            'backupCount': 10,
+            'maxBytes': 10024 * 1024,
+            'backupCount': 1,
         },
         'console': { # どこに出すかの設定をもう一つ、こちらの設定には`console`という名前
             'level': 'DEBUG',
