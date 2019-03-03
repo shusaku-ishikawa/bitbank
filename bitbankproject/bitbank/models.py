@@ -122,6 +122,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email_for_notice], **kwargs)
+ 
 
     @property
     def username(self):
@@ -136,7 +137,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class BitbankOrder(models.Model):
     def __str__(self):
-        return self.order_id
+        if self.order_id == None:
+            return "-"
+        else:
+            return self.order_id
         
     class Meta:
         verbose_name = "bitbank注文"
