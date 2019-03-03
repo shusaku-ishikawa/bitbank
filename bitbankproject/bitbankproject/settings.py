@@ -126,7 +126,7 @@ LOGGING = {
         'file_transaction': { 
             'level': 'DEBUG',  # DEBUG以上のログを取り扱うという意味
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/transactino.log'),
+            'filename': os.path.join(BASE_DIR, 'logs/transaction.log'),
             'formatter': 'all',
             'maxBytes': 1024 * 1024,
             'backupCount': 10,
