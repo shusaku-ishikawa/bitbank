@@ -614,28 +614,45 @@ def ajax_inquiry(request):
                 'new_inquiry': new_inquiry,
             }
 
-            subject_template = get_template('bitbank/mail_template/inquiry/subject.txt')
-            subject = subject_template.render(context)
-            
-            message_template = get_template('bitbank/mail_template/inquiry/message.txt')
-            message = message_template.render(context)
-            
-            kwargs = dict(
+            subject_template_for_admin = get_template('bitbank/mail_template/inquiry/subject.txt')
+            subject_for_admin = subject_template_for_admin.render(context)
+            message_template_for_admin = get_template('bitbank/mail_template/inquiry/message.txt')
+            message_for_admin = message_template_for_admin.render(context)
+
+            subject_template_for_customer = get_template('bitbank/mail_template/inquiry/subject_for_customer.txt')
+            subject_for_customer = subject_template_for_customer.render(context)
+            message_template_for_customer = get_template('bitbank/mail_template/inquiry/message_for_customer.txt')
+            message_for_customer = message_template_for_customer.render(context)
+
+            kwargs_for_admin = dict(
                 to = [settings.DEFAULT_FROM_EMAIL],
                 from_email = [settings.DEFAULT_FROM_EMAIL],
-                subject = subject,
-                body = message,
+                subject = subject_for_admin,
+                body = message_for_admin,
             )
-            msg = EmailMultiAlternatives(**kwargs)
-            if (new_inquiry.attachment_1 != None):
-                msg.attach_file(new_inquiry.attachment_1.file.path)
-            if (new_inquiry.attachment_2 != None):
-                msg.attach_file(new_inquiry.attachment_2.file.path)
-            if (new_inquiry.attachment_3 != None):
-                msg.attach_file(new_inquiry.attachment_3.file.path)
-
-            msg.send()
+            kwargs_for_customer = dict(
+                to = [request.POST.get('email_for_reply')],
+                from_email = [settings.DEFAULT_FROM_EMAIL],
+                subject = subject_for_customer,
+                body = message_for_customer,
+            )
+            msg_for_admin = EmailMultiAlternatives(**kwargs_for_admin)
+            msg_for_customer = EmailMultiAlternatives(**kwargs_for_customer)
             
+            if (new_inquiry.attachment_1 != None):
+                msg_for_admin.attach_file(new_inquiry.attachment_1.file.path)
+                msg_for_customer.attach_file(new_inquiry.attachment_1.file.path)
+                
+            if (new_inquiry.attachment_2 != None):
+                msg_for_admin.attach_file(new_inquiry.attachment_2.file.path)
+                msg_for_customer.attach_file(new_inquiry.attachment_2.file.path)
+                
+            if (new_inquiry.attachment_3 != None):
+                msg_for_admin.attach_file(new_inquiry.attachment_3.file.path)
+                msg_for_customer.attach_file(new_inquiry.attachment_3.file.path)
+
+            msg_for_admin.send()
+            msg_for_customer.send()
             return JsonResponse({'success': '問い合わせが完了しました'})
         except Exception as e:
             return JsonResponse({'error': e.args})

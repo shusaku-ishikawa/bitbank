@@ -1,0 +1,6 @@
+{{ customer.full_name }} 様
+
+会員期間が残り{{ customer.remaining_days }}日となりました。
+お早めの更新をお願いいたします。
+
+管理者

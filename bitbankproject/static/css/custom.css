@@ -216,17 +216,17 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
   }
  
   figure.attachment_preview {
-      height : 10em;
+      height : 10rem;
       width: 8em;
-      padding: 0.5em 0.5em;
-      margin-bottom: 3em;
+      padding: 0.5rem 0.5rem;
+      margin-bottom: 3rem;
   }
   figure.attachment_preview > img {
       width: 100%;
       height: auto;
   }
  figure > figcaption {
-     font-size: 0.5em;
+     font-size: 1.5rem;
  }
   div > ul.pagination > li.page-item > a.page-link{
     background: #333333 !important;

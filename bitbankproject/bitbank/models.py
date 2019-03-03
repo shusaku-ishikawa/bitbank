@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from unixtimestampfield.fields import UnixTimeStampField
 from django.core.files.storage import FileSystemStorage
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 import unicodedata
 
 
@@ -374,6 +376,11 @@ class Attachment(models.Model):
         null = False,
         blank = False,
     )
+    uploaded_at = models.DateTimeField(
+        verbose_name = 'アップロード日時',
+        auto_now_add = True,
+    )
+
 class Inquiry(models.Model):
     def __str__(self):
         return self.subject
@@ -428,11 +435,7 @@ class Inquiry(models.Model):
         auto_now_add = True,
 
     )
-    # def admin_og_image(self):
-    #     if self.attachment_1:
-    #         return '<img src="{}" style="width:100px;height:auto;">'.format(self.attachment_1.file)
-    #     else:
-    #         return 'no image'
-        
-    # admin_og_image.allow_tags = True
 
+@receiver(post_delete, sender=Attachment)
+def delete_file(sender, instance, **kwargs):
+    instance.file.delete(False)

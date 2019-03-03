@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.core.management.base import BaseCommand
 from django.template.loader import get_template
 from datetime import datetime, timedelta
-from ...models import Order, User
+from ...models import OrderRelation, BitbankOrder, User, Attachment, Inquiry, Alert
 
 
 # BaseCommandを継承して作成
@@ -20,10 +20,17 @@ class Command(BaseCommand):
 
         delete_if_older_than = timezone.now() - timedelta(days=delta_day)
         
-        orders_to_delete = Order.objects.filter(status__in=[Order.STATUS_FULLY_FILLED, Order.STATUS_CANCELED_UNFILLED, Order.STATUS_CANCELED_PARTIALLY_FILLED, Order.STATUS_FAILED_TO_ORDER]).filter(updated_at__lte=delete_if_older_than)
+        orders_to_delete = BitbankOrder.objects.filter(status__in=[BitbankOrder.STATUS_FULLY_FILLED, BitbankOrder.STATUS_CANCELED_UNFILLED, BitbankOrder.STATUS_CANCELED_PARTIALLY_FILLED, BitbankOrder.STATUS_FAILED_TO_ORDER]).filter(updated_at__lte=delete_if_older_than)
+        attachments_to_delete = Attachment.objects.filter(uploaded_at__lte = delete_if_older_than)
+        alerts_to_delete = Alert.objects.filter(is_active = False).filter(alerted_at__lte = delete_if_older_than)
+
         logger.info(str(orders_to_delete.count()) + ' will be deleted.')
+        
         try:
             orders_to_delete.delete()
+            attachments_to_delete.delete()
+            alerts_to_delete.delete()
+            
         except Exception as e:
             logger.error(str(e.args))
         logger.info('completed')

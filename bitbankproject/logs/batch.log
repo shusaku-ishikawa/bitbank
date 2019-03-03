@@ -1,0 +1,17 @@
+[INFO]	asctime:2019-03-03 17:07:04,158	module:gabage	message:started
+[INFO]	asctime:2019-03-03 17:07:04,169	module:gabage	message:0 will be deleted.
+[INFO]	asctime:2019-03-03 17:07:04,170	module:gabage	message:0 will be deleted.
+[INFO]	asctime:2019-03-03 17:07:04,179	module:gabage	message:completed
+[INFO]	asctime:2019-03-03 17:07:22,362	module:gabage	message:started
+[INFO]	asctime:2019-03-03 17:07:22,371	module:gabage	message:0 will be deleted.
+[INFO]	asctime:2019-03-03 17:07:22,373	module:gabage	message:0 will be deleted.
+[INFO]	asctime:2019-03-03 17:07:22,382	module:gabage	message:completed
+[INFO]	asctime:2019-03-03 17:07:28,733	module:gabage	message:started
+[INFO]	asctime:2019-03-03 17:07:28,741	module:gabage	message:0 will be deleted.
+[INFO]	asctime:2019-03-03 17:07:28,743	module:gabage	message:1 will be deleted.
+[INFO]	asctime:2019-03-03 17:07:28,756	module:gabage	message:completed
+[INFO]	asctime:2019-03-03 17:21:29,461	module:gabage	message:started
+[INFO]	asctime:2019-03-03 17:21:29,471	module:gabage	message:0 will be deleted.
+[INFO]	asctime:2019-03-03 17:21:29,478	module:gabage	message:completed
+[INFO]	asctime:2019-03-03 18:03:37,284	module:decrement_remaining_days	message:started
+[INFO]	asctime:2019-03-03 18:05:54,034	module:decrement_remaining_days	message:started
