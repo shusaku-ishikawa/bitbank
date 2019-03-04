@@ -1105,7 +1105,6 @@
                         set_slidevalue(i, 0, false);
                         $('#id_side_' + i).val(Object.keys(SELL_BUY)[0]).trigger('value_change');
                     }
-                    $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
 
                     $slick
                     .slick('slickUnfilter')
@@ -1144,6 +1143,7 @@
                     input_number.val(null);
                     for (let i = 1; i< 4; i++) {
                         set_slidevalue(i, 0, false);
+                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[0]).trigger('value_change');
                     }
 
                     // 数量、金額の通貨部分を更新
@@ -1223,8 +1223,9 @@
                         display_price_div(i, new_order_type);
                     });
                     $('#id_side_' + i).on('value_change', function() {
-                        
-                        set_slidevalue(i, 0);
+                        input_number.val(null);
+                        set_slidevalue(i, 0, false);
+
                         if ($(this).val() == 'buy') {
                             
                             $('#sell_button_' + i).removeClass('sell').addClass('btn-base');
