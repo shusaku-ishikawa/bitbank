@@ -1100,13 +1100,13 @@
                 input_special_order
                 .on('change', function() {
                     $.cookie(COOKIE_SPECIAL_ORDER, $(this).val(), { expires: 7 });
-                    for (let i = 0; i < 4; i++) {
-                        $('#id_price_' + i).val(0);
-                        $('#id_price_for_stop' + i).val(0);
-                        $('#id_start_amount_' + i).val('');
-                        set_slidevalue(i, 0, false);
-                    }
                     input_number.val(null);
+                    for (let i = 0; i < 4; i++) {
+                        set_slidevalue(i, 0, false);
+                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[0]).trigger('value_change');
+                    }
+                    $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
+
                     $slick
                     .slick('slickUnfilter')
                     .slick('slickFilter', function(index){
@@ -1270,7 +1270,7 @@
 
   
                     $('#id_side_' + i).html(side_option_html);
-                    $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
+                    $('#id_side_' + i).val(Object.keys(SELL_BUY)[0]).trigger('value_change');
 
                     $('#id_order_type_' + i).html(order_type_option_html);
                     $('#id_order_type_' + i).val(Object.keys(ORDER_TYPES)[1]).trigger('change');
