@@ -1239,6 +1239,7 @@
                             $('#myRange_' + i).addClass('slider_for_sell').removeClass('slider_for_buy');
                             button_order.removeClass('green_button').addClass('red_button');
                         }
+                        set_default_price(i, input_pair.val(), ajax_message_target);
                     });
                     $('#sell_button_' + i).on('click', function() {
                         // 変更があった場合のみ処理
