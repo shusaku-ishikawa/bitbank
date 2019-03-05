@@ -15,3 +15,4 @@
 [INFO]	asctime:2019-03-03 17:21:29,478	module:gabage	message:completed
 [INFO]	asctime:2019-03-03 18:03:37,284	module:decrement_remaining_days	message:started
 [INFO]	asctime:2019-03-03 18:05:54,034	module:decrement_remaining_days	message:started
+[INFO]	asctime:2019-03-05 20:13:21,907	module:_util	message:notice sent to:ishikawasyuusaku@gmail.com

@@ -596,7 +596,7 @@ def ajax_inquiry(request):
             new_inquiry.subject = request.POST.get('subject')
             new_inquiry.body = request.POST.get('body')
             new_inquiry.email_for_reply = request.POST.get('email_for_reply')
-
+            print(request.POST.get('email_for_reply'))
             att_1_pk = request.POST.get('att_pk_1')
             att_2_pk = request.POST.get('att_pk_2')
             att_3_pk = request.POST.get('att_pk_3')
@@ -626,13 +626,13 @@ def ajax_inquiry(request):
 
             kwargs_for_admin = dict(
                 to = [settings.DEFAULT_FROM_EMAIL],
-                from_email = [settings.DEFAULT_FROM_EMAIL],
+                from_email = settings.DEFAULT_FROM_EMAIL,
                 subject = subject_for_admin,
                 body = message_for_admin,
             )
             kwargs_for_customer = dict(
                 to = [request.POST.get('email_for_reply')],
-                from_email = [settings.DEFAULT_FROM_EMAIL],
+                from_email = settings.DEFAULT_FROM_EMAIL,
                 subject = subject_for_customer,
                 body = message_for_customer,
             )

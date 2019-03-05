@@ -160,6 +160,37 @@ class BitbankOrder(models.Model):
     STATUS_WAIT_OTHER_ORDER_TO_FILL = "WAIT_OTHER_ORDER_TO_FILL"
     STATUS_FAILED_TO_ORDER = 'FAILED_TO_ORDER'
 
+    PAIR = {
+        'btc_jpy': 'BTC/JPY',
+        'xrp_jpy': 'XRP/JPY',
+        'ltc_btc': 'LTC/BTC',
+        'eth_btc': 'ETH/BTC',
+        'mona_jpy': 'MONA/JPY',
+        'mona_btc': 'MONA/BTC',
+        'bcc_jpy': 'BCC/JPY',
+        'bcc_btc': 'BCC/BTC'
+    }
+
+    STATUS = {
+        'UNFILLED': '未約定',
+        'PARTIALLY_FILLED': '一部約定済',
+        'FULLY_FILLED': '約定済',
+        'CANCELED_UNFILLED': 'キャンセル済',
+        'CANCELED_PARTIALLY_FILLED': '一部キャンセル済',
+        'READY_TO_ORDER': '未注文',
+        'FAILED_TO_ORDER': '注文失敗',
+        'WAIT_OTHER_ORDER_TO_FILL': '他注文約定待'
+    }
+    ORDER_TYPE = {
+        'market': '成行',
+        'limit': '指値',
+        'stop_market': '逆指値',
+        'stop_limit': 'ストップリミット'
+    }
+    SIDE = {
+        'sell': '売',
+        'buy': '買'
+    }
     user = models.ForeignKey(
         User,
         verbose_name = 'ユーザ',
@@ -325,6 +356,7 @@ class OrderRelation(models.Model):
         on_delete = models.CASCADE
     )
     placed_at = models.DateTimeField(
+        verbose_name = '注文日時',
         auto_now_add = True
     )
     is_active = models.BooleanField(

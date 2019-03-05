@@ -569,7 +569,7 @@
                                             data-url="{% url 'bitbank:ajax_attachment' %}"
                                             data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
     
-                                <div id="id_attachment_preview"></div>
+                                
                             </form>    
                         </td>
                     </tr>
@@ -578,6 +578,13 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div id="id_attachment_preview" style="display: inline" class="col-md-6 offset-md-1 col-12">
+        <!-- <div class="container" id="id_attachment_preview"></div> -->
+    </div>
+</div> 
+
 <div class="row">
     <div class="col-md-6 offset-md-1 col-12">
         <div id="id_contact_message" class="alert"></div>
@@ -2227,24 +2234,24 @@
                         }
                         attachment_pk_list.push(data.result.pk + '');
                         console.log(attachment_pk_list);
-                        var prev_wrapper = document.createElement('figure');
-                        var prev = document.createElement('img');
-                        // var prev_caption = document.createElement('label');
-                        var prev_caption = document.createElement('figcaption');
+                        var wrapper = document.createElement('div');
+                        var figure = document.createElement('figure');
+                        var img = document.createElement('img');
+                        var overlay = document.createElement('div');
+                        var caption = document.createElement('figcaption');
                         
-                        var delete_icon = document.createElement('i')
-                        $(delete_icon)
-                        .addClass('fa fa-close')
+                        // var delete_icon = document.createElement('i')
+                        $(figure)
                         .on('click', function() {
-                            var i = attachment_pk_list.indexOf($(this).parent().attr('pk'));
+                            var i = attachment_pk_list.indexOf($(this).attr('pk'));
                             attachment_pk_list.splice(i, 1);
-                            call_attachment('DELETE', $(this).parent().attr('pk'))
+                            call_attachment('DELETE', $(this).attr('pk'))
                             .done((data) => {
                                 if (data.error) {
                                     set_error_message(message_target, data.error);
                                     return;
                                 }
-                                $(this).parent().remove();
+                                $(this).remove();
                             })
                             .fail(function(data, textStatus, xhr) {
                                 if (data.status == 401) {
@@ -2253,17 +2260,20 @@
                                 set_error_message(message_target, xhr);
                             });
                         });
-
-                        $(prev_wrapper).addClass('attachment_preview').attr('pk', data.result.pk);
-                        $(prev).attr('id', 'file_' + data.result.pk);
+                        // $(wrapper).addClass('container');
+                        $(figure).addClass('attachment_preview').attr('pk', data.result.pk);
+                        $(img).attr('id', 'file_' + data.result.pk);
+                        $(img).addClass('img-thumbnail');
+                        $(overlay).addClass('text').html('×');
                         // $(prev_caption).attr('for', 'file_' + data.result.pk);
-                        $(prev_caption).html(data.files[0].name);
-                        readURL(data.files[0], prev);
-                        prev_wrapper.append(delete_icon);
-                        prev_wrapper.append(prev);
-                        prev_wrapper.append(prev_caption);
+                        $(caption).html(data.files[0].name);
+                        readURL(data.files[0], img);
+                        // prev_wrapper.append(delete_icon);
+                        figure.append(img);
                         
-                        preview_zone.append(prev_wrapper);
+                        figure.append(caption);
+                        figure.append(overlay);
+                        preview_zone.append(figure);
 
                         
                     },

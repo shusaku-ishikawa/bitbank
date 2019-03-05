@@ -214,12 +214,15 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     display: none;
     border-top: none;
   }
- 
+  
+  figure {
+      float: left;
+      position: relative;
+  }
   figure.attachment_preview {
-      height : 10rem;
-      width: 8rem;
+      height : 60%;
+      width: 30%;
       padding: 0.5rem 0.5rem;
-      margin-bottom: 0rem;
   }
   figure.attachment_preview > img {
       width: 100%;
@@ -301,3 +304,22 @@ input[type="range"]:hover {
     cursor: pointer;
     background: orangered;
 }
+
+.attachment_preview:hover .img-thumbnail {
+    opacity: 0.4;
+  }
+  .attachment_preview:hover .text {
+    opacity: 1;
+  }
+
+.text {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
