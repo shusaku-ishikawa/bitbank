@@ -1400,14 +1400,14 @@
             }
             table_html += '</div>';
             
-
-
+            table_html += '<hr><div class="row">';
             if (is_cancellable) {
-                table_html += '<hr><div class="row">';
                 table_html += '<button style="font-size:1rem; padding:0.2em!important" pk="' + pk + '" type="button" class="btn btn-outline-secondary" name="cancel_order_button">CANCEL</button>';
-                table_html += '</div>';
+            } else {
+                table_html += '<p style="color:red;font-weight:bold">新規注文をCANCELする場合は、<br>先に決済注文を全てCANCELさせてください</p>'
             }
-           table_html += '</div>';
+            table_html += '</div>';
+            table_html += '</div>';
 
             return table_html;
         }
