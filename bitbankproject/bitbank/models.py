@@ -91,7 +91,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             'Designates whether the user can log into this admin site.'),
     )
     is_active = models.BooleanField(
-        _('有効'),
+        _('利用開始'),
         default=True,
         help_text=_(
             'Designates whether this user should be treated as active. '
