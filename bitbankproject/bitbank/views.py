@@ -174,7 +174,7 @@ class MainPage(LoginRequiredMixin, generic.TemplateView):
 
 
 def ajax_user(request):
-    if request.user.is_anonymous:
+    if request.user.is_anonymous or request.user.is_active == False:
         return JsonResponse({'error' : 'authentication failed'}, status=401)
 
     method = request.method
@@ -216,7 +216,7 @@ def ajax_user(request):
         return JsonResponse(data) 
 
 def ajax_alerts(request):
-    if request.user.is_anonymous:
+    if request.user.is_anonymous or request.user.is_active == False:
         return JsonResponse({'error' : 'authentication failed'}, status=401)
 
     user = request.user
@@ -265,8 +265,9 @@ def ajax_alerts(request):
                 traceback.print_exc()
                 return JsonResponse({'error': e.args})
 def ajax_ticker(request):
-    if request.user.is_anonymous:
+    if request.user.is_anonymous or request.user.is_active == False:
         return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     if request.method == 'GET':
         pair = request.GET.get('pair')
         try:
@@ -282,8 +283,9 @@ def ajax_ticker(request):
         return JsonResponse(res_dict)
 
 def ajax_assets(request):
-    if request.user.is_anonymous:
+    if request.user.is_anonymous or request.user.is_active == False:
         return JsonResponse({'error' : 'authentication failed'}, status=401)
+
     if request.method == 'GET':
         user = request.user
 
@@ -338,7 +340,7 @@ def process_order(user, order_params, is_ready):
     return new_bitbank_order
 
 def ajax_orders(request):
-    if request.user.is_anonymous:
+    if request.user.is_anonymous or request.user.is_active == False:
         return JsonResponse({'error' : 'authentication failed'}, status=401)
 
     user = request.user
@@ -569,8 +571,8 @@ def ajax_orders(request):
                 
 
 def ajax_attachment(request):
-    if request.user.is_anonymous:
-        return JsonResponse({'error': 'authentication failed'}, status=401)
+    if request.user.is_anonymous or request.user.is_active == False:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
 
     method = request.method
 
@@ -586,9 +588,9 @@ def ajax_attachment(request):
             return JsonResponse({'success': True, 'pk': a.pk, 'url': a.file.url})
        
 def ajax_inquiry(request):
-    if request.user.is_anonymous:
-        return JsonResponse({'error': 'authentication failed'}, status=401)
-
+    if request.user.is_anonymous or request.user.is_active == False:
+        return JsonResponse({'error' : 'authentication failed'}, status=401)
+        
     if request.method == 'POST':       
         try:
             new_inquiry = Inquiry()
