@@ -219,6 +219,7 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
       float: left;
       position: relative;
   }
+
   figure.attachment_preview {
       height : auto;
       width: 30%;
