@@ -43,18 +43,24 @@ class MyUserAdmin(UserAdmin):
     ordering = ('remaining_days',)
 
 class MyOrderRelationAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'user', 'pair_display', 'special_order', 'order_1', 'order_2', 'order_3', 'placed_at', 'is_active')
+    list_display = ('pk', 'user_display', 'pair_display', 'special_order', 'order_1', 'order_2', 'order_3', 'placed_at', 'is_active')
     list_display_links = ('pk',)
     def pair_display(self, obj):
         return BitbankOrder.PAIR[obj.pair]
     def order_type_display(self, obj):
         return BitbankOrder.ORDER_TYPE[obj.order_type]
+    def user_display(self, obj):
+        return obj.user.full_name
+    user_display.short_description = '利用者'
     pair_display.short_description = '通過'
     order_type_display.short_description = '注文'
     
 class MyBitbankOrderAdmin(admin.ModelAdmin):
-    list_display = ('order_id', 'user', 'pair_display', 'side_display', 'order_type_display', 'price', 'start_amount', 'remaining_amount', 'executed_amount', 'status_display', 'error_message')
+    list_display = ('order_id', 'user_display', 'pair_display', 'side_display', 'order_type_display', 'price', 'start_amount', 'remaining_amount', 'executed_amount', 'status_display', 'error_message')
     list_display_links = ('order_id',)
+    def user_display(self, obj):
+        return obj.user.full_name
+    user_display.short_description = '利用者'
     def pair_display(self, obj):
         return BitbankOrder.PAIR[obj.pair]
     def side_display(self, obj):
@@ -74,11 +80,21 @@ class MyBitbankOrderAdmin(admin.ModelAdmin):
     
     
 class MyAlertAdmin(admin.ModelAdmin):
-    list_display = ('user', 'pair', 'threshold', 'is_active')
+    list_display = ('user_display', 'pair_display', 'threshold', 'is_active')
+    def pair_display(self, obj):
+        return BitbankOrder.PAIR[obj.pair]
+    def user_display(self, obj):
+        return obj.user.full_name
+    user_display.short_description = '利用者'
+    pair_display.short_description = '通過'
 
 class MyInquiryAdmin(admin.ModelAdmin):
     
-    list_display = ('user', 'date_initiated', 'subject', 'body', 'email_for_reply', 'show_attachment_1', 'show_attachment_2', 'show_attachment_3')
+    list_display = ('user_display', 'date_initiated', 'subject', 'body', 'email_for_reply', 'show_attachment_1', 'show_attachment_2', 'show_attachment_3')
+    def user_display(self, obj):
+        return obj.user.full_name
+    user_display.short_description = '利用者'
+
     def show_attachment_1(self, obj):
         if obj.attachment_1:
             return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
@@ -112,10 +128,38 @@ class MyInquiryAdmin(admin.ModelAdmin):
             return 'なし'
     show_attachment_1.short_description = '添付ファイル１'
     show_attachment_2.short_description = '添付ファイル２'
-    show_attachment_3.short_description = '添付ファイル３'     
-admin.site.register(User, MyUserAdmin)
-admin.site.register(OrderRelation, MyOrderRelationAdmin)
-admin.site.register(BitbankOrder, MyBitbankOrderAdmin)
+    show_attachment_3.short_description = '添付ファイル３'
 
-admin.site.register(Alert, MyAlertAdmin)
-admin.site.register(Inquiry, MyInquiryAdmin)
+class MyAdminSite(admin.AdminSite):
+    site_header = 'bitbank-order.com'
+    site_title  = 'サイト管理'
+    index_title = '管理サイト'
+    def get_app_list(self, request):
+        """
+        Return a sorted list of all the installed apps that have been
+        registered in this site.
+        """
+        ordering = {
+            "利用者": 1,
+            "問い合せ": 2,
+            "注文": 3,
+            "特殊注文": 4,
+            "通知状況":5
+        }
+        app_dict = self._build_app_dict(request)
+        # a.sort(key=lambda x: b.index(x[0]))
+        # Sort the apps alphabetically.
+        app_list = sorted(app_dict.values(), key=lambda x: x['name'].lower())
+
+        # Sort the models alphabetically within each app.
+        for app in app_list:
+            app['models'].sort(key=lambda x: ordering[x['name']])
+
+        return app_list
+
+admin_site = MyAdminSite(name = 'bitbank管理画面')
+admin_site.register(User, MyUserAdmin)
+admin_site.register(OrderRelation, MyOrderRelationAdmin)
+admin_site.register(BitbankOrder, MyBitbankOrderAdmin)
+admin_site.register(Alert, MyAlertAdmin)
+admin_site.register(Inquiry, MyInquiryAdmin)
