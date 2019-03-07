@@ -16,3 +16,9 @@
 [INFO]	asctime:2019-03-03 18:03:37,284	module:decrement_remaining_days	message:started
 [INFO]	asctime:2019-03-03 18:05:54,034	module:decrement_remaining_days	message:started
 [INFO]	asctime:2019-03-05 20:13:21,907	module:_util	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-03-07 21:15:03,277	module:_util	message:notice sent to:ishikawasyuusaku@gmail.com
+[INFO]	asctime:2019-03-07 21:15:58,979	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-03-07 21:16:59,506	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-03-07 21:18:01,278	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-03-07 21:19:00,348	module:monitor_ticker	message:completed
+[INFO]	asctime:2019-03-07 21:19:59,959	module:monitor_ticker	message:completed

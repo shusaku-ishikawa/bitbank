@@ -98,25 +98,30 @@ div.card {
 div.card.red-border {
     border: solid 3px #FF6600;
 }
+
+div.order_header {
+    background: #333333 !important;
+    margin: 0.2rem 0.2rem 0.2rem 0.2rem;
+    padding: 0.3rem 1.5rem   
+}
 div.order_body {
     background: #333333 !important;
-    margin: 0.2rem 0.2rem 0.3rem 0.2rem;
+    margin: 0.3rem 0.2rem 0.2rem 0.2rem;
     padding: 0.3rem 1.5rem   
 
 }
 div.order_history_body {
     background: #333333 !important;
     
-    margin: 0.2rem;
+    margin: 0.2rem 0.2rem 0.2rem 0.2rem;
     padding: 0.3rem 1.5rem   
 
 }
 
 div.order_container {
     font-size: 0.8rem;
-    padding: 0.1rem;
+    padding: 0.15rem 0.15rem 0.15rem 0.15rem;
     background: gray;
-    /* margin: 0.2rem; */
 }
 
 div.card-table-header {
