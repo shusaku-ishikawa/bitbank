@@ -1002,7 +1002,7 @@
                 if (data.status == 401) {
                     window.location.href = "{% url 'bitbank:login' %}";
                 }
-                set_error_message(ajax_message_target, xhr);
+                set_error_message(message_target, xhr);
             });            
         }
         function set_slidevalue(tab_num, new_val, trigger_input_event=true) {
