@@ -19,8 +19,9 @@ from bitbankproject import views
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from bitbank.admin import admin_site
 
 urlpatterns = [
     path('', include('bitbank.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin_site.urls),
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -116,8 +116,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     class Meta:
-        verbose_name = _('ユーザ')
-        verbose_name_plural = _('ユーザ')
+        verbose_name = _('利用者')
+        verbose_name_plural = _('利用者')
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
@@ -143,8 +143,8 @@ class BitbankOrder(models.Model):
             return self.order_id
         
     class Meta:
-        verbose_name = "bitbank注文"
-        verbose_name_plural = "bitbank注文"
+        verbose_name = "注文"
+        verbose_name_plural = "注文"
         
     TYPE_MARKET = 'market'
     TYPE_LIMIT = 'limit'
@@ -193,7 +193,7 @@ class BitbankOrder(models.Model):
     }
     user = models.ForeignKey(
         User,
-        verbose_name = 'ユーザ',
+        verbose_name = '利用者',
         on_delete = models.CASCADE
     )
    
@@ -203,7 +203,7 @@ class BitbankOrder(models.Model):
     )
 
     side = models.CharField(
-        verbose_name = '買い/売り',
+        verbose_name = '売/買',
         max_length = 50,
     )
 
@@ -262,7 +262,7 @@ class BitbankOrder(models.Model):
     )
 
     status = models.CharField(
-        verbose_name = _('注文ステータス'),
+        verbose_name = _('ステータス'),
         null = True,
         max_length = 50,
     )
@@ -300,8 +300,8 @@ class OrderRelation(models.Model):
         return self.special_order
 
     class Meta:
-        verbose_name = "注文"
-        verbose_name_plural = "注文"
+        verbose_name = "特殊注文"
+        verbose_name_plural = "特殊注文"
     
     PAIR = [
         'btc_jpy',
@@ -360,7 +360,7 @@ class OrderRelation(models.Model):
         auto_now_add = True
     )
     is_active = models.BooleanField(
-        verbose_name = 'アクティブ',
+        verbose_name = '有効',
         default = True,
     )
 
@@ -368,8 +368,8 @@ class Alert(models.Model):
     def __str__(self):
         return self.pair
     class Meta:
-        verbose_name = "通知"
-        verbose_name_plural = "通知"
+        verbose_name = "通知状況"
+        verbose_name_plural = "通知状況"
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     pair = models.CharField(
@@ -379,7 +379,7 @@ class Alert(models.Model):
     )
 
     threshold = models.FloatField(
-        verbose_name = _('到達金額'),
+        verbose_name = _('通知レート'),
         null = False,
     )
 
@@ -421,8 +421,8 @@ class Inquiry(models.Model):
     def __str__(self):
         return self.subject
     class Meta:
-        verbose_name = "問い合わせ"
-        verbose_name_plural = "問い合わせ"
+        verbose_name = "問い合せ"
+        verbose_name_plural = "問い合せ"
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -467,7 +467,7 @@ class Inquiry(models.Model):
         default=False,
     )
     date_initiated = models.DateTimeField(
-        verbose_name = '問い合わせ日',
+        verbose_name = '問い合せ日時',
         auto_now_add = True,
 
     )
