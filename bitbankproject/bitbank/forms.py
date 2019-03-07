@@ -32,8 +32,11 @@ class UserCreateForm(UserCreationForm):
         for field in self.fields.values():
             field.required = True
             field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
-
+            if field.label == '名前':
+                field.widget.attrs['placeholder'] = '名前（本名でお願いします。）'
+            else:
+                field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+        
 class UserUpdateForm(forms.ModelForm):
     """ユーザー情報更新フォーム"""
 

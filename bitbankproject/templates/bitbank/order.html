@@ -1268,7 +1268,6 @@
                             $(this).addClass('buy').removeClass('btn-base');
                             $('#sell_button_' + i).removeClass('sell').addClass('btn-base');
                            
-
                             $('#id_side_' + i).val('buy').trigger('value_change');
                             button_order.removeClass('red_button').addClass('green_button');
                         } else {
@@ -2234,14 +2233,16 @@
                             return;
                         }
                         attachment_pk_list.push(data.result.pk + '');
-  
-                        $figure = $('<figure>', {
-                            class: 'attachment_preview',
-                            pk: data.result.pk
-                        });
+                        
+                        $container = $('<div>', {
+                            class: "container attachment_preview",
+                            style: "width:30%;height:auto;float:left;position:relative"
+                        }).appendTo(preview_zone);
 
-                        $figure
-                        .appendTo(preview_zone)
+                        $img_wrapper = $('<div>', {
+                            style: "position:relative"
+                        })
+                        .appendTo($container)
                         .on('click', function() {
                             var i = attachment_pk_list.indexOf($(this).attr('pk'));
                             attachment_pk_list.splice(i, 1);
@@ -2251,7 +2252,7 @@
                                     set_error_message(message_target, data.error);
                                     return;
                                 }
-                                $(this).remove();
+                                $(this).parent().remove();
                             })
                             .fail(function(data, textStatus, xhr) {
                                 if (data.status == 401) {
@@ -2263,18 +2264,18 @@
 
                         $img = $('<img>', {
                             class: 'img-thumbnail',
-                            id: 'file_' + data.result.pk
-                        });
-                        $img.appendTo($figure);
+                            id: 'file_' + data.result.pk,
+                        }).appendTo($img_wrapper);
                         
                         $('<div>', {
                             class: 'text',
                             text: '×'
-                        }).appendTo($figure);
+                        }).appendTo($img_wrapper);
                         
-                        $('<figcaption>', {
-                            text: data.files[0].name
-                        }).appendTo($figure);
+                        $('<p>', {
+                            text: data.files[0].name,
+                            style:"word-break : break-all;"
+                        }).appendTo($container);
 
                         readURL(data.files[0], $img);
                         

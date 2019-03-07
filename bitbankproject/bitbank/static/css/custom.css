@@ -100,7 +100,6 @@ div.card.red-border {
 }
 div.order_body {
     background: #333333 !important;
-    
     margin: 0.2rem 0.2rem 0.3rem 0.2rem;
     padding: 0.3rem 1.5rem   
 
@@ -215,23 +214,7 @@ button[name="cancel_order_button"], button[name="deactivate_alert_button"] {
     border-top: none;
   }
   
-  figure {
-      float: left;
-      position: relative;
-  }
 
-  figure.attachment_preview {
-      height : auto;
-      width: 30%;
-      padding: 0.5rem 0.5rem;
-  }
-  figure.attachment_preview > img {
-      width: 100%;
-      height: 80%;
-  }
- figure > figcaption {
-     font-size: 0.8rem;
- }
   div > ul.pagination > li.page-item > a.page-link{
     background: #333333 !important;
     color: white !important;
@@ -306,10 +289,10 @@ input[type="range"]:hover {
     background: orangered;
 }
 
-.attachment_preview:hover .img-thumbnail {
+  div.attachment_preview:hover .img-thumbnail {
     opacity: 0.4;
   }
-  .attachment_preview:hover .text {
+  div.attachment_preview:hover .text {
     opacity: 1;
   }
 
@@ -318,7 +301,7 @@ input[type="range"]:hover {
     transition: .5s ease;
     opacity: 0;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
