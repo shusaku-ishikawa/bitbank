@@ -82,7 +82,7 @@ class Command(BaseCommand):
                         logger.info('Stop market order found. side:' + stop_market_order.side + ' stop price:' + str(stop_market_order.price_for_stop) + ' market sell:' + ticker_dict.get('sell') + ' market buy:' + ticker_dict.get('buy'))
                         if (stop_market_order.side == 'sell' and (float(ticker_dict.get('sell')) <= stop_market_order.price_for_stop)) or \
                             (stop_market_order.side == 'buy' and (float(ticker_dict.get('buy')) >= stop_market_order.price_for_stop)):
-                            _util.place_order(prv, stop_market_order):
+                            _util.place_order(prv, stop_market_order)
 
                     # ストップリミットの注文取得
                     stop_limit_orders_by_pair = BitbankOrder.objects.filter(user=user).filter(pair=pair).filter(order_type=BitbankOrder.TYPE_STOP_LIMIT).filter(order_id__isnull=True).filter(status__in=[BitbankOrder.STATUS_READY_TO_ORDER])
