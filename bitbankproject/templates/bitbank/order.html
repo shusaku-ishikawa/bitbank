@@ -876,7 +876,7 @@
             }
 
             if (new_amount == '' || new_amount == 0 || new_price == '' || new_price == 0) {
-                set_slidevalue(tab_num, 0);
+                set_slidevalue(tab_num, 0, false);
             } else {
                 if (side == 'buy') {
                     var perc = new_price * new_amount * 100 / parseFloat(free_amount_json[currency]);
