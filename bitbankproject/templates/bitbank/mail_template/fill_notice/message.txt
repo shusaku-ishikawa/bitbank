@@ -6,7 +6,7 @@ order_id : {{ order.order_id }}
 注文日時 : {{ readable_datetime }}
 通貨 : {{ order.pair }}
 売買 : {{ order.side }}
-注文 : {{ order.type }}
+注文 : {{ order.order_type }}
 数量 : {{ order.start_amount }}
 平均価格 : {{ order.average_price }}
 
