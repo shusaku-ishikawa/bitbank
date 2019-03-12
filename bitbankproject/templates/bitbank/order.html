@@ -1044,6 +1044,27 @@
                 set_error_message(ajax_message_target, xhr);
             });
         }
+        function reset_input(i) {
+            $('#id_price_' + i).val(null);
+            $('#id_price_for_stop_' + i).val(null);
+            $('#id_start_amount_' + i).val(null);
+            $('#expect_price_' + i).val(null);
+            set_slidevalue(i, 0, false);
+        }
+        function reset_input_all() {
+            var $input = $('input[type="number"]');
+            var $message_target = $('#id_ajax_message_target');
+            var $pair = $('#id_pair');
+
+            $input.val(null);
+            for (let i = 0; i < 4; i ++) {
+                set_slidevalue(i, 0, false);
+                $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
+                $('#id_order_type_' + i).val(Object.keys(ORDER_TYPES)[1]).trigger('change');
+                set_default_price(i, $pair.val(), $message_target);
+            }
+        }
+
         function initialize_order_tab(is_initial = false) {
             var order_result_message_target = $('#id_order_result_message');
             var ajax_message_target = $('#id_ajax_message');
@@ -1107,12 +1128,9 @@
                 input_special_order
                 .on('change', function() {
                     $.cookie(COOKIE_SPECIAL_ORDER, $(this).val(), { expires: 7 });
-                    input_number.val(null);
-                    for (let i = 0; i < 4; i++) {
-                        set_slidevalue(i, 0, false);
-                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
-                    }
-
+                    reset_input_all();    
+                    
+                    
                     $slick
                     .slick('slickUnfilter')
                     .slick('slickFilter', function(index){
@@ -1137,9 +1155,7 @@
                                 break;
                         }   
                     });
-                    for(let i = 0; i < 4; i++) {
-                        set_default_price(i, input_pair.val(), ajax_message_target);
-                    }
+
                     $slick.slick('slickGoTo', 0);
                     
                 });
@@ -1147,11 +1163,8 @@
                 input_pair.on('change', function() {
                     $.cookie(COOKIE_ORDER_PAIR, $(this).val(), { expires: 7 });
 
-                    input_number.val(null);
-                    for (let i = 1; i< 4; i++) {
-                        set_slidevalue(i, 0, false);
-                        $('#id_side_' + i).val(Object.keys(SELL_BUY)[1]).trigger('value_change');
-                    }
+                    reset_input_all();    
+                    
 
                     // 数量、金額の通貨部分を更新
                     var unit = $(this).val().split('_')[0].toUpperCase();
@@ -1161,10 +1174,6 @@
                         $('div.unit').html(unit);
                     }
                     
-                    // 一覧タブを更新
-                    for(let i = 0; i < 4; i++) {
-                        set_default_price(i, input_pair.val(), ajax_message_target);
-                    }
                     $slick.slick('slickGoTo', 0);
                 });
                 
@@ -1209,11 +1218,7 @@
                     });
  
                     $('#id_order_type_' + i).on('change', function() {
-                        $('#id_price_' + i).val(null);
-                        $('#id_price_for_stop_' + i).val(null);
-                        $('#id_start_amount_' + i).val(null);
-                        $('#expect_price_' + i).val(null);
-                        set_slidevalue(i, 0, false);
+                        reset_input(i);
                         var new_order_type = $(this).val();
                         if (new_order_type == 'limit') {
                             $('#id_price_placeholder_' + i).html('指値価格');
@@ -1231,12 +1236,7 @@
                     });
                     $('#id_side_' + i).on('value_change', function() {
     
-                        $('#id_price_' + i).val(null);
-                        $('#id_price_for_stop_' + i).val(null);
-                        $('#id_start_amount_' + i).val(null);
-                        $('#expect_price_' + i).val(null);
-
-                        set_slidevalue(i, 0, false);
+                        reset_input(i);
 
                         if ($(this).val() == 'buy') {
                             
