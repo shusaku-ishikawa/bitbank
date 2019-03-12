@@ -141,10 +141,10 @@ class MyAdminSite(admin.AdminSite):
         """
         ordering = {
             "利用者": 1,
-            "問い合せ": 2,
-            "注文": 3,
-            "特殊注文": 4,
-            "通知状況":5
+            "問い合せ": 5,
+            "取引一覧": 3,
+            "発注一覧": 2,
+            "通知設定":4
         }
         app_dict = self._build_app_dict(request)
         # a.sort(key=lambda x: b.index(x[0]))

@@ -33,7 +33,7 @@ class UserCreateForm(UserCreationForm):
             field.required = True
             field.widget.attrs['class'] = 'form-control'
             if field.label == '名前':
-                field.widget.attrs['placeholder'] = '名前（本名でお願いします。）'
+                field.widget.attrs['placeholder'] = '名前（本名）'
             else:
                 field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
         

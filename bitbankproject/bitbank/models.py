@@ -143,8 +143,8 @@ class BitbankOrder(models.Model):
             return self.order_id
         
     class Meta:
-        verbose_name = "注文"
-        verbose_name_plural = "注文"
+        verbose_name = "取引一覧"
+        verbose_name_plural = "取引一覧"
         
     TYPE_MARKET = 'market'
     TYPE_LIMIT = 'limit'
@@ -300,8 +300,8 @@ class OrderRelation(models.Model):
         return self.special_order
 
     class Meta:
-        verbose_name = "特殊注文"
-        verbose_name_plural = "特殊注文"
+        verbose_name = "発注一覧"
+        verbose_name_plural = "発注一覧"
     
     PAIR = [
         'btc_jpy',
@@ -368,8 +368,8 @@ class Alert(models.Model):
     def __str__(self):
         return self.pair
     class Meta:
-        verbose_name = "通知状況"
-        verbose_name_plural = "通知状況"
+        verbose_name = "通知設定"
+        verbose_name_plural = "通知設定"
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     pair = models.CharField(
