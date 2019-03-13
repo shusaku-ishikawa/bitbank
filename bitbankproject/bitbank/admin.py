@@ -52,7 +52,7 @@ class MyOrderRelationAdmin(admin.ModelAdmin):
     def user_display(self, obj):
         return obj.user.full_name
     user_display.short_description = '利用者'
-    pair_display.short_description = '通過'
+    pair_display.short_description = '通貨'
     order_type_display.short_description = '注文'
     
 class MyBitbankOrderAdmin(admin.ModelAdmin):
@@ -73,7 +73,7 @@ class MyBitbankOrderAdmin(admin.ModelAdmin):
         else:
             return BitbankOrder.STATUS[obj.status]
         
-    pair_display.short_description = '通過'
+    pair_display.short_description = '通貨'
     side_display.short_description = '売/買'
     order_type_display.short_description = '注文'
     status_display.short_description = 'ステータス'
@@ -86,7 +86,7 @@ class MyAlertAdmin(admin.ModelAdmin):
     def user_display(self, obj):
         return obj.user.full_name
     user_display.short_description = '利用者'
-    pair_display.short_description = '通過'
+    pair_display.short_description = '通貨'
 
 class MyInquiryAdmin(admin.ModelAdmin):
     
@@ -142,7 +142,7 @@ class MyAdminSite(admin.AdminSite):
         ordering = {
             "利用者": 1,
             "問い合せ": 5,
-            "取引一覧": 3,
+            "取引履歴": 3,
             "発注一覧": 2,
             "通知設定":4
         }

@@ -316,4 +316,5 @@ input[type="range"]:hover {
   .img-thumbnail {
     background-color: gray !important;
     border: 1rem gray;
+    border-radius: 0;
 }
