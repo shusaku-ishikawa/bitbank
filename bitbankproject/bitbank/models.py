@@ -143,8 +143,8 @@ class BitbankOrder(models.Model):
             return self.order_id
         
     class Meta:
-        verbose_name = "取引一覧"
-        verbose_name_plural = "取引一覧"
+        verbose_name = "取引履歴"
+        verbose_name_plural = "取引履歴"
         
     TYPE_MARKET = 'market'
     TYPE_LIMIT = 'limit'
